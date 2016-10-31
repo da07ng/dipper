@@ -26,6 +26,7 @@
     "gulp-nunjucks-render": "^2.0.0",
     "gulp-sass": "^2.3.2",
     "gulp-util": "^3.0.7",
+    "isomorphic-fetch": "^2.2.1",
     "webpack": "^1.13.3"
   },
   "dependencies": {}

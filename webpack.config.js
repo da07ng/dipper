@@ -3,12 +3,24 @@ var webpack = require('webpack');
 module.exports = {
   entry: {
     app: [
-      './src/js/main.js'
+      './src/js/core/main.js'
+    ],
+    home: [
+      './src/js/pages/home.js'
+    ],
+    data: [
+      './src/js/pages/data.js'
+    ],
+    function: [
+      './src/js/pages/function.js'
+    ],
+    application: [
+      './src/js/pages/application.js'
     ]
   },
   output: {
     path: './dist/assets',
-    filename: 'js/main.js',
+    filename: 'js/[name].js',
     publicPath: '/'
   },
   module: {

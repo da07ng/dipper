@@ -33,10 +33,10 @@ gulp.task('script', function(callback) {
 
   webpack(myConfig, function(err, stats) {
     if (err) {
-      throw new gutil.PluginError('webpack:es6:build', err);
+      throw new gutil.PluginError('webpack:build', err);
     }
 
-    gutil.log('[webpack:es6:build]', stats.toString({
+    gutil.log('[webpack:build]', stats.toString({
       colors: true
     }));
 

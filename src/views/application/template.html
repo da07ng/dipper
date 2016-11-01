@@ -1,0 +1,171 @@
+{% set pageview = 'application' %}
+
+{% extends "layout/base.html" %}
+{% block title %}模板应用 - 地理空间信息服务管理系统{% endblock %}
+{% block keywords %}{% endblock %}
+
+{% block style %}
+{% endblock %}
+
+{% block content %}
+<div class="main">
+  <div class='container'>
+    <div class="content">
+      <div class="temp-overview">
+        <div class="container">
+          <div class="row">
+            <div class="temp-feature col-xs-6 col-md-4">
+              <div class="temp-feature-text">
+                <img class="temp-feature-image" src="assets/images/application/template/apps-office-icon-3.png">
+                <h3 class="temp-feature-title">即拿即用</h3>
+                <div>
+                  <p>创建地图后选择合适的模板直接嵌套，只需根据自己的喜好修改相关配置，无需任何编码，一个应用程序即创建完成</p>
+                </div>
+              </div>
+            </div>
+            <div class="temp-feature col-xs-6 col-md-4">
+              <div class="temp-feature-text">
+                <img class="temp-feature-image" src="assets/images/application/template/apps-field-icon-1.png">
+                <h3 class="temp-feature-title">跨平台</h3>
+                <div>
+                  <p>通过可配置的模板创建的应用可以在Web、Android和iOS等客户端跨平台运行，创建者可以集中精力挖掘数据而不需要再考虑不同平台的兼容问题</p>
+                </div>
+              </div>
+            </div>
+            <div class="temp-feature col-xs-6 col-md-4">
+              <div class="temp-feature-text">
+                <img class="temp-feature-image" src="assets/images/application/template/apps-comm-icon-2.png">
+                <h3 class="temp-feature-title">免费开源</h3>
+                <div>
+                  <p>可配置的模板绝大部分均可免费使用，而且开放源代码，用户可以在模板的基础上进一步定制开发，快速生成自己的应用程序</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="temp-content">
+        <div class="container">
+          <div class="temp-blocks">
+            <div class="row">
+              <a class="block col-xs-6 col-md-3" href="../arcgis/apps/MapTour/index.html" target="_blank">
+                <div class="temp-block">
+                  <div class="temp-block-image temp-theme-purple">
+                    <img class="temp-image" src="assets/images/application/template/thumbs/map_tour_th.jpg" alt="">
+                  </div>
+                  <div class="temp-block-text">
+                    <h4 class="temp-block-title">地理故事</h4>
+                    <p>可通过链接到交互式地图的地理标记照片和标题，以连续的基于位置的叙述形式进行显示。</p>
+                  </div>
+                </div>
+              </a>
+              <a class="block col-xs-6 col-md-3" href="../arcgis/apps/CompareAnalysis/index.html" target="_blank">
+                <div class="temp-block">
+                  <div class="temp-block-image temp-theme-green">
+                    <img class="temp-image" src="assets/images/application/template/thumbs/CompAnalysis3.jpg" alt="">
+                  </div>
+                  <div class="temp-block-text">
+                    <h4 class="temp-block-title">地图对比</h4>
+                    <p>比较多个并排地图的一个或多个位置的地理现象。</p>
+                  </div>
+                </div>
+              </a>
+              <a class="block col-xs-6 col-md-3" href="#">
+                <div class="temp-block">
+                  <div class="temp-block-image temp-theme-gray">
+                    <img class="temp-image" src="assets/images/application/template/thumbs/SMV_th.png" alt="">
+                  </div>
+                  <div class="temp-block-text">
+                    <h4 class="temp-block-title">简易地图查看器</h4>
+                    <p>显示一个包含图例、地图描述和导航工具的地图。</p>
+                  </div>
+                </div>
+              </a>
+              <a class="block col-xs-6 col-md-3" href="#">
+                <div class="temp-block">
+                  <div class="temp-block-image temp-theme-red">
+                    <img class="temp-image" src="assets/images/application/template/thumbs/Finder_th.png" alt="">
+                  </div>
+                  <div class="temp-block-text">
+                    <h4 class="temp-block-title">查找器</h4>
+                    <p>允许用户搜索要素或地址，打印地图以及通过社交媒体或电子邮件实现共享。</p>
+                  </div>
+                </div>
+              </a>
+              <a class="block col-xs-6 col-md-3" href="#">
+                <div class="temp-block">
+                  <div class="temp-block-image temp-theme-skyblue">
+                    <img class="temp-image" src="assets/images/application/template/thumbs/fef_thumb.png" alt="">
+                  </div>
+                  <div class="temp-block-text">
+                    <h4 class="temp-block-title">查找、编辑和过滤</h4>
+                    <p>允许用户搜索要素或地址，基于属性来过滤要素，以及创建、更新和删除要素。</p>
+                  </div>
+                </div>
+              </a>
+              <a class="block col-xs-6 col-md-3" href="#">
+                <div class="temp-block">
+                  <div class="temp-block-image temp-theme-lightgray">
+                    <img class="temp-image" src="assets/images/application/template/thumbs/IMS_th.png" alt="">
+                  </div>
+                  <div class="temp-block-text">
+                    <h4 class="temp-block-title">影响汇总</h4>
+                    <p>高亮显示某区域并显示与该区域位置相关的定量数据的汇总。</p>
+                  </div>
+                </div>
+              </a>
+              <a class="block col-xs-6 col-md-3" href="#">
+                <div class="temp-block">
+                  <div class="temp-block-image temp-theme-darkblue">
+                    <img class="temp-image" src="assets/images/application/template/thumbs/Minimalist_th.png" alt="">
+                  </div>
+                  <div class="temp-block-text">
+                    <h4 class="temp-block-title">Minimalist</h4>
+                    <p>利用一个非常简约的用户界面，使您的地图显而易见。可以在信息面板中(而非在地图上方)显示弹出窗口内容。</p>
+                  </div>
+                </div>
+              </a>
+              <a class="block col-xs-6 col-md-3" href="#">
+                <div class="temp-block">
+                  <div class="temp-block-image temp-theme-aqua">
+                    <img class="temp-image" src="assets/images/application/template/thumbs/SumView_th.png" alt="">
+                  </div>
+                  <div class="temp-block-text">
+                    <h4 class="temp-block-title">汇总查看器</h4>
+                    <p>显示在当前地图范围内的所有要素的指定字段值的总和、平均值、最小值和最大值。</p>
+                  </div>
+                </div>
+              </a>
+              <a class="block col-xs-6 col-md-3" href="#">
+                <div class="temp-block">
+                  <div class="temp-block-image temp-theme-blue">
+                    <img class="temp-image" src="assets/images/application/template/thumbs/PIM_th.png" alt="">
+                  </div>
+                  <div class="temp-block-text">
+                    <h4 class="temp-block-title">公共信息</h4>
+                    <p>显示一个包含 Twitter、Instagram、Flickr、YouTube 或 webcams.travel 中的地理定位内容的地图。此外还允许用户在图层和打印地图之间执行卷帘操作。</p>
+                  </div>
+                </div>
+              </a>
+              <a class="block col-xs-6 col-md-3" href="#">
+                <div class="temp-block">
+                  <div class="temp-block-image temp-theme-orange">
+                    <img class="temp-image" src="assets/images/application/template/thumbs/infolookup_th.png" alt="">
+                  </div>
+                  <div class="temp-block-text">
+                    <h4 class="temp-block-title">信息查找</h4>
+                    <p>向普通公众、内部员工和其他相关方提供关于某位置的信息。如果在此位置未找到要素，则会显示一条常规消息。此外，输入的位置可存储在点图层中。</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block script %}
+{% endblock %}

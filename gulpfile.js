@@ -7,7 +7,10 @@ var webpack = require('webpack');
 var webpackConfig = require('./webpack.config.js');
 
 gulp.task('html', function() {
-  gulp.src('src/views/*.html')
+  gulp.src(['src/views/*.html',
+            'src/views/application/*.html',
+            'src/views/dashboard/*.html',
+            'src/views/account/*.html'])
     .pipe(nunjucksRender({
       path: ['src/views/']
     }))
@@ -16,7 +19,8 @@ gulp.task('html', function() {
 
 gulp.task('vendor', function() {
   gulp.src(['vendor/jquery-1.12.4.min.js',
-            'vendor/bootstrap.min.js'])
+            'vendor/bootstrap.min.js',
+            'vendor/jquery.twbsPagination.min.js'])
     .pipe(concat('vendor.js'))
     .pipe(gulp.dest('dist/assets/js'));
 });

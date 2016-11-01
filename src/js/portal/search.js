@@ -3,7 +3,21 @@ import 'isomorphic-fetch'
 import { config } from '../config/config'
 import { searchParams } from './util'
 
-function search(q, start, num, sortField, sortOrder) {
+/**
+ * Search
+ * @param  {[type]} q         [description]
+ * @param  {[type]} start     [description]
+ * @param  {[type]} num       [description]
+ * @param  {[type]} sortField [description]
+ * @param  {[type]} sortOrder [description]
+ * @param  {[type]} token     [description]
+ * @return {[type]}           [description]
+ */
+function search(q, start, num, sortField, sortOrder, token) {
+  if (token === undefined) {
+    token = ''
+  }
+
   let url = config.portal.url + '/sharing/rest/search'
   let params = {
     q: q,
@@ -11,7 +25,8 @@ function search(q, start, num, sortField, sortOrder) {
     num: num,
     sortField: sortField,
     sortOrder: sortOrder,
-    f: 'json'
+    f: 'json',
+    token: token
   }
 
   return fetch(url, {

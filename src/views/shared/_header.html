@@ -1,0 +1,38 @@
+<div class="header">
+  <div class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+          aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">地理空间信息服务管理系统</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav pull-right">
+          <li class="{{ 'active' if pageview == 'home' }}"><a href="index.html">首页</a></li>
+          <li class="{{ 'active' if pageview == 'data' }}"><a href="data.html">数据服务</a></li>
+          <li class="{{ 'active' if pageview == 'function' }}"><a href="function.html">功能服务</a></li>
+          <li class="{{ 'active' if pageview == 'webmap' }}"><a href="webmap.html">智能地图</a></li>
+          <li class="{{ 'active' if pageview == 'webscene' }}"><a href="webscene.html">三维地图</a></li>
+          <li class="{{ 'active' if pageview == 'application' }}"><a href="application.html">平台应用</a></li>
+          <li class="dropdown {{ 'active' if pageview == 'dashboard' }}">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心 <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="profile.html">个人资料</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="resource.html">我的资源</a></li>
+              <li><a href="favourite.html">我的收藏</a></li>
+              <li><a href="group.html">我的群组</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">退出</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

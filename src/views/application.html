@@ -1,3 +1,5 @@
+{% set pageview = 'application' %}
+
 {% extends "layout/base.html" %}
 {% block title %}平台应用 - 地理空间信息服务管理系统{% endblock %}
 {% block keywords %}{% endblock %}
@@ -7,15 +9,136 @@
 
 {% block content %}
 <div class="main">
-  <div class='container page-index'>
+  <div class='container'>
     <div class="content">
-      <h1>Build Multi-Page Application</h1>
-      <p>
-        Build Multi-Page Application with Gulp
-      </p>
-      <a href="/login">
-        <div class="button button-blue">Login</div>
-      </a>
+      <div id="templatemo-portfolio">
+        <div class="container">
+          <div class="row">
+            <div class="leader">
+              <h3>应用模式</h3>
+            </div>
+            <div class="clearfix"></div>
+            <p class="text-center text-description" style="font-size: 16px;color: #929292">
+              &nbsp;&nbsp;&nbsp;&nbsp; 江西水利公共服务平台应用中心由在线应用模板、行业应用支撑、智能地图应用、Office集成应用以及Web Mapping API等几部分组成。
+            </p>
+          </div>
+          <div class="row" style="margin-top: 20px;">
+            <div class="col-md-3 col-xs-3 col-sm-3 type-item">
+              <a href="template.html">
+                <img class="img-responsive center-block" src="assets/images/application/application-template.png" alt="Generic placeholder image">
+              </a>
+              <h4 class="text-center">模板应用</h4>
+              <p class="text-center">应用中心可以提供多种类型的基础web应用模板和移动应用模板，即可以选择合适的模板，快速生成简单的应用，并且托管到平台，供其他人访问。</p>
+            </div>
+            <div class="col-md-3 col-xs-3 col-sm-3 type-item">
+              <a href="appbuilder.html">
+                <img class="img-responsive center-block" src="assets/images/application/application-webapp.png" alt="Generic placeholder image">
+              </a>
+              <h4 class="text-center">构建应用中心</h4>
+              <p class="text-center">利用可在任何设备上运行的即用型微件创建 HTML/JavaScript 应用程序。通过可配置主题自定义该程序的外观。整个过程无需编码</p>
+            </div>
+            <div class="col-md-3 col-xs-3 col-sm-3 type-item">
+              <a href="plugins.html">
+                <img class="img-responsive center-block" src="assets/images/application/application-plug-in.png" alt="Generic placeholder image">
+              </a>
+              <h4 class="text-center">第三方集成</h4>
+              <p class="text-center">平台提供了多种插件，与第三方应用集成后用户可凭借地图的力量根据数据询问与位置有关的问题，以便更深入地了解情况，并做出更明智的决定。</p>
+            </div>
+            <div class="col-md-3 col-xs-3 col-sm-3 type-item">
+              <a href="developer.html">
+                <img class="img-responsive center-block" src="assets/images/application/application-develop.png" alt="Generic placeholder image">
+              </a>
+              <h4 class="text-center">开发中心</h4>
+              <p class="text-center">将地图转换成可用于 Android、iOS、Windows、OS X 和 Linux 的移动应用程序。使用您自己的品牌发布应用程序或进行内部共享。整个过程无需任何开发技能。</p>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <div id="templatemo-portfolio">
+        <div class="container">
+          <div class="row">
+            <div class="leader">
+              <h3>典型应用</h3>
+            </div>
+            <div class="clearfix"></div>
+            <p class="text-center text-description" style="font-size: 16px;color: #929292">
+              &nbsp;&nbsp;&nbsp;&nbsp; 江西水利公共服务平台应用中心由在线应用模板、行业应用支撑、智能地图应用、Office集成应用以及Web Mapping API等几部分组成。
+            </p>
+          </div>
+          <div class="tabbable tabs-below tabapps">
+            <div class="tab-content">
+              <div class="tab-pane active fade in" id="tabTemp">
+                <div class="center-block">
+                  <ul class="list-inline">
+                    <li>
+                      <a rel="nofollow" target="_top" class="external text" href="platformApplication/templates/item.html">
+                        <img class="img-responsive" src="assets/images/application/thumbs/a0.jpg" title="社交应用模板">
+                        <p><img src="assets/images/application/arrow.png"> 社交应用模板</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a rel="nofollow" target="_top" class="external text" href="platformApplication/templates/item.html">
+                        <img class="img-responsive" src="assets/images/application/thumbs/a1.jpg" title="社交统计模板">
+                        <p><img src="assets/images/application/arrow.png"> 社交统计模板</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a rel="nofollow" target="_top" class="external text" href="platformApplication/templates/item.html">
+                        <img class="img-responsive" src="assets/images/application/thumbs/a7.jpg" title="空间统计模板">
+                        <p><img src="assets/images/application/arrow.png"> 空间统计模板</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a rel="nofollow" target="_top" class="external text" href="platformApplication/templates/item.html">
+                        <img class="img-responsive" src="assets/images/application/thumbs/a3.png" title="热点分析模板">
+                        <p><img src="assets/images/application/arrow.png"> 热点分析模板</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a rel="nofollow" target="_top" class="external text" href="platformApplication/templates/item.html">
+                        <img class="img-responsive" src="assets/images/application/thumbs/a4.jpg" title="河流流域分析模板">
+                        <p><img src="assets/images/application/arrow.png"> 河流流域分析模板</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a rel="nofollow" target="_top" class="external text" href="platformApplication/templates/item.html">
+                        <img class="img-responsive" src="assets/images/application/thumbs/a5.png" title="登山应用模板">
+                        <p><img src="assets/images/application/arrow.png"> 登山应用模板</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a rel="nofollow" target="_top" class="external text" href="platformApplication/templates/item.html">
+                        <img class="img-responsive" src="assets/images/application/thumbs/a6.png" title="应急分析模板">
+                        <p><img src="assets/images/application/arrow.png"> 应急分析模板</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a rel="nofollow" target="_top" class="external text" href="platformApplication/templates/item.html">
+                        <img class="img-responsive" src="assets/images/application/thumbs/a2.png" title="FLEX应用模板">
+                        <p><img src="assets/images/application/arrow.png"> FLEX应用模板</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a rel="nofollow" target="_top" class="external text" href="platformApplication/templates/item.html">
+                        <img class="img-responsive" src="assets/images/application/thumbs/a8.png" title="植被分析模板">
+                        <p><img src="assets/images/application/arrow.png"> 植被分析模板</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a rel="nofollow" target="_top" class="external text" href="platformApplication/templates/item.html">
+                        <img class="img-responsive" src="assets/images/application/thumbs/a9.jpg" title="气象分析模板">
+                        <p><img src="assets/images/application/arrow.png"> 气象分析模板</p>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

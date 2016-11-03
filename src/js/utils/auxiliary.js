@@ -1,6 +1,23 @@
 function formatTime(timestamp) {
-  var data = new Date(timestamp);
+  let data = new Date(timestamp);
   return data.getFullYear() + '年' + (data.getMonth() + 1) + '月' + data.getDate() + '日';
 }
 
-export { formatTime }
+function subString(str, n) {
+  let r = /[^\x00-\xff]/g;
+  if (str.replace(r, "mm").length <= n) {
+    return str;
+  }
+  let m = Math.floor(n / 2);
+  for (let i = m; i < str.length; i++) {
+    if (str.substr(0, i).replace(r, "mm").length >= n) {
+      return str.substr(0, i) + "...";
+    }
+  }
+  return str;
+}
+
+export {
+  formatTime,
+  subString
+}

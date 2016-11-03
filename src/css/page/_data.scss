@@ -1,4 +1,4 @@
-.map {
+.resource {
   .thumbnail {
     padding: 0;
     border: 0;
@@ -24,12 +24,16 @@
     }
   }
 
-  .map-title {
+  .resource-title {
     font-size: 16px;
     font-weight: 400;
   }
 
-  .map-author {
+  .resource-snippet {
+    height: 60px;
+  }
+
+  .resource-author {
     margin: 0 -9px ;
     padding: 10px 9px;
     border-top: 1px solid #ddd;
@@ -47,6 +51,6 @@
   }
 }
 
-.map-page {
+.resource-page {
   text-align: center;
 }

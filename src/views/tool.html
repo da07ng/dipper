@@ -1,7 +1,7 @@
-{% set pageview = 'data' %}
+{% set pageview = 'tool' %}
 
 {% extends "layout/base.html" %}
-{% block title %}数据服务 - 地理空间信息服务管理系统{% endblock %}
+{% block title %}功能服务 - 地理空间信息服务管理系统{% endblock %}
 {% block keywords %}{% endblock %}
 
 {% block style %}
@@ -16,15 +16,8 @@
           <div id="tree1" class="htmleaf-content bgcolor-3 blue">
             <p class="mtree-title">标准分类<span class="mtree-title-close">×</span></p>
             <ul class="mtree">
-              <li class="mtree-active"><a href="#" id="maps-webmaps">智能地图</a></li>
-              <li><a href="#" id="scenes">三维场景</a></li>
-              <li><a href="#" id="Map Service">矢量数据服务</a></li>
-              <li><a href="#" id="layers-weblayers-features">要素服务</a></li>
-              <li><a href="#" id="layers-weblayers-imagery">影像服务</a></li>
-              <li><a href="#" id="layers-weblayers-scenelayers">三维数据服务</a></li>
-              <li><a href="#" id="WMS">OGC标准服务</a></li>
-              <li><a href="#" id="Stream Service">时态数据服务</a></li>
-              <li><a href="#" id="other">其他服务</a></li>
+              <li class="mtree-active"><a href="#" id="tools-geoprocessing">空间分析服务</a></li>
+              <li><a href="#" id="tools-geometric">几何处理服务</a></li>
             </ul>
           </div>
         </div>
@@ -45,5 +38,5 @@
 {% endblock %}
 
 {% block script %}
-<script src="assets/js/data.js"></script>
+<script src="assets/js/tool.js"></script>
 {% endblock %}

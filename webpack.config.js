@@ -11,8 +11,8 @@ module.exports = {
     data: [
       './src/js/pages/data.js'
     ],
-    function: [
-      './src/js/pages/function.js'
+    tool: [
+      './src/js/pages/tool.js'
     ],
     application: [
       './src/js/pages/application.js'

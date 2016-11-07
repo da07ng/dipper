@@ -46,6 +46,28 @@
       color: rgba(255, 255, 255, .8);
     }
   }
+
+  .account {
+    .btn-group {
+      margin: 5px 0 5px 10px;
+      border-radius: 15px;
+      border: solid 1px #fff;
+    }
+
+    .btn-default {
+      color: rgba(255, 255, 255, 0.8);
+      background-color: transparent;
+      border: none;
+
+      &:hover {
+        color: #fff;
+      }
+    }
+
+    .btn:first-child {
+      border-right: solid 1px #fff;
+    }
+  }
 }
 
 // main

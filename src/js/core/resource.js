@@ -7,6 +7,23 @@ import { search } from '../portal/search'
 import cookie from '../utils/cookie'
 import { formatTime, subString } from '../utils/auxiliary'
 
+var $pagination
+var defaultOpts
+
+// $(function() {
+var $pagination = $('.pagination')
+var defaultOpts = {
+  totalPages: 1,
+  initiateStartPageClick: false,
+  hideOnlyOnePage: true,
+  first: '首页',
+  prev: '上一页',
+  next: '下一页',
+  last: '尾页'
+}
+$pagination.twbsPagination(defaultOpts)
+// })
+
 function getResourceList(type, page) {
   getPortalSelf(cookie('dipper_token')).then(response => {
     if (response.ok) {
@@ -25,20 +42,16 @@ function getResourceList(type, page) {
 
               showResourceList(res)
 
-              $('.pagination').twbsPagination({
-                totalPages: Math.ceil(json.total/json.num),
-                startPage: 1,
-                visiblePages: 5,
-                initiateStartPageClick: false,
-                hideOnlyOnePage: true,
-                first: '首页',
-                prev: '上一页',
-                next: '下一页',
-                last: '尾页',
+              var totalPages = Math.ceil(json.total / json.num)
+              var currentPage = $pagination.twbsPagination('getCurrentPage')
+              $pagination.twbsPagination('destroy')
+              $pagination.twbsPagination($.extend({}, defaultOpts, {
+                startPage: currentPage,
+                totalPages: totalPages,
                 onPageClick: function (event, page) {
                   getResourceList(type, page)
                 }
-              })
+              }))
             })
           }
         }).catch(err => {

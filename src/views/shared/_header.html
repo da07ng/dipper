@@ -19,7 +19,13 @@
           <li class="{{ 'active' if pageview == 'webmap' }}"><a href="webmap.html">智能地图</a></li>
           <li class="{{ 'active' if pageview == 'webscene' }}"><a href="webscene.html">三维地图</a></li>
           <li class="{{ 'active' if pageview == 'application' }}"><a href="application.html">平台应用</a></li>
-          <li class="dropdown {{ 'active' if pageview == 'dashboard' }}">
+          <li class="account">
+            <div class="btn-group" role="group">
+              <a class="btn btn-default" href="signin.html" role="button">登录</a>
+              <a class="btn btn-default" href="signup.html" role="button">注册</a>
+            </div>
+          </li>
+          <li class="dashboard dropdown {{ 'active' if pageview == 'dashboard' }}" style="display: none;">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心 <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="profile.html">个人资料</a></li>

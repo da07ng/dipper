@@ -4,7 +4,16 @@
 // import { generateToken } from '../portal/token'
 // import { getPortalSelf } from '../portal/portals'
 
-// import cookie from '../utils/cookie'
+import cookie from '../utils/cookie'
+
+let token = cookie('dipper_token')
+if (token === undefined) {
+  $('.account').show()
+  $('.dashboard').hide()
+} else {
+  $('.account').hide()
+  $('.dashboard').show()
+}
 
 // generateToken(config.portal.user, config.portal.password, 'referer', '', 'http://localhost/dipper/', 21600).then(response => {
 //   if (response.ok) {

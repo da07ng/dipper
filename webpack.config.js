@@ -16,6 +16,9 @@ module.exports = {
     ],
     application: [
       './src/js/pages/application.js'
+    ],
+    signin: [
+      './src/js/pages/signin.js'
     ]
   },
   output: {

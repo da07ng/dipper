@@ -3,11 +3,10 @@ import { getResourceList } from '../core/resource'
 getResourceList('tools-geoprocessing', 1)
 
 $(function() {
-  $('#tools-geoprocessing').on('click', function() {
-    getResourceList('tools-geoprocessing', 1)
-  })
+  $('.tree-list li a').on('click', function(e) {
+    e.preventDefault()
 
-  $('#tools-geometric').on('click', function() {
-    getResourceList('tools-geometric', 1)
+    let dataType = $(e.target).data('type')
+    getResourceList(dataType, 1)
   })
 })

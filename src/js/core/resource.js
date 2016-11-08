@@ -7,15 +7,9 @@ import { search } from '../portal/search'
 import cookie from '../utils/cookie'
 import { formatTime, subString } from '../utils/auxiliary'
 
-var $pagination
-var defaultOpts
-
 // $(function() {
-var $pagination = $('.pagination')
+let $pagination = $('.pagination')
 var defaultOpts = {
-  totalPages: 1,
-  initiateStartPageClick: false,
-  hideOnlyOnePage: true,
   first: '首页',
   prev: '上一页',
   next: '下一页',
@@ -32,31 +26,39 @@ function getResourceList(type, page) {
         let query = `orgid:${portalId} ${portalQueryConfig.viewQueries.web} ${portalQueryConfig.viewQueries.none} ${portalQueryConfig.filterQueries[type].f}`
         let start = page * 9 - 8
 
-        search(query, start, 9, 'modified', 'desc').then(response => {
-          if (response.ok) {
-            response.json().then(json => {
-              let res = json.results
-              if (res.length === 0) {
-                return
-              }
+        searchResource(type, query, start)
+      })
+    }
+  }).catch(err => {
+    console.log(err)
+  })
+}
 
-              showResourceList(res)
+function searchResource(type, query, start) {
+  search(query, start, 9, 'modified', 'desc', cookie('dipper_token')).then(response => {
+    if (response.ok) {
+      response.json().then(json => {
+        let res = json.results
+        if (res.length === 0) {
+          $('.resource-list').html('')
+          $('.pagination').hide()
+          return
+        }
 
-              var totalPages = Math.ceil(json.total / json.num)
-              var currentPage = $pagination.twbsPagination('getCurrentPage')
-              $pagination.twbsPagination('destroy')
-              $pagination.twbsPagination($.extend({}, defaultOpts, {
-                startPage: currentPage,
-                totalPages: totalPages,
-                onPageClick: function (event, page) {
-                  getResourceList(type, page)
-                }
-              }))
-            })
+        showResourceList(res)
+        $('.pagination').show()
+
+        let totalPages = Math.ceil(json.total / json.num)
+        let currentPage = $pagination.twbsPagination('getCurrentPage')
+        $pagination.twbsPagination('destroy')
+        $pagination.twbsPagination($.extend({}, defaultOpts, {
+          startPage: currentPage,
+          totalPages: totalPages,
+          initiateStartPageClick: false,
+          onPageClick: function (event, page) {
+            getResourceList(type, page)
           }
-        }).catch(err => {
-          console.log(err)
-        })
+        }))
       })
     }
   }).catch(err => {
@@ -65,11 +67,17 @@ function getResourceList(type, page) {
 }
 
 function showResourceList(resourceList) {
+  let token = cookie('dipper_token')
+
   let resourceListHtml = ''
   for(let i = 0; i < resourceList.length; i++) {
     let resource = resourceList[i]
 
     let thumbnail = `${config.portal.url}/sharing/rest/content/items/${resource.id}/info/${resource.thumbnail}`
+    if (token !== undefined) {
+      thumbnail = `${thumbnail}?token=${token}`
+    }
+
     if (resource.thumbnail === null) {
       thumbnail = 'assets/images/portal/desktopapp.png'
     }

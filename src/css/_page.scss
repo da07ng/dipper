@@ -18,6 +18,10 @@
     border: 0;
   }
 
+  .navbar-brand {
+    font-size: 24px;
+  }
+
   .navbar-default .navbar-nav a:hover {
     color: #108EE9;
     background-color: transparent;
@@ -45,7 +49,7 @@
 }
 
 // main
-.main {
+/*.main {
   .carousel,
   .carousel .item {
     height: 558px;
@@ -54,4 +58,16 @@
   .carousel-inner>.item>img {
     height: auto;
   }
+}*/
+
+// footer
+.footer {
+  background-color: #F6F6F6;
+  padding: 14px;
+  padding-bottom: 4px;
+}
+
+.footer-nav li {
+  list-style-type:none;
+  padding: 4px;
 }

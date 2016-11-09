@@ -10,56 +10,56 @@
 {% block content %}
 <div class="main">
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
+    <!--<ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <!--<li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>-->
-    </ol>
+      <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+      <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+    </ol>-->
     <div class="carousel-inner" role="listbox">
-      <div class="item active">
-        <img class="first-slide" src="assets/images/1.jpg" alt="First slide">
+      <div class="item item-platform active">
         <div class="container">
           <div class="carousel-caption">
-            <h1>Example headline.</h1>
-            <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons
-              on the left and right might not load/display properly due to web browser security rules.</p>
-            <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+            <h1 class="animated fadeInDown">地理空间信息服务管理系统</h1>
+            <p class="animated fadeInUp">
+              地理空间信息服务管理系统着力于打造一个集地图、时空数据、服务、文档、工具等资源于一体的综合资源平台和共享交换平台。将平台所拥有的地理资源、服务及应用按不同类型、不同权限展示出来，用户可以在浏览器、移动终端访问该资源中心，获取、制作自己的专题资源并实现共享交换
+            </p>
           </div>
         </div>
       </div>
-      <!--<div class="item">
-        <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
+      <!--<div class="item item-exchange">
         <div class="container">
-          <div class="carousel-caption">
-            <h1>Another example headline.</h1>
-            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.
-              Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-            <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+          <div class="row">
+            <div class="media">
+              <div class="media-middle media-right" style="width:50%;height: 500px;"></div>
+              <div class="media-body col-md-offset-6" style="width:50%;height: 500px;">
+                <h1 class="animated fadeInDown media-heading " style="text-align: right;">共享互通</h1>
+                <p class="animated fadeInUp desciption">
+                  水利地理信息共享服务平台采用在线服务的模式，实现省内平台共建共享互通，省市县基础测绘数据、地理框架数据、电子地图数据、行业专题数据、地理国情普查数据、三维数据等各类数据生产、管理、应用、共享和分发机制。
+                </p>
+                <a class="btn btn-default clear-light-button animated fadeInUp pull-right" href="exShareCatalog.html" role="button">了解更多</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="item">
-        <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
+      <div class="item item-data">
         <div class="container">
-          <div class="carousel-caption">
-            <h1>One more for good measure.</h1>
-            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.
-              Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-            <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+          <div class="row">
+            <div class="media">
+              <div class="media-body" style="max-width: 585px; height: 500px;">
+                <h1 class="animated fadeInDown media-heading">信息时空汇聚</h1>
+                <p class="animated fadeInUp desciption">
+                  随着技术的发展，时空信息已不再仅仅是标准的表结构数据，而是大量非结构化、半结构化的大数据，数据量也成倍增长，管理与共享时空信息大数据是必须解决的问题。地理信息共享服务平台，实现时空信息数据的汇聚、管理与共享。
+                </p>
+                <a class="btn btn-default clear-light-button animated fadeInUp" href="dataGallery.html" role="button">了解更多</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>-->
     </div>
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
   </div>
-  <div id="templatemo-portfolio">
+  <!--<div id="templatemo-portfolio">
     <div class="container">
       <div class="row">
         <div class="leader">
@@ -70,12 +70,10 @@
           &nbsp;&nbsp;&nbsp;&nbsp;公共服务平台遵循开放地理空间联盟（OGC）服务标准，提供了包括WMS（Web地图服务）、WFS（Web要素服务）、WFS-G（地名地址服务）等，以及KML、街景数据服务、全景数据服务和与平台对接系统的相关专题服务
         </p>
       </div>
-      <div class="clearfix"></div>
-      <div class="clearfix"></div>
       <div class="text-center">
         <div class="tabbable tabclear">
           <ul class="nav nav-tabs nav-justified">
-            <li role="presentation" class="">
+            <li role="presentation" class="active">
               <a href="#tabvet" data-toggle="tab" aria-expanded="true">
                 <img class="active-obj" src="assets/images/icons/vet_actived.png">
                 <img class="disactive-obj" src="assets/images/icons/vet_disactived.png">矢量数据服务</a>
@@ -85,7 +83,7 @@
                 <img class="active-obj" src="assets/images/icons/img_actived.png">
                 <img class="disactive-obj" src="assets/images/icons/img_disactived.png">影像数据服务</a>
             </li>
-            <li role="presentation" class="active">
+            <li role="presentation" class="">
               <a href="#tab3d" data-toggle="tab" aria-expanded="false">
                 <img class="active-obj" src="assets/images/icons/3d_actived.png">
                 <img class="disactive-obj" src="assets/images/icons/3d_disactived.png">三维数据服务</a>
@@ -1158,7 +1156,6 @@
           </div>
         </div>
       </div>
-      <div class="clearfix"></div>
       <div class="row text-center">
         <a class="btn btn-default clear-dark-button" href="dataGallery.html" role="button">查看更多</a>
       </div>
@@ -1208,6 +1205,70 @@
       <div class="clearfix"></div>
       <div class="row text-center">
         <a class="btn btn-default clear-dark-button" href="dataGallery.html" role="button">查看更多</a>
+      </div>
+    </div>
+  </div>-->
+  <div id="platform-feature" class="platform-feature">
+    <div class="index-content-header">
+      <div class="title">平台功能</div>
+    </div>
+    <div class="index-content-body">
+      <div class="row">
+        <!--<div id="map-server" class="clearfix product-panel">
+          <div class="icon">
+            <img src="//dn-static-geohey.qbox.me/site/ff0945da33bfedbcd1b1f95fd27738a28f762310/img/icon/map_1@2x.png" class="static">
+            <img src="//dn-static-geohey.qbox.me/site/ff0945da33bfedbcd1b1f95fd27738a28f762310/img/icon/dotLine@2x.png" class="dynamic"
+              index="line">
+            <img src="//dn-static-geohey.qbox.me/site/ff0945da33bfedbcd1b1f95fd27738a28f762310/img/icon/o@2x.png" class="dynamic" index="o">
+            <img src="//dn-static-geohey.qbox.me/site/ff0945da33bfedbcd1b1f95fd27738a28f762310/img/icon/x@2x.png" class="dynamic" index="x">
+            <div class="line-blank"></div>
+          </div>
+          <div class="title">地图</div>
+          <div class="text">
+            <p>提供二十余种不同风格地图，可与任何地图系统无缝对接，满足不同场景需求。</p>
+          </div>
+          <a class="btn btn-primary-o" href="/site/dev/map" target="_blank">查看详情</a>
+        </div>-->
+        <div id="data" class="clearfix product-panel">
+          <div class="icon">
+            <img src="//dn-static-geohey.qbox.me/site/ff0945da33bfedbcd1b1f95fd27738a28f762310/img/icon/resource_1@2x.png" class="static">
+            <img src="//dn-static-geohey.qbox.me/site/ff0945da33bfedbcd1b1f95fd27738a28f762310/img/icon/o_small@2x.png" class="dynamic"
+              index="shape-1">
+            <img src="//dn-static-geohey.qbox.me/site/ff0945da33bfedbcd1b1f95fd27738a28f762310/img/icon/o_small@2x.png" class="dynamic"
+              index="shape-2">
+            <img src="//dn-static-geohey.qbox.me/site/ff0945da33bfedbcd1b1f95fd27738a28f762310/img/icon/o_small@2x.png" class="dynamic"
+              index="shape-3">
+            <img src="//dn-static-geohey.qbox.me/site/ff0945da33bfedbcd1b1f95fd27738a28f762310/img/icon/dot@2x.png" class="dynamic" index="dot">
+            <div class="dot-blank"></div>
+          </div>
+          <div class="title">数据</div>
+          <div class="text">
+            <p>用户可以上传、维护或分享自己的数据，也可以使用平台提供的各类公共数据。</p>
+          </div>
+          <a class="btn btn-primary-o" href="data.html">查看详情</a>
+        </div>
+        <div id="api" class="clearfix product-panel">
+          <div class="icon" index="servers">
+            <img src="//dn-static-geohey.qbox.me/site/ff0945da33bfedbcd1b1f95fd27738a28f762310/img/icon/services_1@2x.png" class="static">
+            <img src="//dn-static-geohey.qbox.me/site/ff0945da33bfedbcd1b1f95fd27738a28f762310/img/icon/settings(2)@2x.png" class="dynamic">
+          </div>
+          <div class="title">功能</div>
+          <div class="text">
+            <p>提供地址编码、路径分析、几何分析和数据可视化等针对地理数据的分析服务。</p>
+          </div>
+          <a class="btn btn-primary-o" href="tool.html">查看详情</a>
+        </div>
+        <div id="app" class="clearfix product-panel">
+          <div class="icon">
+            <img src="//dn-static-geohey.qbox.me/site/ff0945da33bfedbcd1b1f95fd27738a28f762310/img/icon/application@2x.png" class="static">
+            <img src="//dn-static-geohey.qbox.me/site/ff0945da33bfedbcd1b1f95fd27738a28f762310/img/icon/application@2x.png" class="dynamic">
+          </div>
+          <div class="title">应用</div>
+          <div class="text">
+            <p>提供即拿即用的Web应用程序，提供数据分析与可视化，满足不同行业需求。</p>
+          </div>
+          <a class="btn btn-primary-o" href="application.html">查看详情</a>
+        </div>
       </div>
     </div>
   </div>

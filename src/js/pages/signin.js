@@ -21,9 +21,8 @@ $('.signin-form').submit(function(e) {
           // path: '/',
           expires: new Date(expires)
         })
-        
-        $('.account').show()
-        $('.dashboard').hide()
+
+        window.location.href='index.html'
       })
     }
   }).catch(err => {

@@ -7,13 +7,20 @@
 import cookie from '../utils/cookie'
 
 let token = cookie('dipper_token')
-if (token === undefined) {
+if (token === undefined || token === '') {
   $('.account').show()
   $('.dashboard').hide()
 } else {
   $('.account').hide()
   $('.dashboard').show()
 }
+
+$('#signout').on('click', function(e) {
+  e.preventDefault()
+  
+  cookie('dipper_token', '')
+  window.location.href='index.html'
+})
 
 // generateToken(config.portal.user, config.portal.password, 'referer', '', 'http://localhost/dipper/', 21600).then(response => {
 //   if (response.ok) {

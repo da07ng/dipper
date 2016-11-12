@@ -1,0 +1,354 @@
+.center {
+  width: auto;
+  display: table;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.l {
+  float: left;
+}
+.trailer-half {
+  margin-bottom: 12px;
+}
+.trailer-2 {
+  margin-bottom: 48px;
+}
+.leader-1 {
+  margin-top: 24px;
+}
+.leader-2 {
+  margin-top: 48px;
+}
+.layoutContainer {
+  padding: 0;
+}
+/*.header {
+  background: url(../images/application/developer/banner.jpg) center center;
+  background-size: cover;
+  min-height: 340px;
+}*/
+.main-text {
+  width: 75%;
+  margin: 48px 0;
+  padding: 0 0.5em;
+}
+.white-text {
+  color: #fff;
+}
+.center-text {
+  text-align: center;
+}
+.banner-title {
+  font-size: 48px !important;
+  font-family: "微软雅黑", "Microsoft YaHei", sans-serif;
+  letter-spacing: normal;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.26316em;
+  margin-bottom: 0.31579em;
+  margin-top: 0em;
+  font-style: normal;
+  font-weight: 500;
+  -webkit-margin-before: 0.67em;
+  -webkit-margin-after: 0.67em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+}
+.banner-text {
+  font-size: 18px;
+  font-family: "微软雅黑", "Microsoft YaHei", sans-serif;
+  margin-bottom: 30px;
+  line-height: 1.5em;
+}
+.develope-bg {
+  width: 100%;
+  background-color: #f6f6f6;
+  border-bottom: solid 1px #e1e1e1;
+  padding: 30px 0px;
+  height: 290px;
+}
+.itemlist {
+  width: 100%;
+  max-width: 1050px;
+  margin: auto;
+  height: 100%;
+}
+.wrap {
+  position: relative;
+  max-width: 235px;
+  width: 22.5%;
+  height: 250px;
+  overflow: hidden;
+  margin-right: 2.4%;
+}
+.wrap .out {
+  height: 210px;
+  margin-top: 0\9 !important;
+}
+.wrap .circle {
+  width: 70px;
+  height: 70px;
+  background: #f6f6f6 url(../images/application/developer/circle.png);
+  margin: 0px auto;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.wrap .circle:hover {
+  background: #f6f6f6 url(../images/application/developer/circle-light.png);
+}
+.wrap .circle div {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.wrap h2 {
+  color: #0098dd;
+  line-height: 50px;
+  font-size: 18px;
+  text-align: center;
+  font-weight: 100;
+  margin-bottom: 5px;
+  margin-top: 0;
+  cursor: default;
+  cursor: pointer;
+}
+.wrap h2:hover {
+  color: #EF8D36;
+}
+.wrap .out p {
+  padding: 0;
+  margin: 0px 32px;
+  line-height: 20px;
+}
+#imac {
+  background: url(../images/application/developer/imac.png) no-repeat 15px 15px;
+}
+#imac:hover {
+  background: url(../images/application/developer/imac-light.png) no-repeat 15px 15px;
+}
+#apple {
+  background: url(../images/application/developer/apple.png) no-repeat 15px 15px;
+}
+#apple:hover {
+  background: url(../images/application/developer/apple-light.png) no-repeat 15px 15px;
+}
+#android {
+  background: url(../images/application/developer/android.png) no-repeat 15px 15px;
+}
+#android:hover {
+  background: url(../images/application/developer/android-light.png) no-repeat 15px 15px;
+}
+#interface {
+  background: url(../images/application/developer/speech.png) no-repeat 15px 15px;
+}
+#interface:hover {
+  background: url(../images/application/developer/speech-light.png) no-repeat 15px 15px;
+}
+.hexagon-wrapper {
+  background: url(../images/application/developer/hexagonBannerWhite.png) repeat-x top center;
+}
+.picBox {
+  text-align: left;
+  width: 70%;
+  padding: 0 30px;
+}
+.picBox .item {
+  width: 24% !important;
+  float: none;
+  display: inline-block;
+  margin: 0 1% 2% 0;
+  position: relative;
+  vertical-align: top;
+}
+.picBox .item .pic p {
+  padding: 0 !important;
+}
+.picBox1 .item {
+  width: 50%;
+}
+.picBox .item .pic img {
+  padding: 4px;
+  border: 1px solid #e0e0e0;
+  width: 216px;
+  height: 140px;
+  box-shadow: 1px 2px 1px 0 #f0f0f0;
+}
+.picBox1 .item .pic img {
+  width: 340px;
+  height: 179px;
+}
+.picBox .item .pic a:hover img {
+  border-color: #0088CC;
+}
+.picBox .item dl {
+  padding: 0;
+  margin: 0;
+}
+.picBox .item dt {
+  font-weight: bold;
+  color: #0088cc;
+  height: 20px;
+  padding-top: 5px;
+  line-height: 20px;
+}
+.picBox .item dd {
+  line-height: 16px;
+  height: 51px;
+  color: #707070;
+}
+.picBox .item dd a {
+  color: #707070;
+}
+.picBox .item dd a:hover {
+  color: #0088cc;
+  text-decoration: none;
+}
+@media only screen and (min-width:1280px) and (max-width:2048px) {
+  .picBox {
+    text-align: left;
+    width: 100%;
+    padding: 0 30px;
+  }
+  .item h3 {
+    font-size: 18px;
+    line-height: 1.6em;
+    margin: 0px 32px;
+  }
+  p.no-trailer {
+    margin: 5px 32px;
+  }
+}
+@media only screen and (max-width:1280px) {
+  .picBox {
+    text-align: left;
+    width: 100%;
+    padding: 0;
+  }
+  .item h3 {
+    font-size: 18px;
+    line-height: 1.6em;
+    margin: 0px 12px;
+  }
+  p.no-trailer {
+    margin: 5px 12px;
+  }
+}
+.features-hexagon {
+  margin-bottom: 0.375em;
+  padding: 0 0 0 2em;
+  background: url(../images/application/developer/hex-pin.png) left center no-repeat transparent;
+  background-size: 1.4em auto;
+  -moz-background-size: 1.4em auto;
+  -webkit-background-size: 1.4em auto;
+}
+.features-hexagon a {
+  color: #0098dd;
+  text-decoration: none;
+}
+.features-hexagon a:hover {
+  color: #EF8D36;
+}
+.geotrigger-icon {
+  background-image: url(../images/application/developer/geotrigger-hexicon.png);
+}
+.analysis-icon {
+  background-image: url(../images/application/developer/analysis-hexicon.png);
+}
+.geocoding-icon {
+  background-image: url(../images/application/developer/geocoding-hexicon.png);
+}
+.geoenrichment-icon {
+  background-image: url(../images/application/developer/geoenrichment-hexicon.png);
+}
+.imagery-icon {
+  background-image: url(../images/application/developer/imagery-hexicon.png);
+}
+.directions-icon {
+  background-image: url(../images/application/developer/directions-hexicon.png);
+}
+.storage-icon {
+  background-image: url(../images/application/developer/storage-hexicon.png);
+}
+.real-time-icon {
+  background-image: url(../images/application/developer/real-time-hexicon.png);
+}
+.ready-content-icon {
+  background-image: url(../images/application/developer/ready-content-hexicon.png);
+}
+.html5-icon {
+  background-image: url(../images/application/developer/html5-hexicon.png);
+}
+.integration-icon {
+  background-image: url(../images/application/developer/integration-hexicon.png);
+}
+.column-1 {
+  width: 4.16667%
+}
+.column-2 {
+  width: 8.33333%
+}
+.column-3 {
+  width: 12.5%
+}
+.column-4 {
+  width: 16.66667%
+}
+.column-5 {
+  width: 20.83333%
+}
+.column-6 {
+  width: 25%
+}
+.column-7 {
+  width: 29.16667%
+}
+.column-8 {
+  width: 33.33333%
+}
+.column-9 {
+  width: 37.5%
+}
+.column-10 {
+  width: 41.66667%
+}
+.column-11 {
+  width: 45.83333%
+}
+.column-12 {
+  width: 50%
+}
+.column-13 {
+  width: 54.16667%
+}
+.column-14 {
+  width: 58.33333%
+}
+.column-15 {
+  width: 62.5%
+}
+.column-16 {
+  width: 66.66667%
+}
+.column-17 {
+  width: 70.83333%
+}
+.column-18 {
+  width: 75%
+}
+.column-19 {
+  width: 79.16667%
+}
+.column-20 {
+  width: 83.33333%
+}
+.column-21 {
+  width: 87.5%
+}
+.column-22 {
+  width: 91.66667%
+}
+.column-23 {
+  width: 95.83333%
+}
+.column-24 {
+  width: 100%
+}

@@ -3,3 +3,18 @@ body {
   color: #333;
   background-color: #fff;
 }
+
+a:hover {
+  text-decoration: none;
+}
+
+.btn-primary-d {
+  color: #5acfd6;
+  border-color: #5acfd6;
+
+  &:hover {
+    color: #fff;
+    background-color: #5acfd6;
+    border-color: #5acfd6;
+  }
+}

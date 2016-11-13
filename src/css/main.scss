@@ -1,10 +1,12 @@
 @import "bootstrap";
 @import "animate";
 @import "site";
-@import "home";
-@import "data";
 @import "page";
-@import "application";
+@import "pages/home";
+@import "pages/data";
+@import "pages/item";
+@import "pages/map";
+@import "pages/application";
 @import "pages/appbuilder";
 @import "pages/plugins";
 @import "pages/developer";

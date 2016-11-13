@@ -14,11 +14,17 @@ module.exports = {
     tool: [
       './src/js/pages/tool.js'
     ],
+    item: [
+      './src/js/pages/item.js'
+    ],
     application: [
       './src/js/pages/application.js'
     ],
     signin: [
       './src/js/pages/signin.js'
+    ],
+    content: [
+      './src/js/pages/content.js'
     ]
   },
   output: {

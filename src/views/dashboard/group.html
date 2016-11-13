@@ -11,19 +11,294 @@
 <div class="main">
   <div class='container'>
     <div class="content">
-      <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-9">
-          <div class="row">
-            <div class="map-list">
+      <ol class="breadcrumb">
+        <li><a href="#">首页</a></li>
+        <li><a href="#">个人中心</a></li>
+        <li class="active">我的工作组</li>
+      </ol>
+      <div class="group-list">
+        <div id="groupTabs">
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class=""><a href="#public-group" class="noradius" aria-controls="public-group" role="tab" data-toggle="pill">我的工作组</a></li>
+            <li role="presentation" class="active"><a href="#private-group" class="noradius" aria-controls="private-group" role="tab" data-toggle="pill">公共工作组</a></li>
+            <li role="presentation" class="pull-right"><a href="newgroup.html" class="btn btn-default noradius handle" role="button"><i class="icon-group"></i> 添加工作组</a></li>
+          </ul>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane" id="public-group">
+              <div class="row" style="padding-top: 10px" id="public-group-list">
+                <div class="col-md-6 group-item">
+                  <div class="channel-item">
+                    <div class="bd">
+                      <div class="row" style="padding-bottom: 10px">
+                        <div class="col-md-8"><a href="groupItem.html?groupid=54bc398b4729438994f4b267ea44203a">防汛抗旱</a></div>
+                        <div class="col-md-4">
+                          <a class="inviteUsers" name="54bc398b4729438994f4b267ea44203a" data-toggle="modal" data-target="#myModal"><i class="icon-user"></i> 邀请 </a>
+                          <a class="editGroup handle" href="groupItem.html?sid=54bc398b4729438994f4b267ea44203a"><i class="icon-edit"></i> 编辑</a>
+                          <a class="deleteGroup handle" href="#"><i class="icon-remove-circle"></i> 删除</a>
+                        </div>
+                      </div>
+                      <div class="block">
+                        <a href="groupItem.html?groupid=54bc398b4729438994f4b267ea44203a"></a>
+                        <div class="pic">
+                          <a href="groupItem.html?groupid=54bc398b4729438994f4b267ea44203a"></a>
+                          <div class="pic-wrap">
+                            <a href="groupItem.html?groupid=54bc398b4729438994f4b267ea44203a"></a>
+                            <a href="groupItem.html?groupid=54bc398b4729438994f4b267ea44203a"><img src="assets/images/icons/group-no-image.jpg"></a>
+                          </div>
+                        </div>
+                        <p class="group0">组内成员：esri_nav</p>
+                      </div>
+                      <div class="row" style="padding: 10px 0 0 0">
+                        <div class="col-md-6"><span class="glyphicon glyphicon-tags text-info"></span></div>
+                        <div class="col-md-6 createinfo" style="text-align: right">apollo 创建于 2016-09-01</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <ul class="pager">
+                <li class="previous disabled"><a id="home_previousPage" class="showGroups" href="?sid=undefined&amp;page=0"><span aria-hidden="true">←</span> 上一页</a></li>
+                <li class="next disabled"><a id="home_nextPage" class="showGroups" href="?sid=undefined&amp;page=2">下一页 <span aria-hidden="true">→</span></a></li>
+              </ul>
             </div>
-            <div class="map-page">
-              <ul class="pagination">
+            <div role="tabpanel" class="tab-pane active" id="private-group">
+              <div class="row" style="padding-top: 10px" id="private-group-list">
+                <div class="col-md-6 group-item">
+                  <div class="channel-item">
+                    <div class="bd">
+                      <div class="row" style="padding-bottom: 10px">
+                        <div class="col-md-8"><a href="groupItem.html?groupid=54bc398b4729438994f4b267ea44203a">防汛抗旱</a></div>
+                        <div class="col-md-4">
+                          <a class="inviteUsers" data-groupid="54bc398b4729438994f4b267ea44203a" data-toggle="modal" data-target="#myModal"><i class="icon-user"></i> 邀请 </a>
+                          <a class="editGroup handle" href="groupItem.html?groupid=54bc398b4729438994f4b267ea44203a"><i class="icon-edit"></i> 编辑</a> <a class="deleteGroup handle" href="#"><i class="icon-remove-circle"></i> 删除</a>                          </div>
+                      </div>
+                      <div class="block">
+                        <a href="groupItem.html?groupid=54bc398b4729438994f4b267ea44203a"></a>
+                        <div class="pic">
+                          <a href="groupItem.html?groupid=54bc398b4729438994f4b267ea44203a"></a>
+                          <div class="pic-wrap">
+                            <a href="groupItem.html?groupid=54bc398b4729438994f4b267ea44203a"></a>
+                            <a href="groupItem.html?groupid=54bc398b4729438994f4b267ea44203a"><img src="assets/images/icons/group-no-image.jpg"></a>
+                          </div>
+                        </div>
+                        <p class="group1">组内成员：apollo、luox_geoplat、xiangy_geoplat、wuwj_geoplat、yujx_geoplat</p>
+                      </div>
+                      <div class="row" style="padding: 10px 0 0 0">
+                        <div class="col-md-6"><span class="glyphicon glyphicon-tags text-info"></span><a href="?method=searchtag" style="font-size: 8px;margin-left: 10px;text-align: center;font-weight: normal!important;"
+                            class="label label-primary handle noradius">组织</a></div>
+                        <div class="col-md-6 createinfo" style="text-align: right">apollo 创建于 2016年9月1日</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 group-item">
+                  <div class="channel-item">
+                    <div class="bd">
+                      <div class="row" style="padding-bottom: 10px">
+                        <div class="col-md-8"><a href="groupItem.html?groupid=b81615fb4d2645738f05dba93802d47b">水资源管理</a></div>
+                        <div class="col-md-4">
+                          <a class="inviteUsers" data-groupid="b81615fb4d2645738f05dba93802d47b" data-toggle="modal" data-target="#myModal"><i class="icon-user"></i> 邀请 </a>
+                          <a class="editGroup handle" href="groupItem.html?groupid=b81615fb4d2645738f05dba93802d47b"><i class="icon-edit"></i> 编辑</a> <a class="deleteGroup handle" href="#"><i class="icon-remove-circle"></i> 删除</a>                          </div>
+                      </div>
+                      <div class="block">
+                        <a href="groupItem.html?groupid=b81615fb4d2645738f05dba93802d47b"></a>
+                        <div class="pic">
+                          <a href="groupItem.html?groupid=b81615fb4d2645738f05dba93802d47b"></a>
+                          <div class="pic-wrap">
+                            <a href="groupItem.html?groupid=b81615fb4d2645738f05dba93802d47b"></a>
+                            <a href="groupItem.html?groupid=b81615fb4d2645738f05dba93802d47b"><img src="assets/images/icons/group-no-image.jpg"></a>
+                          </div>
+                        </div>
+                        <p class="group1">组内成员：apollo、lil_geoplat</p>
+                      </div>
+                      <div class="row" style="padding: 10px 0 0 0">
+                        <div class="col-md-6"><span class="glyphicon glyphicon-tags text-info"></span><a href="?method=searchtag" style="font-size: 8px;margin-left: 10px;text-align: center;font-weight: normal!important;"
+                            class="label label-primary handle noradius">组织</a></div>
+                        <div class="col-md-6 createinfo" style="text-align: right">apollo 创建于 2016年10月23日</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 group-item">
+                  <div class="channel-item">
+                    <div class="bd">
+                      <div class="row" style="padding-bottom: 10px">
+                        <div class="col-md-8"><a href="groupItem.html?groupid=83698e46b9474892883f58517294b8a4">水环境</a></div>
+                        <div class="col-md-4">
+                          <a class="inviteUsers" data-groupid="83698e46b9474892883f58517294b8a4" data-toggle="modal" data-target="#myModal"><i class="icon-user"></i> 邀请 </a>
+                          <a class="editGroup handle" href="groupItem.html?groupid=83698e46b9474892883f58517294b8a4"><i class="icon-edit"></i> 编辑</a> <a class="deleteGroup handle" href="#"><i class="icon-remove-circle"></i> 删除</a>                          </div>
+                      </div>
+                      <div class="block">
+                        <a href="groupItem.html?groupid=83698e46b9474892883f58517294b8a4"></a>
+                        <div class="pic">
+                          <a href="groupItem.html?groupid=83698e46b9474892883f58517294b8a4"></a>
+                          <div class="pic-wrap">
+                            <a href="groupItem.html?groupid=83698e46b9474892883f58517294b8a4"></a>
+                            <a href="groupItem.html?groupid=83698e46b9474892883f58517294b8a4"><img src="assets/images/icons/group-no-image.jpg"></a>
+                          </div>
+                        </div>
+                        <p class="group1">组内成员：apollo、xuyn_geoplat、lixw_geoplat、licai_geoplat</p>
+                      </div>
+                      <div class="row" style="padding: 10px 0 0 0">
+                        <div class="col-md-6"><span class="glyphicon glyphicon-tags text-info"></span><a href="?method=searchtag" style="font-size: 8px;margin-left: 10px;text-align: center;font-weight: normal!important;"
+                            class="label label-primary handle noradius">组织</a></div>
+                        <div class="col-md-6 createinfo" style="text-align: right">apollo 创建于 2016年10月23日</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 group-item">
+                  <div class="channel-item">
+                    <div class="bd">
+                      <div class="row" style="padding-bottom: 10px">
+                        <div class="col-md-8"><a href="groupItem.html?groupid=d7899c8c95224d9fb1d30ad8453ce368">基础底图</a></div>
+                        <div class="col-md-4">
+                          <a class="inviteUsers" data-groupid="d7899c8c95224d9fb1d30ad8453ce368" data-toggle="modal" data-target="#myModal"><i class="icon-user"></i> 邀请 </a>
+                          <a class="editGroup handle" href="groupItem.html?groupid=d7899c8c95224d9fb1d30ad8453ce368"><i class="icon-edit"></i> 编辑</a> <a class="deleteGroup handle" href="#"><i class="icon-remove-circle"></i> 删除</a>                          </div>
+                      </div>
+                      <div class="block">
+                        <a href="groupItem.html?groupid=d7899c8c95224d9fb1d30ad8453ce368"></a>
+                        <div class="pic">
+                          <a href="groupItem.html?groupid=d7899c8c95224d9fb1d30ad8453ce368"></a>
+                          <div class="pic-wrap">
+                            <a href="groupItem.html?groupid=d7899c8c95224d9fb1d30ad8453ce368"></a>
+                            <a href="groupItem.html?groupid=d7899c8c95224d9fb1d30ad8453ce368"><img src="assets/images/icons/group-no-image.jpg"></a>
+                          </div>
+                        </div>
+                        <p class="group1">组内成员：apollo</p>
+                      </div>
+                      <div class="row" style="padding: 10px 0 0 0">
+                        <div class="col-md-6"><span class="glyphicon glyphicon-tags text-info"></span><a href="?method=searchtag" style="font-size: 8px;margin-left: 10px;text-align: center;font-weight: normal!important;"
+                            class="label label-primary handle noradius">底图</a></div>
+                        <div class="col-md-6 createinfo" style="text-align: right">apollo 创建于 2016年10月24日</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 group-item">
+                  <div class="channel-item">
+                    <div class="bd">
+                      <div class="row" style="padding-bottom: 10px">
+                        <div class="col-md-8"><a href="groupItem.html?groupid=576fa666d0da40cd96c3d5c9d5c09abb">水土保持</a></div>
+                        <div class="col-md-4">
+                          <a class="inviteUsers" data-groupid="576fa666d0da40cd96c3d5c9d5c09abb" data-toggle="modal" data-target="#myModal"><i class="icon-user"></i> 邀请 </a>
+                          <a class="editGroup handle" href="groupItem.html?groupid=576fa666d0da40cd96c3d5c9d5c09abb"><i class="icon-edit"></i> 编辑</a> <a class="deleteGroup handle" href="#"><i class="icon-remove-circle"></i> 删除</a>                          </div>
+                      </div>
+                      <div class="block">
+                        <a href="groupItem.html?groupid=576fa666d0da40cd96c3d5c9d5c09abb"></a>
+                        <div class="pic">
+                          <a href="groupItem.html?groupid=576fa666d0da40cd96c3d5c9d5c09abb"></a>
+                          <div class="pic-wrap">
+                            <a href="groupItem.html?groupid=576fa666d0da40cd96c3d5c9d5c09abb"></a>
+                            <a href="groupItem.html?groupid=576fa666d0da40cd96c3d5c9d5c09abb"><img src="assets/images/icons/group-no-image.jpg"></a>
+                          </div>
+                        </div>
+                        <p class="group1">组内成员：apollo、zhangf_geoplat、yinj_geoplat、zhangh_geoplat</p>
+                      </div>
+                      <div class="row" style="padding: 10px 0 0 0">
+                        <div class="col-md-6"><span class="glyphicon glyphicon-tags text-info"></span><a href="?method=searchtag" style="font-size: 8px;margin-left: 10px;text-align: center;font-weight: normal!important;"
+                            class="label label-primary handle noradius">组织</a></div>
+                        <div class="col-md-6 createinfo" style="text-align: right">apollo 创建于 2016年10月23日</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 group-item">
+                  <div class="channel-item">
+                    <div class="bd">
+                      <div class="row" style="padding-bottom: 10px">
+                        <div class="col-md-8"><a href="groupItem.html?groupid=bda6dcaf603541909ee3e0f1f71f1eef">农田水利</a></div>
+                        <div class="col-md-4">
+                          <a class="inviteUsers" data-groupid="bda6dcaf603541909ee3e0f1f71f1eef" data-toggle="modal" data-target="#myModal"><i class="icon-user"></i> 邀请 </a>
+                          <a class="editGroup handle" href="groupItem.html?groupid=bda6dcaf603541909ee3e0f1f71f1eef"><i class="icon-edit"></i> 编辑</a> <a class="deleteGroup handle" href="#"><i class="icon-remove-circle"></i> 删除</a>                          </div>
+                      </div>
+                      <div class="block">
+                        <a href="groupItem.html?groupid=bda6dcaf603541909ee3e0f1f71f1eef"></a>
+                        <div class="pic">
+                          <a href="groupItem.html?groupid=bda6dcaf603541909ee3e0f1f71f1eef"></a>
+                          <div class="pic-wrap">
+                            <a href="groupItem.html?groupid=bda6dcaf603541909ee3e0f1f71f1eef"></a>
+                            <a href="groupItem.html?groupid=bda6dcaf603541909ee3e0f1f71f1eef"><img src="assets/images/icons/group-no-image.jpg"></a>
+                          </div>
+                        </div>
+                        <p class="group1">组内成员：apollo</p>
+                      </div>
+                      <div class="row" style="padding: 10px 0 0 0">
+                        <div class="col-md-6"><span class="glyphicon glyphicon-tags text-info"></span><a href="?method=searchtag" style="font-size: 8px;margin-left: 10px;text-align: center;font-weight: normal!important;"
+                            class="label label-primary handle noradius">组织</a></div>
+                        <div class="col-md-6 createinfo" style="text-align: right">apollo 创建于 2016年10月23日</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 group-item">
+                  <div class="channel-item">
+                    <div class="bd">
+                      <div class="row" style="padding-bottom: 10px">
+                        <div class="col-md-8"><a href="groupItem.html?groupid=b138d9a0ad8c4ff6ac51595d0c17a732">水库移民</a></div>
+                        <div class="col-md-4">
+                          <a class="inviteUsers" data-groupid="b138d9a0ad8c4ff6ac51595d0c17a732" data-toggle="modal" data-target="#myModal"><i class="icon-user"></i> 邀请 </a>
+                          <a class="editGroup handle" href="groupItem.html?groupid=b138d9a0ad8c4ff6ac51595d0c17a732"><i class="icon-edit"></i> 编辑</a> <a class="deleteGroup handle" href="#"><i class="icon-remove-circle"></i> 删除</a>                          </div>
+                      </div>
+                      <div class="block">
+                        <a href="groupItem.html?groupid=b138d9a0ad8c4ff6ac51595d0c17a732"></a>
+                        <div class="pic">
+                          <a href="groupItem.html?groupid=b138d9a0ad8c4ff6ac51595d0c17a732"></a>
+                          <div class="pic-wrap">
+                            <a href="groupItem.html?groupid=b138d9a0ad8c4ff6ac51595d0c17a732"></a>
+                            <a href="groupItem.html?groupid=b138d9a0ad8c4ff6ac51595d0c17a732"><img src="assets/images/icons/group-no-image.jpg"></a>
+                          </div>
+                        </div>
+                        <p class="group1">组内成员：apollo</p>
+                      </div>
+                      <div class="row" style="padding: 10px 0 0 0">
+                        <div class="col-md-6"><span class="glyphicon glyphicon-tags text-info"></span><a href="?method=searchtag" style="font-size: 8px;margin-left: 10px;text-align: center;font-weight: normal!important;"
+                            class="label label-primary handle noradius">组织</a></div>
+                        <div class="col-md-6 createinfo" style="text-align: right">apollo 创建于 2016年10月23日</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 group-item">
+                  <div class="channel-item">
+                    <div class="bd">
+                      <div class="row" style="padding-bottom: 10px">
+                        <div class="col-md-8"><a href="groupItem.html?groupid=af769cdb15194a3aabcedfb81edbd951">抗洪</a></div>
+                        <div class="col-md-4">
+                          <a class="inviteUsers" data-groupid="af769cdb15194a3aabcedfb81edbd951" data-toggle="modal" data-target="#myModal"><i class="icon-user"></i> 邀请 </a>
+                          <a class="editGroup handle" href="groupItem.html?groupid=af769cdb15194a3aabcedfb81edbd951"><i class="icon-edit"></i> 编辑</a> <a class="deleteGroup handle" href="#"><i class="icon-remove-circle"></i> 删除</a>                          </div>
+                      </div>
+                      <div class="block">
+                        <a href="groupItem.html?groupid=af769cdb15194a3aabcedfb81edbd951"></a>
+                        <div class="pic">
+                          <a href="groupItem.html?groupid=af769cdb15194a3aabcedfb81edbd951"></a>
+                          <div class="pic-wrap">
+                            <a href="groupItem.html?groupid=af769cdb15194a3aabcedfb81edbd951"></a>
+                            <a href="groupItem.html?groupid=af769cdb15194a3aabcedfb81edbd951"><img src="assets/images/icons/group-no-image.jpg"></a>
+                          </div>
+                        </div>
+                        <p class="group1">组内成员：apollo</p>
+                      </div>
+                      <div class="row" style="padding: 10px 0 0 0">
+                        <div class="col-md-6"><span class="glyphicon glyphicon-tags text-info"></span></div>
+                        <div class="col-md-6 createinfo" style="text-align: right">apollo 创建于 2016年10月26日</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <ul class="pager">
+                <li class="previous disabled"><a id="settings_previousPage" class="showGroups" href="?sid=undefined&amp;page=0"><span aria-hidden="true">←</span> 上一页</a></li>
+                <li class="next disabled"><a id="settings_nextPage" class="showGroups" href="?sid=undefined&amp;page=2">下一页 <span aria-hidden="true">→</span></a></li>
               </ul>
             </div>
           </div>
         </div>
       </div>
+      <!--<div class="group-page">
+        <ul class="pagination">
+        </ul>
+      </div>-->
     </div>
   </div>
 </div>

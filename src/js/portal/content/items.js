@@ -1,16 +1,15 @@
 import 'isomorphic-fetch'
 
-import { config } from '../config/config'
-import { searchParams } from './util'
+import { config } from '../../config/config'
+import { searchParams } from '../util'
 
-function getItem(itemId) {
+function getItem(itemId, token) {
   if (token === undefined) {
     token = ''
   }
 
   let url = config.portal.url + '/sharing/rest/content/items/' + itemId
   let params = {
-    culture: 'zh-cn',
     f: 'json',
     token: token
   }
@@ -276,14 +275,13 @@ function getItemGroups(itemId) {
   })
 }
 
-function getItemData(itemId) {
+function getItemData(itemId, token) {
   if (token === undefined) {
     token = ''
   }
 
   let url = config.portal.url + '/sharing/rest/content/items/' + itemId + '/data'
   let params = {
-    culture: 'zh-cn',
     f: 'json',
     token: token
   }

@@ -1,16 +1,23 @@
 import 'isomorphic-fetch'
 
-import { config } from '../config/config'
-import { searchParams } from './util'
+import { config } from '../../config/config'
+import { searchParams } from '../util'
 
-function getContent(userName, folderId) {
+function getContent(userName, folderId, start, num, token) {
   if (token === undefined) {
     token = ''
   }
 
-  let url = config.portal.url + '/sharing/rest/content/users/' + userName + '/' + folderId
+  let url = config.portal.url + '/sharing/rest/content/users/'
+  if (folderId === '/') {
+    url += userName
+  } else {
+    url += userName + '/' + folderId
+  }
+
   let params = {
-    culture: 'zh-cn',
+    start: start,
+    num: num,
     f: 'json',
     token: token
   }

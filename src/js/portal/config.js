@@ -120,6 +120,22 @@ let portalQueryConfig = {
       t: 'content',
       f: '(typekeywords:"Table")'
     },
+    // self add
+    'layers-map-service': {
+      focus: 'layers',
+      t: 'content',
+      f: 'type:"Map Service"'
+    },
+    'layers-wms': {
+      focus: 'layers',
+      t: 'content',
+      f: 'type:"WMS"'
+    },
+    'layers-stream-service': {
+      focus: 'layers',
+      t: 'content',
+      f: 'type:"Stream Service"'
+    },
 
     'applications-web': {
       focus: 'applications',

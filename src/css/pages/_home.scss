@@ -9,6 +9,8 @@
     right: 0;
     left: 0;
     z-index: 20;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 
     .navbar {
       margin: 20px 0;
@@ -71,22 +73,13 @@
   }
 
   .account {
-    .btn-group {
-      border: solid 1px #fff;
-    }
 
     .btn-default {
       color: #fff;
-      background-color: transparent;
-      border: none;
 
       &:hover {
         color: rgba(255, 255, 255, 0.8);
       }
-    }
-
-    .btn:first-child {
-      border-right: solid 1px #fff;
     }
   }
 }
@@ -105,7 +98,7 @@
   }
 
   .item {
-    height: 540px;
+    height: 600px;
 
     h2 {
       margin-bottom: 50px;
@@ -176,7 +169,7 @@
       }*/
     }
 
-    h3 {
+    h4 {
       font-size: 20px;
     }
 

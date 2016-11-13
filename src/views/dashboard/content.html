@@ -1,0 +1,46 @@
+{% set pageview = 'dashboard' %}
+
+{% extends "layout/base.html" %}
+{% block title %}我的资源 - 地理空间信息服务管理系统{% endblock %}
+{% block keywords %}{% endblock %}
+
+{% block style %}
+{% endblock %}
+
+{% block content %}
+<div class="main">
+  <div class="content">
+    <div class="container">
+      <ol class="breadcrumb">
+        <li><a href="#">首页</a></li>
+        <li><a href="#">数据服务</a></li>
+        <li class="active">智能地图</li>
+      </ol>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="type-tree folder-type">
+            <p class="tree-title">我的文件夹<span class="tree-close">×</span></p>
+            <ul class="tree-list">
+              <li class="active"><a href="#" data-type="根目录">根目录</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="row">
+            <div class="resource-list clearfix">
+            </div>
+            <div class="resource-page">
+              <ul class="pagination" style="display: none;">
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="assets/js/content.js"></script>
+{% endblock %}

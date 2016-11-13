@@ -1,27 +1,613 @@
 {% set pageview = 'webmap' %}
 
-{% extends "layout/base.html" %}
+{% extends "layout/map.html" %}
 {% block title %}智能地图 - 地理空间信息服务管理系统{% endblock %}
 {% block keywords %}{% endblock %}
 
 {% block style %}
+<style type="text/css">
+#webmap-header,
+#toolbar,
+#leftDiv {
+  -webkit-backface-visibility: hidden;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body #page-border {
+  min-width: 1200px;
+  /* make it so big that all languages fit without the edit button */
+  overflow: hidden;
+}
+
+#map {
+  top: 0 !important;
+}
+
+.disappear {
+  display: none;
+}
+
+#dijit_layout__Gutter_3,
+#dijit_layout__Gutter_2 {
+  width: 0;
+}
+
+.esri #main-content {
+  margin-bottom: 0;
+}
+/* default close icon is not very visible */
+
+.infowindow .window .top .right .user .titlebar .hide .sprite {
+  margin-top: -908px;
+}
+
+#overviewMap .map .logo-sm,
+#overviewMap .map .logo-med,
+#overviewMap .map .bingLogo-lg {
+  display: none;
+}
+/* dojo 1.8 patch for RTL TextInput */
+
+.dj_ie7 .dijitInputContainer {
+  float: none !important;
+}
+/* Avenir */
+
+@font-face {
+  font-family: "Avenir LT W01 35 Light";
+  src: url("../arcgisonline/js/arcgisonline/css/fonts/3511a780-31ca-4ee1-9083-89b1b7185748.eot?#iefix");
+  src: url("../arcgisonline/js/arcgisonline/css/fonts/3511a780-31ca-4ee1-9083-89b1b7185748.eot?#iefix") format("eot"), url("../arcgisonline/js/arcgisonline/css/fonts/c4352a95-7a41-48c1-83ce-d8ffd2a3b118.woff") format("woff"), url("../arcgisonline/js/arcgisonline/css/fonts/3e419b5b-c789-488d-84cf-a64009cc308e.ttf") format("truetype"), url("../arcgisonline/js/arcgisonline/css/fonts/ca038835-1be3-4dc5-ba25-be1df6121499.svg#ca038835-1be3-4dc5-ba25-be1df6121499") format("svg");
+}
+
+@font-face {
+  font-family: "Avenir LT W01 65 Medium";
+  src: url("../arcgisonline/js/arcgisonline/css/fonts/212ab03d-5db2-4d6a-b94c-171cc702aa51.eot?#iefix");
+  src: url("../arcgisonline/js/arcgisonline/css/fonts/212ab03d-5db2-4d6a-b94c-171cc702aa51.eot?#iefix") format("eot"), url("../arcgisonline/js/arcgisonline/css/fonts/2cac77ec-9bc0-4ee7-87e4-27650190744f.woff") format("woff"), url("../arcgisonline/js/arcgisonline/css/fonts/aaf11848-aac2-4d09-9a9c-aac5ff7b8ff4.ttf") format("truetype"), url("../arcgisonline/js/arcgisonline/css/fonts/294099f3-8d00-4676-afc5-5e9d8d43ad69.svg#294099f3-8d00-4676-afc5-5e9d8d43ad69") format("svg");
+}
+
+@font-face {
+  font-family: "Avenir LT W01 85 Heavy";
+  src: url("../arcgisonline/js/arcgisonline/css/fonts/f61bf0f6-c193-4100-b940-12a1a01dcee5.eot?#iefix");
+  src: url("../arcgisonline/js/arcgisonline/css/fonts/f61bf0f6-c193-4100-b940-12a1a01dcee5.eot?#iefix") format("eot"), url("../arcgisonline/js/arcgisonline/css/fonts/7147ec3a-8ff8-4ec9-8c5c-bd1571dc6ae6.woff") format("woff"), url("../arcgisonline/js/arcgisonline/css/fonts/d1dc54b2-878d-4693-8d6e-b442e99fef68.ttf") format("truetype"), url("../arcgisonline/js/arcgisonline/css/fonts/731dd4d3-64da-427d-ba61-01575b3cf3f7.svg#731dd4d3-64da-427d-ba61-01575b3cf3f7") format("svg");
+}
+</style>
 {% endblock %}
 
 {% block content %}
 <div class="main">
-  <div class='container'>
-    <div class="content">
-      <h1>Build Multi-Page Application</h1>
-      <p>
-        Build Multi-Page Application with Gulp
-      </p>
-      <a href="/login">
-        <div class="button button-blue">Login</div>
-      </a>
+  <div id="page-border" dojotype="dijit.layout.BorderContainer" gutters="false" design="headline" class="noBorder" onClick="">
+      <div id="headerBanner" dojotype="arcgisonline.sharing.dijit.ClassificationBanner" region="top" class="disappear">
+      </div>
+      <div id="main-content" dojotype="dijit.layout.BorderContainer" gutters="true" design="headline" region="center" style="padding:0 2px 1px 0;">
+        <div id="webmap-header" class="webmapHeader top-nav" dojotype="dijit.layout.ContentPane" region="top" style="height:110px; padding: 0;">
+          <header class="header manual-header">
+            <nav class="navbar navbar-collapse navbar-blue navbar-row">
+              <div class="navbar-left">
+                <a class="navbar-menu-btn" href="index.html">首页</a>
+                <a class="navbar-menu-btn" href="data.html">数据服务</a>
+                <a class="navbar-menu-btn" href="tool.html">功能服务</a>
+                <a class="navbar-menu-btn active" href="javascript:void(0);">智能地图</a>
+                <a class="navbar-menu-btn" href="webscene.html">三维地图</a>
+                <a class="navbar-menu-btn" href="application.html">平台应用</a>
+                <a id="link-user-content" class="navbar-menu-btn" href="profile.html">个人中心</a>
+              </div>
+              <div class="user-info">
+                <span id="login-info">
+                  <span class="fa fa-user" style="font-size: 24px;"></span>
+                  <span style="margin-left: 4px;">当前用户：</span><span id="banner-user">游客</span>
+                </span>
+                <span class="pipe">|</span>
+                <a id="user-login-link" href="JavaScript:void(0)">登录</a>
+                <a id="user-logout-link" href="JavaScript:void(0)" style="display: none;">退出</a>
+              </div>
+            </nav>
+            <nav class="navbar navbar-collapse navbar-row">
+              <div class="navbar-left">
+                <!-- <img class="logo" src="themes/blue-light/images/logo.png" alt="" /> -->
+                <span id="sys-brand-text" class="navbar-brand-text">地理空间信息服务管理系统</span>
+              </div>
+              <h1 id="webmap-title" class="avenir-light font-size-1 esriFloatLeading disappear"></h1>
+              <h1 class="font-size-1" style="float: left; color: #999; position: absolute; left: 500px; right: 450px; margin-top: 8px;">
+                <span id="webmap-title-text" class="esriFloatTrailing" style="visibility:hidden;"></span>
+              </h1>
+              <div id="webmap-toolbar-right" class="webmapToolbarRight esriFloatTrailing">
+                <div id="locationDiv" class="webmapLocationDiv esriFloatTrailing esriPositionRight0">
+                </div>
+              </div>
+            </nav>
+          </header>
+          <div class="siteHeader esriFloatTrailing disappear">
+            <!-- RTL + ul + IE doesn't work -->
+            <div id="header-controls" class="esriFloatTrailing" style="display:none;">
+              <div id="header_map_newMap" class="map_nav esriFloatLeading esriTrailingMargin1">
+                <a id="webmap-newMap" class="top-nav-link" href="JavaScript:void(0);"><span id="newMapLabel"></span></a>
+              </div>
+              <div id="header_map_recentMaps" class="map_nav esriFloatLeading esriTrailingMargin1" style="display:none;">
+                <div id="recentMaps-navigation" class="dropdown esriFloatTrailing">
+                  <a id="webmap-recentMaps" class="dropdown-btn top-nav-link" href="#">
+                    <span id="recentMapsLabel"></span>
+                  </a>
+                  <div class="dropdown-menu js-dropdown-menu dropdown-right">
+                    <a id="webmap-recentMap-new-link" class="dropdown-link" href="#"></a>
+                    <span id="webmap-recentMap-title" class="dropdown-link dropdown-title" style="display:none" href="#"></span>
+                    <a id="webmap-recentMap-0-link" href="#" class="webmapRecentMap dropdown-link" style="display:none"></a>
+                    <a id="webmap-recentMap-1-link" href="#" class="webmapRecentMap dropdown-link" style="display:none"></a>
+                    <a id="webmap-recentMap-2-link" href="#" class="webmapRecentMap dropdown-link" style="display:none"></a>
+                    <a id="webmap-recentMap-3-link" href="#" class="webmapRecentMap dropdown-link" style="display:none"></a>
+                    <a id="webmap-recentMap-4-link" href="#" class="webmapRecentMap dropdown-link" style="display:none"></a>
+                  </div>
+                </div>
+              </div>
+              <div id="header_map_modifyMap" class="map_nav esriFloatLeading esriTrailingMargin1" style="display:none;">
+                <a id="webmap-modifyMap" class="top-nav-link" href="JavaScript:void(0);"><span id="modifyMapLabel"></span></a>
+              </div>
+              <div id="header_map_presentation" class="map_nav esriFloatLeading esriTrailingMargin1" style="display:none;">
+                <a id="webmap-presentation" class="top-nav-link" href="JavaScript:void(0);"><span id="presentationLabel"></span></a>
+              </div>
+              <div id="header_map_signin" class="status esriFloatTrailing">
+                <!-- Log in -->
+                <div id="logged-out-navigation" class="dropdown-navigation hide esriFloatTrailing esriAlignTrailing">
+                  <a id="login-link" class="top-nav-link icon-ui-user link-gray" href="JavaScript:void(0);">
+                  </a>
+                </div>
+                <!-- User Menu -->
+                <div class="dropdown right" id="logged-in-navigation">
+                  <a href="#" id="logged-in-navigation-link" class="top-nav-link dropdown-btn top-nav-username text-ellipsis padding-trailer-0">
+                    <img id="profileImgSmall" width="16" height="16" alt="">
+                    <span id="username"></span>
+                  </a>
+                  <div class="dropdown-menu dropdown-right">
+                    <a id="profileLink" class="dropdown-link" href="#">
+                      <img id="dropdown-image" width="32" height="32" class="gutter-right-half gutter-left-0 left">
+                      <div id="logged-in-myProfile" class="text-ellipsis dropdown-username"></div>
+                    </a>
+                    <a class="dropdown-link hide" id="esri-community-link" href="#"></a>
+                    <a class="dropdown-link hide" id="my-esri-link" href="#"></a>
+                    <a class="dropdown-link icon-ui-link-external hide" id="training-link" href="#"></a>
+                    <a class="dropdown-link hide" id="trial-download-link" href="#"></a>
+                    <a class="dropdown-link loggedInHelp" id="logged-in-help" href="#"></a>
+                    <a class="dropdown-link loggedInAdminHelp hide" id="logged-in-adminhelp" href="#"></a>
+                    <a class="dropdown-link loggedInSignout" id="logged-in-signOut" href="#"></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="webmap-viewer" dojotype="dijit.layout.BorderContainer" gutters="true" design="headline" region="center">
+          <div id="toolbar" class="webmapToolbar" dojoType="dijit.layout.ContentPane" region="top">
+            <div id="dijitToolbar" dojotype="dijit.Toolbar" class="esriToolbar disappear">
+              <div id="webmap-toolbar-leftCorner" class="webmapToolbarLeftCorner esriFloatLeading">
+              </div>
+              <div id="webmap-toolbar-left" class="esriFloatLeading disappear">
+                <button dojotype="dijit.form.ToggleButton" id="webmap-details" iconclass="esriContentsIcon" title=""></button>
+                <button dojotype="dijit.form.DropDownButton" id="webmap-add" iconclass="esriAddContentIcon" title="" style="margin-top:1px;">
+                  <div dojotype="dijit.Menu">
+                    <div id="webmap-search-layers" dojoType="dijit.MenuItem" label="" onclick="arcgisonline.map.leftPanel.openLeftAddContentPanel()"></div>
+                    <div id="webmap-add-esri-maplayers" dojoType="dijit.MenuItem" label="" onclick="arcgisonline.map.main.browseLayers()" style="display:none;"></div>
+                    <div id="webmap-add-layer-url" dojoType="dijit.MenuItem" label="" onclick="arcgisonline.map.main.addLayerFromUrl()"></div>
+                    <div id="webmap-add-layer-file" dojoType="dijit.MenuItem" label="" onclick="arcgisonline.map.main.addLayerFromFile()"></div>
+                    <div id="webmap-add-mapnotes" dojoType="dijit.MenuItem" label="" onclick="arcgisonline.map.mapNotes.addMapNotesLayer()"></div>
+                  </div>
+                </button>
+                <span class="dijit dijitReset dijitLeft dijitInline dijitToggleButton esriTrailingMargin02px" style="height:20px;border-right:1px solid #636c6c;margin-top:2px;"></span>
+                <button dojotype="dijit.form.ToggleButton" id="webmap-edit" iconclass="esriEditIcon" title="" style="display:none;"></button>
+                <span id="webmap-spacer2" class="dijit dijitReset dijitLeft dijitInline dijitToggleButton esriTrailingMargin02px" style="height:20px;border-right:1px solid #636c6c;margin-top:2px;"></span>
+                <button dojotype="dijit.form.ToggleButton" id="webmap-analysis" iconclass="menuIconPerformAnalysis" title="" style="margin-top:2px;;display:none;"></button>
+              </div>
+              <div id="webmap-toolbar-rightCorner" class="webmapToolbarRightCorner esriFloatTrailing">
+              </div>
+              <div id="webmap-toolbar-center" class="esriFloatTrailing" style="visibility:hidden;">
+                <button dojotype="dijit.form.DropDownButton" id="webmap-save" iconclass="esriSaveIcon" title="" style="margin-top:1px;">
+                  <div dojotype="dijit.Menu" id="webmap-save-menu">
+                      <div id="webmap-save-save" dojoType="dijit.MenuItem" label="" onclick="arcgisonline.map.storage.saveWebMapClick('save')">
+                      </div>
+                      <div id="webmap-save-saveas" dojoType="dijit.MenuItem" label="" onclick="arcgisonline.map.storage.saveWebMapClick('saveAs')">
+                      </div>
+                  </div>
+              </button>
+              <button dojotype="dijit.form.Button" type="button" id="webmap-share" iconclass="esriLinkIcon" title=""></button>
+              <button dojotype="dijit.form.Button" type="button" id="webmap-print" iconclass="esriPrintIcon" title=""></button>
+              <button dojotype="dijit.form.DropDownButton" id="webmap-print-templates" iconclass="esriPrintIcon" title="" style="margin-top:1px;">
+                <div dojotype="dijit.Menu" id="webmap-print-templates-menu">
+                </div>
+              </button>
+              <span id="webmap-spacer3" class="dijit dijitReset dijitLeft dijitInline dijitToggleButton esriTrailingMargin02px" style="height:20px;border-right:1px solid #636c6c;margin-top:2px;"></span>
+              <button dojotype="dijit.form.ToggleButton" id="webmap-directions" iconclass="esriDirectionsIcon" title="" style="display:none;"></button>
+              <button dojotype="dijit.form.ToggleButton" id="webmap-measure" iconclass="esriMeasureIcon" title=""></button>
+              <button dojotype="dijit.form.ToggleButton" id="webmap-bookmarks" iconclass="esriBookmarkIcon" title=""></button>
+              </div>
+            </div>
+          </div>
+          <!-- toolbar -->
+          <div id="leftDiv" dojotype="dijit.layout.BorderContainer" region="leading" splitter="true" data-dojo-props="maxSize: 600">
+            <div id="leftTabContainer" data-dojo-type="dijit/layout/TabContainer" data-dojo-props="region: 'center', useMenu: false, useSlider: false">
+              <div id="leftDataResContentPane" data-dojo-type="dijit/layout/ContentPane" title="数据资源" data-dojo-props="selected:true, isLayoutContainer:true">
+                <div id="dataPoolDiv" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'center', gutters: false,isLayoutContainer:true">
+                </div>
+              </div>
+              <div id="leftFuncPoolContentPane" data-dojo-type="dijit/layout/ContentPane" title="功能资源" data-dojo-props="isLayoutContainer: true">
+                <div id="funcPoolDiv" data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="region: 'center', gutters: false,isLayoutContainer: true">
+                </div>
+              </div>
+              <div id="leftTocContentPane" data-dojo-type="dijit/layout/ContentPane" title="智能制图" data-dojo-props="isLayoutContainer:true">
+                <div id="leftPanelDiv" dojotype="dijit.layout.BorderContainer" region="center" gutters="false">
+                  <div id="leftContentPanel" dojotype="dijit.layout.BorderContainer" jsid="stackContainer" region="center" style="left:0; top:28px; right:0; bottom:5px;" gutters="false">
+                    <div dojotype="arcgisonline.map.dijit.LeftPanel" region="top" jsid="leftPanel" style="width: 0px; height: 0px;">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="rightDiv" dojotype="dijit.layout.BorderContainer" region="center" design="headline" gutters="false">
+            <div id="noDataDiv">
+              <div id="noData1" class="noData"></div>
+              <div id="noData2" class="noData"></div>
+              <div id="noData3" class="noData"></div>
+              <div id="noData4" class="noData"></div>
+            </div>
+            <div id="mapDiv" dojotype="dijit.layout.BorderContainer" region="center" gutters="false" design="headline">
+              <!-- hard code to LTR -->
+              <div id="map" dojotype="dijit.layout.ContentPane" region="center" style="overflow:hidden; top:33px;" dir="ltr" class="esriLtr">
+                <div id="copyrightDiv">
+                </div>
+                <div id="mdSliderPassiveLbl" class="mdSliderPassiveLbl"></div>
+                <div id="mdSliderPassiveLbl1" class="mdSliderPassiveLbl"></div>
+                <div id="multidimensionalDiv" class="mdSliderPassive">
+                  <table id="multidimensionalDivTable">
+                    <tbody>
+                      <tr id="multidimensionalSliderRow">
+                        <td colspan="3">
+                          <div id="mdSlider">
+                          </div>
+                        </td>
+                      </tr>
+                      <tr class="mdSliderButtonsRow">
+                        <td id="mdSliderPreviousButtonTd">
+                          <button id="mdSliderPreviousButton" dojoType="dijit.form.Button" iconClass="esriMdSliderPreviousIcon"></button>
+                        </td>
+                        <td id="mdSliderAnimateButtonTd">
+                          <button id="mdSliderAnimateButton" dojoType="dijit.form.Button" iconClass="esriMdSliderAnimateIcon"></button>
+                        </td>
+                        <td id="mdSliderNextButtonTd">
+                          <button id="mdSliderNextButton" dojoType="dijit.form.Button" iconClass="esriMdSliderNextIcon"></button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div id="mdSliderSettingsButtonDiv">
+                    <button id="mdSliderSettingsButton" dojoType="dijit.form.Button" iconclass="esriMdSliderConfigIcon"></button>
+                  </div>
+                </div>
+              </div>
+              <div id="timeDiv" style="display:none;" dojotype="dijit.layout.ContentPane" region="bottom">
+                <table id="timeDivTable">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div id="timeSliderDiv">
+                        </div>
+                      </td>
+                      <td>
+                        <div id="timeSliderSettingsButton" dojoType="dijit.form.Button" type="button" iconclass="esriTimeConfigIcon" showLabel="false">
+                          &nbsp;
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2">
+                        <div style="width:100%;">
+                          <div id="timeSliderDesc" class="esriFloatLeading">
+                            &nbsp;
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="manual-right">
+                <button dojotype="dijit.form.ToggleButton" id="webmap-basemap" iconclass="esriBasemapIcon" title="" style="display: none;" data-dojo-props="region: 'top'"></button>
+                <div id="esrichina-toolbar">
+                  <div id="esrichina-toolbar-arrow">
+                  </div>
+                  <span id="esrichina-toolbar-extra">
+                      <div id="esrichina-tool-new" class="toolbar-item">
+                        <img class="toolbar-image" src="themes/blue-light/images/icons/new_add_0612.png"></img>
+                        <p>新建地图</p>
+                      </div>
+                      <div id="esrichina-tool-add-weblayer" class="toolbar-item">
+                        <img class="toolbar-image" src="themes/blue-light/images/icons/new_add_web_0612.png" alt="" />
+                        <p>添加服务</p>
+                      </div>
+                      <div id="esrichina-tool-add-filelayer" class="toolbar-item">
+                        <img class="toolbar-image" src="themes/blue-light/images/icons/new_add_file_0612.png" alt="" />
+                        <p>添加文件</p>
+                      </div>
+                      <div id="esrichina-tool-add-feature" class="toolbar-item">
+                        <img src="themes/blue-light/images/icons/new_add_feature_0612.png" alt="" class="toolbar-image">
+                        <p>添加注释</p>
+                      </div>
+                      <div id="esrichina-tool-save" class="toolbar-item">
+                        <img class="toolbar-image" src="themes/blue-light/images/icons/new_save_0612.png" alt="" />
+                        <p>保存地图</p>
+                      </div>
+                      <div id="esrichina-tool-share" class="toolbar-item">
+                        <img class="toolbar-image" src="themes/blue-light/images/icons/new_share_0612.png" alt="" />
+                        <p>分享地图</p>
+                      </div>
+                      <!-- <div id="esrichina-tool-print" class="toolbar-item">
+                        <img class="toolbar-image" src="themes/blue-light/images/icons/print.png" alt="" />
+                        <p>打印</p>
+                    </div> -->
+                      <div id="esrichina-tool-measure" class="toolbar-item">
+                        <img class="toolbar-image" src="themes/blue-light/images/icons/new_measure_0612.png" alt="" />
+                        <p>地图测量</p>
+                      </div>
+                  </span>
+                  <div id="esrichina-tool-bookmark" class="toolbar-item">
+                    <img class="toolbar-image" src="themes/blue-light/images/icons/new_measure_0612.png" alt="" />
+                    <p>地图书签</p>
+                  </div>
+                </div>
+                <div id="esrichina-tool-basemap" style="box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+      -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);display: inline; position: fixed; right: 25px; top: 135px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; text-align: center; height: 70px; width: 70px; z-index: 999; padding: 10px 5px; border-radius: 70px; box-sizing: border-box; cursor: pointer;">
+                  <img src="themes/blue-light/images/icons/new_basemap_0612.png" alt="" style="height: 28px; width: 28px; margin-left: auto; margin-right: auto;"></img>
+                  <h3 style="margin-top: 2px;">底图</h3>
+                </div>
+              </div>
+              <div id="flapIcon">
+                <div id="flapIconContainer">
+                  <div id="flapIconNode"></div>
+                </div>
+              </div>
+            </div>
+            <!-- mapDiv -->
+            <div id="bottomDiv" dojotype="dijit.layout.BorderContainer" region="bottom" gutters="false" design="headline" splitter="true">
+              <div id="tableDiv" dojotype="dijit.layout.BorderContainer" region="center" gutters="false" design="headline" splitter="false">
+                <div id="tableTitleDiv" dojotype="dijit.layout.ContentPane" region="top" style="height:20px;">
+                  <div id="tableTitle" class="esriFloatLeading">
+                  </div>
+                  <div class="esriFloatTrailing" style="padding:0;width:27px;">
+                    <A href="JavaScript:void(0);" id="tableCloseButton">
+                      <img src="images/transparent.gif" border="0" />
+                    </A>
+                  </div>
+                  <div id="tableOptions" class="esriFloatTrailing">
+                    <a id="webmap-tableLink" href="JavaScript:void(0);" style="text-decoration: none;white-space: nowrap;">
+                      <span id="tableLinkLabel"></span>
+                      <div class="dijitReset dijitInline esriArrows" style="cursor: pointer;">
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <div id="tableContDiv" dojotype="dijit.layout.ContentPane" region="center">
+                </div>
+              </div>
+              <div id="geocodeDiv" dojotype="dijit.layout.BorderContainer" region="center" gutters="false" design="headline" splitter="false">
+                <div dojotype="dijit.layout.ContentPane" id="geocodeReviewContPane" region="center">
+                  <div id="geocodeReviewDiv">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- webmap-viewer -->
+      </div>
+      <!-- main-content -->
+      <div dojotype="dijit.layout.ContentPane" region="bottom" style="margin:0; padding:0;">
+        <div id="footerBanner" dojotype="arcgisonline.sharing.dijit.ClassificationBanner">
+        </div>
+      </div>
     </div>
-  </div>
+    <!-- page-border -->
+    <div id="basemap-gallery" jsId="basemap-gallery" dojoType="arcgisonline.sharing.dijit.BasemapGalleryGrid" sortField="'name'" groupQuery="esriGeowConfig.basemapGalleryGroupQuery">
+    </div>
+    <div id="measureDiv">
+      <div>
+        <div class="esriFloatTrailing">
+          <A id="measureClose" href="JavaScript:arcgisonline.map.main.hideMeasureTool('closeIcon');" title="" alt=""></A>
+        </div>
+        <div class="esriFloatLeading">
+          <span style="font-weight: bold;" id="measureLabel"></span>
+        </div>
+      </div>
+      <div style="clear:both;">
+      </div>
+      <div>
+        <hr/>
+      </div>
+      <div id="measureToolDiv">
+      </div>
+    </div>
+    <div id="bookmarksDiv">
+      <div>
+        <div class="esriFloatTrailing">
+          <A id="bookmarksClose" href="JavaScript:arcgisonline.map.main.hideBookmarksTool('closeIcon');" title="" alt=""></A>
+        </div>
+        <div class="esriFloatLeading">
+          <span style="font-weight: bold;" id="bookmarksLabel"></span>
+        </div>
+      </div>
+      <div style="clear:both;">
+      </div>
+      <div>
+        <hr/>
+      </div>
+      <div id="bookmarksToolDiv" class="esriTrailingMargin05">
+      </div>
+    </div>
+    <div id="header" class="gutter-right-1 header-map-home disappear">
+      <div id="home-navigation" class="">
+        <div id="home-navigation-dropdown" class="dropdown">
+          <a href="#" id="home-navigation-dropdown-link" class="top-nav-link dropdown-btn padding-trailer-0 js-dropdown-toggle" tabindex="0"></a>
+          <div class="dropdown-menu">
+            <a class="dropdown-link homeHome" href="index.html"></a>
+            <a class="dropdown-link homeFeatures hide" href="../features/features.html"></a>
+            <a class="dropdown-link homePlans hide" href="../features/plans/pricing.html"></a>
+            <a class="dropdown-link homeGallery" href="gallery.html"></a>
+            <a class="dropdown-link homeScene" href="webscene/viewer.html"></a>
+            <a class="dropdown-link homeGroups hide" href="groups.html"></a>
+            <a class="dropdown-link homeMyContent hide" href="content.html"></a>
+            <a class="dropdown-link homeMyOrg hide" href="organization.html"></a>
+            <a class="dropdown-link homeHelp" href="support.html"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <img id="viewer_testImage" style="position:absolute;top:0;left:-3000px" />
 </div>
 {% endblock %}
 
 {% block script %}
+<script type="text/javascript">
+dojo.require("esri.map");
+dojo.require("esri.dijit.Attribution");
+dojo.require("esri.IdentityManager");
+dojo.require("esri.SnappingManager");
+dojo.require("esri.tasks.identify");
+dojo.require("esri.tasks.geometry");
+dojo.require("esri.layers.FeatureLayer");
+dojo.require("esri.layers.CSVLayer");
+dojo.require("esri.layers.KMLLayer");
+dojo.require("esri.layers.GeoRSSLayer");
+dojo.require("esri.layers.WebTiledLayer");
+dojo.require("esri.layers.StreamLayer");
+dojo.require("esri.layers.osm");
+dojo.require("esri.layers.VectorTileLayer");
+dojo.require("esri.layers.wms");
+dojo.require("esri.layers.wmts");
+dojo.require("esri.layers.ArcGISImageServiceVectorLayer");
+dojo.require("esri.tasks.locator");
+dojo.require("esri.virtualearth.VEGeocoder");
+dojo.require("esri.virtualearth.VETiledLayer");
+dojo.require("esri.dijit.editing.Editor");
+dojo.require("esri.dijit.editing.TemplatePicker");
+dojo.require("esri.dijit.Directions");
+dojo.require("esri.dijit.Geocoder");
+dojo.require("esri.dijit.OverviewMap");
+dojo.require("esri.dijit.Scalebar");
+dojo.require("esri.dijit.Legend");
+dojo.require("esri.dijit.TimeSlider");
+dojo.require("esri.dijit.MultidimensionalSlider");
+dojo.require("esri.dijit.BasemapGallery");
+dojo.require("esri.dijit.Popup");
+dojo.require("esri.dijit.HomeButton");
+dojo.require("esri.dijit.LocateButton");
+dojo.require("esri.dijit.Search");
+dojo.require("arcgisonline.map.main");
+
+var isEmbedded = null;
+var embeddedSource = null;
+var embeddedOrigin = null;
+
+dojo.addOnLoad(init);
+
+function init() {
+  if (dojo.isIE < 7) {
+    // window.location = "../../ie6.html";
+  }
+
+  esri.i18nBundle = dojo.i18n.getLocalization("arcgisonline", "arcgisonline");
+
+  // document.title = esriGeowConfig.portalName || "ArcGIS";
+  dojo.byId("newMapLabel").innerHTML = esri.i18nBundle.siteHeader.newMap;
+  dojo.byId("recentMapsLabel").innerHTML = esri.i18nBundle.siteHeader.newMap;
+  dojo.byId("webmap-recentMap-title").innerHTML = esri.i18nBundle.siteHeader.recentMaps;
+  dojo.byId("modifyMapLabel").innerHTML = esri.i18nBundle.siteHeader.modifyMap || "Modify Map";
+  dojo.byId("tableLinkLabel").innerHTML = esri.i18nBundle.viewer.table.options;
+
+  dijit.byId("webmap-details").set('label', esri.i18nBundle.viewer.detailsBtn);
+  dijit.byId("webmap-details").set('title', esri.i18nBundle.viewer.detailsHover);
+  dijit.byId("webmap-add").set('label', esri.i18nBundle.viewer.addBtn);
+  dijit.byId("webmap-add").set('title', esri.i18nBundle.viewer.addHover);
+  dijit.byId("webmap-search-layers").set('label', esri.i18nBundle.viewer.searchForLayers);
+  dijit.byId("webmap-add-mapnotes").set('label', esri.i18nBundle.viewer.addMapNotes);
+  dijit.byId("webmap-add-layer-file").set('label', esri.i18nBundle.viewer.addLayerFromFile);
+  dijit.byId("webmap-add-layer-url").set('label', esri.i18nBundle.viewer.addLayerFromWeb);
+  dijit.byId("webmap-add-esri-maplayers").set('label', esri.i18nBundle.viewer.browseForLayers);
+  dijit.byId("webmap-edit").set('label', esri.i18nBundle.viewer.editBtn);
+  dijit.byId("webmap-edit").set('title', esri.i18nBundle.viewer.editHover);
+  dijit.byId("webmap-analysis").set('label', esri.i18nBundle.viewer.analysisBtn);
+  dijit.byId("webmap-analysis").set('title', esri.i18nBundle.viewer.analysisBtnHover);
+
+  dijit.byId("webmap-basemap").set('label', esri.i18nBundle.viewer.basemapBtn);
+  dijit.byId("webmap-basemap").set('title', esri.i18nBundle.viewer.basemapHover);
+  dijit.byId("webmap-save").set('label', esri.i18nBundle.viewer.saveBtn);
+  dijit.byId("webmap-save").set('title', esri.i18nBundle.viewer.saveHover);
+  dijit.byId("webmap-save-save").set('label', esri.i18nBundle.viewer.save);
+  dijit.byId("webmap-save-saveas").set('label', esri.i18nBundle.viewer.saveAs);
+  dijit.byId("webmap-share").set('label', esri.i18nBundle.viewer.shareBtn);
+  dijit.byId("webmap-share").set('title', esri.i18nBundle.viewer.shareHover);
+  dijit.byId("webmap-print").set('label', esri.i18nBundle.viewer.printBtn);
+  dijit.byId("webmap-print").set('title', esri.i18nBundle.viewer.printHover);
+  dijit.byId("webmap-print-templates").set('label', esri.i18nBundle.viewer.printBtn);
+  dijit.byId("webmap-print-templates").set('title', esri.i18nBundle.viewer.printHover);
+  dijit.byId("webmap-directions").set('label', esri.i18nBundle.viewer.directionsBtn);
+  dijit.byId("webmap-directions").set('title', esri.i18nBundle.viewer.directionsHover);
+  dijit.byId("webmap-measure").set('label', esri.i18nBundle.viewer.measureBtn);
+  dijit.byId("webmap-measure").set('title', esri.i18nBundle.viewer.measureHover);
+  dijit.byId("webmap-bookmarks").set('label', esri.i18nBundle.viewer.bookmarksBtn);
+  dijit.byId("webmap-bookmarks").set('title', esri.i18nBundle.viewer.bookmarksHover);
+  dojo.byId("tableCloseButton").title = esri.i18nBundle.viewer.table.hide;
+  dojo.byId("noData1").innerHTML = esri.i18nBundle.viewer.noData;
+  dojo.byId("noData2").innerHTML = esri.i18nBundle.viewer.noData;
+  dojo.byId("noData3").innerHTML = esri.i18nBundle.viewer.noData;
+  dojo.byId("noData4").innerHTML = esri.i18nBundle.viewer.noData;
+  dijit.byId("timeSliderSettingsButton").set('title', esri.i18nBundle.viewer.configureTime);
+  dojo.byId("measureLabel").innerHTML = esri.i18nBundle.viewer.measureTitle;
+  dojo.byId("measureClose").title = esri.i18nBundle.common.close;
+  dojo.byId("measureClose").alt = esri.i18nBundle.common.close;
+  dojo.byId("bookmarksLabel").innerHTML = esri.i18nBundle.viewer.bookmarksTitle;
+  dojo.byId("bookmarksClose").title = esri.i18nBundle.common.close;
+  dojo.byId("bookmarksClose").alt = esri.i18nBundle.common.close;
+  dijit.byId("mdSliderSettingsButton").set("title", esri.i18nBundle.viewer.configureDimension);
+  dijit.byId("mdSliderAnimateButton").set("title", esri.i18nBundle.viewer.mdSliderPlay);
+  dijit.byId("mdSliderPreviousButton").set("title", esri.i18nBundle.viewer.mdSliderPrevious);
+  dijit.byId("mdSliderNextButton").set("title", esri.i18nBundle.viewer.mdSliderNext);
+
+  dojo.query(".homeHome", this.domNode)[0].innerHTML = esri.i18nBundle.siteHeader.home_link;
+  dojo.query(".homeFeatures", this.domNode)[0].innerHTML = esri.i18nBundle.siteHeader.features;
+  dojo.query(".homePlans", this.domNode)[0].innerHTML = esri.i18nBundle.siteHeader.plans;
+  dojo.query(".homeGallery", this.domNode)[0].innerHTML = esri.i18nBundle.siteHeader.gallery;
+  dojo.query(".homeScene", this.domNode)[0].innerHTML = esri.i18nBundle.siteHeader.scene;
+  dojo.query(".homeGroups", this.domNode)[0].innerHTML = esri.i18nBundle.siteHeader.groups;
+  dojo.query(".homeMyContent", this.domNode)[0].innerHTML = esri.i18nBundle.siteHeader.myContent;
+  dojo.query(".homeMyOrg", this.domNode)[0].innerHTML = esri.i18nBundle.siteHeader.myAccount;
+  dojo.query(".homeHelp", this.domNode)[0].innerHTML = esri.i18nBundle.siteHeader.support;
+
+  dojo.byId("login-link").innerHTML = "<span class=\"profile-icon\"></span>" + esri.i18nBundle.siteHeader.signIn;
+  // dojo.byId("logged-in-myProfile").innerHTML = esri.i18nBundle.siteHeader.myProfile;
+  dojo.byId("logged-in-help").innerHTML = esri.i18nBundle.siteHeader.help;
+  dojo.query('#logged-in-help').removeClass('hide');
+  // need to have self to decide if we show adminhelp
+  dojo.byId("logged-in-adminhelp").innerHTML = esri.i18nBundle.siteHeader.adminGuide;
+  dojo.byId("logged-in-signOut").innerHTML = esri.i18nBundle.siteHeader.signOut;
+  dojo.style(dojo.byId("header-controls"), "display", "inline-block");
+
+  dojo.style('page-border', 'visibility', 'visible');
+
+  //For Septemper 2014 remove web scene, and scene layer from filters
+  if (!esriGeowConfig.sceneViewerEnabled) {
+    dojo.query(".homeScene", this.domNode).style("display", "none");
+  }
+
+  if (dojo.isIos || dojo.isAndroid) {
+    // no file browsing available
+    dojo.style(dijit.byId("webmap-add-layer-file").domNode, "display", "none");
+  }
+
+  arcgisonline.map.main.init();
+}
+</script>
 {% endblock %}

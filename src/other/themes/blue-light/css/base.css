@@ -1,0 +1,79 @@
+/* GLOBAL STYLES
+-------------------------------------------------- */
+body {
+  color: #222;
+  padding-top: 142px;
+  font-family: "Hiragino Sans GB","Microsoft Yahei","微软雅黑", "Pinghei",sans-serif;
+  letter-spacing: normal;
+  background: #FFFFFF;
+  -webkit-font-smoothing: antialiased;
+}
+
+.text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-description {
+	font-size: 16px;
+	color: #808080;
+}
+
+.center {
+  text-align: center;
+}
+
+/* AREA STYLES
+-------------------------------------------------- */
+
+.clear-area {
+  position: relative;
+  background-color: #ffffff;
+  margin-bottom: 24px;
+  padding: 24px 0;
+}
+
+.gray-area {
+  position: relative;
+  background-color: #F1F1F1;
+  margin-bottom:24px;
+  padding: 24px 0;
+}
+
+.dark-area {
+  position: relative;
+  /*background-color: #1F354A;*/
+  background-color: #004d8c;
+  padding: 24px 0;
+  color: #ffffff;
+}
+
+.blue-area {
+  position: relative;
+  background-color: #1A4C87 ;
+  margin-bottom:24px;
+  padding: 24px 0;
+}
+
+/* ACTIVE OBJECT STYLES
+-------------------------------------------------- */
+.active-obj {
+	display: none;
+}
+
+.disactive-obj {
+	display: inline-block;
+}
+
+.active .active-obj {
+	display: inline-block;
+}
+
+.active .disactive-obj {
+	display: none;
+}
+
+.noradius {
+    border-radius: 0 !important;
+}

@@ -1,0 +1,84 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: #FFF;
+    font-family: "Microsoft Yahei","Î¢ÈíÑÅºÚ", "Pinghei";
+}
+article{
+    display: block;
+}
+.radio, .checkbox {
+    min-height: 20px;
+    padding-left: 20px;
+}
+.center {
+    width: auto;
+    display: table;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+#page_content {
+    background: #fff;
+    padding: 10px 30px;
+    clear: right;
+    overflow: hidden;
+    font-size: 14px;
+    border: 1px solid #ccc;
+}
+#page_content p {
+    margin: 10px 0;
+    overflow: hidden;
+}
+.md-body {
+    font-size: 12px;
+    line-height: 2;
+    color: #808080;
+    padding: 0 20px 20px;
+    margin: 0 auto;
+}
+.md-body > h1:first-child {
+    margin-top: -10px;
+}
+.md-body h1 {
+    line-height: 60px;
+    font-size: 20px;
+    color: #333;
+    text-indent: 30px;
+    font-weight: normal;
+    margin: 16px -30px 16px;
+    border-bottom: 1px solid #e5e5e5;
+}
+.md-body h2 {
+    color: #0075c2;
+    font-size: 18px;
+    font-weight: normal;
+    margin: 16px -30px;
+    clear: left;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    line-height: 58px;
+    text-indent: 20px;
+    position: relative;
+    padding: 0 30px;
+    background: url(../images/h2.png) no-repeat 30px center;
+}
+.md-body h2::before, .md-body h2::after {
+    content: '';
+    width: 30px;
+    height: 1px;
+    bottom: 0px;
+    margin: 0 0 -1px -50px;
+    background: #fff;
+    position: absolute;
+    box-sizing: border-box;
+}
+.md-body h2::after {
+    right: 0;
+}
+.md-body h1 + h2 {
+    margin-top: -17px;
+}

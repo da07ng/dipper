@@ -1,0 +1,74 @@
+<div>
+  <div>
+    ${i18n.description}
+    <ol>
+      <li>${i18n.descriptionPoint1}</li>
+      <li>${i18n.descriptionPoint2}</li>
+      <li>${i18n.descriptionPoint3}</li>
+    </ol>
+    ${i18n.descriptionNote}
+    <br><br>
+    ${i18n.deselectNote}
+  </div>
+  <br><br>
+
+  <div class="serviceContainer">
+    <div>
+      <div class="inlineBlock">
+        <input type="checkbox" id="elevationChkBox" data-dojo-attach-point="_elevationChkBox"
+               data-dojo-type="dijit/form/CheckBox">
+        <label for="elevationChkBox">${i18n.services.elevation}</label>
+      </div><!--col1-->
+      <div class="inlineBlock">
+        <input type="checkbox" id="geocodeChkBox" data-dojo-attach-point="_geocodeChkBox"
+               data-dojo-type="dijit/form/CheckBox">
+        <label for="geocodeChkBox">${i18n.services.geocode}</label>
+      </div><!--col2-->
+    </div><!--row1-->
+    <div>&nbsp;</div>
+    <div>
+      <div class="inlineBlock">
+        <input type="checkbox" id="geoenrichChkBox" data-dojo-attach-point="_geoenrichChkBox"
+               data-dojo-type="dijit/form/CheckBox">
+        <label for="geoenrichChkBox">${i18n.services.geoenrichment}</label>
+      </div><!--col1-->
+      <div class="inlineBlock">
+        <input type="checkbox" id="hydrologyChkBox" data-dojo-attach-point="_hydrologyChkBox"
+               data-dojo-type="dijit/form/CheckBox">
+        <label for="hydrologyChkBox">${i18n.services.hydrology}</label>
+      </div><!--col2-->
+    </div><!--row2-->
+    <div>&nbsp;</div>
+    <div>
+      <div class="inlineBlock">
+        <input type="checkbox" id="networkChkBox" data-dojo-attach-point="_networkChkBox"
+               data-dojo-type="dijit/form/CheckBox">
+        <label for="networkChkBox">${i18n.services.network}</label>
+      </div><!--col2-->
+      <div class="inlineBlock">
+        <input type="checkbox" id="routeChkBox" data-dojo-attach-point="_routeChkBox"
+               data-dojo-type="dijit/form/CheckBox">
+        <label for="routeChkBox">${i18n.services.route}</label>
+      </div><!--col3-->
+    </div><!--row3-->
+  </div>
+  <br class="clearBoth"><br>
+  <div data-dojo-attach-point="_credentialContainer">
+    <div>
+      ${i18n.enterCredentials}
+      <br><br>
+      <label data-dojo-attach-point="_servicesSelected"></label>
+      <br><br>
+    </div>
+    <div data-dojo-attach-point="_credentials" class="${baseClass} credentials esriAlignLeading valignTop" style="clear:both;"></div>
+    <div class="folderLabel">${i18n.folderLabel}</div>
+    <div class="arrowSpaceMedium" data-dojo-attach-point="_folderSelect"
+         data-dojo-type="arcgisonline/sharing/dijit/ComboBox" data-dojo-props="trim:true"></div>
+  </div>
+  <br class="clearBoth">
+  <div class="esriFloatTrailing">
+    <button type="button" class="calcite btn tertiary small"
+            data-dojo-type="dijit/form/Button" data-dojo-attach-point="_okBtn">${i18n.configure}</button>
+  </div>
+  <br class="clearBoth">
+</div>

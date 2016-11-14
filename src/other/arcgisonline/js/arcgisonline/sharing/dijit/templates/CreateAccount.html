@@ -1,0 +1,113 @@
+<div class="${baseClass}" dojoType="dijit.layout.ContentPane" dojoAttachPoint="containerNode">
+  <div dojoAttachPoint="_socialLinkSection" class="esriItemLinks socialLinkSection esriFloatLeading newStyles grid-50 hide" style="margin-top:20px;">
+      <p class="sectionHeader hide" id="socialTitle">${i18n.useSocialNetworkAccount}</p>
+      <div class="socialLinks">
+          <ul>
+              <li class="facebook"><a target="_blank" dojoAttachPoint="_facebookSocialLink" href=""><span></span>${i18n.continueFacebook}</a></li>
+              <li class="google"><a target="_blank" dojoAttachPoint="_googleSocialLink" href=""><span></span>${i18n.continueGoogle}</a></li>
+          </ul>
+          <p class="accountMessage">${!i18n.publicAccountMsg}</p>
+      </div>
+  </div>
+  <div dojoType="dijit.form.Form" autocomplete="off" id="_agoAccountSection" class="esriItemLinks esriFloatLeading newStyles grid-50" style="margin-top:20px;">
+    <p class="sectionHeader hide" id="agoAccountTitle">Or enter your information</p>
+
+    <div class="formBlock" data-dojo-attach-point="_messageRow">
+      <label for="messageRow" id="messageRowLabel">&nbsp;</label>
+      <div id="messageRow" dojoAttachPoint="_message" style="color:red;"></div>
+    </div>
+
+    <div class="formBlock">
+        <label for="username" class="requiredLabel" id="usernameLabel">${i18n.usernameLabel}</label>
+        <div id="username" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="esriFloatLeading" dojoAttachPoint="_username" dojoType="dijit.form.TextBox" trim="true"></div>
+        <div id="username_coachmark" class="coachMarkMsg hide">${i18n.arcgisAccountMsg}</div>
+    </div>
+
+    <div class="formBlock">
+        <label for="password" class="requiredLabel" id="passwordLabel">${i18n.passwordLabel}</label>
+        <div id="password" class="esriFloatLeading" dojoAttachPoint="_password" dojoType="dijit.form.TextBox" type="password" trim="true"></div>
+        <div id="password_coachmark" class="coachMarkMsg hide">${i18n.passwordHintText}</div>
+    </div>
+
+    <div class="formBlock">
+        <label for="confirm_password" class="requiredLabel" id="confirmPasswordLabel">${i18n.confirmPasswordLabel}</label>
+        <div id="confirm_password" dojoAttachPoint="_confirmPassword" dojoType="dijit.form.TextBox" type="password" trim="true"></div>
+    </div>
+
+    <div class="formBlock">
+        <label for="first_name" class="requiredLabel" id="firstNameLabel">${i18n.firstNameLabel}</label>
+        <div id="first_name" dojoAttachPoint="_firstName" dojoType="dijit.form.TextBox" trim="true"></div>
+    </div>
+
+    <div class="formBlock">
+        <label for="last_name" class="requiredLabel" id="lastNameLabel">${i18n.lastNameLabel}</label>
+        <div id="last_name" dojoAttachPoint="_lastName" dojoType="dijit.form.TextBox" trim="true"></div>
+    </div>
+
+    <div dojoAttachPoint="_organizationRow" class="formBlock">
+        <label for="organization" class="requiredLabel" id="organizationLabel">${i18n.organizationLabel}</label>
+        <div id="organization" dojoAttachPoint="_organizationName" dojoType="dijit.form.TextBox" trim="true"></div>
+    </div>
+
+    <div class="formBlock">
+        <label for="email" class="requiredLabel" id="emailLabel">${i18n.emailLabel}</label>
+        <div id="email" dojoAttachPoint="_email" dojoType="dijit.form.TextBox" trim="true"></div>
+    </div>
+
+    <div class="formBlock">
+        <label for="confirm_email" class="requiredLabel" id="confirmEmailLabel">${i18n.confirmEmailLabel}</label>
+        <div id="confirm_email" dojoAttachPoint="_confirmEmail" dojoType="dijit.form.TextBox" trim="true"></div>
+    </div>
+
+    <div dojoAttachPoint="_phoneNumberRow" class="formBlock">
+        <label for="phoneNumber" class="requiredLabel" id="phoneNumberLabel">${i18n.phoneNumberLabel}</label>
+        <div id="phoneNumber" dojoAttachPoint="_phoneNumber" dojoType="dijit.form.TextBox" trim="true"></div>
+    </div>
+
+    <div class="hintBox esriAlignLeading" id="identityQuestionMessage" dojoAttachPoint="_identityQuestionMessage">${i18n.identityQuestionMsg}</div>
+
+    <div class="formBlock">
+        <label for="identity_question" class="requiredLabel" id="identityQuestionLabel">${i18n.identityQuestionLabel}</label>
+        <div id="identity_question" dojoAttachPoint="_identityQuestion" dojoType="arcgisonline.sharing.dijit.ComboBox" dojoAttachEvent="onChange:onIdentityQuestionChange" style="width:350px;" trim="true"></div>
+    </div>
+
+    <div class="formBlock">
+        <label for="identity_answer" class="requiredLabel" id="identityAnswerLabel">${i18n.answerLabel}</label>
+        <div id="identity_answer" dojoAttachPoint="_identityAnswer" dojoType="dijit.form.TextBox" trim="true"></div>
+    </div>
+
+    <div class="formBlock" id="terms_of_use_container">
+        <div class="termsOfUse" dojoAttachPoint="_termsOfUseLink">${!i18n.termsOfUseMessage}</div>
+        <div class="termsOfUseInternational" dojoAttachPoint="_termsOfUseInternationalLink"><a target="_blank" href="http://links.esri.com/termsofuse-international-arcgis">${i18n.touOtherLanguages}</a></div>
+        <label class="tosCheck" for="tosCheck"><input dojoAttachPoint="_acceptTermsOfUseChk" name="tosCheck" data-dojo-type="dijit.form.CheckBox" value="agreed" />${i18n.touAcceptMsg}</label>
+    </div>
+
+    <div class="bottom-buttons esriFloatLeading">
+        <div dojoAttachPoint="_createAccount" class="calcite blue" dojoType="dijit.form.Button" dojoAttachEvent="onClick:onCreateAccountClick" type="button">${i18n.createAccountLabel}</div>
+        <div dojoAttachPoint="_cancel" class="calcite transparent" dojoType="dijit.form.Button" dojoAttachEvent="onClick:onCancelClick" type="button">${i18n.cancel}</div>
+    </div>
+  </div>
+
+  <div class="esriFloatLeading newStyles" dojoAttachPoint="_columnThree">
+    <div class="hintBox esriAlignLeading esriLeadingMargin3 grid-30" id="accountMessage" dojoAttachPoint="_accountMessage"></div>
+  </div>
+
+  <form id="form_new_account" dojoAttachPoint="_form_new_account" method="post">
+    <input type="hidden" id="form_username" dojoAttachPoint="_form_username" name="username"/>
+    <input type="hidden" id="form_password" dojoAttachPoint="_form_password" name="password"/>
+    <input type="hidden" id="form_confirmationPassword" dojoAttachPoint="_form_confirmationPassword" name="confirmationPassword"/>
+    <input type="hidden" id="form_firstName" dojoAttachPoint="_form_firstName" name="firstName"/>
+    <input type="hidden" id="form_lastName" dojoAttachPoint="_form_lastName" name="lastName"/>
+    <input type="hidden" id="form_organization" dojoAttachPoint="_form_organization" name="organization"/>
+    <input type="hidden" id="form_email" dojoAttachPoint="_form_email" name="email"/>
+    <input type="hidden" id="form_phoneNumber" dojoAttachPoint="_form_phoneNumber" name="phoneNumber"/>
+    <input type="hidden" id="form_identifyQuestion" dojoAttachPoint="_form_identifyQuestion" name="identifyQuestion"/>
+    <input type="hidden" id="form_identifyQuestionID" dojoAttachPoint="_form_identifyQuestionID" name="identifyQuestionID"/>
+    <input type="hidden" id="form_identifyAnswer" dojoAttachPoint="_form_identifyAnswer" name="identifyAnswer"/>
+    <input type="hidden" id="form_ipAddress" dojoAttachPoint="_form_ipAddress" name="ipAddress"/>
+    <input type="hidden" id="form_apiKey" dojoAttachPoint="_form_apiKey" name="apiKey"/>
+    <input type="hidden" id="form_appID" dojoAttachPoint="_form_appID" name="appID"/>
+    <input type="hidden" id="form_languageCode" dojoAttachPoint="_form_languageCode" name="languageCode"/>
+    <input type="hidden" id="form_format" dojoAttachPoint="_form_format" name="format"/>
+  </form>
+</div>

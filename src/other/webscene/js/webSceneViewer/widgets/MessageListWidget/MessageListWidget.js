@@ -1,0 +1,6 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+require({cache:{"url:webSceneViewer/widgets/MessageListWidget/templates/MessageListWidget.html":'\x3cdiv class\x3d"MessageList" data-dojo-attach-point\x3d"MessageList"\x3e\r\n    \x3cdiv class\x3d"MessageListContent" data-dojo-attach-point\x3d"MessageListContentNode"\x3e\x3c/div\x3e\r\n\x3c/div\x3e'}});
+define(["esri/core/declare","dijit/_WidgetBase","dijit/_TemplatedMixin","dojo/text!./templates/MessageListWidget.html","./MessageWidget"],function(b,c,d,e,f){return new (b([c,d],{declaredClass:"MessageListWidget",templateString:e,MessageTypes:{INFO:"info",SUCCESS:"success",WARNING:"warning",ERROR:"error"},direction:"b2t",constructor:function(a){},postCreate:function(){},show:function(a){"string"===typeof a&&(a={message:a});a=new f(a);"t2b"===this.direction?a.placeAt(this.MessageListContentNode,0):
+a.placeAt(this.MessageListContentNode)}}))});

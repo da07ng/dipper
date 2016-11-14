@@ -1,0 +1,30 @@
+<form data-dojo-attach-point="containerNode" enctype="multipart/form-data" action="" method="POST"  data-dojo-attach-event="onsubmit:onSubmit">
+<div data-dojo-attach-point="formNode" class="esriItemLinks dijitDialogPaneContentArea">
+  <p class="csv" id="locateDiv">
+    <span>${i18n.locateUsing}</span>
+    <input data-dojo-type="dijit.form.RadioButton" id="geocode:latLong" name="geocode"  value="locationTypes" checked />
+    <label for="geocode:latLong">${i18n.latLong}</label>
+    <input data-dojo-type="dijit.form.RadioButton" id="geocode:addr" name="geocode" value="addressTypes" />
+    <label for="geocode:addr">${i18n.address}</label>
+  </p>
+  <div class="csv multigeocode" style="margin-bottom:1.0em;">
+    <label for="geocoderSelect">${i18n.selectGeocoder}</label>
+    <select id="geocoderSelect" data-dojo-attach-point="_geocoderSelect" data-dojo-type="dijit.form.Select" style="width:175px;" data-dojo-props="maxHeight:200" name="geocodeSelect"></select>
+  </div>
+  <div class="csv geocode">
+    <label for="geocodeAddress">${i18n.country}${i18n.colon}</label>
+    <select data-dojo-attach-point="_countryCodes" data-dojo-type="dijit.form.Select" style="width:175px;" data-dojo-props="maxHeight:200" id="geocodeAddress" name="geocodeAddress"></select>
+  </div>
+  <!-- we hard code styles here so it will work in IE9-7 -->
+  <div class="csv" style="margin: 1.0em 0 1.0em 0;">${i18n.review}</div>
+  <div data-dojo-attach-point="gridNodeAddr" class="grid" style="width:448px;height:150px"></div>
+  <div data-dojo-attach-point="gridNodeLatLong" class="grid" style="display:none;width:448px;height:150px"></div>
+  <div data-dojo-attach-point="geocodingMsg"><span class="csv">${i18n.geocodingMsg}</span></div>
+</div>
+<br />
+<div class="submitButtons dijitDialogPaneActionBar">
+    <span data-dojo-attach-point="spinnerNode" style="display:none">${i18n.pleaseWait}</span>
+    <input data-dojo-attach-point="_okBtn" data-dojo-type="dijit.form.Button" name="addLayer" class="primary" type="submit">
+    <input data-dojo-attach-point="_cancelBtn" data-dojo-type="dijit.form.Button" name="cancel" class="cancel" type="button" data-dojo-observer="onCancel">
+</div>
+</form>

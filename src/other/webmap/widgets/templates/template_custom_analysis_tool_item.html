@@ -1,0 +1,17 @@
+<div data-dojo-attach-point="_toolCtr" style="cursor:pointer;cursor:hand;" data-dojo-attach-event="onclick:_handleToolIconClick">
+    <div class="function">
+        <div class="customToolItemIcon" data-dojo-attach-point='_toolIcon'></div>
+        <div class='esriLeadingMargin5' style="margin-top: -3.75em;">
+            <span class="esriFloatTrailing helpContainer">
+                <i class="treenode-tool detail" title="详情" data-dojo-attach-event="onclick: _showdetails"></i>
+            </span>
+            <span class="esriFloatTrailing helpContainer" style="margin-right: 0;">
+                <i class="treenode-tool info" title="帮助" data-dojo-attach-point="_helpIconNode" esriHelpTopic="toolDescription"></i>
+            </span>
+            <h4 data-dojo-attach-point='_toolNameLabel' style="cursor:pointer;cursor:hand;" class="function-title"></h4>
+        </div>
+        <div class='esriLeadingMargin2' data-dojo-attach-point="optionsDiv" style="margin-top:0.5em;font-size:0.85em;">
+            <label class="esriLeadingMargin5 comingSoonIcon">${i18n.comingSoonLabel}</label>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="shareDialog" >
+  <div data-dojo-attach-point="Text"></div>
+  <div class="linkShare" data-dojo-attach-point="LinkShareContainer">
+    <div data-dojo-attach-point="LinkText" class="shareLinkText"></div>
+    <div class="shareLinkIcons">
+      <div class="email" data-dojo-attach-event="click:_toEmail"></div>
+      <div class="facebook" data-dojo-attach-event="click:_toFacebook" data-dojo-attach-point="FacebookShare"></div>
+      <div class="twitter" data-dojo-attach-event="click:_toTwitter" data-dojo-attach-point="TwitterShare"></div>
+    </div>
+    <label>
+      <input data-dojo-attach-point="ShortenLinkCheckbox">
+      <span data-dojo-attach-point="ShortenLinkText"></span>
+    </label>
+  </div>
+  <div class="embedShare"  data-dojo-attach-point="EmbedShareContainer">
+    <div data-dojo-attach-point="embedText" class="shareEmbedText"></div>
+    <div class="moreOptions" data-dojo-attach-event="click:_moreOptionsExpandCollapse">
+      <div class="moreOptionsIcon" data-dojo-attach-point="MoreOptionsIcon"></div>
+      <div class="moreOptionsText" data-dojo-attach-point="MoreOptionsText"></div>
+    </div>
+    <div data-dojo-attach-point="MoreOptionsContainer" class="moreOptionsContainer collapsed">
+      <div class="sizeSelect" data-dojo-attach-point="SizeSelect"></div>
+      <div class="customSize disable" data-dojo-attach-point="CustomSizeContainer">
+      <div class="timesConnector">X</div>
+      </div>
+    </div>
+  </div>
+  <div class="shareMessage" data-dojo-attach-point="ShareMessage">
+    <div class="infoIcon"></div>
+    <div data-dojo-attach-point="ShareMessageText" class="shareMessageText"></div>
+    <a href=""  target="_blank" data-dojo-attach-point="ChangeSettingsLink" class="changeSettingsLink"></a>
+  </div>
+</div>

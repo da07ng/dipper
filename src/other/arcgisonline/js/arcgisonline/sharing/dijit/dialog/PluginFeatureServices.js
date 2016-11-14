@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/3.15/esri/copyright.txt for details.
+//>>built
+define("arcgisonline/sharing/dijit/dialog/PluginFeatureServices",["dojo/_base/declare","dojo/_base/lang","dojo/_base/array","dojo/promise/all"],function(e,b,f,g){var c=e("arcgisonline.sharing.dijit.dialog.PluginFeatureServices",null,{constructor:function(a){b.mixin(this,a)},fetchData:function(){this._portal=this.parent._portal;this._user=this._portal.getPortalUser();return this._fetchServices()},_fetchServices:function(){return this.parent._fetchItems({query:'type:"Feature Service" AND typekeywords: "Hosted Service" AND accountid:"'+
+this._user.accountId+'"'})}});b.mixin(c,{add:function(a,b){if(!a.plugIn){var d=b||{};d.parent=a;a.plugIn=new c(d)}},remove:function(a){a.plugIn&&(a.plugIn.destroy(),delete a.plugIn)}});return c});

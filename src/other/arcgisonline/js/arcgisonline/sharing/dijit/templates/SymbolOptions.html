@@ -1,0 +1,107 @@
+<div>
+  <table class="symbolDialogTable">
+   <tbody>
+    <tr> 
+      <td valign="top">
+        <div><label>${i18n.previewLabel}</label></div>
+      </td>
+      <td colspan="2" valign="middle" align="left">
+        <div dojoAttachPoint="symbolImage" style="height:100%; vertical-align:middle;"></div>
+      </td>   
+    </tr>
+    <tr> 
+      <td colspan="3" valign="top">
+        <div dojoAttachPoint="symbolSmallTemplatePicker" style="display:none;">
+          <div dojoAttachPoint="symbolSimpleMarkerTemplatePickerDiv" class="symbolTemplatePicker" style="height:50px; width:350px;">
+            <div id="${id}_symbolSimpleMarkerTemplatePicker"></div>  
+          </div>
+        </div>
+        <div dojoAttachPoint="symbolFullTemplatePicker" style="display:none;">
+          <div dojoAttachPoint="symbolClassesDiv" style="width:355px;line-height:normal;">
+            <select dojoAttachPoint="symbolColorClasses" style="width:355px;margin:0;" dojoType="arcgisonline.sharing.dijit.ComboBox">
+            </select>       
+          </div>
+          <div dojoAttachPoint="symbolClassesTemplatePickerDiv" class="symbolTemplatePicker" style="height:130px; width:350px;">
+            <div id="${id}_symbolClassesTemplatePicker" ></div>  
+          </div>
+          <div dojoAttachPoint="symbolAddImageDiv" class="esriItemLinks" style="line-height:20px;">
+            <A dojoAttachPoint="symbolAddImage" href="JavaScript:void(0);">${i18n.addImage}</A>  
+          </div>
+        </div>
+      </td>   
+    </tr>
+    <tr dojoAttachPoint="symbolSizeRow"> 
+      <td nowrap><label dojoAttachPoint="symbolSizeLabel">${i18n.symbolSizeLabel}</label></td>
+      <td><div dojoAttachPoint="symbolSize" dojoType="dijit.form.HorizontalSlider" class="symbolSlider" showbuttons="false" intermediatechanges="false" minimum="1" maximum="120" value="1" discretevalues="1" ></div></td>
+      <td valign="top">
+        <div dojoAttachPoint="symbolSizeInput" dojotype="dijit.form.TextBox" trim="true" style="width:30px;margin-bottom:3px;"></div>
+        <div style="display:inline;">${i18n.shortForPixel}</div>
+      </td>
+    </tr>
+    <tr dojoAttachPoint="symbolEndSizeRow"> 
+      <td nowrap><label>${i18n.symbolEndSizeLabel}</label></td>
+      <td><div dojoAttachPoint="symbolEndSize" dojoType="dijit.form.HorizontalSlider" class="symbolSlider" showbuttons="false" intermediatechanges="false" minimum="1" maximum="120" value="1" discretevalues="1" ></div></td>
+      <td valign="top">
+        <div dojoAttachPoint="symbolEndSizeInput" dojotype="dijit.form.TextBox" trim="true" style="width:30px;margin-bottom:3px;"></div>
+        <div style="display:inline;">${i18n.shortForPixel}</div>
+      </td>
+    </tr>
+    <tr dojoAttachPoint="symbolBackgroundColorRow">
+      <td><label>${i18n.colorLabel}</label></td>
+      <td colspan="2"><div dojoAttachPoint="symbolBackgroundColor" class="symbolColorBox"></div></td>
+    </tr>
+    <tr dojoAttachPoint="symbolLinePatternRow">
+      <td><label>${i18n.patternLabel}</label></td>
+      <td colspan="2">
+        <div>
+          <select dojoAttachPoint="symbolLinePatternSelect" id="symbolLinePatternSelect" dojoType="dijit.form.Select" class="symbolLinePatternSelect">
+          </select>
+        </div>
+      </td>
+    </tr>
+    <tr dojoAttachPoint="symbolTransparencyRow">
+      <td><label>${i18n.transparencyLabel}</label></td>
+      <td width="125" valign="top">
+        <div dojoAttachPoint="symbolTransparency" dojoType="dijit.form.HorizontalSlider" class="symbolSlider" style="line-height:normal;margin-top:7px;" showbuttons="false" intermediatechanges="true" minimum="0" maximum="1" value="0" discretevalues="0.01" >
+          <div dojoType="dijit.form.HorizontalRule" container="bottomDecoration" count="2" style="height:5px;"></div>
+          <ol dojoType="dijit.form.HorizontalRuleLabels" container="bottomDecoration" style="font-size:0.8em;">
+            <li>0</li><li>100%</li>
+          </ol>
+        </div>
+      </td>
+      <td>
+        <div dojoAttachPoint="symbolTransparencyInput" dojotype="dijit.form.TextBox" trim="true" style="width:30px;margin-bottom:3px;"></div>
+        <div style="display:inline;">%</div>
+      </td>
+    </tr>
+    <tr dojoAttachPoint="symbolOutlineColorRow">
+      <td><label>${i18n.outlineColorLabel}</label></td>
+      <td colspan="2"><div dojoAttachPoint="symbolOutlineColor" class="symbolColorBox"></div></td>
+    </tr>
+    <tr dojoAttachPoint="symbolWidthRow"> 
+      <td><label dojoAttachPoint="symbolWidthLabel" >${i18n.outlineWidthLabel}</label></td>
+      <td><div dojoAttachPoint="symbolWidth" dojoType="dijit.form.HorizontalSlider" class="symbolSlider" showbuttons="false" intermediatechanges="true" minimum="0" maximum="18" value="1" discretevalues="1" ></div></td>
+      <td>
+        <div dojoAttachPoint="symbolWidthInput" dojotype="dijit.form.TextBox" trim="true" style="width:30px;margin-bottom:3px;"></div>
+        <div style="display:inline;">${i18n.shortForPixel}</div>
+      </td>
+    </tr>
+    <tr dojoAttachPoint="symbolEndWidthRow"> 
+      <td nowrap><label>${i18n.symbolEndWidthLabel}</label></td>
+      <td><div dojoAttachPoint="symbolEndWidth" dojoType="dijit.form.HorizontalSlider" class="symbolSlider" showbuttons="false" intermediatechanges="false" minimum="1" maximum="18" value="1" discretevalues="1" ></div></td>
+      <td valign="top">
+        <div dojoAttachPoint="symbolEndWidthInput" dojotype="dijit.form.TextBox" trim="true" style="width:30px;margin-bottom:3px;"></div>
+        <div style="display:inline;">${i18n.shortForPixel}</div>
+      </td>
+    </tr>
+   </tbody>
+  </table>                
+
+  <img id="${id}_testImage" style="position:absolute;top:0;left:-3000px"/>
+
+  <div dojoAttachPoint="symbolColorTooltip" dojotype="dijit.TooltipDialog" title="" style="display:none; width:265px;">
+    <div class="esriFloatTrailing"><A class="symbolColorPaletteClose" dojoAttachPoint="symbolColorTooltipClose" href="JavaScript:void(0);" title="${i18n.close}"></A></div>
+    <div dojoAttachPoint="symbolColorPalette" style="margin-top: 7px;" dojotype="dijit.ColorPalette" palette="7x10" dojoAttachEvent="onChange:onColorSelection"></div>
+  </div>
+  
+</div>

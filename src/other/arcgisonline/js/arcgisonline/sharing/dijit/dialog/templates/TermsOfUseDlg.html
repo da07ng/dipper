@@ -1,0 +1,24 @@
+<div class="widgetContainer">
+  <div data-dojo-type="dijit.Dialog" id="terms-of-use-dialog" title="${i18n.title}" execute="" style="overflow-y:auto;">
+    <form id="terms-of-use-form" method="POST" action="" style="height:100%;overflow-y:auto;padding-left:10px;">
+      <div style="height:30px; text-align:center;">
+        <span style="font-size:1.1em; font-weight:bold">${i18n.termsOfUseTitle}</span>
+      </div>
+      <div data-dojo-type="dijit.layout.ContentPane" id="tos" style="background:#FFF;border:solid 1px #000;overflow-x:hidden;overflow-y:hidden;width:400px;height:250px;">
+        <a href=''></a>
+        <iframe id="termsFrame" src="termsofuse.html" style="width:100%;height:250px;max-width:100%;max-height:250px;"></iframe>
+      </div>
+      <div style="padding-top:10px;">
+        <span class="esriItemLinks"><a href="http://www.esri.com/legal/software-license" target="_blank">${i18n.otherLanguages}</a></span>
+      </div>
+      <div style="height:40px; padding-top:10px;">
+        <button id="button_accept" type="submit" class="primary" data-dojo-type="dijit.form.Button">
+            ${i18n.accept}
+        </button>
+        <button id="button_decline" class="jevent cancel" type="cancel" data-dojo-type="dijit.form.Button">
+            ${i18n.noaccept}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

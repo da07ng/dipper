@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>pointRender</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+      <link rel="stylesheet" href="../css/apiNative.css">
+    <style>
+      #map {
+        height: 720px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: url(../images/androidPoint.png) no-repeat center center;
+        background-size: contain;
+      }
+    </style>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+  </head>
+
+  <body>
+    <div class="container-fluid layoutContainer">
+      <article id="page_content" class="md-body">
+        <h1>分级渲染服务-点</h1>
+        <h2>简介</h2>
+        <p>分级渲染允许为特定属性值范围内的一组图形指定符号，通过ClassBreaksRenderer实现Graphic对象的分级渲染。</p>
+        <p>可以通过多种方式进行结果展示，通过点的方式进行结果展示。</p>
+        <h2>示例</h2>
+        <div id="map"></div>
+        <h2>代码</h2>
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+public class PointLevelActivity extends Activity {
+
+    private GraphicsLayer graphicsLayer = new GraphicsLayer();
+    private ArcGISFeatureLayer featureLayer;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        MapOptions mapOptions = new MapOptions(MapOptions.MapType.STREETS, 35.612,-82.441,17);
+        MapView mapView = new MapView(this,mapOptions);
+
+        setContentView(mapView);
+
+        ArcGISFeatureLayer.Options options = new ArcGISFeatureLayer.Options();
+        options.mode =  ArcGISFeatureLayer.MODE.SNAPSHOT;
+
+        featureLayer = new ArcGISFeatureLayer(getString(R.string.point_level_url),options);
+
+
+        onClassRender();
+
+        mapView.addLayer(featureLayer);
+
+    }
+
+    private void onClassRender(){
+
+        ClassBreaksRenderer classBreaksRenderer  = new ClassBreaksRenderer();
+        classBreaksRenderer.setDefaultSymbol(new SimpleFillSymbol(Color.LTGRAY));
+        classBreaksRenderer.setField("C_Seq");
+
+        ClassBreak classBreak1 = new ClassBreak();
+        classBreak1.setClassMinValue(0);
+        classBreak1.setClassMaxValue(12);
+        classBreak1.setSymbol(new SimpleMarkerSymbol(Color.argb(255,237,247,232),25, SimpleMarkerSymbol.STYLE.CIRCLE));
+
+        ClassBreak classBreak2 = new ClassBreak();
+        classBreak2.setClassMinValue(12);
+        classBreak2.setClassMaxValue(30);
+        classBreak2.setSymbol(new SimpleMarkerSymbol(Color.argb(255,189,227,187),25, SimpleMarkerSymbol.STYLE.CIRCLE));
+
+        ClassBreak classBreak3 = new ClassBreak();
+        classBreak3.setClassMinValue(30);
+        classBreak3.setClassMaxValue(61);
+        classBreak3.setSymbol(new SimpleMarkerSymbol(Color.argb(255,140,206,141),25, SimpleMarkerSymbol.STYLE.CIRCLE));
+
+        ClassBreak classBreak4 = new ClassBreak();
+        classBreak4.setClassMinValue(61);
+        classBreak4.setClassMaxValue(102);
+        classBreak4.setSymbol(new SimpleMarkerSymbol(Color.argb(255,93,179,103),25, SimpleMarkerSymbol.STYLE.CIRCLE));
+
+        ClassBreak classBreak5 = new ClassBreak();
+        classBreak5.setClassMinValue(102);
+        classBreak5.setClassMaxValue(164);
+        classBreak5.setSymbol(new SimpleMarkerSymbol(Color.argb(255,46,144,74),25, SimpleMarkerSymbol.STYLE.CIRCLE));
+
+        classBreaksRenderer.addClassBreak(classBreak1);
+        classBreaksRenderer.addClassBreak(classBreak2);
+        classBreaksRenderer.addClassBreak(classBreak3);
+        classBreaksRenderer.addClassBreak(classBreak4);
+        classBreaksRenderer.addClassBreak(classBreak5);
+
+        featureLayer.setRenderer(classBreaksRenderer);
+
+
+    }
+}
+
+          </textarea>
+        </p>
+      </article>
+    </div>
+  </body>
+</html>

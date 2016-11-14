@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["esri/core/declare","dojo/dom-construct","dojo/Evented","esri/core/Accessor","webSceneViewer/editor/dijit/NavigatorContainer/NavigatorPane"],function(b,a,c,d,e){return b([e,d,c],{editor:void 0,paneTopContainer:void 0,paneScrollableContainer:void 0,content:void 0,normalizeCtorArgs:function(){return{}},constructor:function(f){this.editor=f;this.content=a.create("div",{});this.paneTopContainer=a.create("div",{className:"paneTopContainer"});this.paneScrollableContainer=a.create("div",{className:"paneScrollableContainer"});
+this.content.appendChild(this.paneScrollableContainer);this.content.appendChild(this.paneTopContainer)},_navBackBtnNodeClickHandler:function(){this.editor._navigatorWidget._navBackBtnNodeClickHandler()},_addToContentNode:function(a){0<this.paneScrollableContainer.children.length&&this.paneScrollableContainer.removeChild(this.paneScrollableContainer.children[0]);this.paneScrollableContainer.appendChild(a)}})});

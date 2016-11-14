@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define("../SimpleMarkerSymbol ../PictureMarkerSymbol ../SimpleLineSymbol ../CartographicLineSymbol ../SimpleFillSymbol ../PictureFillSymbol ../TextSymbol ../PointSymbol3D ../LineSymbol3D ../PolygonSymbol3D ../MeshSymbol3D ../LabelSymbol3D".split(" "),function(e,f,g,c,h,k,l,m,n,p,q,r){var d={fromJson:function(a){try{throw Error("fromJson is deprecated, use fromJSON instead");}catch(b){console.warn(b.stack)}return d.fromJSON(a)},fromJSON:function(a){var b=null;if(!a)return null;switch(a.type){case "esriSMS":b=
+e.fromJSON(a);break;case "esriPMS":b=f.fromJSON(a);break;case "esriTS":b=l.fromJSON(a);break;case "esriSLS":b=void 0!==a.cap?c.fromJSON(a):g.fromJSON(a);break;case "esriCLS":b=c.fromJSON(a);break;case "esriSFS":b=h.fromJSON(a);break;case "esriPFS":b=k.fromJSON(a);break;case "PointSymbol3D":b=m.fromJSON(a);break;case "LineSymbol3D":b=n.fromJSON(a);break;case "PolygonSymbol3D":b=p.fromJSON(a);break;case "MeshSymbol3D":b=q.fromJSON(a);break;case "LabelSymbol3D":b=r.fromJSON(a)}return b}};return d});

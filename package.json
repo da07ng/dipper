@@ -29,5 +29,7 @@
     "isomorphic-fetch": "^2.2.1",
     "webpack": "^1.13.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "gulp-rename": "^1.2.2"
+  }
 }

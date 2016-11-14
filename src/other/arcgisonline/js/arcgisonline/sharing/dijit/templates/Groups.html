@@ -1,0 +1,34 @@
+<div dojotype="dijit.layout.ContentPane" region="top">
+  <div>
+    <span id="createGroupDiv">
+      <button dojotype="dijit.form.Button" type="button" class="create-group-button calcite transparent" iconClass="calcite transparent esriCreateGroupIcon" dojoAttachEvent="onClick: createGroup">${i18n.createAGroup}</button>
+    </span>
+    <span id="invitationsDiv" style="display:none;">
+      <button dojotype="dijit.form.Button" type="button" id="invitations-group-button" class="calcite transparent invitations-group-button calcite transparent" iconClass="esriMembershipRequestIcon" dojoAttachEvent="onClick: viewInvitations">${i18n.invitations}</button>
+    </span>
+    <button dojotype="dijit.form.Button" type="button" style="display:none;" id="addto-groups-button" class="calcite transparent addto-groups-button calcite transparent" iconClass="esriJoinGroupIcon" dojoattachpoint="_addToGroups" dojoAttachEvent="onClick: addToGroups">${i18n.addToGroups}</button>
+  </div>
+  <div style="clear:both; width: 100%;">
+    <div dojoType="dijit.layout.ContentPane" class="filters groupsFilterPane" dojoAttachPoint="_filtersPane">
+      <span class="section">${i18n.show}</span>
+      <div class="set" root="true">
+        <div><a href="#" class="item selected dijitInline" name="none" dojoAttachEvent="onclick:filterClick" id="allMyGroups">${i18n.allMyGroups}</a></div>
+        <div><a href="#" class="item dijitInline" name="filter_myGroups" dojoAttachEvent="onclick:filterClick" id="ownedByMe">${i18n.ownedByMe}</a></div>
+        <div><a href="#" class="item dijitInline" name="filter_othersGroups" dojoAttachEvent="onclick:filterClick">${i18n.ownedByOthers}</a></div>
+        <div><a href="#" class="item dijitInline" name="filter_newRequestGroups" dojoAttachEvent="onclick:filterClick">${i18n.newMemberRequests}</a></div>
+      </div>
+    </div>
+    <div dojoType="dijit.layout.ContentPane" class="groupsPane">
+      <span class="section" dojoAttachPoint="_groupsPaneLabel">&nbsp;</span>
+      <div dojoType="dijit.layout.ContentPane" dojoAttachPoint="_groupsPane" style="padding: 10px; margin-top:10px;"></div>
+    </div>
+    <div class="groupsMorePane">
+      <span class="section" id="featuredGroupsTitle">${i18n.moreGroups}</span>
+      <div class="esriItemLinks" style="margin-top:20px 0.8em 1em 0.8em;" id="featuredGroups">
+        <span class="note esriItemLinks" id="publicGroupsLinkSpan"><a href="search.html?t=groups&q=ispublic:true" id="publicGroupsLink">${i18n.listAllGroups}</a></span>
+        <div id="moreGroups-featuredGroups"></div>
+      </div>
+    </div>
+    <div style="clear:both; width:100%;"></div>
+  </div>
+</div>

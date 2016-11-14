@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Statistics</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="../css/apiNative.css">
+    <style>
+        #map {
+            height: 700px;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background: url(../images/iosStatis.png) no-repeat center center;
+            background-size: contain;
+        }
+    </style>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+</head>
+
+<body>
+<div class="container-fluid layoutContainer">
+    <article id="page_content" class="md-body">
+        <h1>空间统计服务</h1>
+
+        <h2>简介</h2>
+
+        <p>空间数据统计是从要素的空间位置、属性联系等方面出发进行统计，结果反映了研究对象的空间相关性和依赖性。</p>
+
+        <p>可以以和，最小值，平均值，标准差，查询记录等多种方式进行信息统计。在使用统计功能时，需要确保查询的结果中有一个数字型字段。</p>
+
+        <h2>示例</h2>
+
+        <div id="map"></div>
+        <h2>代码</h2>
+
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+// 地图及查询初始化.
+- (void)viewDidLoad {
+[super viewDidLoad];
+    // set the delegate for the map view
+    self.mapView.layerDelegate = self;
+    //create an instance of a tiled map service layer
+    AGSTiledMapServiceLayer *tiledLayer = [[AGSTiledMapServiceLayer alloc] initWithURL:[NSURL URLWithString:@"http://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer"]];
+    //Add it to the map view
+    [self.mapView addMapLayer:tiledLayer withName:@"Tiled Layer"];
+    
+    AGSFeatureLayer *featureLayer = [AGSFeatureLayer featureServiceLayerWithURL:[NSURL URLWithString:@"http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Demographics/ESRI_Census_USA/MapServer/3"] mode:AGSFeatureLayerModeSnapshot];
+    featureLayer.definitionExpression = @"STATE_NAME = 'Kansas'";
+    AGSClassBreaksRenderer *classBreaksRenderer  = [AGSClassBreaksRenderer new];
+    classBreaksRenderer.defaultSymbol = [AGSSimpleFillSymbol simpleFillSymbolWithColor:[UIColor colorWithRed:150./255 green:150./255 blue:0 alpha:0.5] outlineColor:[UIColor lightGrayColor]];
+    classBreaksRenderer.field = @"POP07_SQMI";
+    
+    AGSClassBreak *classBreak1 = [AGSClassBreak new];
+    classBreak1.maxValue =25;
+    classBreak1.symbol = [AGSSimpleFillSymbol simpleFillSymbolWithColor:[UIColor colorWithRed:56 green:168./255 blue:0 alpha:0.5] outlineColor:[UIColor lightGrayColor]];
+    
+    AGSClassBreak *classBreak2 = [AGSClassBreak new];
+    classBreak2.maxValue =75;
+    classBreak2.symbol = [AGSSimpleFillSymbol simpleFillSymbolWithColor:[UIColor colorWithRed:139./255 green:209./255 blue:0 alpha:0.5] outlineColor:[UIColor lightGrayColor]];
+    
+    AGSClassBreak *classBreak3 = [AGSClassBreak new];
+    classBreak3.maxValue =125;
+    classBreak3.symbol = [AGSSimpleFillSymbol simpleFillSymbolWithColor:[UIColor colorWithRed:1 green:1 blue:0 alpha:0.5] outlineColor:[UIColor lightGrayColor]];
+    
+    AGSClassBreak *classBreak4 = [AGSClassBreak new];
+    classBreak4.maxValue =175;
+    classBreak4.symbol = [AGSSimpleFillSymbol simpleFillSymbolWithColor:[UIColor colorWithRed:1 green:128./255 blue:0 alpha:0.5] outlineColor:[UIColor lightGrayColor]];
+    
+    AGSClassBreak *classBreak5 = [AGSClassBreak new];
+    classBreak5.maxValue = 400;
+    classBreak5.symbol = [AGSSimpleFillSymbol simpleFillSymbolWithColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:0.5] outlineColor:[UIColor lightGrayColor]];
+    
+    classBreaksRenderer.classBreaks = @[classBreak1,classBreak2,classBreak3,classBreak4,classBreak5];
+    
+    featureLayer.renderer = classBreaksRenderer;
+    //Add it to the map view
+    [self.mapView addMapLayer:featureLayer withName:@"feature Layer"];
+
+
+          </textarea>
+        </p>
+    </article>
+</div>
+</body>
+</html>

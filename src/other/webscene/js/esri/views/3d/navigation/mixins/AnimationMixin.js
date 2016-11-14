@@ -1,0 +1,6 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../../../../core/declare","dojo/on"],function(k,l){return k([],{declaredClass:"esri.views.3d.navigation.mixins.AnimationMixin",classMetadata:{properties:{interpolation:{setter:function(a){if("string"===typeof a){var b=this.interpolationTypes[a];return!b?(console.error("[AnimationMixin] Invalid interpolation type "+a),this.interpolation):new b(this)}return a}}}},getDefaults:function(){return{interpolation:"linear"}},easeInOutInterpLinear:function(a,b,c,f,h,d,e){var g=e.dist(c,f);if(g<0.1/
+this.mapUnitInMeters)return e.set(f,c),0;b=Math.min(Math.sqrt(g*a),b);d=Math.min(d+a*h,b);a=Math.min(d/g*h,1);e.set(e.lerp(c,f,a),c);return d},step:function(a){this.inherited(arguments);this.currentHasReachedTarget()?this.pan.updateContinuous(a):(this.currentHasAlmostReachedTarget()||this.interpolation.interpolate(this.cameras.current,this.cameras.target,a),this.currentHasAlmostReachedTarget()?this.setCurrentToTarget(!0):this.currentChanged())},animationStarted:function(){l.emit(this,"animationStarted")},
+stop:function(){this.pan&&this.pan.continuous&&this.pan.continuous.stop();this.currentHasAlmostReachedTarget()?this.currentReachedTarget(!0):this.setCurrentToTarget()}})});

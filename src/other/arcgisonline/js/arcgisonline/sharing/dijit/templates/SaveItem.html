@@ -1,0 +1,55 @@
+<div class="${baseClass}" data-dojo-attach-point="containerNode" style="width:100%; height:100%;">
+    <table width="100%">
+        <tbody>
+        <tr class="save-item-title-row">
+            <td nowrap class="columnOne" valign="top">
+                <label>${i18n.titleLabel}</label>
+            </td>
+            <td class="columnTwo">
+                <div data-dojo-attach-point="saveItemTitle"
+                     data-dojo-type="dijit.form.TextBox"
+                     placeHolder="${i18n.defaultTextTitle}" trim="true" style="width: 100%;"></div>
+            </td>
+        </tr>
+        <tr class="spacer"><td colspan="2">&nbsp;</td></tr>
+        <tr class="save-item-tags-row">
+            <td nowrap class="columnOne" valign="top">
+                <label>${i18n.tagsLabel}</label>
+            </td>
+            <td class="columnTwo">
+                <div data-dojo-attach-point="saveItemTags"
+                     data-dojo-type="esri/dijit/Tags"
+                     data-dojo-props="minWidth:'100%',maxWidth:'100%'"></div>
+              <!--<div data-dojo-attach-point="saveItemTags"-->
+                     <!--data-dojo-type="dijit.form.TextBox"-->
+                     <!--placeHolder="${i18n.defaultTextTags}" trim="true"></div><br/>-->
+                <!--<span class="esriItemLinks" style="cursor:pointer; line-height:20px;">-->
+                    <!--<a target="_blank" data-dojo-attach-event="onclick:_onChooseTags">${i18n.chooseFromTagsLabel}</a>-->
+                <!--</span>-->
+            </td>
+        </tr>
+        <tr class="spacer"><td colspan="2">&nbsp;</td></tr>
+        <tr class="save-item-summary-row">
+            <td class="columnOne" valign="top">
+                <label>${i18n.summaryLabel}</label>
+            </td>
+            <td class="columnTwo">
+                <div data-dojo-attach-point="saveItemSummary"
+                     data-dojo-type="dijit.form.TextBox"
+                     placeHolder="${i18n.defaultTextSummary}" maxlength="250" trim="true" style="width: 100%;"></div>
+            </td>
+        </tr>
+        <tr class="spacer"><td colspan="2">&nbsp;</td></tr>
+        <tr class="save-item-folder-row">
+            <td class="columnOne" valign="top">
+                <label>${i18n.saveInFolderLabel}</label>
+            </td>
+            <td class="columnTwo">
+                <div data-dojo-attach-point="saveItemFolder"
+                     data-dojo-type="arcgisonline.sharing.dijit.ComboBox"
+                     data-dojo-attach-event="onChange:_onFolderChange"></div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

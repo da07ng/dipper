@@ -1,0 +1,219 @@
+<div dojoType="dijit.layout.BorderContainer" region="top" style="height:100%;">
+  <div id="rendererLabels-main" class="panel panel_left" dojoType="dijit.layout.ContentPane" region="center" style="padding:7px;margin-bottom:-5px;">
+    <div id="rendererLabelsHeader" dojotype="dijit.layout.ContentPane" region="top">
+      <div class="esriFloatTrailing" style="display:inline;">
+        <a href="JavaScript:void(0);" dojoAttachPoint="_closeBtn" title="${i18n.close}" class="panel panel_close panel_collapse"></a>
+      </div>
+      <div id="rendererLabelsTitle" class="esriFloatLeading panel_title">
+        ${i18n.rendererLabelsPanelTitle}
+      </div>
+      <div dojoAttachPoint="_rendererLabelsLayerName" class="esriFloatLeading panel_title" style="clear:both;">
+      </div>
+      <div style="clear:both; border-bottom: #aeaeae thin solid; height:1px;"></div>
+    </div>
+    <div dojotype="dijit.layout.ContentPane" region="center" id="rendererLabelsPane" style="padding-top:10px;overflow-y:auto;">
+      <div style="padding: 10px 0;">
+        <input dojoAttachPoint="_rendererLabelsCheck" dojotype="dijit.form.CheckBox"  dojoAttachEvent="onChange:_onChangeRendererLabelsCheck" value="on" type="checkbox" />
+        <label>
+          ${i18n.labelFeatures}
+        </label>
+      </div>
+      <div>
+        <table style="width:100%">
+          <tbody>
+            <tr style="width:100%">
+              <td nowrap>
+                <div class="firstColumnDiv">
+                  <label class="firstColumnLabel">
+                    ${i18n.textLabel}
+                  </label>
+                </div>
+              </td>
+              <td style="width:100%">
+                <table style="width:100%">
+                  <tr style="width:100%">
+                    <td style="width:100%">
+                      <div dojoAttachPoint="_rendererLabelsTextInput" dojotype="dijit.form.Textarea" intermediateChanges="true" style="padding:2px;"></div>
+                    </td>
+                    <td>
+                      <button dojoAttachPoint="_rendererLabelsTextButton" class="calcite transparent tiny"></button>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td nowrap>
+                &nbsp;
+              </td>
+              <td>
+                <table style="padding: 5px 0">
+                  <tr>
+                    <td>
+                      <select class="rendererInput" class="calcite light" style="padding-right: 5px;" dojoAttachPoint="_rendererLabelsFontSizes" dojoAttachEvent="onChange:_onChangeRendererLabelsFontSize" dojoType="dijit.form.Select">
+                        <option value="5" selected="selected">5</option>
+                        <option value="6" selected="selected">6</option>
+                        <option value="7" selected="selected">7</option>
+                        <option value="8" selected="selected">8</option>
+                        <option value="9" selected="selected">9</option>
+                        <option value="10" selected="selected">10</option>
+                        <option value="11" selected="selected">11</option>
+                        <option value="12" selected="selected">12</option>
+                        <option value="13" selected="selected">13</option>
+                        <option value="14" selected="selected">14</option>
+                        <option value="15" selected="selected">15</option>
+                        <option value="16" selected="selected">16</option>
+                        <option value="18" selected="selected">18</option>
+                        <option value="20" selected="selected">20</option>
+                        <option value="24" selected="selected">24</option>
+                        <option value="28" selected="selected">28</option>
+                        <option value="32" selected="selected">32</option>
+                        <option value="36" selected="selected">36</option>
+                        <option value="40" selected="selected">40</option>
+                      </select>
+                    </td>
+                    <td>
+                      <div class="rendererLabelsFontButton">
+                        <button dojoAttachPoint="_rendererLabelsFontBoldButton" dojotype="dijit.form.ToggleButton" type="button" dojoAttachEvent="onClick:_onClickRendererLabelsFontBold">
+                          <span style="font-weight: bold;">${i18n.boldAbbr}</span>
+                        </button>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="rendererLabelsFontButton">
+                        <button dojoAttachPoint="_rendererLabelsFontItalicButton"  dojotype="dijit.form.ToggleButton" type="button" dojoAttachEvent="onClick:_onClickRendererLabelsFontItalic">
+                          <span style="font-style: italic;">${i18n.italicAbbr}</span>
+                        </button>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="rendererLabelsFontButton">
+                        <button dojoAttachPoint="_rendererLabelsFontUnderlineButton" dojotype="dijit.form.ToggleButton" type="button" dojoAttachEvent="onClick:_onClickRendererLabelsFontUnderline">
+                          <span style="text-decoration: underline;">${i18n.underlineAbbr}</span>
+                        </button>
+                      </div>
+                    </td>
+                    <td>
+                      <div dojoAttachPoint="_rendererLabelsTextColor" dojoAttachEvent="onClick:_onClickRendererLabelsTextColor" class="RendererLabelsTextColorBox"></div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr id="rendererLabelsHaloSection">
+              <td>
+                &nbsp;
+              </td>
+              <td>
+                <table>
+                  <tr>
+                    <td colspan="2">
+                      <input dojoAttachPoint="_rendererLabelsHaloCheck" dojotype="dijit.form.CheckBox"  dojoAttachEvent="onChange:_onChangeRendererLabelsHaloCheck" value="off" type="checkbox" />
+                      <label>
+                        ${i18n.halo}
+                      </label>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td>
+                      <table style="padding: 5px 0">
+                        <tr>
+                          <td>
+                            <select class="rendererInput" class="calcite light" style="padding-right: 5px;" dojoAttachPoint="_rendererLabelsHaloSizes" dojoAttachEvent="onChange:_onChangeRendererLabelsHaloSize" dojoType="dijit.form.Select">
+                              <option value="1" selected="selected">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                              <option value="6">6</option>
+                              <option value="7">7</option>
+                              <option value="8">8</option>
+                              <option value="9">9</option>
+                              <option value="10">10</option>
+                            </select>
+                          </td>
+                          <td>
+                            <div dojoAttachPoint="_rendererLabelsHaloColor" dojoAttachEvent="onClick:_onClickRendererLabelsHaloColor" class="RendererLabelsTextColorBox"></div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr dojoAttachPoint="_rendererLabelsAlignmentSectionTitle" style="display:none;">
+              <td nowrap colspan="2">
+                <div style="padding: 10px 0 5px 0;">
+                  <label>
+                    ${i18n.alignmentLabel}
+                  </label>
+                </div>
+              </td>
+            </tr>
+            <tr dojoAttachPoint="_rendererLabelsAlignmentSectionPoint" style="display:none;">
+              <td nowrap>
+                &nbsp;
+              </td>
+              <td>
+                <div dojoAttachPoint="_rendererLabelsAlignment" dojotype="esri.dijit.FontAlignment"></div>
+              </td>
+            </tr>
+            <tr dojoAttachPoint="_rendererLabelsAlignmentSectionLine" style="display:none;">
+              <td nowrap>
+                &nbsp;
+              </td>
+              <td>
+                <div>
+                  <div>
+                    <input type="radio" name="linePlacement" dojotype="dijit.form.RadioButton" dojoAttachPoint="_rendererLabelsAlignmentLineAbove" checked="checked" dojoAttachEvent="onClick:_onRendererLabelsAlignmentLineChange"/>
+                    <label for="linePlacement:above">
+                      ${i18n.aboveLine}
+                    </label>
+                  </div>
+                  <div>
+                    <input type="radio" name="linePlacement" dojotype="dijit.form.RadioButton" dojoAttachPoint="_rendererLabelsAlignmentLineOn" dojoAttachEvent="onClick:_onRendererLabelsAlignmentLineChange" />
+                    <label for="linePlacement:on">
+                      ${i18n.onLine}
+                    </label>
+                  </div>
+                  <div>
+                    <input type="radio" name="linePlacement" dojotype="dijit.form.RadioButton" dojoAttachPoint="_rendererLabelsAlignmentLineBelow" dojoAttachEvent="onClick:_onRendererLabelsAlignmentLineChange" />
+                    <label for="linePlacement:below">
+                      ${i18n.belowLine}
+                    </label>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="padding:10px 0 3px 0;">
+        <div id="rendererSimpleApply" class="esriFloatTrailing">
+          <button dojotype="dijit.form.Button" class="calcite blue" type="button" dojoAttachEvent="onClick:_onOK">
+            <span>${i18n.ok}</span>
+          </button>
+          <button dojotype="dijit.form.Button" class="calcite transparent" type="button" dojoAttachEvent="onClick:_onCancel">
+            <span>${i18n.cancel}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="rendererLabelsContentFooter" dojoType="dijit.layout.ContentPane" region="bottom" style="height:40px; padding: 0 5px 0 5px; display:none;">
+    <div class="footer" id="rendererLabelsFooter" dojotype="arcgisonline.sharing.dijit.SiteFooterMap" style="white-space:normal;">
+    </div>
+  </div>
+
+  <div dojoAttachPoint="textColorTooltip" dojotype="dijit.TooltipDialog" title="" style="display:none; width:265px;">
+    <div class="esriFloatTrailing"><A class="textColorPaletteClose" dojoAttachPoint="textColorTooltipClose" href="JavaScript:void(0);" title="${i18n.close}"></A></div>
+    <div dojoAttachPoint="textColorPalette" style="margin-top: 7px;" dojotype="dijit.ColorPalette" palette="7x10" dojoAttachEvent="onChange:_onColorSelection"></div>
+  </div>
+  <div dojoAttachPoint="haloColorTooltip" dojotype="dijit.TooltipDialog" title="" style="display:none; width:265px;">
+    <div class="esriFloatTrailing"><A class="textColorPaletteClose" dojoAttachPoint="haloColorTooltipClose" href="JavaScript:void(0);" title="${i18n.close}"></A></div>
+    <div dojoAttachPoint="haloColorPalette" style="margin-top: 7px;" dojotype="dijit.ColorPalette" palette="7x10" dojoAttachEvent="onChange:_onHaloColorSelection"></div>
+  </div>
+
+</div>

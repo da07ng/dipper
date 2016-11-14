@@ -1,0 +1,4 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../../core/declare","dojo/_base/lang","dojo/io-query","../../layers/ArcGISDynamicLayer"],function(a,c,f,b){return a(b,{declaredClass:"esri.tasks._GPResultImageLayer",constructor:function(){this.getImageUrl=c.hitch(this,this.getImageUrl)},getImageUrl:function(d,a,b,g){var e=d.spatialReference.wkid;g(this.parsedUrl.path+"?"+f.objectToQuery(c.mixin(this._params,{f:"image",bbox:JSON.stringify(d.toJSON()),bboxSR:e,imageSR:e,size:a+","+b})))}})});

@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["dojo/has"],function(c){c=function(a,b){this.key=a;this.chain=a.split(".");this.deps=b};c.prototype={install:function(a){return new d(this,a)}};var d=function(a,b){this.binding=a;this.obj=b;this._installs=[];this._props=b._accessorProps;this._callback=this._callback.bind(this);this._install(b,0);this._notify()};d.prototype={remove:function(){this._installs.forEach(function(a){a.remove()});this._installs=this._props=this.binding=this.obj=null},_install:function(a,b){var f=this.binding.chain,
+g=this._installs,c;b<g.length&&(g.splice(b).forEach(function(a){a.remove()}),this._notify());if(b!==f.length&&a&&(c=a._accessorProps)){for(var d,e=b;(d=f[e])&&a&&(c=a._accessorProps);)g[e]=c.bind(d,e,this._callback),a=a[f[e++]];this._notify()}},_callback:function(a,b){1!==arguments.length&&this._install(b,a+1);this._notify()},_notify:function(){for(var a=this.binding.deps,b=this._props,c=0,d=a.length;c<d;c++)b._propertyWillChange(a[c])}};return c});

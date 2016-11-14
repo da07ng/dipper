@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["dojo/has"],function(b){var g=b("ff"),c=b("ie"),h=b("webkit");b=b("opera");var e=h&&"-webkit-transform"||g&&"-moz-transform"||b&&"-o-transform"||c&&"-ms-transform"||"transform",f={translate:function(a){return"translate("+Math.round(a[0])+"px, "+Math.round(a[1])+"px)"},matrix:function(){return 9===c?function(a){return"matrix("+a[0].toFixed(10)+","+a[1].toFixed(10)+","+a[2].toFixed(10)+","+a[3].toFixed(10)+","+a[4]+","+a[5]+")"}:function(a){return"matrix3d("+a[0].toFixed(10)+","+a[1].toFixed(10)+
+",0,0,"+a[2].toFixed(10)+","+a[3].toFixed(10)+",0,0,0,0,1,0,"+a[4].toFixed(10)+","+a[5].toFixed(10)+",0,1)"}}()};return{transformStyleName:e,setTransform:function(a,b){var c=a[e]||a.transform,d=null;2===b.length&&(d=f.translate(b));6===b.length&&(d=f.matrix(b));c!==d&&(a.transform=a[e]=d)}}});

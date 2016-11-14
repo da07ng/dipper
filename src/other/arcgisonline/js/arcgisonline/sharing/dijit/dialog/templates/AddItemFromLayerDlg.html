@@ -1,0 +1,70 @@
+<div>
+  <form dojotype="dijit.form.Form" dojoAttachPoint="_createItemFromLayerForm" enctype="multipart/form-data" name="create-item-form" action="" method="post" dojoAttachEvent="onSubmit:createItem"><!--,onKeyDown:onKeyDown-->
+    <div id="create-item-content">
+      <table cellspacing="6">
+      	<tbody>
+      		<tr>
+      			<td nowrap>
+              <label for="create-item-title">
+                ${i18n.titleLabel}
+              </label>
+      			</td>
+            <td width="100%">
+		          <div dojoAttachPoint="_createItemTitleInput" id="create-item-title" dojotype="dijit.form.TextBox" dojoAttachEvent="onFocus:focusTitle" trim="true" maxlength="250" required="true" style="width:100%;padding:2px 0 2px 0;">
+		          </div>
+            </td>
+      		</tr>
+					<tr>
+						<td nowrap valign="top">
+	            <label for="create-item-tags">
+	              ${i18n.tagsLabel}
+	            </label>
+						</td>
+            <td>
+		          <div data-dojo-attach-point="_createItemTagsInput" id="create-item-tags" data-dojo-type="esri/dijit/Tags" data-dojo-props="minWidth:'343px', maxWidth:'343px'">
+		          </div>
+            </td>
+					</tr>
+          <tr>
+            <td nowrap>
+	            <label for="create-item-summary">
+	              ${i18n.summaryLabel}
+	            </label>
+            </td>
+            <td>
+		          <div dojoAttachPoint="_createItemSummaryInput" id="create-item-summary" dojotype="dijit.form.TextBox" dojoAttachEvent="onFocus:focusSummary" trim="true" maxlength="250" style="width:100%;padding:2px 0 2px 0;">
+		          </div>
+            </td>
+          </tr>
+          <tr>
+            <td nowrap>
+	            <label for="create-item-folder">
+	              ${i18n.saveFolder}
+	            </label>
+            </td>
+            <td>
+	            <div class="arrowSpaceMedium" dojoAttachPoint="_createItemFolderSelect" id="create-item-folder" dojotype="arcgisonline.sharing.dijit.ComboBox" trim="true" style="width:100%;">
+              </div>
+            </td>
+          </tr>
+      	</tbody>
+			</table>
+      <div style="clear:both;">
+      </div>
+      <div class="esriFloatTrailing">
+        <div dojotype="dijit.form.Button" class="primary" dojoAttachPoint="_submitButton" dojoAttachEvent="onClick:createItem" type="submit" label="${i18n.createItemBtn}">
+        </div>
+        <div dojoType="dijit.form.Button" type="button" class="cancel" dojoAttachPoint="_cancelButton" dojoAttachEvent="onClick:onCancel" label="${i18n.cancel}">
+        </div>
+      </div>
+      <br/>
+      <div dojoAttachPoint="_waitingDiv" style="clear:both;display:none;">
+        ${i18n.creatingItemMsg}
+      </div>
+      <div dojoAttachPoint="_itemDescriptionInput" dojotype="dijit.form.TextBox" type="hidden" value="">
+      </div>
+      <div style="clear:both;">
+      </div>
+    </div>
+  </form>
+</div>

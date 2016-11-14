@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/3.15/esri/copyright.txt for details.
+//>>built
+define("arcgisonline/nls/analysis_ja-jp",{"dojox/form/nls/CheckedMultiSelect":{multiSelectLabelText:"{num} \u500b\u306e\u9805\u76ee\u304c\u9078\u629e\u3055\u308c\u3066\u3044\u307e\u3059",invalidMessage:"\u5c11\u306a\u304f\u3068\u3082 1 \u3064\u306e\u9805\u76ee\u3092\u9078\u629e\u3057\u306a\u3051\u308c\u3070\u306a\u308a\u307e\u305b\u3093\u3002",_localized:{}},"dgrid/extensions/nls/pagination":{gotoLast:"Go to last page",gotoFirst:"Go to first page",gotoPage:"Go to page",gotoNext:"Go to next page",
+_localized:{},gotoPrev:"Go to previous page",status:"\u691c\u7d22\u7d50\u679c${total}\u4ef6\u4e2d${start}\u4ef6\u304b\u3089${end}\u4ef6\u307e\u3067\u3092\u8868\u793a\u3002",rowsPerPage:"Number of rows per page",jumpPage:"Jump to page"}});

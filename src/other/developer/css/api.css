@@ -1,0 +1,20 @@
+.apiBanner{
+    width : 100%;
+    height: 120px;
+    position: relative;
+    background : url("../images/apiBanner.png") no-repeat center;
+    background-color: #005ea2;
+}
+.apiBanner p{
+    padding-top: 40px;
+    padding-left: 65%;
+    color: #ffffff;
+    font-family: "ºÚÌå";
+    font-size: 25px;
+    letter-spacing: 1.5px;
+    line-height: 1.8;
+    font-weight: lighter;
+}
+.apiBanner p span{
+    font-size: 39px;
+}

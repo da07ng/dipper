@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Query</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="../css/apiNative.css">
+    <style>
+      #map {
+        height: 600px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: url(../images/iostime.png) no-repeat center center;
+        background-size: contain;
+      }
+    </style>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+  </head>
+
+  <body>
+    <div class="container-fluid layoutContainer">
+      <article id="page_content" class="md-body">
+        <h1>时态展示服务</h1>
+        <h2>简介</h2>
+        <p>地图API支持可视化时态数据，通过时间渲染器（temporal render）,可以很容易地展示包含时间属性的地图图层（Time-aware Layers）随时间发生的变化，并且可以按时间过滤数据。</p>
+         <h2>示例</h2>
+        <div id="map"></div>
+        <h2>代码</h2>
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+//Layer using the service which contains the ice sheet data from 2001
+AGSDynamicMapServiceLayer* june2001Layer = ...;
+
+AGSLayerTimeOptions* op = [[[AGSLayerTimeOptions alloc] init] autorelease];
+op.layerId = 1; //id of the sub-layer containing the actual data
+op.timeOffset = 10;
+op.timeOffsetUnits = AGSTimeIntervalUnitsYears;
+
+NSMutableArray* options = [[[NSMutableArray alloc] init] autorelease];
+[options addObject:op];
+
+//Set the layer time options
+june2001Layer.layerTimeOptions = options;
+//Tell the layer some properties were changed
+[june2001Layer refresh];
+
+          </textarea>
+        </p>
+      </article>
+    </div>
+    
+  </body>
+</html>

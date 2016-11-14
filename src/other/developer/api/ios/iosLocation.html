@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Label</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="../css/apiNative.css">
+    <style>
+
+        #info {
+            margin: 10px;
+        }
+        #info button {
+            margin-right: 5px;
+        }
+        #map {
+            height: 700px;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background: url(../images/iosLocation.png) no-repeat center center;
+            background-size: contain;
+        }
+    </style>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+</head>
+
+<body>
+<div class="container-fluid layoutContainer">
+    <article id="page_content" class="md-body">
+        <h1>定位服务</h1>
+
+        <h2>简介</h2>
+
+
+        <p>定位能力是智能设备的标配，SDK提供了对定位信息的管理功能，用户可以通过LocationDisplayManager来进行定位操作，定位显示管理模块提供了三种显示模式：定位（LOCATION），罗盘（COMPASS），导航（NAVIGATION）。</p>
+        <p>用户可以根据自己的需要选择相应的模式，通过LocationDisplayManager的start方法进行定位。</p>
+
+        <h2>示例</h2>
+
+        <div id="map"></div>
+        <h2>代码</h2>
+
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view, typically from a nib.
+    //加载天地图在线服务
+    TiandituLayer *tiledLayer = [[TiandituLayer alloc]initWithLayerType: TIANDITU_VECTOR_2000 error:nil];
+    TiandituLayer *tiledLayer_Anno = [[TiandituLayer alloc]initWithLayerType: TIANDITU_VECTOR_ANNOTATION_CHINESE_2000 error:nil];
+    
+    [self.mapView addMapLayer:tiledLayer withName:@"Basemap Tiled Layer"];
+    [self.mapView addMapLayer:tiledLayer_Anno withName:@"Annotation Layer"];
+    
+    [self.mapView zoomToScale:2311166.8 withCenterPoint:[AGSPoint pointWithX:120.0 y:39.0 spatialReference:[AGSSpatialReference spatialReferenceWithWKID:4326]] animated:YES];
+          </textarea>
+        </p>
+    </article>
+</div>
+</body>
+</html>

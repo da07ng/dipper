@@ -1,0 +1,27 @@
+<div class="widgetContent">
+  <div dojotype="dijit.Dialog" id="shareCheck-dialog" title="${i18n.shareChecksDlgTitle}" execute="">
+    <style type="text/css">
+      .esri .dojoxGridHeader .dojoxGridCellFocus, .esri .dojoxGridHeader .dojoxGridCell {
+        border-bottom: 1px solid #CCC;
+      }
+    </style>
+    <span dojoAttachPoint="shareCheckTopMsg"></span>
+    <div dojotype="dijit.layout.BorderContainer" design="headline" gutters="false" style="width:100%; height:120px; margin:20px 0 10px 0;">
+      <div dojoType="dijit.layout.ContentPane" dojoAttachPoint="shareCheckGrid" region="top" style="height:118px;">
+      </div>
+    </div>
+    <span dojoAttachPoint="shareCheckBottomMsg"></span>
+    <div style="clear:both;">
+    </div>
+    <div class="esriFloatTrailing" style="padding-top:5px; padding-bottom:5px;">
+      <button dojoAttachPoint="shareGridUpdateButton" dojoAttachEvent="onClick:onUpdateClick" class="jevent primary" dojoType="dijit.form.Button">
+        ${i18n.UpdateSharingBtn}
+      </button>
+      <button dojoAttachEvent="onClick:onCancelClick" dojoAttachPoint="exitButton" class="jevent cancel" dojoType="dijit.form.Button">
+        ${i18n.cancel}
+      </button>
+    </div>
+    <div style="clear:both;">
+    </div>
+  </div>
+</div>

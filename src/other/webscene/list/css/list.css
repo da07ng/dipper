@@ -1,0 +1,373 @@
+/*
+* @Author: Esri
+* @Date:   2016-06-30 15:34:01
+* @Last Modified by:   Esri
+* @Last Modified time: 2016-07-03 09:20:06
+*/
+
+#websceneListContainer {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: visible;
+    float: left;
+}
+
+.sceneList {
+    width: 382px;
+    z-index: 100;
+    height: 100%;
+    background-color: white;
+    transition: width 0.6s, background-color 0.6s ease-out;
+    position: relative;
+}
+
+.sceneList .sceneListInner {
+    width: 382px;
+    position: absolute;
+    right: 0;
+    transition: opacity 0.2s ease-out 0.4s;
+    display: table;
+    height: 100%;
+}
+
+.sceneListHead {
+    background-color: #fdf8e9;
+    display: table-row;
+    height: 1px;
+}
+
+.sceneListTitle {
+    padding: 16px 20px 12px 20px;
+    font-size: 18px;
+    text-transform: none;
+    color: #2765b0;
+}
+
+.sceneListContent {
+    display: table-row;
+    height: auto;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.sceneListContentInner {
+    position: relative;
+    padding: 0;
+    min-height: 100px;
+    height: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.resultSceneItems {
+    padding-bottom: 4px;
+    padding-left: 1px;
+    opacity: 1;
+    max-height: 1000000px;
+    -webkit-transition: opacity 0.2s 0.2s, max-height 0.5s;
+    transition: opacity 0.2s ease-out 0.2s, max-height 0.5s;
+    overflow: hidden;
+    -webkit-transform: translateZ(0);
+}
+
+.resultSceneItems .sceneListItem {
+    width: 332px;
+    vertical-align: middle;
+    margin-top: 8px;
+    background-color: white;
+    border-radius: 0;
+    /*box-shadow: 0 1px 2px rgba(0, 0, 0, 0.125);*/
+    box-sizing: border-box;
+    display: inline-block;
+    transition: background-color 0.2s;
+    -webkit-transition: background-color 0.2s;
+}
+
+.resultSceneItems .thumbOther {
+    width: 83px;
+    height: 56px;
+    background-repeat: no-repeat;
+    background-position: center !important;
+    background-size: cover;
+    border: 1px solid #d9d9d9;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    opacity: 0.8;
+    background-image: url("http://static.arcgis.com/images/desktopapp.png");
+    box-sizing: border-box;
+    margin: 10px 5px 10px 20px;
+}
+
+.resultSceneItems .sceneListItem td.thumbDesc {
+    padding: 17px 4px 4px 5px;
+    vertical-align: top;
+}
+
+.resultSceneItems .layerTypeIcon {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-position: bottom !important;
+    background-size: cover;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+}
+
+.resultSceneItems .sceneListItem td.thumbDesc .title {
+    width: 180px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+    margin-left: 3px;
+}
+
+.resultSceneItems .sceneListItem td.thumbDesc .sub {
+    font-size: 0.85em;
+    color: #999;
+    margin-top: 0.3em;
+    width: 205px;
+}
+
+.resultSceneItems .layerLink {
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.resultSceneItems .sceneListItem .viewWebSceneButton:hover {
+    background-position: 0 35px;
+}
+.resultSceneItems .sceneListItem .viewWebSceneButton {
+    display: block;
+    background: url(../../js/webSceneViewer/editor/images/button_import.png) 0px 0px;
+    width: 35px;
+    height: 35px;
+    background-size: 35px 70px;
+    cursor: pointer;
+}
+
+.resultScrollContainer {
+    overflow-y: auto;
+    overflow-x: hidden;
+    /*width: 365px;*/
+    position: absolute;
+    bottom: 0px;
+    top: 0px;
+    left: 0;
+    right: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+/*    padding-right: 20px;*/
+}
+
+.sceneList.collapsed {
+    width: 0px;
+}
+
+#websceneListContainer .editFlap {
+    border: 1px solid #828282;
+    z-index: 99;
+    cursor: pointer;
+    position: absolute;
+    left: 0px;
+    top: 8px;
+    width: 200px;
+    height: 30px;
+    background-color: #efefef;
+    transition: left 0.1s ease-out, background-color 0.2s linear;
+    margin-bottom: 3px;
+}
+
+#websceneListContainer .editFlap .editFlapIconContainer {
+    transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    padding: 7px;
+    display: block;
+    float: right;
+}
+
+#websceneListContainer .editFlap .editFlapIconContainer .editFlapIcon {
+    background-image: url("../../js/webSceneViewer/editor/images/edit.png");
+    background-repeat: no-repeat;
+    background-size: 16px 32px;
+    width: 16px;
+    height: 16px;
+    background-color: transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    border: 0px;
+    margin: 0;
+    padding: 0;
+    display: block;
+    float: right;
+}
+
+#websceneListContainer .editFlap .editFlapText {
+    width: 159px;
+    display: inline-block;
+    opacity: 1;
+    background-color: inherit;
+    line-height: 29px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    border: 0;
+    float: right;
+    color: black;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 1px;
+}
+
+#websceneListContainer .editFlap.show {
+    border: 1px solid #828282;
+    z-index: 99;
+    cursor: pointer;
+    position: absolute;
+    left: 0px;
+    top: 8px;
+    width: 200px;
+    height: 30px;
+    background-color: #efefef;
+    margin-bottom: 3px;
+    left: -159px;
+    background-color: #f5c69a;
+    transition: left 0.1s ease-out, background-color 0.2s linear;
+}
+
+#websceneListContainer .editFlap.show .editFlapIconContainer {
+    transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    padding: 7px;
+    display: block;
+    float: right;
+}
+
+#websceneListContainer .editFlap.show .editFlapIconContainer .editFlapIcon {
+    background-image: url("../../js/webSceneViewer/editor/images/edit.png");
+    background-repeat: no-repeat;
+    background-size: 16px 32px;
+    width: 16px;
+    height: 16px;
+    background-color: transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    border: 0px;
+    margin: 0;
+    padding: 0;
+    display: block;
+    float: right;
+}
+
+#websceneListContainer .editFlap.show .editFlapText {
+    width: 159px;
+    display: inline-block;
+    opacity: 1;
+    background-color: inherit;
+    line-height: 29px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    border: 0;
+    float: right;
+    color: black;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 1px;
+}
+
+#websceneListContainer .editFlap.show:hover {
+    left: -1px;
+    background-color: #efefef;
+    transition: left 0.2s ease-out, background-color 0.2s linear;
+}
+
+#websceneListContainer .editFlap.show:hover .editFlapText {
+    width: 159px;
+    display: inline-block;
+    opacity: 1;
+    background-color: inherit;
+    line-height: 29px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    border: 0;
+    float: right;
+    color: black;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 1px;
+    transition: opacity 0.2s ease-out;
+}
+
+#websceneListContainer .editFlap.show .editFlapText {
+    width: 159px;
+    display: inline-block;
+    opacity: 1;
+    background-color: inherit;
+    line-height: 29px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    border: 0;
+    float: right;
+    color: black;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 1px;
+    opacity: 0;
+    transition: opacity 0.2s ease-out 0.2s;
+}
+
+#websceneListContainer .editFlap.show .editFlapIcon {
+    background-image: url("../../js/webSceneViewer/editor/images/edit.png");
+    background-repeat: no-repeat;
+    background-size: 16px 32px;
+    width: 16px;
+    height: 16px;
+    background-color: transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    border: 0px;
+    margin: 0;
+    padding: 0;
+    display: block;
+    float: right;
+}

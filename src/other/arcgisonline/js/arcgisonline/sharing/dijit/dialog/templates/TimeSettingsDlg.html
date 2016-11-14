@@ -1,0 +1,142 @@
+<div class="widgetContent">
+  <div dojotype="dijit.Dialog" dojoAttachPoint="_timeSettingsDialog" dojoAttachEvent="onClick:_handleTimeSettingsDlgClick" title="${i18n.timeSettingsDlgTitle}" doLayout="false" execute="">
+    <div dojoAttachPoint="_timeSettingsMainDiv" class="timeSettingsForm">
+      <div dojoAttachPoint="_timeSettingsSpeedDiv">
+        <div style="padding-bottom:5px;"><label style="font-weight:bold;">${i18n.playbackSpeed}</label></div>
+          <table style="padding-bottom:10px;"><tbody><tr>
+          <td colspan="2" align="center">
+            <div dojoType="dijit.form.HorizontalSlider" dojoAttachPoint="_tSpeedSlider" style="width: 600px; margin:3px; " showbuttons="false" value="1" minimum="0" maximum="4" discretevalues="1" intermediatechanges="true">
+              <div dojoType="dijit.form.HorizontalRule" container="bottomDecoration" count="5" style="height: 5px;"></div>
+            </div>
+          </td>
+        </tr><tr>
+          <td valign="top" nowrap class="esriFloatLeading"><label>${i18n.slower}</label></td>
+          <td valign="top" nowrap class="esriFloatTrailing"><label>${i18n.faster}</label></td>
+        </tr></tbody></table>
+        <div dojoAttachPoint="_tAdvancedLink" style="padding-top:15px;" class="esriItemLinks esriFloatLeading"><a href="JavaScript:void(0);" dojoAttachEvent="onclick:_showAdvanced">${i18n.showAdvancedOptions}</A></div>
+      </div>
+
+      <div dojoAttachPoint="_tSettingsAdvancedDiv" style="display:none;">
+
+        <div style="padding-top:5px;padding-bottom:5px;"><label style="font-weight:bold;">${i18n.timeSpan}</label></div>
+        <div style="width:620px; position:relative">
+          <div style="padding-bottom:10px;"><label>${i18n.dragSliderMessage}</label></div>
+					<!-- hard code to LTR -->
+          <table style="width:620px;" class="timeSettingsForm">
+            <tbody>
+              <tr>
+                <td valign="top">
+                  <label class="esriFloatLeading">${i18n.layers}</label>
+                </td>
+                <td valign="top">
+                  <label class="esriFloatLeading">${i18n.layerTimeLines}</label>
+                </td>
+              </tr>
+              <tr height="5">
+                <td height="5" colspan="2">
+                  <div style="height:1px;border-top:#444444 1px solid;"></div>
+                </td>
+              </tr>
+              <tr>
+                <td width="200" valign="top">
+                  <div dojoAttachPoint="_tLayerNamesDiv" class="timeSettingsLayerNames"></div>
+                </td>
+                <td width="420" valign="top">
+                	<div style="position:absolute">
+                  <div dojoAttachPoint="_tSettingsBkgrndDiv" class="timeSettingsBackground" style="position:absolute; z-index:0;"></div>
+                  <div dojoAttachPoint="_tSettingsLyrRange" class="timeSettingslayerRange" style="position:relative; z-index:10;"></div>
+                  <div id="timeSettingsSliderDiv" dojoAttachPoint="_tSettingsSlider" dojoType="dojox.form.HorizontalRangeSlider" style="width: 420px;" showbuttons="false" intermediatechanges="true" minimum="-788889600000" maximum="1230796800000" value="-788889600000,1230796800000"></div>
+									</div>
+                </td>
+              </tr>
+              <tr height="10">
+                <td colspan="4" height="10"></td>
+              </tr>
+            </tbody>
+          </table>
+					<br/>
+					<table style="width:620px;">
+						<tbody>
+							<tr>
+								<td width="200">&nbsp;</td>
+                <td nowrap>${i18n.startTime}&nbsp;&nbsp;&nbsp;</td>
+                <td width="105">
+                  <input dojoAttachPoint="_startDate" style="width:110px;" type="text" value="2005-12-30" dojoType="dijit.form.DateTextBox" />
+                </td>
+                <td width="325">
+                  <input dojoAttachPoint="_startTime" style="width:90px;" type="text" value="T15:00:00" id="time-settings-start-time" dojoType="dijit.form.TimeTextBox" />
+                </td>
+							</tr><tr height="3">
+                <td colspan="4" height="3"></td>
+              </tr><tr>
+                <td>&nbsp;</td>
+                <td>${i18n.endTime}</td>
+                <td>
+                  <input dojoAttachPoint="_endDate" style="width:110px;" type="text" value="2005-12-30" dojoType="dijit.form.DateTextBox" />
+                </td>
+                <td>
+                  <input dojoAttachPoint="_endTime" style="width:90px;" type="text" value="T15:00:00" id="time-settings-end-time" dojoType="dijit.form.TimeTextBox" />
+                </td>
+							</tr>
+						</tbody>
+					</table>
+        </div>
+
+        <div style="padding-top:10px;padding-bottom:5px;"><label style="font-weight:bold;">${i18n.timeDisplay}</label></div>
+        <div><label>${i18n.specifyData}</label></div>
+        <div style="padding-top:10px;padding-bottom:10px; line-height:18px;">
+          <div>
+          	<table><tbody><tr><td>
+              <span>${i18n.displayData}</span>
+          	</td><td>	
+              <span dojotype="dijit.form.ValidationTextBox"  dojoAttachPoint="_tSettingsIntCount" regExp="[0-9]+" style="width:30px;height:18px;vertical-align:middle;" value="1"></span>
+            </td><td> 
+              <select style="width:90px;vertical-align:middle;" dojoType="arcgisonline.sharing.dijit.ComboBox" dojoAttachPoint="_tSettingsIntUnitSelect" dojoAttachEvent="onChange:_timeSettingsStopsTimeSpan_onChange">
+            </select>
+            </td><td> 
+              <span>${i18n.intervals}</span>
+          	</td></tr></tbody></table>
+          </div>
+          <div style="padding-top:5px;">
+            <table>
+              <tbody>
+                <tr>
+                  <td valign="top">
+                    <span>${i18n.asTimePasses}</span>
+                  </td>
+                  <td>
+                 <div>
+                   <input type="radio" name="stops" dojotype="dijit.form.RadioButton" id="stops:interval"  dojoAttachPoint="_stopsIntervalInput" checked="checked"/>
+                   <label for="stops:interval">${i18n.onlyDisplay}</label>
+                 </div>
+                 <div>
+                   <input type="radio" name="stops" dojotype="dijit.form.RadioButton" dojoAttachPoint="_stopsCumalativeInput" id="stops:cumulative" />
+                   <label for="stops:cumulative">${i18n.progressivelyDisplay}</label>
+                 </div>
+                 </td>
+               </tr>
+             </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div dojoAttachPoint="_tSettingsHelp" style="padding-top:15px; display:none;" class="esriItemLinks esriFloatLeading"><a dojoAttachPoint="_helpLink" href="" target="_blank" title="${i18n.learnMore}"><div class="questionMarkIcon"></div></A></div>
+
+      </div>
+
+      </br/>
+      <div class="esriFloatTrailing">
+        <button class="jevent primary" dojoType="dijit.form.Button" dojoAttachEvent="onClick:_handleOkBtnClick">${i18n.ok}</button>
+        <button class="jevent cancel" dojoType="dijit.form.Button" dojoAttachEvent="onClick:_handleCloseBtnClick">${i18n.cancel}</button>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+
+    <div dojotype="dijit.TooltipDialog" dojoAttachPoint="_toolTipDialog" title="" style="display:none;width:400px;">
+      <!--<div style="float:right;"><A id="time-settings-tooltip-close" href="JavaScript:void(0);" title="Close"><img src="images/close.gif" border="0"/></A></div>-->
+      <div class="esriItemLinks"><a dojoAttachPoint="tSettingsTipStart"  href="JavaScript:void(0);"></A></div>
+      <div class="esriItemLinks"><a  dojoAttachPoint="tSettingsTipEnd" href="JavaScript:void(0);"></A></div>
+    </div>
+
+  </div>
+</div>

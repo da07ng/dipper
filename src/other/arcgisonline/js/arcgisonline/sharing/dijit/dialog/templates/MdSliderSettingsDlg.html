@@ -1,0 +1,159 @@
+<div class="widgetContent">
+  <div dojotype="dijit.Dialog" dojoAttachPoint="_mdSliderSettingsDialog" title="${i18n.mdSliderSettingsDlgTitle}" doLayout="false" execute="" style="width: 630px;">
+    <table style="width: 600px;">
+      <colgroup>
+        <col style="width:25%">
+        <col style="width:25%">
+        <col style="width:25%">
+        <col style="width:25%">        
+      </colgroup>
+      <tbody style="width: 100%;">
+        <tr>
+          <td><label>${i18n.dimension}</label></td>
+          <td><div style="width: 100%;" dojoType="dijit.form.Select" dojoAttachPoint="_dimensionSelect" dojoAttachEvent="onChange: _handleDimensionChange"></div></td>
+          <td><div style="margin-left: 5px;" dojoType="dijit.form.CheckBox" checked="checked" dojoAttachPoint="_reverseAnimationCheckBox"></div>
+            <label>${i18n.reverseAnimation}</label></td>
+          <td style="height: 16px;">
+            <div dojoType="dijit.form.CheckBox" checked="checked" dojoAttachPoint="_useRangeCheckBox" dojoAttachEvent="onChange: _handleUseRangeChange"></div>
+            <label>${i18n.useDimensionRange}</label>
+            <div class="esriMdSliderHasRangesInfo" id="mdSliderDlgHasRangesInfo" dojoAttachPoint ="_mdSliderDlgHasRangesInfo"></div>
+            <div data-dojo-type="dijit.Tooltip" data-dojo-props="connectId:'mdSliderDlgHasRangesInfo',position:['after']">
+                 <div>
+                   ${i18n.hasRangesInfoText1}<br/>
+                   ${i18n.hasRangesInfoText2}
+                 </div>
+               </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" style="padding-top: 10px;">
+            <label style="font-weight: bold;">${i18n.playbackSpeed}</label>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <div dojoType="dijit.form.HorizontalSlider" dojoAttachEvent="onChange: _onPlaybackSpeedChange" dojoAttachPoint="_mdSpeedSlider" style="width: 600px; margin:3px; " showbuttons="false" value="1" minimum="0" maximum="4" discretevalues="1" intermediatechanges="true">
+              <div dojoType="dijit.form.HorizontalRule" container="bottomDecoration" count="5" style="height: 5px;"></div>
+              <ol data-dojo-type="dijit.form.HorizontalRuleLabels" container="bottomDecoration" style="height:1em;font-size:75%;color:gray;">
+                <li>${i18n.slower}</li>
+                <li>${i18n.faster}</li>
+              </ol>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <div dojoAttachPoint="_mdAdvancedLink" style="padding-top:15px;" class="esriItemLinks esriFloatLeading"><a href="JavaScript:void(0);" dojoAttachEvent="onclick:_showAdvanced">${i18n.showAdvancedOptions}</a></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div dojoAttachPoint="advancedSettingsTable" style="width: 600px; display: none;">
+      <table>
+      <colgroup>
+        <col style="width:25%">
+        <col style="width:25%">
+        <col style="width:25%">
+        <col style="width:25%">        
+      </colgroup>
+        <tr>
+          <td colspan="4" style="padding-top: 10px;">
+            <label style="font-weight: bold;">${i18n.dimensionRange}</label>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" style="padding-top: 7px;">
+            <div dojoType="dijit.form.CheckBox" dojoAttachEvent="onChange: _disableDimRangeControls" dojoAttachPoint="_useDimSlices" checked="checked"></div>
+            <label>${i18n.useDimensionSlices}</label>
+          </td>
+        </tr>
+        </table>
+      <table dojoAttachPoint = "_dimensionRangeControls" style="width: 100%; display: table;">
+        <colgroup>
+        <col style="width:25%">
+        <col style="width:25%">
+        <col style="width:25%">
+        <col style="width:25%">        
+      </colgroup>
+        <tr>
+          <td colspan="4" style="padding-bottom: 7px;">
+            <label >${i18n.dimensionRangeDesc}</label>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="1">
+            <label>${i18n.layers}</label>
+          </td>
+          <td colspan="3">
+            <label>${i18n.layerDimensionRanges}</label>
+          </td>
+        </tr>
+        <tr height="5">
+          <td height="5" colspan="4">
+            <div style="height:1px;border-top:#444444 1px solid;"></div>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">
+            <div dojoAttachPoint="_mdLayerNamesDiv" class="mdSliderSettingsLayerNames"></div>
+          </td>
+          <td valign="top" colspan="3">
+            <div style="position: relative;" valign="top">
+              <div dojoAttachPoint="_mdSettingsBkgrndDiv" class="mdSettingsBackground" style="position:absolute; z-index:0;"></div>
+              <div dojoAttachPoint="_mdSettingsLyrRangeDiv" class="mdSettingsLayerRange" style="position:relative; z-index:10;" ></div>
+              <div style="width:100%;">
+              <div id="mdSettingsSliderDiv" style="margin-right:8px;"></div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr style="height: 10px">
+         <td colspan="4" style="height: 10px"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td colspan="1"><label>${i18n.start}</label></td>
+          <td colspan="1"><div style="width: 100%; height: 22px; padding: 2px; box-sizing: border-box; margin-top: 7px;" dojoType="dijit.form.NumberTextBox" dojoAttachPoint="_dimRangeStart" constraints="{places: 10}"></div></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td colspan="1"><label>${i18n.end}</label></td>
+          <td colspan="1"><div style="width: 100%; height: 22px; padding: 2px; box-sizing: border-box;" dojoType="dijit.form.NumberTextBox" dojoAttachPoint="_dimRangeEnd" constraints="{places: 10}"></div></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="4" style="padding-top: 10px;">
+            <label style="font-weight: bold;">${i18n.interval}</label>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <label>${i18n.intervalDesc}</label>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <label>${i18n.displayData}</label> 
+            <div style="height: 22px; width: 100px; padding: 2px; box-sizing: border-box;" dojoType="dijit.form.NumberTextBox" dojoAttachPoint="_dimInterval"></div>
+            <label  dojoAttachPoint="_unitLabel" style="font-weight: 700">${i18n.unknownUnit}</label>
+            <label>${i18n.intervals}</label>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div dojoAttachPoint="_mdSettingsHelp" style="padding-top:15px; display:none;" class="esriItemLinks esriFloatLeading"><a dojoAttachPoint="_helpLink" href="" target="_blank" title="${i18n.learnMore}"><div class="questionMarkIcon"></div></A></div>
+
+    <div class="esriFloatTrailing">
+      <button class="jevent primary" dojoType="dijit.form.Button" dojoAttachEvent="onClick:_handleOkBtnClick">${i18n.ok}</button>
+      <button class="jevent cancel" dojoType="dijit.form.Button" dojoAttachEvent="onClick:_handleCloseBtnClick">${i18n.cancel}</button>
+    </div>
+    <div style="clear:both;"></div>  
+    
+    <div dojotype="dijit.TooltipDialog" dojoAttachPoint="_tooltipDialog" title="" style="display:none;width:400px;">
+      <!--<div style="float:right;"><A id="time-settings-tooltip-close" href="JavaScript:void(0);" title="Close"><img src="images/close.gif" border="0"/></A></div>-->
+      <div class="esriItemLinks"><a dojoAttachPoint="mdSettingsTipStart"  href="JavaScript:void(0);"></A></div>
+      <div class="esriItemLinks"><a  dojoAttachPoint="mdSettingsTipEnd" href="JavaScript:void(0);"></A></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define("esri/core/declare esri/core/watchUtils esri/core/domUtils esri/views/3d/support/eventUtils dojo/dom-construct dojo/dom-style".split(" "),function(d,h,e,k,l,c){return d(null,{constructor:function(b){this.node=l.create("div",{className:"crosshair",id:"navCrosshair"},b.container);e.hide(this.node);this.dim=[c.get(this.node,"width"),c.get(this.node,"height")];var d=function(a){this.show([a.x,a.y])}.bind(this),f=function(a){this.hide()}.bind(this),g=new k.Handles;this.navigationWatchHandle=h.init(b,
+"navigation",function(a){g.remove();a&&g.push(a.zoom.on("begin",d),a.zoom.on("end",f),a.pan.on("begin",f),a.rotate.on("begin",f))});this.handles=g},destroy:function(){this.navigationWatchHandle.remove();this.handles.remove()},show:function(b){c.set(this.node,"left",b[0]-this.dim[0]/2+"px");c.set(this.node,"top",b[1]-this.dim[1]/2+"px");e.show(this.node)},hide:function(){e.hide(this.node)}})});

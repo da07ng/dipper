@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../../core/declare","dojo/_base/array","../../core/Accessor","../../geometry/support/jsonUtils"],function(c,d,e,f){return c(e,{declaredClass:"esri.tasks.DensifyParameters",geometries:null,geodesic:null,lengthUnit:null,maxSegmentLength:null,toJson:function(){try{throw Error("toJson is deprecated, use toJSON instead");}catch(b){console.warn(b.stack)}return this.toJSON()},toJSON:function(){var b=d.map(this.geometries,function(a){return a.toJSON()}),a={};this.geometries&&0<this.geometries.length&&
+(a.geometries=JSON.stringify({geometryType:f.getJsonType(this.geometries[0]),geometries:b}),a.sr=JSON.stringify(this.geometries[0].spatialReference.toJSON()));this.geodesic&&(a.geodesic=this.geodesic);this.lengthUnit&&(a.lengthUnit=this.lengthUnit);this.maxSegmentLength&&(a.maxSegmentLength=this.maxSegmentLength);return a}})});

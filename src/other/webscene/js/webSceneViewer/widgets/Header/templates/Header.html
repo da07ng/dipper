@@ -1,0 +1,81 @@
+<div id="webmap-header" class="top-nav clearfix" >
+
+  <div id="header_map_home" class="esriFloatLeading gutter-right-1">
+    <div id="home-navigation" class="dropdown" data-dojo-attach-point="navDropdown">
+      <a id="homeTitle" class="top-nav-link dropdown-btn js-dropdown-toggle" data-dojo-attach-point="homeTitle"></a>
+      <div class="dropdown-menu">
+        <a class="dropdown-link homeHome" href=""></a>
+        <a class="dropdown-link homeFeatures hide" href=""></a>
+        <a class="dropdown-link homePlans hide" href=""></a>
+        <a class="dropdown-link homeGallery" href=""></a>
+        <a class="dropdown-link homeMap" href=""></a>
+        <a class="dropdown-link homeGroups hide" href=""></a>
+        <a class="dropdown-link homeMyContent hide" href=""></a>
+        <a class="dropdown-link homeMyOrg hide" href=""></a>
+        <a class="dropdown-link homeHelp" href=""></a>
+      </div>
+    </div>
+  </div>
+
+  <h1 id="webmap-title" class="avenir-light font-size-1 esriFloatLeading leader-1 text-ellipsis">
+    <a id="webmap-title-text" target="_blank"></a><div id="sceneType" class="sceneType hide"></div>
+  </h1>
+
+  <div class="esriFloatTrailing">
+
+    <div id="header_map_newMap" class="esriFloatLeading gutter-right-1">
+      <div id="new-scene-navigation" class="dropdown esriFloatTrailing" data-dojo-attach-point="newSceneDropdown">
+        <a id="webmap-newMap" class="dropdown-btn top-nav-link" data-dojo-attach-point="newScene">
+          <span id="newMapLabel"></span>
+        </a>
+        <div class="dropdown-menu dropdown-right">
+          <a class="dropdown-link" id="global-scene-link" data-dojo-attach-event="click:_newGlobalSceneClickHandler" >New Global Scene!!!</a>
+          <a class="dropdown-link" id="local-scene-link" data-dojo-attach-event="click:_newLocalSceneClickHandler" >New Local Scene!!!</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="header_map_modifyMap" class="esriFloatLeading esriTrailingMargin1" style="display:none;">
+      <a id="webmap-modifyMap" class="top-nav-link" >
+        <span id="modifyMapLabel"></span>
+      </a>
+    </div>
+
+    <div id="header_map_presentation" class="esriFloatLeading esriTrailingMargin1" style="display:none;">
+      <a id="webmap-presentation" class="top-nav-link" >
+        <span id="presentationLabel"></span>
+      </a>
+    </div>
+
+    <div id="header_map_signin" class="status esriFloatTrailing">
+
+       <!-- Log in -->
+      <div id="logged-out-navigation" class="hide esriFloatTrailing esriAlignTrailing">
+        <a id="login-link" class="top-nav-link icon-ui-user link-gray" data-dojo-attach-event="click:_signInLinkClickHandler"></a>
+      </div>
+
+      <!-- User Menu -->
+      <div id="logged-in-navigation" class="dropdown hide esriFloatTrailing" data-dojo-attach-point="userDropdown">
+        <a class="top-nav-link dropdown-btn top-nav-username text-ellipsis" data-dojo-attach-point="userProfile">
+          <img id="profileImgSmall" width="16" height="16" alt="">
+          <span id="username"></span>
+        </a>
+        <div class="dropdown-menu dropdown-right">
+          <a id="profileLink" class="dropdown-link" href="#">
+            <img id="dropdown-image" width="32" height="32" class="gutter-right-half gutter-left-0 left">
+            <div id="logged-in-myProfile" class="text-ellipsis dropdown-username"></div>
+          </a>
+          <a class="dropdown-link dropdown-link-external hide" id="esri-community-link"  data-dojo-attach-event="click:_communityLinkClickHandler, contextmenu:_disableEvent"></a>
+          <a class="dropdown-link dropdown-link-external hide" id="my-esri-link" data-dojo-attach-event="click:_myEsriLinkClickHandler, contextmenu:_disableEvent" ></a>
+          <a class="dropdown-link dropdown-link-external hide" id="esri-training-link" data-dojo-attach-event="click:_trainingLinkClickHandler, contextmenu:_disableEvent" ></a>
+          <a class="dropdown-link hide" id="trial-download-link" data-dojo-attach-event="click:_trialLinkClickHandler, contextmenu:_disableEvent" ></a>
+          <a class="dropdown-link loggedInHelp" id="logged-in-help"></a>
+          <a class="dropdown-link hide" id="logged-in-adminhelp" data-dojo-attach-event="click:_loggedInAdminHelpLinkClickHandler, contextmenu:_disableEvent" class="loggedInAdminHelp" ></a>
+          <a class="dropdown-link" id="logged-in-signOut" data-dojo-attach-event="click:_signOutLinkClickHandler, contextmenu:_disableEvent" ></a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

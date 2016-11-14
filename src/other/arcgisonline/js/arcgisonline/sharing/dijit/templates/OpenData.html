@@ -1,0 +1,61 @@
+<div class="${baseClass} widgetContent">
+  <table>
+    <tbody>
+      <tr>
+        <td class="titleColumn"><span data-dojo-attach-point="_thumbnail"></span></td>
+        <td class="valignTop">
+          <div class="section2">${i18n.description}</div>
+
+          <div class="section">
+            <button data-dojo-attach-point="_enableOpenData" data-dojo-type="dijit/form/Button"
+                    data-dojo-attach-event="onClick:onEnableOpenData" class="calcite tertiary small">${i18n.enableLabel}</button>
+            <button data-dojo-attach-point="_disableOpenData" data-dojo-type="dijit/form/Button"
+                    data-dojo-attach-event="onClick:onDisableOpenData" class="calcite caution small">${i18n.disableLabel}</button>
+            <button data-dojo-attach-point="_configureBtn" data-dojo-type="dijit/form/Button"
+                    data-dojo-attach-event="onClick:onLaunchSite" class="calcite tertiary small">${i18n.launchSiteLabel}</button>
+            <span data-dojo-attach-point="_spinner" style="display:none;"></span>
+          </div>
+          <div data-dojo-attach-point="_enabledInfo" style="display:none;" class="infoSection">
+            <div class="section">
+              ${i18n.siteUrlReminder}<br/>
+              <span data-dojo-attach-point="_openDataUrl" class="open-data-site"></span>
+            </div>
+
+            <div class="section">
+              <div class="subSection esriFloatLeading" data-dojo-attach-point="_openDataSiteContainer">
+                <div class="listTitle action">${i18n.openDataSites}</div>
+                <div class="list" data-dojo-attach-point="_openDataSites">
+                  <!-- list of open data sites written here -->
+                </div>
+              </div>
+
+
+              <div class="subSection esriFloatLeading">
+                <div class="listTitle action">${i18n.openDataGroups}</div>
+                <div class="list" data-dojo-attach-point="_openDataGroups">
+                  <!-- list of open data groups written here -->
+                </div>
+              </div>
+            </div>
+
+            <div class="section2 clearBoth">
+              ${i18n.membersNote}
+            </div>
+
+            <div class="section2">
+              <div class="action">${i18n.assignMembersTitle}</div><br>
+              <button data-dojo-attach-point="_assignToGroupsBtn" data-dojo-type="dijit/form/Button"
+                      data-dojo-attach-event="onClick:onAssignToGroups" class="calcite tertiary small">${i18n.assignMembers}</button>
+            </div>
+
+            <div class="section">
+              <div class="action">${i18n.shareContentTitle}</div><br>
+              <button data-dojo-attach-point="_viewContentBtn" data-dojo-type="dijit/form/Button"
+                      data-dojo-attach-event="onClick:onViewContent" class="calcite tertiary small">${i18n.viewContent}</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

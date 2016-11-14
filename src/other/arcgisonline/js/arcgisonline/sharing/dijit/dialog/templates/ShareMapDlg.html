@@ -1,0 +1,578 @@
+<div class="widgetContent">
+  <div data-dojo-type="dijit.Dialog" class="${baseClass}" id="share-map-dialog" title="${i18n.share}" execute="" style="width:900px;">
+    <div data-dojo-type="dijit.layout.StackContainer" id="share-map-stack" data-dojo-attach-point="_stackContainer" data-dojo-props="doLayout:false">
+      <div id="galleryTabs" style="display:none;" class="galleryTabs">
+        <a id="configurableTab" class="selected" href="JavaScript:void(0);">${i18n.configurableApps}</a>
+        <a id="appBuilderTab" href="JavaScript:void(0);"></a>
+      </div>
+      <!-- all options -->
+      <div data-dojo-type="dijit.layout.ContentPane" data-dojo-attach-point="_stackAllOptions" class="share-map-stack-stack">
+        <div id="share-map-is-public" style="display:none;">
+          <div class="paddingBottom10">
+            <label>
+              ${i18n.selectToShare}
+            </label>
+          </div>
+        </div>
+        <div id="share-map-make-public" style="display:none;">
+          <div class="paddingBottom10">
+            <label style="font-weight:bold;">
+              ${i18n.chooseWhoCanView}
+            </label>
+          </div>
+          <div>
+            <label id="share-map-text-public-note">
+            </label>
+          </div>
+          <div id="share-map-premium" style="display:none;"><span class="esriItemLinks">${i18n.premiumLayerMsg}&nbsp;<A id="share-map-premium-link" href="JavaScript:void(0)" target="_blank">${i18n.premiumLayerMsgLearnMore}</A></span></div>
+          <!--
+          <div style="padding-top:15px;padding-bottom:15px;">
+          <input id="share-map-share-everyone" data-dojo-type="dijit.form.CheckBox" checked="false" value="off" type="checkbox"/>
+          <label id="share-map-label" for="share-map-share-everyone">
+          Share with everyone (public).
+          </label>
+          </div>
+          -->
+          <div style="" data-dojo-type="arcgisonline.sharing.dijit.ShareOptions" data-dojo-attach-point="shareOptions">
+          </div>
+        </div>
+        <div id="share-map-not-public" style="display:none;padding-bottom:15px;">
+          <div>
+            <label id="share-map-text-not-public-note">
+            </label>
+          </div>
+        </div>
+        <div style="height:20px;">
+        </div>
+        <div style="">
+          <label style="font-weight:bold;">
+            ${i18n.linkToMap}
+          </label>
+        </div>
+        <div id="linkTypeDiv" class="paddingLeading15 paddingTop10 paddingBottom10" style="display:none;">
+          <div class="esriFloatLeading" style="width:20px;">
+            <input type="radio" name="linkType" data-dojo-type="dijit.form.RadioButton" id="linkType:map" />
+          </div>
+          <div class="esriFloatLeading" style="width:50px;">
+            <label for="linkType:map">
+              ${i18n.mapLabel}
+            </label>
+          </div>
+          <div class="esriFloatLeading" style="width:20px;">
+            <input type="radio" name="linkType" data-dojo-type="dijit.form.RadioButton" id="linkType:presentation" checked="checked"/>
+          </div>
+          <div class="esriFloatLeading" style="width:100px;">
+            <label for="linkType:presentation" id="linkType:presentation-label">
+              ${i18n.presentationLabel}
+            </label>
+          </div>
+        </div>
+        <div class="paddingLeading15" style="clear:both;">
+          <div class="esriFloatLeading" class="paddingTop10" style="width:320px;">
+            <div id="share-map-url" data-dojo-type="dijit.form.Textarea" style="width:270px;color:#000;" dir="ltr">
+            </div>
+          </div>
+          <div id="socialNetworkLinks" style="display:none;" class="esriFloatLeading">
+            <div class="esriItemLinks">
+              <!-- use table because of RTL + IE -->
+              <table>
+                <tbody>
+                  <tr>
+                    <td width="30">
+                      <A id="facebookLink" href="JavaScript:void(0);" title="${i18n.shareFacebook}" alt="${i18n.shareFacebook}" target="_blank"><span class="badge facebookBadge dijitInline"></span></A>
+                    </td>
+                    <td>
+                      <A id="facebookLink2" class="label" style="vertical-align:top;" title="${i18n.shareFacebook}" alt="${i18n.shareFacebook}" target="_blank">${i18n.facebook}</A>
+                    </td>
+                    <td width="25">&nbsp;
+
+                    </td>
+                    <td width="30">
+                      <A id="twitterLink" href="JavaScript:void(0);" title="${i18n.shareTwitter}" alt="${i18n.shareTwitter}" target="_blank"><span class="badge twitterBadge dijitInline"></span></A>
+                    </td>
+                    <td>
+                      <A id="twitterLink2" class="label" style="vertical-align:top;" title="${i18n.shareTwitter}" alt="${i18n.shareTwitter}" target="_blank">${i18n.twitter}</A>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div id="share-map-url-extent-div" class="paddingTop5" style="clear:both;">
+            <input id="share-map-url-extent" data-dojo-type="dijit.form.CheckBox" checked="true" type="checkbox" />
+            <label for="share-map-url-extent">
+              ${i18n.shareCurrentExtent}
+            </label>
+          </div>
+        </div>
+        <div id="share-map-advanced-box" class="paddingTop10" style="clear:both;">
+          <div id="share-map-advanced-label" style="">
+            <label style="font-weight:bold;">
+              ${i18n.embedMap}
+            </label>
+          </div>
+          <div class="paddingLeading15">
+            <div id="share-map-embed-option" class="esriFloatLeading" class="paddingTop10">
+              <center>
+                <button id="button-share-map-embed" class="jevent medium" data-dojo-type="dijit.form.Button" type="button">
+                  ${i18n.embedInWebsite}
+                </button>
+              </center>
+            </div>
+            <div id="share-map-makeApp-option" class="esriFloatLeading" class="paddingTop10">
+              <center>
+                <button id="button-share-map-application" class="jevent medium" data-dojo-type="dijit.form.Button" type="button">
+                  ${i18n.makeWebApp}
+                </button>
+              </center>
+            </div>
+          </div>
+        </div>
+        <div id="share-map-embed" class="paddingTop10" style="display:none;clear:both;width:75%;">
+          <div>
+            <label id="share-map-embed-label">
+            </label>
+          </div>
+        </div>
+        <div class="esriPositionRight15" style="position:absolute;bottom:5px;">
+          <button id="share-map-dialog-close" class="calcite primary" data-dojo-type="dijit.form.Button" data-dojo-attach-event="onClick:onClose">
+            ${i18n.done}
+          </button>
+        </div>
+      </div>
+      <!-- embed option -->
+      <div data-dojo-type="dijit.layout.ContentPane" data-dojo-attach-point="_stackEmbed" class="share-map-stack-stack">
+        <div class="section">
+          <div for="share-map-embed-type" class="sectionLabel">${i18n.updates.whatEmbed}</div>
+          <div id="share-map-embed-type" class="lineHeight18">
+            <div class="esriFloatLeading" style="width:20px;">
+              <input type="radio" name="embedType" data-dojo-type="dijit.form.RadioButton" id="embedType:map" checked="checked"
+                  data-dojo-attach-event="onClick:onChooseEmbedMap"/>
+            </div>
+            <div class="esriFloatLeading" style="width:95px;">
+              <label for="embedType:map">${i18n.updates.embedMap}</label>
+            </div>
+            <div class="esriFloatLeading" style="width:20px;">
+              <input type="radio" name="embedType" data-dojo-type="dijit.form.RadioButton" id="embedType:presentation"
+                  data-dojo-attach-event="onClick:onChooseEmbedPresentation"/>
+            </div>
+            <div class="esriFloatLeading" style="width:95px;">
+              <label for="embedType:presentation" id="embedType:presentation:label">${i18n.updates.embedPresentation}</label>
+            </div>
+            <!--<div class="esriFloatLeading" style="width:20px;">-->
+              <!--<input type="radio" name="embedType" data-dojo-type="dijit.form.RadioButton" id="embedType:scene"-->
+                  <!--data-dojo-attach-event="onClick:onChooseEmbedScene"/>-->
+            <!--</div>-->
+            <!--<div class="esriFloatLeading" style="width:95px;">-->
+              <!--<label for="embedType:scene">${i18n.updates.embedScene}</label>-->
+            <!--</div>-->
+          </div>
+          <br style="clear:both;"/>
+        </div>
+        <div class="section">
+          <div class="sectionLabel adjustedHeight">
+            <div id="embed-type-label" class="inline valignTop">${i18n.updates.chooseEmbed}</div>
+            <div id="mapSize-help" class="inline"></div></div>
+          <div id="share-map-mapsize" class="lineHeight18">
+            <div class="esriFloatLeading">
+              <table><tbody><tr><td>
+                <label for="mapSize:custom:width">${i18n.updates.width}&nbsp;</label>
+              </td><td>
+                <div id="mapSize:custom:width" class="paddedInput" data-dojo-type="dijit.form.TextBox" style="width:35px;" value="500"></div>
+              </td>
+                <td><span>&nbsp;${i18n.updates.by}&nbsp;</span></td>
+                <td>
+                  <label for="mapSize:custom:height">${i18n.updates.height}&nbsp;</label>
+                </td><td>
+                  <div id="mapSize:custom:height" class="paddedInput" data-dojo-type="dijit.form.TextBox" style="width:35px;" value="400"></div>
+                </td></tr></tbody></table>
+            </div>
+            <div class="esriFloatLeading esriLeadingMargin1 padTopHalfEm">
+              <input type="checkbox" id="mapSize:responsive" data-dojo-type="dijit.form.CheckBox" checked="true">
+              <label for="mapSize:responsive">${i18n.updates.allowResponsive}</label>
+            </div>
+          </div>
+          <br style="clear:both;"/>
+        </div>
+        <div class="section">
+          <div for="share-map-embed-text" class="esriFloatLeading sectionLabel">${i18n.copyPaste}</div>
+          <br style="clear:both;"/>
+          <div id="share-map-embed-text" dir="ltr" data-dojo-type="dijit.form.Textarea" style="width:98%;height:18px;max-height:18px;"></div>
+        </div>
+        <div id="mapOptionsContainer">
+          <div id="embedTabs" class="embedTabs">
+            <a id="advOptionsTab" class="selected" href="JavaScript:void(0);">${i18n.updates.advancedOpt}</a>
+            <a id="addMarkerTab" href="JavaScript:void(0);">${i18n.updates.addMarkerSym}</a>
+          </div>
+
+          <div id="advancedOptionsTab" class="fixedHeightContainer">
+            <div class="sectionLabel paddingTop5">${i18n.updates.chooseOptions}</div>
+            <div class="esriFloatLeading sectionCol">
+              <div id="share-map-zoom">
+                <input id="share-map-embed-zoom" data-dojo-type="dijit.form.CheckBox" value="off" type="checkbox" />
+                <label for="share-map-embed-zoom" id="share-map-embed-zoom-label">
+                  ${i18n.updates.zoomControl}
+                </label>
+              </div>
+              <div id="share-map-home" class="paddingTop10">
+                <input id="share-map-embed-home" data-dojo-type="dijit.form.CheckBox" value="off" type="checkbox" />
+                <label for="share-map-embed-home" id="share-map-embed-home-label">
+                  ${i18n.updates.homeButton}
+                </label>
+              </div>
+              <div id="share-map-basemap" class="paddingTop10">
+                <input id="share-map-embed-basemap" data-dojo-type="dijit.form.CheckBox" value="off" type="checkbox"
+                    data-dojo-attach-event="onClick:onBasemapSelectorClicked"/>
+                <label for="share-map-embed-basemap" id="share-map-embed-basemap-label">
+                  ${i18n.updates.basemapSelector}
+                </label>
+              </div>
+              <div id="share-map-basemap-options" class="paddingLeading15" style="display:none;">
+                <div class="esriFloatLeading paddingTop10" style="width:20px;">
+                  <input type="radio" name="basemapType" data-dojo-type="dijit.form.RadioButton" id="basemapType:gallery" checked="checked"
+                      data-dojo-attach-event="onChange:onBasemapTypeChanged"/>
+                </div>
+                <div class="esriFloatLeading paddingTop10" style="width:105px;">
+                  <label for="basemapType:gallery">${i18n.updates.basemapGallery}</label>
+                </div>
+                <br style="clear:both;"/>
+                <div class="esriFloatLeading paddingTop10" style="width:20px;">
+                  <input type="radio" name="basemapType" data-dojo-type="dijit.form.RadioButton" id="basemapType:toggle"
+                         data-dojo-attach-event="onChange:onBasemapTypeChanged"/>
+                </div>
+                <div class="esriFloatLeading paddingTop10" style="width:105px;">
+                  <label for="basemapType:toggle">${i18n.updates.basemapToggle}</label>
+                </div>
+                <br style="clear:both"/>
+                <div id="share-map-second-basemap" class="paddingTop10" style="display:none;">
+                  <span>${i18n.updates.chooseAltBasemap}</span><br/>
+                  <select name="secondBasemap" id="basemap:secondBasemap" style="width:120px;"
+                          data-dojo-type="arcgisonline.sharing.dijit.ComboBox"
+                          data-dojo-attach-event="onChange:onSecondBasemapChange">
+                  </select>
+                </div>
+              </div>
+              <div id="share-map-largemap" class="paddingTop10">
+                <input id="share-map-embed-largemap" data-dojo-type="dijit.form.CheckBox" type="checkbox"/>
+                <label for="share-map-embed-largemap" id="share-map-embed-largemap-label">
+                  ${i18n.viewLargerMap}
+                </label>
+              </div>
+              <div id="share-map-disablezoom" class="paddingTop10">
+                <input id="share-map-embed-disablezoom" data-dojo-type="dijit.form.CheckBox" type="checkbox"/>
+                <label for="share-map-embed-disablezoom" id="share-map-embed-disablezoom-label">
+                  ${i18n.updates.disableZoom}
+                </label>
+              </div>
+            </div>
+            <div class="esriFloatLeading paddingLeading40 sectionCol">
+              <div id="share-map-scale">
+                <input id="share-map-embed-scale" data-dojo-type="dijit.form.CheckBox" value="off" type="checkbox" />
+                <label for="share-map-embed-scale" id="share-map-embed-scale-label">
+                  ${i18n.updates.scaleBar}
+                </label>
+              </div>
+              <div id="share-map-location" class="paddingTop10">
+                <input id="share-map-embed-location" data-dojo-type="dijit.form.CheckBox" value="off" type="checkbox" />
+                <label for="share-map-embed-location" id="share-map-embed-location-label">
+                  ${i18n.updates.geocoder}
+                </label>
+              </div>
+              <div id="share-map-location-restrict" class="paddingTop10 paddingLeading15" style="display:none;">
+                <input id="share-map-embed-location-restrict" data-dojo-type="dijit.form.CheckBox" value="off" type="checkbox" />
+                <label for="share-map-embed-location-restrict" id="share-map-embed-location-restrict-label">
+                  ${i18n.updates.currentExtent}
+                </label>
+              </div>
+              <div id="share-map-description" class="paddingTop10">
+                <input id="share-map-embed-description" data-dojo-type="dijit.form.CheckBox" value="off" type="checkbox"
+                       data-dojo-attach-event="onClick:onShareMapActivePanelCheck"/>
+                <label for="share-map-embed-description" id="share-map-embed-description-label">
+                  ${i18n.updates.mapDetails}
+                </label>
+              </div>
+              <div id="share-map-legend" class="paddingTop10">
+                <input id="share-map-embed-legend" data-dojo-type="dijit.form.CheckBox" value="off" type="checkbox"
+                       data-dojo-attach-event="onClick:onShareMapActivePanelCheck"/>
+                <label for="share-map-embed-legend" id="share-map-embed-legend-label">
+                  ${i18n.updates.legend}
+                </label>
+              </div>
+              <div id="share-map-active-panel" class="paddingTop10" style="display:none;">
+                <span>${i18n.updates.choosePanel}</span><br/>
+                <select name="activePanel" id="activePanel" style="width:120px;"
+                        data-dojo-type="arcgisonline.sharing.dijit.ComboBox"
+                        data-dojo-attach-event="onChange:onShareMapActivePanelChange">
+                  <option value="details">${i18n.updates.mapDetails}</option>
+                  <option value="legend">${i18n.updates.legend}</option>
+                </select>
+              </div>
+              <!--<div id="share-map-presentation" class="paddingTop5">-->
+                <!--<input id="share-map-embed-presentation" data-dojo-type="dijit.form.CheckBox" checked="true" value="off" type="checkbox" />-->
+                <!--<label for="share-map-embed-presentation">-->
+                  <!--${i18n.embedPresentation}-->
+                <!--</label>-->
+              <!--</div>-->
+            </div>
+            <div class="esriFloatTrailing paddingTrailing40">
+              <!--for map preview-->
+              <label for="mapPreview">${i18n.updates.mapPreview}</label><br/>
+              <div id="mapPreview" class="imageStack">
+                <div id="mapPreview:basemap" class="imageLayer previewBasemap" style="z-index:50"></div>
+                <div id="mapPreview:panel" class="imageLayer previewPanel" style="z-index:51;display:none;"></div>
+                <div id="mapPreview:details" class="imageLayer previewDetails" style="z-index:51;display:none;"></div>
+                <div id="mapPreview:legend" class="imageLayer previewLegend" style="z-index:51;display:none;"></div>
+                <div id="mapPreview:gallery" class="imageLayer previewGallery" style="z-index:51;display:none;"></div>
+                <div id="mapPreview:toggle" class="imageLayer previewToggle" style="z-index:51;display:none;"></div>
+                <div id="mapPreview:zoom" class="imageLayer previewZoom" style="z-index:51;display:none;"></div>
+                <div id="mapPreview:zoomhome" class="imageLayer previewZoomHome" style="z-index:51;display:none;"></div>
+                <div id="mapPreview:search" class="imageLayer previewSearch" style="z-index:51;display:none;"></div>
+                <div id="mapPreview:scale" class="imageLayer previewScale" style="z-index:51;display:none;"></div>
+              </div>
+            </div>
+            <div class="sectionNoBorder">
+              <div class="sectionLabel">${i18n.updates.selectTheme}</div>
+              <div id="share-map-theme" class="lineHeight18">
+                <div class="esriFloatLeading" style="width:20px;">
+                  <input type="radio" name="embedTheme" checked="checked" data-dojo-type="dijit.form.RadioButton" id="embedTheme:light"
+                         data-dojo-attach-event="onChange:onThemeChange"/>
+                </div>
+                <div class="esriFloatLeading" style="width:95px;">
+                  <div class="themeSwatch light">&nbsp;</div>
+                  <label for="embedTheme:light">${i18n.updates.lightTheme}</label>
+                </div>
+                <div class="esriFloatLeading" style="width:20px;">
+                  <input type="radio" name="embedTheme" data-dojo-type="dijit.form.RadioButton" id="embedTheme:dark"
+                         data-dojo-attach-event="onChange:onThemeChange"/>
+                </div>
+                <div class="esriFloatLeading" style="width:95px;">
+                  <div class="themeSwatch darkTheme">&nbsp;</div>
+                  <label for="embedTheme:dark">${i18n.updates.darkTheme}</label>
+                </div>
+              </div>
+              <br style="clear:both;"/>
+            </div>
+          </div>
+
+          <div id="addMarkerSymbolTab" class="fixedHeightContainer" style="display:none;">
+            <div class="sectionNoBorder">
+              <div class="sectionLabel">${i18n.updates.selectLocation}</div>
+              <div class="esriFloatLeading" style="width:20px;">
+                <input type="radio" name="markerLocation" id="marker:search" checked="checked"
+                       data-dojo-type="dijit.form.RadioButton" data-dojo-attach-event="onChange:onMarkerLocationTypeChange"/>
+              </div>
+              <div class="esriFloatLeading" style="width:95px;">
+                <label for="marker:search">${i18n.updates.locationSearch}</label>
+              </div>
+              <div class="esriFloatLeading" style="width:20px;">
+                <input type="radio" name="markerLocation" id="marker:latlong" data-dojo-type="dijit.form.RadioButton"
+                       data-dojo-attach-event="onChange:onMarkerLocationTypeChange"/>
+              </div>
+              <div class="esriFloatLeading" style="width:115px;">
+                <label for="marker:latlong">${i18n.updates.locationLatLng}</label>
+              </div>
+              <br style="clear:both;"/>
+              <div id="marker:search:input" class="sectionNoBorder">
+                <div id="marker:geocoder" style="position:relative;"></div>
+              </div>
+              <div id="marker:latlong:input" class="sectionNoBorder" style="display:none;">
+                <table cellpadding="0" cellspacing="0">
+                  <tbody>
+                  <tr>
+                    <td><label for="latitude:y">${i18n.updates.latitudeY}</label></td>
+                    <td>&nbsp;</td>
+                    <td><label>${i18n.updates.longitudeX}</label></td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td><input id="latitude:y" class="paddedInput" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true"/></td>
+                    <td>&nbsp;</td>
+                    <td><input id="longitude:x" class="paddedInput" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true"/></td>
+                    <td>&nbsp;</td>
+                    <td>
+                      <button id="setLocation" type="button" class="calcite light small" data-dojo-type="dijit.form.Button"
+                              data-dojo-attach-event="onClick:onSetLocationClick">
+                        ${i18n.updates.setLocation}
+                      </button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="sectionNoBorder">
+              <div class="sectionLabel"><label for="marker-symbol-title">${i18n.updates.markerTitle}</label></div>
+              <input type="text" id="marker-symbol-title" class="paddedInput" style="width:550px;" data-dojo-type="dijit.form.TextBox"
+                     data-dojo-props="trim:true" data-dojo-attach-event="onChange:onMarkerSymbolTitleChange,onKeyDown:onMarkerSymbolTitleKeyDown"/>
+            </div>
+            <div class="sectionNoBorder">
+              <div class="sectionLabel">${i18n.updates.markerDescription}</div>
+              <div id="marker-symbol-desc" data-dojo-type="dijit.form.Textarea"
+                   class="paddedInput"
+                   style="width:561px;height:40px;min-height:40px;max-height:40px;"
+                   data-dojo-attach-event="onChange:onMarkerSymbolDescChange"></div>
+            </div>
+            <div class="sectionNoBorder">
+              <div class="sectionLabel"><label for="marker-symbol-url">${i18n.updates.markerUrl}</label></div>
+              <input type="text" id="marker-symbol-url" class="paddedInput" style="width:550px;" data-dojo-type="dijit.form.TextBox"
+                     data-dojo-props="trim:true" data-dojo-attach-event="onChange:onMarkerSymbolUrlChange,onKeyDown:onMarkerSymbolUrlKeyDown"/>
+            </div>
+          </div>
+        </div>
+
+        <!--<div class="esriPositionRight0" style="position:absolute;bottom:5px;">-->
+        <div class="esriFloatTrailing">
+          <button id="share-map-embed-back" class="calcite default" type="button" data-dojo-type="dijit.form.Button"
+              data-dojo-attach-event="onClick:onShareMapEmbedBack">
+            ${i18n.back}
+          </button>
+          <button class="calcite primary" data-dojo-type="dijit.form.Button" data-dojo-attach-event="onClick:onEmbedClose">
+            ${i18n.done}
+          </button>
+        </div>
+      </div>
+      <!-- application option gallery  -->
+      <div data-dojo-type="dijit.layout.ContentPane" data-dojo-attach-point="_stackApplicationGallery" class="share-map-stack-stack">
+        <!--<div>-->
+          <!--<label style="font-weight:bold; text-decoration:underline; ">-->
+            <!--${i18n.makeWebApp}-->
+          <!--</label>-->
+        <!--</div>-->
+
+        <!--<div style="padding-bottom:15px;padding-top:0;">-->
+          <!--<label>-->
+            <!--${i18n.selectTemplate}-->
+          <!--</label>-->
+        <!--</div>-->
+        <!--<div id="share-map-application-gallery-box" style="border:#333 1px solid; width:auto; min-height:325px; padding:0; overflow:hidden;">-->
+          <!--<div style="position:relative; width:565px;" id="templatesGallery" jsId="gallery" data-dojo-type="arcgisonline.sharing.dijit.TemplatesGrid" sortField="'title'" groupQuery="esriGeowConfig.templatesGroupQuery" galleryNodes="8">-->
+          <!--</div>-->
+        <!--</div>-->
+        <div id="gallery-grid"></div>
+        <div class="esriPositionRight15" style="position:absolute;bottom:5px;">
+          <button id="share-map-application-back" class="calcite default" type="button" data-dojo-type="dijit.form.Button"
+              data-dojo-attach-event="onClick:onShareMapApplicationBack">
+            ${i18n.back}
+          </button>
+            <!--<button id="share-map-application-next" class="calcite primary" type="button" data-dojo-type="dijit.form.Button"-->
+                    <!--data-dojo-attach-event="onClick:onShareMapApplicationNext">-->
+                <!--${i18n.next}-->
+            <!--</button>-->
+          <button class="calcite cancel" data-dojo-type="dijit.form.Button" data-dojo-attach-event="onClick:onClose">
+            ${i18n.cancel}
+          </button>
+        </div>
+      </div>
+      <!-- application option publish  -->
+      <div id="share-map-application-publish" data-dojo-type="dijit.layout.ContentPane" data-dojo-attach-point="_stackApplicationPublish" class="share-map-stack-stack">
+        <!--<div>-->
+          <!--<label style="font-weight:bold; text-decoration:underline; ">-->
+            <!--${i18n.makeWebApp}-->
+          <!--</label>-->
+        <!--</div>-->
+        <p class="configureApp">${i18n.savePublish}</p>
+        <p style="display:none;" class="appBuilder">${i18n.appBuilderMsg}</p>
+        <div>
+          <div data-dojo-attach-point="_itemProperties"></div>
+          <div class="share-map-same-level" style="margin-left:22.5%;">
+            <div id="publish-webmap-sharing" data-dojo-type="dijit.form.CheckBox" data-dojo-attach-point="_shareSameLevel"></div>
+            <label id="publish-webmap-sharing-label" for="publish-webmap-sharing">${i18n.shareSameLevel}</label>
+          </div>
+        </div>
+        <div class="esriPositionRight15" style="position:absolute;bottom:5px;">
+          <span id="publish-webmap-waiting" style="display:none;">${i18n.savingAndPublishing}&nbsp;&nbsp;&nbsp;</span>
+          <button id="share-map-application-publish-config-back" class="calcite default" type="button"
+                  data-dojo-type="dijit.form.Button" data-dojo-attach-event="onClick:onShareMapApplicationPublishConfigBack">
+            ${i18n.back}
+          </button>
+          <button id="publish-webmap-button" class="calcite primary" type="button" data-dojo-type="dijit.form.Button">
+            ${i18n.savePublishBtn}
+          </button>
+          <button class="calcite cancel" type="button" data-dojo-type="dijit.form.Button" data-dojo-attach-event="onClick:onClose">
+            ${i18n.cancel}
+          </button>
+        </div>
+      </div>
+      <!-- configure application help -->
+      <div id="share-map-application-publish-help" data-dojo-type="dijit.layout.ContentPane" data-dojo-attach-point="_stackApplicationPublishHelp" class="share-map-stack-stack">
+        <!--<div>-->
+          <!--<label style="font-weight:bold; text-decoration:underline; ">-->
+            <!--${i18n.makeWebApp}-->
+          <!--</label>-->
+        <!--</div>-->
+        <p>
+          ${i18n.publishSuccess}
+        </p>
+        <p>
+          <b>${i18n.shareApp}</b> - ${i18n.shareInstructions}
+        </p>
+        <p>
+          <b>${i18n.configureApp}</b> - ${i18n.configureInstructions}
+        </p>
+        <p class="esriItemLinks">
+          ${i18n.youCan} <a id="_shareApplicationPublishAppUrl" href="JavaScript:void(0);">${i18n.goToItem}</a>
+          ${i18n.toShare}
+        </p>
+        <div class="esriPositionRight15" style="position:absolute;bottom:5px;">
+          <button id="publish-webmap-view-item-button" class="jevent calcite primary" type="button" data-dojo-type="dijit.form.Button">
+            ${i18n.viewItemButton}
+          </button>
+          <button class="calcite primary" data-dojo-type="dijit.form.Button" data-dojo-attach-event="onClick:onClose">
+            ${i18n.done}
+          </button>
+        </div>
+      </div>
+      <!-- application option help  -->
+      <div id="share-map-application-help" data-dojo-type="dijit.layout.ContentPane" data-dojo-attach-point="_stackApplicationHelp" class="share-map-stack-stack">
+        <!--<div>-->
+          <!--<label style="font-weight:bold; text-decoration:underline; ">-->
+            <!--${i18n.makeWebApp}-->
+          <!--</label>-->
+        <!--</div>-->
+        <div style="padding-top:15px;">
+          <label>
+            ${i18n.followSteps}
+          </label>
+        </div>
+        <div style="padding-top:0;">
+          <ul>
+            <li>
+              <span style="font-weight:bold;">${i18n.unzipFile}</span>
+              <div>
+                ${i18n.unzipFileInstructions}
+              </div>
+            </li>
+            <li style="margin-top:10px;">
+              <span style="font-weight:bold;">${i18n.deployTheApp}</span>
+              <div>
+                ${i18n.copyAppToWeb}
+              </div>
+            </li>
+            <li style="margin-top:10px;">
+              <span style="font-weight:bold;">${i18n.configureTheApp}</span>
+              <div>
+                ${i18n.makeAppChanges}
+              </div>
+            </li>
+          </ul>
+          <div class="paddingTop10">
+            <span>${i18n.yourMapId} </span>
+            <span id="share-map-webmapId">${i18n.yourMapId} </span>
+          </div>
+          <div id="share-map-text-findId" class="paddingTop10">
+          </div>
+        </div>
+        <div class="esriPositionRight15" style="position:absolute;bottom:5px;">
+          <button id="share-map-application-help-back" class="calcite default" type="button" data-dojo-type="dijit.form.Button"
+              data-dojo-attach-event="onClick:onShareMapApplicationHelpBack">
+            ${i18n.back}
+          </button>
+          <button class="calcite primary" type="button" data-dojo-type="dijit.form.Button" data-dojo-attach-event="onClick:onClose">
+            ${i18n.done}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

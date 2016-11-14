@@ -1,0 +1,31 @@
+<div class="${css.root}">
+  <div class="${css.container}" data-dojo-attach-point="_container">
+    <div class="${css.main}">
+      <div class="${css.title}" data-dojo-attach-point="_title"></div>
+      <div class="${css.description}" data-dojo-attach-point="_description"></div>
+    </div>
+    <div class="${css.attachments}">
+      <div>${_i18n.attach}:</div>
+      <ul data-dojo-attach-point="_attachmentsList"></ul>
+    </div>
+    <div class="${css.media}">
+      <div class="${css.mediaTitle}">${_i18n.media}</div>
+      <ul class="${css.mediaSummary}">
+        <li class="${css.mediaImageSummary}">
+          <span class="${css.mediaCount}" data-dojo-attach-point="_imageCount"></span>
+          <span aria-hidden="true" class="${css.mediaImageIcon}"></span>
+        </li>
+        <li class="${css.mediaChartSummary}">
+          <span class="${css.mediaCount}" data-dojo-attach-point="_chartCount"></span>
+          <span aria-hidden="true" class="${css.mediaChartIcon}"></span>
+        </li>
+      </ul>
+      <div class="${css.mediaSlider}">
+        <div class="${css.mediaSliderItems}" data-dojo-attach-point="_mediaSliderItems"></div>
+      </div>
+    </div>
+    <div class="${css.edit}" data-dojo-attach-point="_editSummarySection">
+      <div class="${css.editSummary}" data-dojo-attach-point="_editSummary"></div>
+    </div>
+  </div>
+</div>

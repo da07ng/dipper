@@ -1,0 +1,47 @@
+<div class="widgetContainer" data-dojo-attach-point="containerNode">
+  <div class="${baseClass}" data-dojo-type="dijit.Dialog" data-dojo-attach-point="dialog" id="manage-tiles-dialog" title="${i18n.dialogTitle}" execute="" data-dojo-attach-event="onHide:hide">
+    <span data-dojo-attach-point="dialogDescription"></span><br/>
+
+    <div data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="design:'headline',gutters:false,preventcache:true,usecache:false,cachecontent:false,region:'center'"
+         class="borderedContent" style="width:665px; height:200px;">
+      <div id="gridContentPane" data-dojo-attach-point="gridContentPane" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region:'center'"
+           style="width:100%; height:100%;"></div>
+    </div>
+    <div style="font-weight:bold;">
+      <div data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="design:'headline',gutters:false,preventcache:true,usecache:false,cachecontent:false,region:'center'"
+           class="borderedContent" style="width:665px; height:32px;">
+        <div id="totalsContentPane" data-dojo-attach-point="totalsContentPane" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region:'center'"
+             style="width:100%;height:100%;font-weight:bold;"></div>
+      </div>
+    </div>
+    <div data-dojo-attach-point="controlDiv" style="margin-top:20px;">
+      <table width="100%">
+        <tbody>
+          <tr>
+            <td width="25%">
+              <div>
+                <button id="buildButton" data-dojo-attach-point="buildButton" data-dojo-type="dijit.form.Button" type="button" class="primary" data-dojo-attach-event="onClick:onCreateClick">
+                  ${i18n.buildButton}
+                </button>
+                <!--<br/>
+                <button id="deleteButton" data-dojo-attach-point="deleteButton" data-dojo-type="dijit.form.Button" type="button">
+                  ${i18n.deleteButton}
+                </button>-->
+                <br/><br/>
+                <span id="scalesSelectedSpan" data-dojo-attach-point="scalesSelectedSpan"></span>
+              </div>
+            </td>
+            <td width="75%" valign="top">
+              <div id="messageDiv" data-dojo-attach-point="messageDiv" style="margin-top:10px;"></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div data-dojo-attach-point="cancelDiv" class="esriAlignTrailing" style="margin-top:20px;display:none;">
+      <button id="cancelButton" data-dojo-attach-point="cancelButton" class="cancel" data-dojo-type="dijit.form.Button" type="button" data-dojo-attach-event="onClick:onCancelClick">
+        ${i18n.cancelButton}
+      </button>
+    </div>
+  </div>
+</div>

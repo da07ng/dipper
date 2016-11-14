@@ -1,0 +1,20 @@
+<div>
+  <div class="${baseClass}Inner" >
+    <div class="${baseClass}Head" data-dojo-attach-point="contentHeadNode">
+      <div class="${baseClass}Title" data-dojo-attach-point="titleBarNode">
+        <span class="${baseClass}TitleTextNode" data-dojo-attach-point="titleNode"></span>
+      </div>
+    </div>
+    <div class="${baseClass}Content">
+      <div class="${baseClass}ContentInner" data-dojo-attach-point="contentInnerScrollableNode">
+        <div data-dojo-attach-point="contentNode"></div>
+      </div>
+    </div>
+    <div class="${baseClass}NavButtons" data-dojo-attach-point="navButtonsNode"></div>
+  </div>
+  <div class="${baseClass}ClosedContent" data-dojo-attach-event="ondijitclick:_closeBtnNodeClickHandler">
+    <div class="closeBtnContainer">
+      <span class="${baseClass}CloseBtn" data-dojo-attach-point="closeBtnNode"></span>
+    </div>
+  </div>
+</div>

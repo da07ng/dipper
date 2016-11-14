@@ -1,0 +1,57 @@
+<div class="singleInteractiveFilter" id="${id}.singleInteractiveFilter">
+  <table cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td>
+          <div class="singleInteractiveFilterDiv">
+            <table>
+              <tbody>
+                <tr>
+                  <td nowrap>
+                    <span class="promptText" dojoAttachPoint="promptText"></span>
+                  </td><td width="10">
+                    &nbsp;
+                  </td><td width="100%">
+                    <span id="${id}.attributeValueContainer" class="attributeValueContainer"></span>
+                  </td>
+                </tr>
+                <tr id="${id}.attributeValueOptions" style="display:none;">
+                  <td colspan="2">
+                    &nbsp;
+                  </td><td>
+                    <div class="attributeValueOptions">
+                      <table cellpadding="0" cellspacing="0">
+                        <tbody>
+                          <tr>
+                            <td nowrap="nowrap">
+                              <input id="${id}.radioValue" class="radioValue attributeValueRadio" checked="checked" name="${id}.inputOption" dojotype="dijit.form.RadioButton" title="${i18n.valueTooltip}"/>
+                              <label class="labels" title="${i18n.valueTooltip}">${i18n.value}</label>
+                            </td><td width="10">
+                              &nbsp;
+                            </td> <td id="${id}.radioUniqueColumn" nowrap="nowrap" class="esriLeadingPadding05">
+                              <input id="${id}.radioUnique" class="radioUnique attributeValueRadio" name="${id}.inputOption" dojotype="dijit.form.RadioButton" title="${i18n.uniqueValueTooltip}"/>
+                              <label class="labels" title="${i18n.uniqueValueTooltip}">${i18n.uniqueValues}</label>
+                            </td><td width="100%">
+                              &nbsp;
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="singleInteractiveFilterDiv">
+            <span dojoAttachPoint="hintText" class="hintText"></span>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

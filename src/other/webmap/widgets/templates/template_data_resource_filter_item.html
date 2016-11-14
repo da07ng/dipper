@@ -1,0 +1,15 @@
+<div class="data-res-filter-item" style="min-height: 70px; border-bottom: 1px solid #eee; background-color: #fafafa; padding: 6px 0; font-size: 9px; margin: 0 4px; box-sizing: border-box; position: relative;">
+    <div style="margin: 0 15px 5px 8px;">
+        <div style="padding: 5px 0; line-height: 1.2; color: #2765b0; margin-bottom: 10px; margin-right: 70px; font-size: 16px;">${title}</div>
+        <div style="position: relative;" ">
+            <span style="color: #808080; ">由 ${owner} 提供</span>
+            <span style="position: absolute; left: 130px; ">
+                <i style="font-size: 14px; color: #0473C2; " class="${esri_icon} "></i>
+                <span style="color: #808080; ">${type}</span>
+            </span>
+        </div>
+    </div>
+    <span style="position: absolute; top: 12px; right: 20px;">
+        <a class="${addLayer_class}" onclick="JavaScript: mapwidgets.utils.addLayer( '${id}', '${type}', event) " href="JavaScript:void(0); "></a>
+    </span>
+</div>

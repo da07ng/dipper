@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var nunjucksRender = require('gulp-nunjucks-render');
+var rename = require("gulp-rename");
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');
 var gutil = require('gulp-util');
@@ -15,6 +16,24 @@ gulp.task('html', function() {
       path: ['src/views/']
     }))
     .pipe(gulp.dest('dist'));
+});
+
+gulp.task('webmap', function() {
+  gulp.src('src/views/map/webmap.html')
+    .pipe(nunjucksRender({
+      path: ['src/views/']
+    }))
+    .pipe(rename('viewer.html'))
+    .pipe(gulp.dest('dist/webmap'));
+});
+
+gulp.task('webscene', function() {
+  gulp.src('src/views/map/webscene.html')
+    .pipe(nunjucksRender({
+      path: ['src/views/']
+    }))
+    .pipe(rename('viewer.html'))
+    .pipe(gulp.dest('dist/webscene'));
 });
 
 gulp.task('vendor', function() {
@@ -60,11 +79,11 @@ gulp.task('image', function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch('src/views/**/*.html', ['html']);
+  gulp.watch('src/views/**/*.html', ['html', 'webmap', 'webscene']);
   gulp.watch('src/js/**/*.js', ['script']);
   gulp.watch('src/css/**/*.scss', ['style']);
   gulp.watch('src/images/**/*', ['image']);
 });
 
-gulp.task('build', ['html', 'vendor', 'script', 'style', 'image']);
-gulp.task('default', ['html', 'vendor', 'script', 'style', 'image', 'watch']);
+gulp.task('build', ['html', 'webmap', 'webscene', 'vendor', 'script', 'style', 'image']);
+gulp.task('default', ['html', 'webmap', 'webscene', 'vendor', 'script', 'style', 'image', 'watch']);

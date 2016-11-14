@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["dojo/string","../../tasks/geoenrichment/DriveBuffer","../../tasks/geoenrichment/IntersectingGeographies","../../tasks/geoenrichment/DriveUnits","dojo/i18n!../../nls/jsapi"],function(c,e,f,d,b){b=b.geoenrichment.dijit.bufferTitle;return function(g,a){switch(g){case "polyline":return a instanceof e?c.substitute(b.lineBuffer[d.MILES],{radius:"1"}):c.substitute(b.lineBuffer[a&&a.units||d.MILES],{radius:(a&&a.radii[0]||1).toString()});case "polygon":return b.polygon;default:return a instanceof
+e?c.substitute(b.pointDriveTime[a&&a.units||d.MILES],{radius:(a&&a.radii[0]||1).toString()}):a instanceof f?c.substitute(b.stdGeo,{level:a.geographyLevels[0].layerID}):c.substitute(b.pointRing[a&&a.units||d.MILES],{radius:(a&&a.radii[0]||1).toString()})}}});

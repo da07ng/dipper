@@ -1,0 +1,77 @@
+<div class="widgetContent">
+    <div data-dojo-type="dijit.Dialog" class="${baseClass}" data-dojo-attach-point="_saveWebMapDialog" id="tool-save-map-dialog" title="保存地图" execute="" style="width:500px;">
+        <div data-dojo-attach-point="_errorDiv">
+        </div>
+        <form data-dojo-type="dijit.form.Form" data-dojo-attach-point="_saveWebMapForm" enctype="multipart/form-data" name="upload-webmap-form" action="" method="post" dojoAttachEvent="onSubmit:uploadItem">
+            <div style="background-color: #fafafa; padding: 20px 25px 0 25px">
+                <div class="esri-tool-save-row">
+                    <label>标题</label>
+                    <div class="esri-tool-save-cell">
+                        <input type="text" id="save-webmap-title" data-dojo-type="dijit/form/TextBox" data-dojo-attach-point="_webMapTitleInput" data-dojo-attach-event="onFocus:focusTitle" data-dojo-prop="trim:true, propercase:true, maxlength: 250, required: true" style="width: 100%;" class="esri-tool-user-input"></input>
+                    </div>
+                </div>
+                <div class="esri-tool-save-row">
+                    <label>摘要</label>
+                    <div class="esri-tool-save-cell">
+                        <input type="text" id="save-webmap-summary" data-dojo-type="dijit/form/TextBox" data-dojo-attach-point="_webMapSummaryInput" data-dojo-prop="trim:true, propercase:true, maxlength: 250, required: true" data-dojo-attach-event="onFocus:focusSummary" style="width: 100%;" class="esri-tool-user-input"></input>
+                    </div>
+                </div>
+                <div class="esri-tool-save-row" style="display: none;">
+                    <label>标准分类</label>
+                    <div class="esri-tool-save-cell">
+                        <!-- <span>一级分类: </span> -->
+                        <input data-dojo-type="dijit/form/ComboBox" data-dojo-attach-point="bzSelec_lvl1" data-dojo-props="placeHolder: '请选择', maxHeight: 300" data-dojo-attach-event="onChange: onBzSelectorChanged" />
+                    </div>
+                    <div class="esri-tool-save-cell" id="bzSelectorContainer2" style="display: none;">
+                        <span>二级分类: </span>
+                        <input data-dojo-type="dijit/form/ComboBox" data-dojo-attach-point="bzSelec_lvl2" data-dojo-props="placeHolder: '请选择', maxHeight: 300" data-dojo-attach-event="onChange: onBz2SelectorChanged" />
+                    </div>
+                </div>
+                <div data-dojo-attach-point="_webMapTagsInput" data-dojo-type="esri/dijit/Tags" style="display: none;">
+                </div>
+                <div class="esri-tool-save-row">
+                    <label>行业分类</label>
+                    <div class="esri-tool-save-cell">
+                        <!-- <span>一级分类: </span> -->
+                        <div data-dojo-type="dijit/form/DropDownButton" style="width: 100%; border-bottom: 1px solid #ccc;" data-dojo-attach-point="hyDropDown">
+                            <span>请选择行业分类</span>
+                            <div data-dojo-type="dijit/layout/ContentPane" data-dojo-attach-point="hyTreeContainer" style="background: white; border: 1px solid #ddd;" data-dojo-attach-event="onClose: onHyDropDownClosed">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="esri-tool-save-cell" id="hySelectorContainer2" style="display: none;">
+                        <span>二级分类: </span>
+                        <input data-dojo-type="dijit/form/ComboBox" data-dojo-attach-point="hySelec_lvl2" data-dojo-props="placeHolder: '请选择', maxHeight: 300" data-dojo-attach-event="onChange: onHy2SelectorChanged" />
+                    </div>
+                </div>
+                <div class="esri-tool-save-row" style="display: none;">
+                    <label>文件夹:</label>
+                    <div class="esri-tool-save-cell" style="height: 32px;">
+                        <input data-dojo-type="arcgisonline/sharing/dijit/ComboBox" data-dojo-attach-point="_webMapFolderSelect" data-dojo-attach-event="onChange:onChangeFolder" style="height: 32px; width: 100%; line-height: 32px;" />
+                    </div>
+                </div>
+                <div style="clear:both;">
+                </div>
+                <div class="esriFloatLeading" style="margin-top: 15px; margin-bottom: 25px;">
+                    <button data-dojo-type="dijit/form/Button" class="primary" data-dojo-attach-point="_saveMapBtn" data-dojo-attach-event="onClick:uploadItem" type="submit">
+                        保存地图
+                    </button>
+                    <button data-dojo-type="dijit/form/Button" class="cancel" data-dojo-attach-point="_cancelBtn" data-dojo-attach-event="onClick:_handleCancelBtn" type="button" tabindex="1">
+                        取消
+                    </button>
+                </div>
+                <div data-dojo-attach-point="_waitingDiv" style="clear:both;display:none;">
+                    ${i18n.savingMapMsg}
+                </div>
+                <div data-dojo-attach-point="_webMapDescriptionInput" data-dojo-type="dijit.form.TextBox" type="hidden" value="">
+                </div>
+                <div data-dojo-attach-point="_webMapAccessInput" data-dojo-type="dijit.form.TextBox" type="hidden" value="">
+                </div>
+                <div data-dojo-attach-point="_webMapLicenseInput" data-dojo-type="dijit.form.TextBox" type="hidden" value="">
+                </div>
+                <div style="clear:both;">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

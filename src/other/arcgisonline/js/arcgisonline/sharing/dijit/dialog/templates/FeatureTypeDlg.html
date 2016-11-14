@@ -1,0 +1,56 @@
+<div class="widgetContent" >
+  <div dojotype="dijit.Dialog" id="featureType-dialog" title="${i18n.featureTypeDlgTitle}" execute="">
+  	<div style="padding:10px 10px;">${i18n.titleMsg}</div>
+    <table cellspacing="10" class="esriTrailingMargin2">
+    	<tbody>
+		    <tr>
+		    	<td>
+		        <label>${i18n.labelLabel}</label>
+		      </td>
+		      <td width="270">
+		        <div dojoAttachPoint="featureTypeLabel" dojotype="dijit.form.TextBox" trim="true" required="true" style="width:270px; padding:2px;"></div>
+		      </td>
+				</tr>
+		    <tr>
+		      <td>
+		        <label>${i18n.attributeLabel}</label>
+		      </td>
+		      <td width="270">
+		      	<table cellspacing="0" cellpadding="0" width="270">
+		      		<tr>
+		      			<td nowrap>
+                  <div dojoAttachPoint="featureTypeAttributeField"></div>
+		      			</td>
+                <td width="5">
+                  &nbsp;
+                </td>
+								<td width="100%">
+                  <div dojoAttachPoint="featureTypeAttributeNonEditable" style="display:none;"></div>
+                  <div dojoAttachPoint="featureTypeAttributeText" dojotype="dijit.form.TextBox" trim="true" style="width:100%; padding:2px; display:none;"></div>
+                  <div dojoAttachPoint="featureTypeAttributeNumber" dojotype="dijit.form.NumberTextBox" style="width:100%; padding:2px; display:none;"></div>
+                  <div dojoAttachPoint="featureTypeAttributeDate" dojotype="dijit.form.DateTextBox" style="width:100%; padding:2px; display:none;"></div>
+								</td>
+		      		</tr>
+		      	</table>
+		      </td>
+		    </tr>
+        <tr>
+          <td valign="top">
+            <label style="line-height:32px;">${i18n.symbolLabel}</label>
+          </td>
+          <td>
+            <div id="featureTypeSymbolStylerDivContainer">
+              <div id="featureTypeSymbolStylerDiv"></div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+		</table>
+
+    <br />
+    <button dojoAttachEvent="onClick:onCancelClick" class="jevent cancel" style="float:right;" dojoType="dijit.form.Button">${i18n.cancel}</button>
+	  <button dojoAttachEvent="onClick:onDoneClick" class="jevent primary" style="float:right;" dojoType="dijit.form.Button">${i18n.done}</button>
+    <br />&nbsp;  
+    <br />&nbsp;  
+	</div>
+</div>

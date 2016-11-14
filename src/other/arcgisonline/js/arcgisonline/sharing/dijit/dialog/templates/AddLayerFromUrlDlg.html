@@ -1,0 +1,152 @@
+<div class="widgetContainer" >
+  <div dojotype="dijit.Dialog" id="add-layer-url-dialog" title="${i18n.addLayerFromUrlDlgTitle}" execute="">
+    <form id="add-layer-url-form" enctype="multipart/form-data" name="add-layer-url-form" action="" method="post" onSubmit="return false;">
+
+      <span>${i18n.msg}</span>
+
+      <div style="margin-top: 1.5em; margin-left:0.70em; margin-right:0.5em;">
+        <div style="clear:both; margin-bottom: 1em; margin-left:0.3em; ">
+          <select dojoAttachPoint="layerTypeSelect" class="wideselect"  dojoType="dijit.form.Select" >
+            <option value="arcgis" selected>${i18n.arcgis}</option>
+            <option value="wms">${i18n.wms}</option>
+            <option value="wmts">${i18n.wmts}</option>
+            <option value="webTiled">${i18n.webTiled}</option>
+            <option value="kml">${i18n.kml}</option>
+            <option value="geoRSS">${i18n.geoRSS}</option>
+            <option value="csv">${i18n.csv}</option>
+          </select>
+        </div>
+
+        <div id="add-layer-url" style="clear:both;">
+          <table cellpadding="0" cellspacing="5" style="margin-top:0.25em 0 0.2em 0;">
+            <tbody>
+              <tr id="add-layer-url-webTiled-help" style="display:none;">
+                <td colspan="2">${!i18n.webTiledUrlHelp}<br/>&nbsp;</td>
+              </tr>
+              <tr>
+                <td nowrap valign="top"><label for="add-layer-url-url">${i18n.urlLabel}</label></td>
+                <td width="100%">
+                  <div id="add-layer-url-url" dojoAttachEvent="onChange:onChangeUrl" intermediateChanges="true" name="url" dojotype="dijit.form.TextBox" dir="ltr" trim="true" required="true" style="width: 100%; padding:2px;"></div>
+                </td>
+              </tr>
+              <tr id="add-layer-url-wmts" style="display:none;">
+                <td nowrap><label for="add-layer-url-url">${i18n.layerLabel}</label></td>
+                <td width="100%">
+                  <select dojoAttachPoint="wmtsLayerSelect" dojoAttachEvent="onChange:setWMTSLayer" style="width: 100%" maxHeight="200"  dojoType="dijit.form.Select" >
+                  </select>
+                </td>
+              </tr>
+              <tr id="add-layer-url-basemap">
+                <td nowrap>&nbsp;</td>
+                <td width="100%">
+                  <input id="add-layer-url-basemap-check" dojotype="dijit.form.CheckBox" checked="false" value="off" type="checkbox" />
+                  <label for="add-layer-url-basemap-check"> ${i18n.useAsBasemap} </label>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div id="add-layer-url-webTiled" style="display:none; clear:both; padding-top:5px;">
+          <table cellpadding="0" cellspacing="5" border="0" width="100%">
+            <tbody>
+              <tr>
+                <td nowrap><span>${i18n.title}</span></td>
+                <td width="100%"><div id="add-layer-url-webTiled-title" dojotype="dijit.form.TextBox" trim="true" style="width: 100%; padding:2px;"></div></td>
+              </tr>
+              <tr>
+                <td nowrap><span>${i18n.credits}</span></td>
+                <td><div id="add-layer-url-webTiled-credits" dojotype="dijit.form.TextBox" trim="true" style="width: 100%; padding:2px;"></div></td>
+              </tr>
+              <tr id="add-layer-url-webTiled-subdomains-input" style="display:none;">
+                <td nowrap><span>${i18n.subdomains}</span></td>
+                <td><div id="add-layer-url-webTiled-subdomains" dojotype="dijit.form.TextBox" trim="true" style="width: 100%; padding:2px;"></div></td>
+              </tr>
+              <tr id="add-layer-url-webTiled-subdomains-help" style="display:none;">
+                <td nowrap>&nbsp;</td>
+                <td><span>${i18n.webTiledSubdomainsHelp}</span></td>
+              </tr>
+              <tr>
+                <td><span>${i18n.extent}</span></td>
+                <td>
+                <div id="add-layer-url-webTiled-extent-valid" style="display:none;">
+                  <table>
+                    <tr>
+                      <td>${i18n.left}:</td>
+                      <td align="right" nowrap="nowrap"><span id="add-layer-url-webTiled-extent-left"></span></td>
+                      <td style="width: 2em;"></td>
+                      <td>${i18n.right}:</td>
+                      <td align="right" nowrap="nowrap"><span id="add-layer-url-webTiled-extent-right"></span></td>
+                      <td rowspan="3" style="width: 2em;"></td>
+                      <td rowspan="3">
+                      <button dojoAttachEvent="onClick:setExtent" class="jevent" dojotype="dijit.form.Button">
+                        ${i18n.setTileCoverage}
+                      </button></td>
+                    </tr>
+                    <tr>
+                      <td colspan="5" style="line-height:5px;">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td>${i18n.top}:</td>
+                      <td align="right" nowrap="nowrap"><span id="add-layer-url-webTiled-extent-top"></span></td>
+                      <td></td>
+                      <td>${i18n.bottom}:</td>
+                      <td align="right" nowrap="nowrap"><span id="add-layer-url-webTiled-extent-bottom"></span></td>
+                      <td></td>
+                    </tr>
+                  </table>
+                </div>
+                <div id="add-layer-url-webTiled-extent-none" style="display:block;">
+                  <button dojoAttachEvent="onClick:setExtent" class="jevent" dojotype="dijit.form.Button">
+                    ${i18n.setTileCoverage}
+                  </button>
+                </div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div id="add-layer-bing" style="display:none; clear:both; padding-top:5px; padding-left:2px;">
+          <div style="clear:both;">
+            <input class="esriFloatLeading" type="radio" name="bingType" dojotype="dijit.form.RadioButton" id="bingType:streets" checked="checked"/>
+            <label class="esriFloatLeading" for="bingType:streets">
+              &nbsp;${i18n.bingStreets}
+            </label>
+          </div>
+          <div style="clear:both; padding-top:5px;">
+            <input class="esriFloatLeading" type="radio" name="bingType" dojotype="dijit.form.RadioButton" id="bingType:imagery"/>
+            <label class="esriFloatLeading" for="bingType:imagery">
+              &nbsp;${i18n.bingImagery}
+            </label>
+          </div>
+          <div style="clear:both; padding-top:5px;">
+            <input class="esriFloatLeading" type="radio" name="bingType" dojotype="dijit.form.RadioButton" id="bingType:hybrid"/>
+            <label class="esriFloatLeading" for="bingType:hybrid">
+              &nbsp;${i18n.bingHybrid}
+            </label>
+          </div>
+        </div>
+
+        <div id="add-layer-note-div" style="margin-bottom: 0.2em;">
+          <div class="esriItemLinks" style="margin-top:1em;">
+            <label id="add-layer-note"></label>
+          </div>
+        </div>
+
+        <div class="esriFloatTrailing" style="margin-top: 1em;">
+          <span id="add-layer-url-loading" style="display:none;">${i18n.adding}&nbsp;&nbsp;&nbsp;</span>
+          <span id="add-layer-url-capabilities" style="display:none;">${i18n.gettingCapabilities}&nbsp;&nbsp;&nbsp;</span>
+          <button type="submit" dojoAttachPoint="addButton" class="primary" dojotype="dijit.form.Button">
+            ${i18n.addLayerBtn}
+          </button>
+          <button dojoAttachEvent="onClick:hide" dojoAttachPoint="cancelButton" class="jevent cancel" type="cancel" dojotype="dijit.form.Button">
+            ${i18n.cancel}
+          </button>
+        </div>
+
+        <div style="clear:both; width: 100%; height:1px;"></div>
+
+      </div>
+    </form>
+  </div>
+</div>

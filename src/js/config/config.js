@@ -1,4 +1,4 @@
-window.geoplat = {}
+window.dipper = {}
 
 var config = {
   portal: {

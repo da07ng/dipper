@@ -184,6 +184,34 @@ body {
       font-weight: normal;
     }
   }
+
+  .pagination > li > a,
+  .pagination > li > span {
+    color: #5acfd6;
+  }
+
+  .pagination > .active > a,
+  .pagination > .active > a:hover,
+  .pagination > .active > a:focus,
+  .pagination > .active > span,
+  .pagination > .active > span:hover,
+  .pagination > .active > span:focus {
+    color: #fff;
+    background-color: #5acfd6;
+    border-color: #5acfd6;
+  }
+
+  .pagination > .disabled > span,
+  .pagination > .disabled > span:hover,
+  .pagination > .disabled > span:focus,
+  .pagination > .disabled > a,
+  .pagination > .disabled > a:hover,
+  .pagination > .disabled > a:focus {
+    color: #777777;
+    background-color: #fff;
+    border-color: #ddd;
+    cursor: not-allowed;
+  }
 }
 
 // footer

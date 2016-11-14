@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../core/declare","dojo/_base/lang","../core/lang"],function(b,c,d){return b(null,{declaredClass:"esri.ServerInfo",constructor:function(a){c.mixin(this,a)},toJson:function(){try{throw Error("toJson is deprecated, use toJSON instead");}catch(a){console.warn(a.stack)}return this.toJSON()},toJSON:function(){return d.fixJson({server:this.server,tokenServiceUrl:this.tokenServiceUrl,adminTokenServiceUrl:this.adminTokenServiceUrl,shortLivedTokenValidity:this.shortLivedTokenValidity,owningSystemUrl:this.owningSystemUrl,
+owningTenant:this.owningTenant,currentVersion:this.currentVersion,hasPortal:this.hasPortal,hasServer:this.hasServer,webTierAuth:this.webTierAuth})}})});

@@ -1,0 +1,156 @@
+<div data-dojo-type="dijit.layout.BorderContainer" region="top" style="height:100%;">
+  <div id="renderer-simple-main" class="panel panel_left" data-dojo-type="dijit.layout.ContentPane" region="center" style="padding:7px;">
+    <div id="rendererSimpleHeader" data-dojo-type="dijit.layout.ContentPane" region="top">
+      <div class="esriFloatTrailing" style="display:inline;">
+        <a href="JavaScript:void(0);" data-dojo-attach-point="_closeBtn" data-dojo-attach-event="onClick:_onCancel" title="${i18n.close}" class="panel panel_close panel_collapse"></a>
+      </div>
+      <div id="rendererSimpleTitle" class="esriFloatLeading panel_title">
+        ${i18n.rendererPanelTitle}
+      </div>
+      <div data-dojo-attach-point="_rendererSimpleLayer" class="esriFloatLeading panel_title" style="clear:both;">
+      </div>
+      <div style="clear:both; height:1px;"></div>
+    </div>
+    <div data-dojo-type="dijit.layout.ContentPane" data-dojo-attach-point="_rendererSimpleTop" region="center" style="padding:10px 0;overflow-y:auto;">
+      <div class="esriFloatLeading strong" style="margin-top: 2px;">
+        ${i18n.location}
+      </div>
+      <!--
+      <div data-dojo-attach-point="_rendererSimpleAttribute" class="esriFloatTrailing">
+        <button data-dojo-type="dijit.form.Button" type="button" data-dojo-attach-point="_rendererSimpleChangeButton" class="calcite tiny" data-dojo-attach-event="onClick:_onChangeField"><span>${i18n.change}</span></button>
+      </div>
+      -->
+    </div>
+  </div>
+  <div id="renderer-simple-bottom" class="panel panel_left" data-dojo-type="dijit.layout.ContentPane" region="bottom" style="padding:2px 7px 7px 7px; margin-bottom:-5px; overflow-y:auto;">
+    <div data-dojo-attach-point="_rendererSimpleSymbolTitle">
+      <table cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <div data-dojo-attach-point="_rendererSimpleSymbol" class="esriFloatLeading" style="padding:5px"></div>
+          </td>
+          <td valign="middle">
+            <span data-dojo-attach-point="_rendererSimpleSymbolText" class="toolsLabel">${i18n.symbols}</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div data-dojo-attach-point="_rendererSimpleStream" class="esriFloatLeading" style="margin-bottom:15px;">
+      <div>
+        ${i18n.streamMsg}
+      </div>
+      <table style="padding-top:10px;" data-dojo-attach-point="rendererStreamPreviousMsg">
+        <tbody>
+          <tr>
+            <td style="padding-top:2px;">
+              <input data-dojo-attach-point="rendererStreamPreviousCheck" data-dojo-attach-event="onChange:_onChangeStreamPrevious" data-dojo-type="dijit.form.CheckBox" checked="false" type="checkbox" />
+            </td>
+            <td nowrap>
+              <span id="rendererStreamMsgPart1" class="esriLeadingMargin05">
+              </span>
+            </td>
+            <td>
+              <input data-dojo-attach-point="rendererStreamMaxTrackPts" data-dojo-attach-event="onChange:_onChangeStreamMaxTrackPts" intermediateChanges="true" data-dojo-type="dijit.form.NumberSpinner" value="5" smallDelta="1" constraints="{min:2,max:100,places:0}" style="width:40px; margin: 0 5px;"/>
+            </td>
+            <td nowrap>
+              <span id="rendererStreamMsgPart2">
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="esriLeadingMargin108">
+        <table><tbody><tr><td>
+          ${i18n.symbolLabel}
+        </td><td>
+          <div data-dojo-attach-point="_streamSymbolImage" id="panelStreamSymbolImage" class="esriFloatLeading" style="padding:5px"></div>
+        </td></tr></tbody></table>
+        <div class="esriFloatLeading" data-dojo-attach-point="rendererStreamConnectObservationsMsg" style="clear:both; margin-top:5px">
+          <input data-dojo-attach-point="rendererStreamConnectCheck" data-dojo-attach-event="onChange:_onChangeStreamConnect" data-dojo-type="dijit.form.CheckBox" checked="false" type="checkbox" />
+          <span class="esriLeadingMargin05">
+            ${i18n.connectObservations}
+          </span>
+        </div>
+        <div class="esriLeadingMargin108" style="clear:both;">
+          <table><tbody><tr><td>
+            ${i18n.symbolLabel}
+          </td><td>
+            <div data-dojo-attach-point="_streamLineSymbolImage" id="panelStreamLineSymbolImage" class="esriFloatLeading" style="padding:5px"></div>
+          </td></tr></tbody></table>
+        </div>
+      </div>
+    </div>
+    <div data-dojo-attach-point="_rendererSimpleRotation" style="clear:both;">
+      <div>
+        <table cellspacing="0"><tbody><tr><td valign="top">
+          <input data-dojo-attach-point="_rendererSimpleRotationCheck" data-dojo-attach-event="onChange:_onChangeRotation" data-dojo-type="dijit.form.CheckBox" checked="false" type="checkbox"/>
+        </td><td>
+          <div data-dojo-attach-point="_rendererSimpleRotationText">
+            ${i18n.rotationMsg}
+          </div>
+        </td></tr></tbody></table>
+      </div>
+      <div data-dojo-attach-point="_rendererSimpleRotationContent" class="esriLeadingMargin107" style="clear:both;margin-top:3px;">
+        <div style="clear:both;margin-top:3px;">
+          <select data-dojo-attach-point="_rendererSimpleRotationAttribute" data-dojo-attach-event="onChange:_onChangeRotationAttribute" data-dojo-type="dijit.form.Select" maxHeight="150" sortByLabel="false">
+          </select>
+        </div>
+        <div style="clear:both;margin-top:5px;">
+          <input type="radio" data-dojo-type="dijit.form.RadioButton" data-dojo-attach-point="_rendererSimpleRotationClockwiseRadio" data-dojo-attach-event="onChange:_onChangeRotationDirection" data-dojo-props="checked:true" name="clockwise"/>
+          ${i18n.clockwise}
+        </div>
+        <div style="clear:both;margin-top:3px;">
+          <input type="radio" data-dojo-type="dijit.form.RadioButton" data-dojo-attach-point="_rendererSimpleRotationCounterclockwiseRadio" data-dojo-attach-event="onChange:_onChangeRotationDirection" data-dojo-props="checked:false" name="clockwise"/>
+          ${i18n.counterclockwise}
+        </div>
+      </div>
+    </div>
+    <div style="height:20px;"></div>
+    <div data-dojo-attach-point="_rendererSimpleTransparency" style="clear:both;">
+      <div data-dojo-attach-point="_rendererSimpleTransparencyTitle" class="esriFloatLeading sectionTitle" >
+        ${i18n.transparency}
+      </div>
+      <div class="esriFloatLeading" style="clear:both; padding: 5px 10px 0 10px;">
+        <div data-dojo-attach-point="_rendererSimpleTransparencyOverallTitle" class="esriFloatLeading sectionSubTitle rendererSimpleHasAttributeTransparency" >
+          ${i18n.overallTransparency}
+        </div>
+        <div id="rendererSimpleTransparencySliderDiv" class="esriLeadingPadding1" style="clear:both;">
+          <div id="rendererSimpleTransparencySliderInnerDiv" class="esriFloatLeading" style="padding: 6px 0 20px;">
+            <div id="rendererSimpleTransparencySlider">
+            </div>
+          </div>
+        </div>
+        <div data-dojo-attach-point="_rendererSimpleTransparencyPerFeatureTitle" class="esriFloatLeading sectionSubTitle rendererSimpleHasAttributeTransparency" style="clear:both;">
+          ${i18n.perFeaturesTransparency}
+        </div>
+        <div style="clear:both;margin-top:3px;" class="esriItemLinks rendererSimpleHasAttributeTransparency esriLeadingPadding1">
+          <span data-dojo-attach-point="_rendererSimpleAttributeTransparencyLabel_part1" class="esriLeadingMargin025"></span>
+          <A data-dojo-attach-point="_rendererSimpleAttributeTransparencyLabel_part2" data-dojo-attach-event="onClick:_onClickAttributeTransparency" href="JavaScript:void(0);"></A>
+          <span data-dojo-attach-point="_rendererSimpleAttributeTransparencyLabel_part3"></span>
+        </div>
+      </div>
+    </div>
+    <div data-dojo-attach-point="_rendererSimpleScale" style="padding:20px 0 10px 0;clear:both;">
+      <div data-dojo-attach-point="_rendererSimpleScaleTitle" class="esriFloatLeading sectionTitle">
+        ${i18n.visibleRange}
+      </div>
+      <div data-dojo-attach-point="_rendererSimpleScaleSuggest" data-dojo-attach-event="onClick:_onClickScaleSuggest" class="esriFloatTrailing suggestLabel">
+        &nbsp;${i18n.suggest}&nbsp;
+      </div>
+      <div class="esriFloatLeading" style="clear:both;padding: 10px;">
+        <div id="rendererSimpleScaleSlider">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-dojo-attach-point="_rendererSimpleSpacer">
+  </div>
+  <div id="rendererSimpleContentClose">
+    <button data-dojo-type="dijit.form.Button" type="button" class="calcite blue" data-dojo-attach-point="_doneChangingButton" data-dojo-attach-event="onClick:_onDone"><span>${i18n.ok}</span></button>
+    <button data-dojo-type="dijit.form.Button" type="button" class="calcite transparent" data-dojo-attach-point="_doneChangingButton" data-dojo-attach-event="onClick:_onCancel"><span>${i18n.cancel}</span></button>
+  </div>
+  <div id="rendererSimpleFooterDiv" data-dojo-type="dijit.layout.ContentPane" region="bottom" style="height:40px; padding: 0 5px 0 5px;">
+    <div class="footer" id="rendererSimpleFooter" data-dojo-type="arcgisonline.sharing.dijit.SiteFooterMap" style="white-space:normal;">
+    </div>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define("../core/declare dojo/_base/lang ../request ../geometry/support/normalizeUtils ./Task ./support/ClosestFacilitySolveResult".split(" "),function(a,d,e,f,g,h){a=a(g,{declaredClass:"esri.tasks.ClosestFacilityTask",_parsedUrlGetter:function(a){var b=this.inherited(arguments);b.path+="/solveClosestFacility";return b},__msigns:[{n:"solve",c:1,a:[{i:0,p:["incidents.features","facilities.features","pointBarriers.features","polylineBarriers.features","polygonBarriers.features"]}],e:2}],solve:function(a,
+b){var c=b.assembly,c=this._encode(d.mixin({},this.parsedUrl.query,{f:"json"},a.toJSON(c&&c[0])));return e({url:this.parsedUrl.path,content:c,callbackParamName:"callback"}).then(this._handleSolveResponse)},_handleSolveResponse:function(a){return h.fromJSON(a)}});f._createWrappers(a);return a});

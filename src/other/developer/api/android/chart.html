@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Chart</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="../css/apiNative.css">
+    <style>
+        #map {
+            height: 700px;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background: url(../images/androidStatistic.png) no-repeat center center;
+            background-size: contain;
+
+        }
+    </style>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+</head>
+
+<body>
+<div class="container-fluid layoutContainer">
+    <article id="page_content" class="md-body">
+        <h1>统计信息展示服务</h1>
+
+        <h2>简介</h2>
+
+        <p>结合渲染功能，通过图表、柱状图等多种形式就是信息展示。</p>
+
+        <p>此示例演示如何在图表中显示查询结果。</p>
+
+        <h2>示例</h2>
+
+        <div id="map"></div>
+        <div id="infographics"></div>
+        <div id="progressbar"></div>
+        <h2>代码</h2>
+
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+private LinearLayout linearLayout;
+private ArcGISFeatureLayer featureLayer;
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.piechart_layout);
+
+    final MapView mapView = (MapView) findViewById(R.id.mapView);
+    linearLayout = (LinearLayout) findViewById(R.id.pieChartParent);
+    featureLayer = new ArcGISFeatureLayer(getString(R.string.piechart_url), ArcGISFeatureLayer.MODE.SNAPSHOT);
+    featureLayer.setOnStatusChangedListener(new OnStatusChangedListener() {
+        @Override
+        public void onStatusChanged(Object o, STATUS status) {
+            if (status == STATUS.INITIALIZED) {
+                mapView.setOnSingleTapListener(new OnSingleTapListener() {
+                    @Override
+                    public void onSingleTap(float v, float v1) {
+                        new QueryAsyncTask(v, v1).execute();
+                    }
+                });
+            }
+        }
+    });
+    mapView.addLayer(featureLayer);
+
+
+
+}
+
+private class QueryAsyncTask extends AsyncTask<Void,Void,double[]>{
+
+    private float x;
+    private float y;
+
+    public QueryAsyncTask(float x, float y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    @Override
+    protected double[] doInBackground(Void... params) {
+
+        int[] ids = featureLayer.getGraphicIDs(x, y, 10);
+        double[] datas = new double[8];
+        if (ids.length>0) {
+            Graphic graphic = featureLayer.getGraphic(ids[0]);
+            datas[0] =  Double.parseDouble(graphic.getAttributeValue("AGE_UNDER5").toString());
+            datas[1] =  Double.parseDouble(graphic.getAttributeValue("AGE_5_17").toString());
+            datas[2] =  Double.parseDouble(graphic.getAttributeValue("AGE_18_21").toString());
+            datas[3] =  Double.parseDouble(graphic.getAttributeValue("AGE_22_29").toString());
+            datas[4] =  Double.parseDouble(graphic.getAttributeValue("AGE_30_39").toString());
+            datas[5] =  Double.parseDouble(graphic.getAttributeValue("AGE_40_49").toString());
+            datas[6] =  Double.parseDouble(graphic.getAttributeValue("AGE_50_64").toString());
+            datas[7] =  Double.parseDouble(graphic.getAttributeValue("AGE_65_UP").toString());
+            return datas;
+        }
+        return null;
+    }
+
+    @Override
+    protected void onPostExecute(double[] doubles) {
+        if (doubles != null){
+            linearLayout.removeAllViews();
+            View view = createPieChart(doubles);
+            linearLayout.addView(view);
+
+        }
+    }
+
+    private View createPieChart(double[] values){
+        int[] colors = new int[] { Color.BLUE, Color.GREEN, Color.MAGENTA, Color.YELLOW, Color.CYAN ,Color.DKGRAY,Color.MAGENTA,Color.RED};
+        DefaultRenderer renderer = buildCategoryRenderer(colors);
+        renderer.setZoomButtonsVisible(true);
+        renderer.setZoomEnabled(true);
+        renderer.setChartTitleTextSize(20);
+        renderer.setDisplayValues(true);
+        renderer.setShowLabels(false);
+        SimpleSeriesRenderer r = renderer.getSeriesRendererAt(0);
+        r.setGradientEnabled(true);
+        r.setGradientStart(0, Color.BLUE);
+        r.setGradientStop(0, Color.GREEN);
+        r.setHighlighted(true);
+
+        View view = ChartFactory.getPieChartView(PicChartActivity.this,buildCategoryDataset("Project budget", values) , renderer);
+        return view;
+    }
+
+    protected DefaultRenderer buildCategoryRenderer(int[] colors) {
+        DefaultRenderer renderer = new DefaultRenderer();
+        renderer.setLabelsTextSize(15);
+        renderer.setLegendTextSize(15);
+        renderer.setMargins(new int[]{20, 30, 15, 0});
+        for (int color : colors) {
+            SimpleSeriesRenderer r = new SimpleSeriesRenderer();
+            r.setColor(color);
+            renderer.addSeriesRenderer(r);
+        }
+        return renderer;
+    }
+
+    protected CategorySeries buildCategoryDataset(String title, double[] values) {
+        CategorySeries series = new CategorySeries(title);
+        int k = 0;
+        for (double value : values) {
+            series.add("Project " + ++k, value);
+        }
+
+        return series;
+    }
+}
+
+          </textarea>
+        </p>
+    </article>
+</div>
+<script>var dojoConfig = {parseOnLoad: true};</script>
+</body>
+</html>

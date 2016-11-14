@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>BigDataRender</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="../css/apiNative.css">
+    <style>
+        #map {
+            height: 700px;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background: url(../images/androidBigdata.png) no-repeat center center;
+            background-size: contain;
+        }
+    </style>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+</head>
+
+<body>
+<div class="container-fluid layoutContainer">
+    <article id="page_content" class="md-body">
+        <h1>大数据渲染服务</h1>
+
+        <h2>简介</h2>
+
+        <p>通过Renderer渲染接口，利用多种渲染方式得到大数据分级渲染专题图。</p>
+
+        <p>在示例中，通过"WIND_DIRECT"设置箭头旋转方向，"WIND_SPEED"字段定义箭头大小，"TEMP"字段定义渲染颜色。</p>
+
+        <h2>示例</h2>
+
+        <div id="map"></div>
+        <h2>代码</h2>
+
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+public void onCreate(Bundle savedInstanceState) {
+
+   super.onCreate(savedInstanceState);
+   setContentView(R.layout.class_breaks_renderer_layout);
+
+   mMapView = (MapView) findViewById(R.id.map);
+   mMapView.setEsriLogoVisible(true);
+   mMapView.enableWrapAround(true);
+
+   // Inflate the view for the callouts
+   calloutView = View.inflate(this, R.xml.callout, null);
+
+   String url = this.getResources().getString(R.string.featurelayer_url);
+
+   // Create the GeodatabaseFeatureServiceTable from service url and layer
+   // id
+   table = new GeodatabaseFeatureServiceTable(url, LAYER_ID);
+      
+   // Initializing the GeodatabaseFeatureServiceTable asynchronously
+   table.initialize(new CallbackListener<Status>() {
+
+              @Override
+              public void onCallback(Status objs) {
+              if (objs == Status.INITIALIZED) {
+
+              // Creating a feature table
+              feature_layer = new FeatureLayer(table);
+              // Adding feature layer to the map
+              mMapView.addLayer(feature_layer);
+              }
+              }
+
+              @Override
+              public void onError(Throwable e) {
+              // Get the error using getInitializationError() method
+              Toast.makeText(getApplicationContext(), "Feature Layer not available", Toast.LENGTH_LONG).show();
+              }
+              });
+
+              // Identify on single tap of map
+              mMapView.setOnSingleTapListener(new OnSingleTapListener() {
+
+              private static final long serialVersionUID = 1L;
+
+              @Override
+              public void onSingleTap(final float x, final float y) {
+
+              // Check if there is a feature present
+              if (feature_layer.getFeatureIDs(x, y, 20).length != 0) {
+
+              feature_layer.clearSelection();
+              Point mapPoint = mMapView.toMapPoint(x, y);
+
+              long[] iDs = feature_layer.getFeatureIDs(x, y, 20);
+
+              // Get the particular feature values and highlight it
+              feature_layer.selectFeature(iDs[0]);
+              Feature f = feature_layer.getFeature(iDs[0]);
+              String station_name = (String) f
+              .getAttributeValue("STATION_NAME");
+              String country_name = (String) f
+              .getAttributeValue("COUNTRY");
+              String temp = (String) f.getAttributeValue("TEMP")
+              .toString();
+              String wind_speed = (String) f.getAttributeValue(
+              "WIND_SPEED").toString();
+
+              // Update the content of the callout
+              updateContent(station_name, country_name, temp, wind_speed);
+              // Create callout from mapview
+              Callout mapCallout = mMapView.getCallout();
+              // populate callout with updated content
+              mapCallout.setCoordinates(mapPoint);
+              mapCallout.setOffset(0, -3);
+              mapCallout.setContent(calloutView);
+              // show callout
+              mapCallout.show();
+
+              }
+              }
+
+              });
+
+              }
+
+              /*
+              * Updating the content of the callout with the feature values
+              */
+
+              private void updateContent(String station, String country, String temp,
+              String wind_speed) {
+
+              if (calloutView == null)
+              return;
+
+              TextView tv_station = (TextView) calloutView.findViewById(R.id.tv_station);
+              tv_station.setText(station);
+
+              TextView tv_country = (TextView) calloutView.findViewById(R.id.tv_country);
+              tv_country.setText(country);
+
+              TextView tv_temp = (TextView) calloutView.findViewById(R.id.tv_temp);
+              tv_temp.setText(temp + "F");
+
+              TextView tv_speed = (TextView) calloutView.findViewById(R.id.tv_speed);
+              tv_speed.setText(wind_speed);
+
+              }
+
+          </textarea>
+        </p>
+    </article>
+</div>
+</body>
+</html>

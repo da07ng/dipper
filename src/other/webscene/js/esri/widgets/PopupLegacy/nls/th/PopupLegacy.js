@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define({widgets:{popup:{NLS_moreInfo:"\u0e01\u0e49_More info____\u0e29\u0e3a",NLS_searching:"\u0e01\u0e49_Searching____\u0e29\u0e3a",NLS_prevFeature:"\u0e01\u0e49_Previous feature______\u0e29\u0e3a",NLS_nextFeature:"\u0e01\u0e49_Next feature_____\u0e29\u0e3a",NLS_close:"\u0e01\u0e49_Close___\u0e29\u0e3a",NLS_prevMedia:"\u0e01\u0e49_Previous media_____\u0e29\u0e3a",NLS_nextMedia:"\u0e01\u0e49_Next media____\u0e29\u0e3a",NLS_noInfo:"\u0e01\u0e49_No information available________\u0e29\u0e3a",NLS_noAttach:"\u0e01\u0e49_No attachments found_______\u0e29\u0e3a",
+NLS_maximize:"\u0e01\u0e49_Maximize___\u0e29\u0e3a",NLS_restore:"\u0e01\u0e49_Restore___\u0e29\u0e3a",NLS_zoomTo:"\u0e01\u0e49_Zoom to___\u0e29\u0e3a",NLS_pagingInfo:"\u0e01\u0e49_(${index} of ${total})________\u0e29\u0e3a",NLS_attach:"\u0e01\u0e49_Attachments____\u0e29\u0e3a"}}});

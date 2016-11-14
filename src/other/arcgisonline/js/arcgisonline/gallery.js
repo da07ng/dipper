@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/3.15/esri/copyright.txt for details.
+//>>built
+define("arcgisonline/gallery",["dijit","dojo","dojox","dojo/require!dojo/date/locale,esri/utils,arcgisonline/sharing/dijit/Gallery,arcgisonline/sharing/util,arcgisonline/sharing/dijit/views,dojo/parser,dijit/_base,dijit/form/DropDownButton,dijit/form/ComboButton,dijit/form/ToggleButton,dijit/form/RadioButton,dijit/PopupMenuItem"],function(b,a,c){a.provide("arcgisonline.gallery");a.require("dojo.date.locale");a.require("esri.utils");a.require("arcgisonline.sharing.dijit.Gallery");a.require("arcgisonline.sharing.util");
+a.require("arcgisonline.sharing.dijit.views");a.require("dojo.parser");a.require("dijit._base");a.require("dijit.form.DropDownButton");a.require("dijit.form.ComboButton");a.require("dijit.form.ToggleButton");a.require("dijit.form.RadioButton");a.require("dijit.PopupMenuItem")});

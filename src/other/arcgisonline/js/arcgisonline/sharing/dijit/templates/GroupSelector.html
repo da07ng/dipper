@@ -1,0 +1,68 @@
+<div>
+  <div class="marginTop1" data-dojo-attach-point="_searchControls">
+    <label data-dojo-attach-point="_searchLabel">${i18n.searchByName}</label><br/>
+    <span class="searchControls">
+      <input type="text" class="groupSearch"
+             data-dojo-attach-point="_searchBox"
+             data-dojo-type="dijit/form/TextBox">
+      <button class="clearSearchBtn" data-dojo-attach-point="_clearSearchBtn"
+              style="display:none;">&nbsp;&nbsp;&nbsp;&nbsp;</button>
+      <button class="searchBtn" data-dojo-attach-point="_searchBtn" title="${i18n.search}">&nbsp;&nbsp;&nbsp;&nbsp;</button>
+    </span>
+    <div data-dojo-attach-point="_restrictSearchControl" style="display:none;">
+      <div data-dojo-attach-point="_restrictSearch"
+           data-dojo-type="dijit/form/CheckBox" data-dojo-props="type:'checkbox', checked:true"></div>
+      <span data-dojo-attach-point="_restrictSearchLabel"></span>
+    </div>
+  </div>
+  <div class="marginTop1">
+    <table class="marginTop1" cellpadding="0" cellspacing="0">
+      <tbody>
+        <tr>
+          <td class="column270"><label data-dojo-attach-point="_groupsClickLabel">${i18n.clickToAdd}</label></td>
+          <td class="column10"></td>
+          <td class="column270"><label data-dojo-attach-point="_selectedGroupsClickLabel">${i18n.clickToRemove}</label></td>
+        </tr>
+        <tr>
+          <td class="column270">
+            <div class="groupListLabel">
+              <div data-dojo-attach-point="_groupListLabel">${i18n.groups}</div>
+              <div class="esriFloatTrailing actionLink" data-dojo-attach-point="_addAllContainer">
+                <span class="esriItemLinks"><a data-dojo-attach-point="_addAll" class="pointer">${i18n.addAll}</a></span>
+              </div>
+            </div>
+            <div class="groupListContainer" data-dojo-type="dijit/layout/BorderContainer"
+                data-dojo-props="gutters:false,splitters:false,design:'headline'">
+              <div class="groupListInnerContainer"
+                   data-dojo-type="dijit/layout/ContentPane"
+                   data-dojo-props="region:'middle',splitter:false">
+                <div data-dojo-attach-point="_groupsPane">
+                  <!-- group list is populated here -->
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="column10"></td>
+          <td class="column270">
+            <div class="groupListLabel selectedGroupListLabel">
+              <div data-dojo-attach-point="_selectedGroupListLabel">${i18n.selectedGroups}</div>
+              <div class="esriFloatTrailing actionLink" data-dojo-attach-point="_clearAllContainer">
+                <span class="esriItemLinks"><a data-dojo-attach-point="_clearAll" class="pointer">${i18n.clear}</a></span>
+              </div>
+            </div>
+            <div class="selectedGroupListContainer" data-dojo-type="dijit/layout/BorderContainer"
+                 data-dojo-props="gutters:false,splitters:false,design:'headline'">
+              <div class="groupListInnerContainer"
+                   data-dojo-type="dijit/layout/ContentPane"
+                   data-dojo-props="region:'middle',splitter:false">
+                <div data-dojo-attach-point="_selectedGroupsPane">
+                  <!-- selected group list is populated here -->
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

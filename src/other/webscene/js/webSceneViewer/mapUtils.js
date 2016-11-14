@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["esri/Map","esri/layers/GroupLayer"],function(l,h){var k={setVisibleLayerList:function(e,g){for(var c=e.layers.getAll(),d=void 0!==c.get?c.get("length"):c.length,a=0;a<d;a++){var b=void 0!==c.getItemAt?c.getItemAt(a):c[a];e.basemap&&e.basemap._mapGroupLayer===b||(0<=g.indexOf(b.get("id"))?b.set("visible",!0):b.set("visible",!1),b instanceof h&&k.setVisibleLayerList(b,g))}},getVisibleLayersList:function(e){function g(d){var a=[];d instanceof l&&(a=d.layers);d instanceof h&&(a=d.layers.getAll());
+d=void 0!==a.get?a.get("length"):a.length;for(var b=0;b<d;b++){var f=void 0!==a.getItemAt?a.getItemAt(b):a[b];e.basemap&&e.basemap._mapGroupLayer===f||(f instanceof h?(f.get("visible")&&c.push(f),g(f)):f.get("visible")&&c.push(f))}}var c=[];g(e);return c}};return k});

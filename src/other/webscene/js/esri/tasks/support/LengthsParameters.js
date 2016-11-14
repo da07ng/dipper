@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../../core/declare","dojo/_base/array","../../core/Accessor"],function(c,d,e){return c(e,{declaredClass:"esri.tasks.LengthsParameters",calculationType:null,geodesic:null,lengthUnit:null,polylines:null,toJson:function(){try{throw Error("toJson is deprecated, use toJSON instead");}catch(a){console.warn(a.stack)}return this.toJSON()},toJSON:function(){var a=d.map(this.polylines,function(a){return a.toJSON()}),b={};b.polylines=JSON.stringify(a);a=this.polylines[0].spatialReference;b.sr=a.wkid?
+a.wkid:JSON.stringify(a.toJSON());this.lengthUnit&&(b.lengthUnit=this.lengthUnit);this.geodesic&&(b.geodesic=this.geodesic);this.calculationType&&(b.calculationType=this.calculationType);return b}})});

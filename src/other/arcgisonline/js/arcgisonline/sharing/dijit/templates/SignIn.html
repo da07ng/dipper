@@ -1,0 +1,100 @@
+<div class="widgetContent">
+  <div id="login-form" class="esriFloatLeading respond" style="display:block; clear:both;">
+    <div dojotype="dijit.form.Form" id="sign-in-form" method="POST" action="">
+      <div id="organizationTitle" style="display:none; margin:10px 0 40px 0; text-align:center;"></div>
+      <div id="left" style="display:none;" class="grid_7 alpha first esriFloatLeading">
+        <h1 id="leftPanelTitle">${i18n.firstTimeSign}</h1>
+        <br/>
+
+        <div id="not_a_member_msg">
+        </div>
+        <br/>
+        <br/>
+      </div>
+      <div id="leftAgo" style="display:none;font-size:14px;" class="grid_7 alpha first esriFloatLeading">
+        <h1 style="font-size:24px;">${i18n.agsNoAccount}</h1>
+        <div id="trial" style="display:none;">
+          <div style='margin:20px 0 5px 0'>${i18n.agsTrial}</div>
+          <!--<p>${i18n.agsSubscriptionInfo}</p>-->
+          <button dojoAttachPoint="_trialUrl" style="margin:10px 0 10px 0;" class="calcite blue" type="button" dojotype="dijit.form.Button">
+            ${i18n.ags30DayTrial}
+          </button>
+          <div style='font-weight:bold;margin:20px 0 5px 0;padding-top:35px;border-top:1px solid #e5e5e5;'>${i18n.agsNoTrial}</div>
+        </div>
+        <!--<div>-->
+          <!--<div style="margin:10px 0 10px 0;">${i18n.agsCreatePersonalMsg}</div>-->
+          <!--<div style='margin:15px 0 5px 0'>${i18n.agsHavePersonal}</div>-->
+          <!--<button dojoAttachPoint="_agoRegister" style="margin:10px 0 10px 0;" type="button" class="calcite light" dojotype="dijit.form.Button">-->
+            <!--${i18n.agsRegisterPersonalBtn}-->
+          <!--</button>-->
+        <!--</div>-->
+        <div>
+          <div style='margin:15px 0 15px 0'>${i18n.createPublicAccountMsg}</div>
+          <button dojoAttachPoint="_agoCreate" class="calcite light" style="margin:10px 0 10px 0;" type="button" dojotype="dijit.form.Button">
+            ${i18n.agsCreatePersonalBtn}
+          </button>
+          <p style="font-size:11px;color:#999;">${!i18n.publicAccountMsg}</p>
+        </div>
+      </div>
+      <div id="rightAgo" class="grid_7 omega last esriFloatTrailing">
+        <!--<h1 id="rightPanelTitle">${i18n.SignIn}</h1>-->
+        <p id='rightPanelSubTitle'></p>
+        <br/>
+        <div id="sign-in-error">
+        </div>
+        <iframe dojoattachpoint="_iFrame" id="oAuthFrame" scrolling="no" style="display:none; border:0" marginheight="0" marginwidth="0" frameborder="0" width="400" height="500">
+           Your browser does not support iframes.
+        </iframe>
+        <table id="authTable" style="width:100%;display:none">
+          <tbody>
+            <tr>
+              <td class="grid_2 alpha">
+                <label for="user_username" style="padding:0;margin:0;">${i18n.userLabel}</label>
+              </td>
+              <td>
+                <div id="user_username" name="user_username" class="grid_5 omega" style="padding:2px;margin:0;" dojotype="dijit.form.TextBox" trim="true">
+                </div>
+              </td>
+            </tr>
+            <tr height="5">
+              <td colspan="2" height="5">
+              </td>
+            </tr>
+            <tr>
+              <td class="grid_2 alpha">
+                <label for="user_password" style="padding:0;margin:0;">${i18n.passwordLabel}</label>
+              </td>
+              <td>
+                <div id="user_password" name="user_password" class="grid_5 omega" style="padding:2px;margin:0;" type="password" dojotype="dijit.form.TextBox"trim="true">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+              </td>
+              <td>
+                <div id="signInHelp">
+                  <a id="signInHelpLink">${i18n.needHelpSign}</a>
+                  <br/>
+                  <br/>
+                </div>
+                <input id="remember-me" style="height:24px;margin:auto;" value="off" dojotype="dijit.form.CheckBox" />
+                <label id="remember-me-label" for="remember-me">${i18n.rememberMe}</label>
+                <div id="invitationReminder" style="display:none; font-size:0.9em;"></div>
+                <br/>
+                <br/>
+                <button id="button_sign_in" style="margin:0;padding:0;" type="submit" dojotype="dijit.form.Button">
+                  ${i18n.SignIn}
+                </button>
+                <img dojoAttachPoint='_keyImgicon' class="esriLeadingMargin1" style="position:absolute;"/>
+                <br/>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div style="width:100%; clear:both;">
+  </div>
+</div>

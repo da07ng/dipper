@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>DotRender</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <style>
+    
+      html, body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #FFF;
+        font-family: "Microsoft Yahei","微软雅黑", "Pinghei";
+      }
+      article{
+        display: block;
+      }
+      .radio, .checkbox {
+        min-height: 20px;
+        padding-left: 20px;
+      }
+      .center {
+        width: auto;
+        display: table;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+      #page_content {
+        background: #fff;
+        padding: 10px 30px;
+        clear: right;
+        overflow: hidden;
+        font-size: 14px;
+        border: 1px solid #ccc;
+      }
+      #page_content p {
+        margin: 10px 0;
+        overflow: hidden;
+      }
+      .md-body {
+        font-size: 12px;
+        line-height: 2;
+        color: #808080;
+        padding: 0 20px 20px;
+        margin: 0 auto;
+      }
+      .md-body > h1:first-child {
+        margin-top: -10px;
+      }
+      .md-body h1 {
+        line-height: 60px;
+        font-size: 20px;
+        color: #333;
+        text-indent: 30px;
+        font-weight: normal;
+        margin: 16px -30px 16px;
+        border-bottom: 1px solid #e5e5e5;
+      }
+      .md-body h2 {
+        color: #0075c2;
+        font-size: 18px;
+        font-weight: normal;
+        margin: 16px -30px;
+        clear: left;
+        border-top: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5;
+        line-height: 58px;
+        text-indent: 20px;
+        position: relative;
+        padding: 0 30px;
+        background: url(../images/h2.png) no-repeat 30px center;
+      }
+      .md-body h2::before, .md-body h2::after {
+        content: '';
+        width: 30px;
+        height: 1px;
+        bottom: 0px;
+        margin: 0 0 -1px -50px;
+        background: #fff;
+        position: absolute;
+        box-sizing: border-box;
+      }
+      .md-body h2::after {
+        right: 0;
+      }
+      .md-body h1 + h2 {
+        margin-top: -17px;
+      }
+      #map {
+        height: 420px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: url(../images/loading.gif) no-repeat center center;
+      }
+    </style>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+  </head>
+
+  <body>
+    <div class="container-fluid layoutContainer">
+      <article id="page_content" class="md-body">
+        <h1>数据展示-点密度图</h1>
+        <h2>简介</h2>
+        <p>热点图是通过使用不同的标志将图或页面上的区域按照受关注程度的不同加以标注并呈现的一种分析手段，标注的手段一般采用颜色的深浅、点的疏密以及呈现比重的形式，不管使用哪种方式最终都可以得到绚丽的可视化效果。</p>
+        <p>DotDensityRenderer对象使用DotDensityFillSymbol符号对Polygon类型的要素进行着色。该专题图使用随机分布的点的密度来表现要素某个属性值得大小。也可以对图层的多个属性值着色，通过指定不同的点符号来区分。</p>
+        <p>DotDensityRenderer对象实现IDotDensityRenderer接口，定义了使用点密度着色方法和属性，如DotDensitySymbol用于确定着色点符号，CreateLegend方法用于产生图例。</p>
+        <h2>示例</h2>
+        <div id="map"></div>
+        <h2>代码</h2>
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;
+    &lt;meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/&gt;
+    &lt;title&gt;Simple Map&lt;/title&gt;
+    &lt;link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css"&gt;
+    &lt;style&gt;
+      html, body, #map {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #FFF;
+        overflow: hidden;
+        font-family: "Trebuchet MS";
+      }
+    &lt;/style&gt;
+    &lt;script src="http://js.arcgis.com/3.13/"&gt;&lt;/script&gt;
+    &lt;script&gt;
+      var map;
+      require([
+        "esri/map", "esri/geometry/Extent", 
+        "esri/layers/ArcGISTiledMapServiceLayer", "esri/layers/FeatureLayer", 
+        "esri/InfoTemplate", "esri/renderers/DotDensityRenderer", 
+        "esri/renderers/ScaleDependentRenderer", "esri/dijit/Legend",
+        "esri/Color", "dojo/_base/array", "dojo/dom", "dojo/domReady!"
+      ], function(
+        Map, Extent, 
+        ArcGISTiledMapServiceLayer, FeatureLayer, 
+        InfoTemplate, DotDensityRenderer, 
+        ScaleDependentRenderer, Legend, 
+        Color, array, dom
+      ) {
+        map = new Map("map", {
+          extent: new Extent({"xmin":-2460944,"ymin":-1389910,"xmax":2297115,"ymax":1643787,"spatialReference":{"wkid":102003}}),
+          maxScale: 5000000,
+          minScale: 20000000
+        });
+        
+        var basemap = new ArcGISTiledMapServiceLayer("http://tiles.arcgis.com/tiles/nGt4QxSblgDfeJn9/arcgis/rest/services/Dark_Gray_Albers_North_America_Base/MapServer");
+        map.addLayer(basemap);
+         map.on("load", function() {
+          map.disableScrollWheelZoom();
+        });
+        var layer = new FeatureLayer("http://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/USA_County_Crops_2007/FeatureServer/0", {
+          outFields: ["STATE", "COUNTY", "M163_07"],
+          infoTemplate: new InfoTemplate("${COUNTY}, ${STATE}", "Corn Planted: ${M163_07:NumberFormat} Acres")
+        });
+        layer.setDefinitionExpression("M163_07>10000");
+        
+        
+        layer.on("load", function(e) {
+          array.forEach(e.layer.fields, function(field) {
+            if ( field.alias === "M163_07" ) {
+              field.alias = "Acres of Corn";
+            }
+          });
+        });
+        
+        var renderer = new ScaleDependentRenderer({
+          rendererInfos: [{
+            renderer: new DotDensityRenderer({
+              fields: [{
+                name: "M163_07",
+                color: new Color("#CC8800")
+              }],
+              dotValue: 3200,
+              dotSize: 1
+            }),
+          maxScale: 17000000,
+          minScale: 20000001
+          }, {
+            renderer: new DotDensityRenderer({
+              fields: [{
+                name: "M163_07",
+                color: new Color("#CC8800")
+              }],
+              dotValue: 1600,
+              dotSize: 1
+            }),
+          maxScale: 8500000,
+          minScale: 17000000
+          }, {
+            renderer: new DotDensityRenderer({
+              fields: [{
+                name: "M163_07",
+                color: new Color("#CC8800")
+              }],
+              dotValue: 800,
+              dotSize: 1
+            }),
+          maxScale: 5000000,
+          minScale: 8500000
+          }]
+        });
+        layer.setRenderer(renderer);
+        map.addLayers([layer]);
+        
+        var refLayer = new ArcGISTiledMapServiceLayer("http://tiles.arcgis.com/tiles/nGt4QxSblgDfeJn9/arcgis/rest/services/Dark_Gray_Albers_North_America_Reference/MapServer");
+        map.addLayer(refLayer);
+
+        map.on("layers-add-result", function(e) {
+          var corn = e.layers[0].layer;
+          var legend = new Legend({
+            map: map, 
+            layerInfos: [{ 
+              layer: corn,
+              title: "US Corn Production (2007)" 
+            }]
+          }, "legend");
+          legend.startup();
+        });
+      });
+    &lt;/script&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;div id="map"&gt;&lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+          </textarea>
+        </p>
+      </article>
+    </div>
+    <script src="http://js.arcgis.com/3.13/"></script>
+    <script>
+      var map;
+      require([
+        "esri/map", "esri/geometry/Extent", 
+        "esri/layers/ArcGISTiledMapServiceLayer", "esri/layers/FeatureLayer", 
+        "esri/InfoTemplate", "esri/renderers/DotDensityRenderer", 
+        "esri/renderers/ScaleDependentRenderer", "esri/dijit/Legend",
+        "esri/Color", "dojo/_base/array", "dojo/dom", "dojo/domReady!"
+      ], function(
+        Map, Extent, 
+        ArcGISTiledMapServiceLayer, FeatureLayer, 
+        InfoTemplate, DotDensityRenderer, 
+        ScaleDependentRenderer, Legend, 
+        Color, array, dom
+      ) {
+        map = new Map("map", {
+          extent: new Extent({"xmin":-2460944,"ymin":-1389910,"xmax":2297115,"ymax":1643787,"spatialReference":{"wkid":102003}}),
+          maxScale: 5000000,
+          minScale: 20000000
+        });
+
+        var basemap = new ArcGISTiledMapServiceLayer("http://tiles.arcgis.com/tiles/nGt4QxSblgDfeJn9/arcgis/rest/services/Dark_Gray_Albers_North_America_Base/MapServer");
+        map.addLayer(basemap);
+         map.on("load", function() {
+          map.disableScrollWheelZoom();
+        });
+        var layer = new FeatureLayer("http://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/USA_County_Crops_2007/FeatureServer/0", {
+          outFields: ["STATE", "COUNTY", "M163_07"],
+          infoTemplate: new InfoTemplate("${COUNTY}, ${STATE}", "Corn Planted: ${M163_07:NumberFormat} Acres")
+        });
+        layer.setDefinitionExpression("M163_07>10000");
+        
+        
+        layer.on("load", function(e) {
+          array.forEach(e.layer.fields, function(field) {
+            if ( field.alias === "M163_07" ) {
+              field.alias = "Acres of Corn";
+            }
+          });
+        });
+        
+        var renderer = new ScaleDependentRenderer({
+          rendererInfos: [{
+            renderer: new DotDensityRenderer({
+              fields: [{
+                name: "M163_07",
+                color: new Color("#CC8800")
+              }],
+              dotValue: 3200,
+              dotSize: 1
+            }),
+          maxScale: 17000000,
+          minScale: 20000001
+          }, {
+            renderer: new DotDensityRenderer({
+              fields: [{
+                name: "M163_07",
+                color: new Color("#CC8800")
+              }],
+              dotValue: 1600,
+              dotSize: 1
+            }),
+          maxScale: 8500000,
+          minScale: 17000000
+          }, {
+            renderer: new DotDensityRenderer({
+              fields: [{
+                name: "M163_07",
+                color: new Color("#CC8800")
+              }],
+              dotValue: 800,
+              dotSize: 1
+            }),
+          maxScale: 5000000,
+          minScale: 8500000
+          }]
+        });
+        layer.setRenderer(renderer);
+        map.addLayers([layer]);
+        
+        var refLayer = new ArcGISTiledMapServiceLayer("http://tiles.arcgis.com/tiles/nGt4QxSblgDfeJn9/arcgis/rest/services/Dark_Gray_Albers_North_America_Reference/MapServer");
+        map.addLayer(refLayer);
+
+        map.on("layers-add-result", function(e) {
+          var corn = e.layers[0].layer;
+          var legend = new Legend({
+            map: map, 
+            layerInfos: [{ 
+              layer: corn,
+              title: "US Corn Production (2007)" 
+            }]
+          }, "legend");
+          legend.startup();
+        });
+      });
+    </script>
+  </body>
+</html>

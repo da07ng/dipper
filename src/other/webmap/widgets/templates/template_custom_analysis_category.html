@@ -1,0 +1,26 @@
+<div dojoType="dijit.layout.BorderContainer" region="top">
+    <div dojoAttachPoint="analysisContentHeader" dojoType="dijit.layout.ContentPane" region="top" class="panel panel_left" style="display: none;">
+        <table class="esriFormTable">
+            <tr>
+                <td>
+                    <div class="iconPerformAnalysis32"></div>
+                </td>
+                <td>
+                    <div dojoAttachPoint="analysisContentTitle" class="panelSubHeader analysisTitle" style="padding:0.5em;">${i18n.performAnalysis}</div>
+                </td>
+                <td>
+                    <div class="esriFloatTrailing" style="padding:0;">
+                        <a href="#" dojoAttachPoint="_closeBtn" dojoAttachEvent="onclick:_onClose" title="${i18n.close}" class="panel panel_close panel_collapse close_icon">
+                            <img src="images/close.gif" border="0" /></A>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div dojoAttachPoint="analysisContentPane" dojoType="dijit.layout.ContentPane" region="center" style="overflow-x:hidden;overflow-y:auto;position:relative;" class="scrollPane">
+        <div dojoAttachPoint="aggregateCtr" style="width:100%"></div>
+    </div>
+    <div dojoAttachPoint="analysisContentFooter" dojoType="dijit.layout.ContentPane" region="bottom" style="height:40px; padding: 0 5px 0 5px; display: none;">
+        <div class="footer" dojoAttachPoint="analysisSiteFooter" dojotype="arcgisonline.sharing.dijit.SiteFooterMap" style="white-space:normal;"></div>
+    </div>
+</div>

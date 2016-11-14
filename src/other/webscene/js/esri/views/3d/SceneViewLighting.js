@@ -1,0 +1,6 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["dojo/_base/lang","../../core/Evented","../../core/JSONSupport"],function(d,e,f){var c=f.createSubclass([e],{declaredClass:"esri.views.3d.SceneViewLighting",classMetadata:{properties:{date:{copy:function(a,b){a.setTime(b.getTime())}},ready:{readOnly:!0,getter:function(){return this._ready}}},reader:{exclude:["datetime"],add:["date"]}},constructor:function(){this._ready=!1},getDefaults:function(){var a=new Date("March 15, 2015 12:00:00");a.setUTCHours(a.getUTCHours()-a.getTimezoneOffset()/
+60);return d.mixin({date:a},this.inherited(arguments))},date:null,_dateSetter:function(a,b){if(null==a)return a;b||(b=new Date);"number"===typeof a?b.setTime(a):b.setTime(a.getTime());return b},_dateReader:function(a,b){return null==b.datetime?null:new Date(b.datetime)},directShadows:!1,ambientOcclusion:!1,clone:function(){return new c({date:null!=this.date?new Date(this.date):null,directShadows:!!this.directShadows,ambientOcclusion:!!this.ambientOcclusion})},toJSON:function(){var a={};null!=this.date&&
+(a.datetime=this.date.getTime());this.directShadows&&(a.directShadows=!0);this.ambientOcclusion&&(a.ambientOcclusion=!0);return a}});return c});

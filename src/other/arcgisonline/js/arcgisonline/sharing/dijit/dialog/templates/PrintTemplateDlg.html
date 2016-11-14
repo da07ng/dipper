@@ -1,0 +1,53 @@
+<div>
+  <div class="${baseClass} print-template-dialog" data-dojo-type="dijit/Dialog" data-dojo-attach-point="_dialog" title="${i18n.createTemplate}">
+    <table class="formTable">
+      <tbody>
+      <tr>
+        <td class="titleCol">${i18n.templateName}</td>
+        <td>
+          <input type="text" class="textBox" data-dojo-type="dijit/form/TextBox" data-dojo-attach-point="_name" maxlength="50">
+        </td>
+      </tr>
+      <tr class="spacer"><td colspan="2">&nbsp;</td></tr>
+      <tr>
+        <td class="titleCol">${i18n.templateDescription}</td>
+        <td>
+          <input type="text" class="textBox" data-dojo-type="dijit/form/TextBox" data-dojo-attach-point="_description" maxlength="120">
+        </td>
+      </tr>
+      <tr class="spacer"><td colspan="2">&nbsp;</td></tr>
+      <tr>
+        <td class="titleCol">${i18n.format}</td>
+        <td>
+          <div class="comboBox" data-dojo-type="arcgisonline/sharing/dijit/ComboBox" data-dojo-attach-point="_formats"></div>
+        </td>
+      </tr>
+      <tr class="spacer"><td colspan="2">&nbsp;</td></tr>
+      <tr>
+        <td class="titleCol">${i18n.layout}</td>
+        <td>
+          <div class="comboBox" data-dojo-type="arcgisonline/sharing/dijit/ComboBox" data-dojo-attach-point="_layouts"></div>
+        </td>
+      </tr>
+      <tr class="spacer"><td colspan="2">&nbsp;</td></tr>
+      <tr>
+        <td class="titleCol">&nbsp;</td>
+        <td>
+          <span data-dojo-attach-point="_legendContainer">
+            <input id="printLegend" type="checkbox"
+                 data-dojo-type="dijit/form/CheckBox" data-dojo-attach-point="_legend">
+            <label for="printLegend">${i18n.legend}</label>
+          </span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="esriFloatTrailing">
+      <button type="button" class="calcite blue small"
+              data-dojo-type="dijit/form/Button" data-dojo-attach-point="_okBtn">${i18n.create}</button>
+      <button type="button" class="calcite transparent small"
+              data-dojo-type="dijit/form/Button" data-dojo-attach-point="_cancelBtn">${i18n.cancel}</button>
+    </div>
+    <br style="clear:both;">
+  </div>
+</div>

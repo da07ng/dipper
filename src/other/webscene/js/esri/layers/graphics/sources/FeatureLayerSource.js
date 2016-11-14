@@ -1,0 +1,6 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define("../../../core/declare dojo/_base/lang ../../../core/Accessor ../../../core/Promise ../../../request ../../../core/urlUtils ../../../tasks/QueryTask".split(" "),function(e,d,f,g,h,k,l){return e([f,g],{classMetadata:{computed:{parsedUrl:["url"],queryTask:["url","source","gdbVersion"]}},getDefaults:function(a){var c=this.inherited(arguments),b=a.layer;b&&(c=d.mixin(c,{url:b.url,source:b.source,gdbVersion:b.gdbVersion}));return c},initialize:function(){this.addResolvingPromise(this._fetchService())},
+_parsedUrlGetter:function(){return this.url?k.urlToObject(this.url):null},_queryTaskGetter:function(){return new l({url:this.url,source:this.source,gdbVersion:this.gdbVersion})},queryFeatures:function(a){return this.queryTask.execute(a)},_fetchService:function(){return h({url:this.parsedUrl.path,content:d.mixin({f:"json"},this.parsedUrl.query),handleAs:"json",callbackParamName:"callback"}).then(function(a){a._ssl&&(delete a._ssl,this.url=this.url.replace(/^http:/i,"https:"));this.layerDefinition=
+a}.bind(this))}})});

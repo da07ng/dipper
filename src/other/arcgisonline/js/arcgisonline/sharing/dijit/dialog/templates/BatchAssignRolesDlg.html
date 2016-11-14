@@ -1,0 +1,99 @@
+<div>
+  <div class="${baseClass} batch-assign-group-dialog" data-dojo-type="dijit/Dialog" data-dojo-attach-point="_dialog"
+       title="${i18n.assignRoles}" data-dojo-props="closable:false">
+    <div data-dojo-type="dijit/layout/StackContainer" data-dojo-attach-point="_stackContainer">
+      <div data-dojo-type="dijit/layout/ContentPane" data-dojo-attach-point="_stackSelectUsers" class="select-users-stack">
+        <div class="stepHeader">
+          <div class="esriFloatLeading stepSprite step1">&nbsp;</div>&nbsp;&nbsp;
+          <div class="stepMessageContainer">
+            <div class="stepMessage" data-dojo-attach-point="_step1Message"><strong>${i18n.step1}</strong></div>
+          </div>
+        </div>
+
+        <div data-dojo-attach-point="_userSelectContainer">
+          <div data-dojo-attach-point="_userSelector" data-dojo-type="arcgisonline/sharing/dijit/OrgUserSelector"
+            data-dojo-props="enableListActions:true, excludeCurrentUser:true"></div>
+        </div>
+        <br>
+
+        <div class="esriFloatTrailing">
+          <button class="calcite blue small" type="button" data-dojo-type="dijit/form/Button"
+            data-dojo-attach-point="_selectUsersNext">${i18n.next}</button>
+          <button class="calcite transparent small" type="button" data-dojo-type="dijit/form/Button"
+            data-dojo-attach-point="_selectUsersClose">${i18n.cancel}</button>
+        </div>
+        <br class="clearBreak">
+        <br>
+      </div>
+      <div data-dojo-type="dijit/layout/ContentPane" data-dojo-attach-point="_stackSelectRole" class="select-role-stack">
+        <div class="stepHeader">
+          <div class="esriFloatLeading stepSprite step2">&nbsp;</div>&nbsp;&nbsp;
+          <div class="stepMessageContainer">
+            <div class="stepMessage" data-dojo-attach-point="_step2Message"><strong>${i18n.step2}</strong></div>
+          </div>
+        </div>
+        <div class="marginTop1" data-dojo-attach-point="_summaryContainer">
+          <table class="marginTop1" cellpadding="0" cellspacing="0">
+            <tbody>
+            <tr>
+              <td class="column270">
+                <div class="listLabel">
+                  <div data-dojo-attach-point="_userListLabel">${i18n.selectedUsers}</div>
+                </div>
+                <div class="listContainer" data-dojo-type="dijit/layout/BorderContainer"
+                     data-dojo-props="gutters:false,splitters:false,design:'headline'">
+                  <div class="listInnerContainer"
+                       data-dojo-type="dijit/layout/ContentPane"
+                       data-dojo-props="region:'middle',splitter:false">
+                    <div data-dojo-attach-point="_selectedUsersPane">
+                      <!-- selected user list is populated here -->
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="column10"></td>
+              <td class="column270">
+                <div class="roleLabel">${i18n.newRole}</div><br>
+                <div data-dojo-attach-point="_roleSelect" class="roleSelect roleFilter"
+                     data-dojo-props="searchAttr:'name'" data-dojo-type="dijit/form/FilteringSelect"></div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          </div>
+        <br>
+        <div class="esriFloatTrailing">
+          <button class="calcite default small hoverWhite" type="button" data-dojo-type="dijit/form/Button"
+                  data-dojo-attach-point="_summaryBack">${i18n.back}</button>
+          <button class="calcite green small" type="button" data-dojo-type="dijit/form/Button"
+                  data-dojo-attach-point="_summaryAssign">${i18n.assign}</button>
+          <button class="calcite transparent small" type="button" data-dojo-type="dijit/form/Button"
+                  data-dojo-attach-point="_summaryClose">${i18n.cancel}</button>
+        </div>
+        <br style="clear:both;">
+        <br>
+      </div>
+      <div data-dojo-type="dijit/layout/ContentPane" data-dojo-attach-point="_stackResultSummary" class="result-summary-stack">
+        <div class="stepHeader">
+          <div class="esriFloatLeading stepSprite step4">&nbsp;</div>&nbsp;&nbsp;
+          <div class="stepMessageContainer">
+            <div class="stepMessage" data-dojo-attach-point="_step3Message"><strong>${i18n.assignmentComplete}</strong></div>
+          </div>
+        </div>
+        <div class="resultSummary">
+          <div class="resultScroll" data-dojo-attach-point="_resultMessage"></div>
+          <div class="marginTop1"><label>${i18n.continueAssignment}</label></div>
+        </div>
+        <br>
+        <div class="esriFloatTrailing">
+          <button class="calcite blue small" type="button" data-dojo-type="dijit/form/Button"
+                  data-dojo-attach-point="_resultAssign">${i18n.assignMore}</button>
+          <button class="calcite default small hoverWhite" type="button" data-dojo-type="dijit/form/Button"
+                  data-dojo-attach-point="_resultClose">${i18n.done}</button>
+        </div>
+        <br style="clear:both;">
+        <br>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,112 @@
+<div data-dojo-type="dijit.layout.BorderContainer" region="top" style="height:100%;">
+  <div class="panel panel_left" data-dojo-type="dijit.layout.ContentPane" region="center" style="padding:7px;margin-bottom:-5px;">
+    <div id="rendererHeader" data-dojo-type="dijit.layout.ContentPane" region="top">
+      <div class="esriFloatTrailing" style="display:inline;">
+        <a href="JavaScript:void(0);" data-dojo-attach-point="_closeBtn" data-dojo-attach-event="onClick:_onClose" title="${i18n.close}" class="panel panel_close panel_collapse"></a>
+      </div>
+      <div id="rendererTitle" class="esriFloatLeading panel_title">
+        ${i18n.rendererPanelTitle}
+      </div>
+      <div data-dojo-attach-point="_rendererGalleryLayer" class="esriFloatLeading panel_title" style="clear:both;">
+      </div>
+      <div style="clear:both; height:1px;"></div>
+    </div>
+    <div data-dojo-type="dijit.layout.ContentPane" region="center" id="rendererGalleryPane" style="padding-top:10px;">
+      <div data-dojo-attach-point="_rendererTitle1">
+        <div class="esriFloatLeading firstIcon"></div>    
+        <div class="esriFloatLeading title">${i18n.chooseAttribute}</div> 
+        <table class="esriFloatLeading" cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td style="width: 3.5em;" align="right" valign="top">
+                <div data-dojo-attach-point="_rendererSwitchAttribute12" class="switchAttributeIcon esriFloatTrailing rendererClickable" style="margin: 23px 10px 0 10px; display:none;"></div>
+              </td>
+              <td>
+                <div style="clear:both;">
+                  <select class="rendererInput" data-dojo-attach-point="_rendererAttribute" data-dojo-attach-event="onChange:_onChangeAttribute" data-dojo-type="dijit.form.Select" maxHeight="150" sortByLabel="false">
+                  </select>
+                </div>
+                <div data-dojo-attach-point="_rendererAttributeDiv2" style="clear:both; padding-top:8px;display:none;">
+                  <table cellspacing="0" cellpadding="0">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <select class="rendererInput esriFloatLeading" data-dojo-attach-point="_rendererAttribute2" data-dojo-attach-event="onChange:_onChangeAttribute2" data-dojo-type="dijit.form.Select" maxHeight="150" sortByLabel="false">
+                          </select>
+                        </td><td>
+                          <div data-dojo-attach-point="_rendererRemoveAttribute2" class="removeAttributeIcon rendererClickable" style="margin: 4px 10px 0 10px;"></div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div data-dojo-attach-point="_rendererAttributeDiv3" style="clear:both; padding-top:8px;display:none;">
+                  <table cellspacing="0" cellpadding="0">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <select class="rendererInput esriFloatLeading" data-dojo-attach-point="_rendererAttribute3" data-dojo-attach-event="onChange:_onChangeAttribute3" data-dojo-type="dijit.form.Select" maxHeight="150" sortByLabel="false">
+                          </select>
+                        </td><td>
+                          <div data-dojo-attach-point="_rendererRemoveAttribute3" class="removeAttributeIcon rendererClickable" style="margin: 4px 10px 0 10px;"></div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div data-dojo-attach-point="_rendererAttributeDiv4" style="clear:both; padding-top:8px;display:none;">
+                  <table cellspacing="0" cellpadding="0">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <select class="rendererInput esriFloatLeading" data-dojo-attach-point="_rendererAttribute4" data-dojo-attach-event="onChange:_onChangeAttribute4" data-dojo-type="dijit.form.Select" maxHeight="150" sortByLabel="false">
+                          </select>
+                        </td><td>
+                          <div data-dojo-attach-point="_rendererRemoveAttribute4" class="removeAttributeIcon rendererClickable" style="margin: 4px 10px 0 10px;"></div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div data-dojo-attach-point="_rendererAttributeDiv5" style="clear:both; padding-top:8px;display:none;">
+                  <table cellspacing="0" cellpadding="0">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <select class="rendererInput esriFloatLeading" data-dojo-attach-point="_rendererAttribute5" data-dojo-attach-event="onChange:_onChangeAttribute5" data-dojo-type="dijit.form.Select" maxHeight="150" sortByLabel="false">
+                          </select>
+                        </td><td>
+                          <div data-dojo-attach-point="_rendererRemoveAttribute5" class="removeAttributeIcon rendererClickable" style="margin: 4px 10px 0 10px;"></div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div data-dojo-attach-point="_rendererAddAttribute" class="rendererClickable" style="clear:both; padding-top:10px; display:none;">
+                  <div data-dojo-attach-point="_rendererAddAttributeIcon" class="addAttributeIcon esriFloatLeading"></div>
+                  <div data-dojo-attach-point="_rendererAddAttributeText" class="esriFloatLeading" style="margin: 0 10px;">${i18n.addAttribute}</div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>   
+      </div>
+      <div style="padding-top:15px; clear:both;">    
+        <div class="esriFloatLeading" data-dojo-attach-point="_rendererTitle2">    
+          <div class="esriFloatLeading secondIcon"></div>    
+          <div class="esriFloatLeading title">${i18n.selectDrawingStyle}</div>
+        </div>    
+        <div data-dojo-attach-point="_rendererTypes" class="esriFloatLeading rendererTypes" style="clear: both; overflow-y:auto;">  
+        </div>    
+      </div>
+    </div>
+  </div>
+  <div id="rendererGalleryContentClose">
+    <button data-dojo-type="dijit.form.Button" type="button" class="calcite blue" data-dojo-attach-point="_doneButton" data-dojo-attach-event="onClick:_onDone"><span>${i18n.done}</span></button>
+    <button data-dojo-type="dijit.form.Button" type="button" class="calcite transparent" id="rendererContent-close" data-dojo-attach-point="_cancelButton" data-dojo-attach-event="onClick:_onCancel"><span>${i18n.cancel}</span></button>
+  </div>
+  <div id="rendererContentFooter" data-dojo-type="dijit.layout.ContentPane" region="bottom" style="height:40px; padding: 0 5px 0 5px;">
+    <div class="footer" id="rendererFooter" data-dojo-type="arcgisonline.sharing.dijit.SiteFooterMap" style="white-space:normal;">
+    </div>
+  </div>
+</div>

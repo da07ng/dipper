@@ -1,0 +1,95 @@
+<div class="${baseClass}" data-dojo-type="dijit.layout.ContentPane" data-dojo-attach-point="containerNode">
+  <div class="createJoin" data-dojo-attach-point="_createJoinContainer">
+    <p>${i18n.createOrJoinDesc}</p>
+    <div style="text-align:center;margin-top:2em;margin-bottom:3em;">
+      <button type="button" class="calcite secondary small"
+              data-dojo-attach-point="_createSiteBtn" data-dojo-type="dijit.form.Button">${i18n.createSite}</button>
+      <button type="button" class="calcite tertiary small"
+              data-dojo-attach-point="_joinSiteBtn" data-dojo-type="dijit.form.Button">${i18n.joinSite}</button>
+    </div>
+  </div>
+  <div data-dojo-attach-point="_createSiteContainer">
+    <div id="_createSiteDescription" data-dojo-attach-point="_description">
+      <div>${i18n.enterDetails}</div><br/>
+      <div>${i18n.onceCreated}</div>
+    </div><br/><br>
+    <div data-dojo-attach-point="_form" class="newStyles grid-50" data-dojo-type="dijit.form.Form">
+      <div class="formBlock" id="firstNameBlock">
+        <label for="firstNameInput">${i18n.firstNameLabel}</label>
+        <input id="firstNameInput" type="text" data-dojo-attach-point="_firstnameInput" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim: true">
+      </div>
+      <div class="formBlock" id="lastNameBlock">
+        <label for="lastNameInput">${i18n.lastNameLabel}</label>
+        <input id="lastNameInput" type="text" data-dojo-attach-point="_lastnameInput" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim: true">
+      </div>
+      <div class="formBlock">
+        <label for="emailInput">${i18n.currentEmailAdr}</label>
+        <input id="emailInput" type="text" data-dojo-attach-point="_emailInput" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim: true">
+      </div>
+      <div class="formBlock">
+        <label for="confirmEmailInput">${i18n.confirmEmailAdr}</label>
+        <input id="confirmEmailInput" type="text" data-dojo-attach-point="_confirmEmailInput" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim: true">
+      </div>
+      <div class="formBlock">
+        <label for="usernameInput">${i18n.usernameLabel}</label>
+        <input id="usernameInput" type="text" data-dojo-attach-point="_usernameInput" data-dojo-type="dijit.form.TextBox" data-dojo-props="placeHolder:'${i18n.usernamePlaceholder}'"/>
+      </div>
+      <div class="formBlock">
+        <label for="passwordInput">${i18n.passwordLabel}</label>
+        <input id="passwordInput" type="password" data-dojo-attach-point="_passwordInput" data-dojo-type="dijit.form.TextBox" data-dojo-props="placeHolder:'${i18n.passwordPlaceholder}'"/>
+      </div>
+      <div class="formBlock">
+        <label for="repeatPasswordInput">${i18n.repeatPasswordLabel}</label>
+        <input id="repeatPasswordInput" type="password" data-dojo-attach-point="_repeatPasswordInput" data-dojo-type="dijit.form.TextBox" data-dojo-props="placeHolder:'${i18n.repeatPasswordPlaceholder}'"/>
+      </div>
+      <div class="formBlock">
+        <label for="identityQuestionInput">${i18n.identityQLabel}</label>
+        <div id="identityQuestionInput" data-dojo-attach-point="_identityQuestionInput" data-dojo-type="arcgisonline.sharing.dijit.ComboBox" data-dojo-attach-event="onChange:onIdentityQuestionChange" data-dojo-props="trim: true" style="margin-left:0;margin-right:0;width:350px !important;"></div>
+      </div>
+      <div class="formBlock">
+        <label for="identityAnswerInput">${i18n.identityALabel}</label>
+        <div id="identityAnswerInput" data-dojo-attach-point="_identityAnswerInput" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim: true"></div>
+      </div>
+      <br>
+      <div data-dojo-attach-point="_description">
+        <div>${i18n.contentDirDetails}</div><br/>
+        <div>${i18n.contentDirNote}</div>
+      </div><br/><br>
+      <div class="formBlock" id="contentDirBlock">
+        <label for="contentDirInput">${i18n.contentDirLabel}</label>
+        <input id="contentDirInput" type="text" class="longTextBox" data-dojo-attach-point="_contentDirInput" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim: true">
+      </div>
+      <div class="bottom-buttons">
+        <div data-dojo-attach-point="_createBackBtn" data-dojo-type="dijit.form.Button" type="button" class="calcite default">${i18n.backButtonLabel}</div>
+        <div data-dojo-attach-point="_createAdminBtn" data-dojo-type="dijit.form.Button" type="button" class="calcite blue">${i18n.createButtonLabel}</div>
+      </div>
+    </div>
+  </div>
+  <div data-dojo-attach-point="_joinSiteContainer">
+    <div data-dojo-attach-point="_joinDescription">
+      <div>${i18n.joinDetails}</div>
+    </div><br/><br>
+    <div data-dojo-attach-point="_joinForm" class="newStyles grid-50" data-dojo-type="dijit.form.Form">
+      <div class="formBlock" id="portalUrlBlock">
+        <label for="portalUrlInput">${i18n.portalUrlLabel}</label>
+        <input id="portalUrlInput" type="text" class="longTextBox" data-dojo-attach-point="_portalUrlInput" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim: true">
+      </div>
+      <div class="formBlock">
+        <label></label><!-- placeholder to align example text properly-->
+        <span class="example">${i18n.examplePortalUrlLabel}</span>
+      </div>
+      <div class="formBlock">
+        <label for="joinUsernameInput">${i18n.adminUsernameLabel}</label>
+        <input id="joinUsernameInput" type="text" data-dojo-attach-point="_joinUsernameInput" data-dojo-type="dijit.form.TextBox"/>
+      </div>
+      <div class="formBlock">
+        <label for="joinPasswordInput">${i18n.adminPasswordLabel}</label>
+        <input id="joinPasswordInput" type="password" data-dojo-attach-point="_joinPasswordInput" data-dojo-type="dijit.form.TextBox"/>
+      </div>
+      <div class="bottom-buttons">
+        <div data-dojo-attach-point="_joinBackBtn" data-dojo-type="dijit.form.Button" type="button" class="calcite default">${i18n.backButtonLabel}</div>
+        <div data-dojo-attach-point="_joinPortalBtn" data-dojo-type="dijit.form.Button" type="button" class="calcite blue">${i18n.joinButtonLabel}</div>
+      </div>
+    </div>
+  </div>
+</div>

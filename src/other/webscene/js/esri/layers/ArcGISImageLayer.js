@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["esri/core/declare","dojo/_base/lang","./Layer","./mixins/ArcGISImageService"],function(d,c,e,f){return d([e,f],{declaredClass:"esri.layers.ArcGISImageLayer",viewModulePaths:{"2d":"../views/2d/layers/ImageLayerView2D"},_DRAW_TYPE:{canvas2D:"2d",webGL:"webgl",expWebGL:"experimental-webgl",webGL2:"webgl2",expWebGL2:"experimental-webgl2"},normalizeCtorArgs:function(a,b){return"string"===typeof a?c.mixin({},{url:a},b):a},getDefaults:function(a){var b=this.inherited(arguments);return c.mixin(b,
+{drawType:this._DRAW_TYPE.canvas2D,drawMode:!0})},initialize:function(){this.addResolvingPromise(this._fetchService())},drawType:null,fetchImage:function(a){return this._fetchImage(a)}})});

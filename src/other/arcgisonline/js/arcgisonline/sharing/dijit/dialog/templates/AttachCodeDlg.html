@@ -1,0 +1,44 @@
+<div class="widgetContainer"  dojoAttachPoint="containerNode">
+  <div dojotype="dijit.Dialog" dojoAttachPoint="dialog" title="${titleLabel}" execute="">
+    <table>
+      <tbody>
+        <tr>
+          <td>
+			      <div id="code_upload_message" style="margin-bottom:10px;">
+			        ${messageLabel}
+			      </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+			      <form dojoAttachPoint="form" action="" enctype="multipart/form-data" method="post" onSubmit="return false;">
+			        <input type="file" name="file" dojoAttachPoint="fileInput" size="50" />
+              <input type="hidden" name="title" value="" />
+			        <input type="hidden" name="type" value="" />
+			        <input type="hidden" name="typekeywords" value="" />
+			        <input type="hidden" name="overwrite" value="false" />
+              <input type="hidden" name="relationshipType" value="" />
+              <input type="hidden" name="originItemId" value="" />
+              <input type="hidden" name="async" value="true" />
+			
+			        <!-- this is complicated... need some way of automating this -->
+			        <!--<div id="add-item-callback" name="callback.html" dojotype="dijit.form.TextBox" type="hidden" value="textarea"></div> -->
+			      </form>
+          </td>
+        </tr>
+        <tr>
+          <td align="right" style="padding-top:2em;">
+		    <button dojoAttachPoint="cancelButton" dojoType="dijit.form.Button" class="esriFloatTrailing cancel" type="button" dojoAttachEvent="onClick:_cancelButtonClick">
+		      ${i18n.cancel}
+	        </button>
+		    <button dojoAttachPoint="uploadButton" dojoType="dijit.form.Button" class="esriFloatTrailing primary"  type="button" dojoAttachEvent="onClick:_uploadButtonClick">
+		      ${i18n.uploadLabel}  
+		    </button>
+            <span id="code_upload-waiting" class="esriFloatTrailing" style="display:none;padding-top:8px;"></span>
+		    <span class="esriFloatLeading error" dojoAttachPoint="errorLabelNode" style="padding-top:8px;"></span>
+	      </td>
+	    </tr>
+	  </tbody>
+	</table>
+  </div>
+</div>

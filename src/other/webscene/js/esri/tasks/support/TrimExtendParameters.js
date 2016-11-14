@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../../core/declare","dojo/_base/lang","dojo/_base/array","../../core/Accessor"],function(a,c,d,e){a=a(e,{declaredClass:"esri.tasks.TrimExtendParameters",extendHow:null,polylines:null,trimExtendTo:null,toJson:function(){try{throw Error("toJson is deprecated, use toJSON instead");}catch(a){console.warn(a.stack)}return this.toJSON()},toJSON:function(){var a=d.map(this.polylines,function(a){return a.toJSON()}),b={};b.polylines=JSON.stringify(a);b.trimExtendTo=JSON.stringify(this.trimExtendTo.toJSON());
+b.sr=JSON.stringify(this.polylines[0].spatialReference.toJSON());b.extendHow=this.extendHow||0;return b}});c.mixin(a,{DEFAULT_CURVE_EXTENSION:0,RELOCATE_ENDS:1,KEEP_END_ATTRIBUTES:2,NO_END_ATTRIBUTES:4,NO_EXTEND_AT_FROM:8,NO_EXTEND_AT_TO:16});return a});

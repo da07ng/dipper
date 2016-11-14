@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define("../core/declare dojo/_base/lang ./Symbol ./Symbol3DLayer ./IconSymbol3DLayer ./ObjectSymbol3DLayer ./LineSymbol3DLayer ./PathSymbol3DLayer ./FillSymbol3DLayer ./ExtrudeSymbol3DLayer ./TextSymbol3DLayer".split(" "),function(g,b,h,k,l,m,n,p,q,r,s){var t={Icon:l,Object:m,Line:n,Path:p,Fill:q,Extrude:r,Text:s};return g(h,{normalizeCtorArgs:function(a){return a instanceof k?{symbolLayers:[a]}:b.isArray(a)?{symbolLayers:a}:a},getDefaults:function(){return b.mixin(this.inherited(arguments),{symbolLayers:[]})},
+type:null,symbolLayers:null,_symbolLayersReader:function(a){for(var b=[],d=0;d<a.length;d++){var e=a[d],c=e.type,f=t[c];f?0>this._allowedLayerTypes.indexOf(c)?console.warn("Symbol layer of type '%s' not allowed for symbol of type '%s'",c,this.type):b.push(f.fromJSON(e)):console.warn("Unknown symbol layer: "+c)}return b},toJSON:function(){return{type:this.type,symbolLayers:this.symbolLayers.map(function(a){return a.toJSON()})}},_allowedLayerTypes:[]})});

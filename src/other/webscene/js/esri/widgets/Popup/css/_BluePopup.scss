@@ -1,0 +1,154 @@
+@import 'CalciteColors';
+
+//  COLORS
+$blue_background_color            : $Calcite_Blue_100;
+
+$blue_text_color                  : $Calcite_Gray_700;
+
+$blue_anchor_color                : $Calcite_Gray_700;
+
+$blue_btn_color                   : $Calcite_Blue_a250;
+$blue_btn_hover_color             : $Calcite_Blue_a200;
+
+$blue_main_border_color            : $Calcite_Blue_200;
+
+$blue_page_menu_header_color      : $Calcite_Gray_700;
+$blue_page_menu_header_bg         : $Calcite_Gray_150;
+$blue_page_menu_header_border     : $Calcite_Blue_150;
+$blue_page_menu_color             : $Calcite_Gray_700;
+$blue_page_menu_item_border       : $Calcite_Blue_150;
+$blue_page_menu_item_hover        : $Calcite_Gray_100;
+$blue_page_menu_bg_color          : $Calcite_Gray_250;
+$blue_page_menu_bg_color_selected : $Calcite_Gray_250;
+$blue_page_menu_btn_hover         : $Calcite_Gray_700; // white
+
+$blue_title_color                 : $Calcite_Blue_a250;
+
+$blue_table_row_bg_odd            : $Calcite_Gray_300;
+$blue_table_row_bg_even           : $Calcite_Gray_100;
+$blue_table_row_border            : $Calcite_Gray_100;
+
+.blue .esri-popup {
+  color: $blue_text_color;
+  a {
+    color: $blue_anchor_color;
+  }
+
+  ////////////////////
+  // HEADER
+  .esri-header {
+    color: $blue_btn_color;
+    .esri-title {
+      color: $blue_title_color;
+    }
+  }
+  // HEADER
+  ////////////////////
+
+  ////////////////////
+  // BODY
+  .esri-body {
+    .esri-pr-main {
+      @include topBottomBorder($blue_main_border_color);
+      .esri-pr-description-viewport {
+
+        .esri-pr-description {
+          li:before {
+            color: $blue_anchor_color;
+          }
+          table {
+            tr:nth-child(odd) {
+              background-color: $blue_table_row_bg_odd;
+            }
+            tr:nth-child(even) {
+              background-color: $blue_table_row_bg_even;
+            }
+            tr {
+              th {
+                border-right: 3px solid $blue_table_row_border;
+              }
+            }
+          }
+        }
+      }
+    }
+
+
+  }
+  // BODY
+  ////////////////////
+
+
+/////////////////////////
+//  PAGE MENU
+.esri-page-menu {
+  color: $blue_btn_color;
+  background-color: $blue_page_menu_bg_color;
+  color: $blue_page_menu_color;
+
+  .esri-page-menu-header {
+    background-color: $blue_page_menu_header_bg;
+    color: $blue_page_menu_header_color;
+    border-bottom: solid 1px $blue_page_menu_header_border;
+  }
+  .esri-page-menu-actions {
+    span.esri-icon {
+      &:hover {
+        color: $blue_page_menu_btn_hover;
+      }
+    }
+  }
+  ul {
+    li {
+      border-top:solid 1px $blue_page_menu_item_border;
+      // min-height: 40px;
+      // line-height: 40px;
+      &.esri-selected {
+        background-color: $blue_page_menu_bg_color_selected;
+      }
+      &:hover {
+        background-color: $blue_page_menu_item_hover;
+      }
+      span.esri-page-menu-title {
+        border-left: solid 1px $blue_page_menu_item_border;
+      }
+    }
+  }
+  .esri-page-menu-pointer {
+    background-color: $blue_page_menu_bg_color;
+
+  }
+}
+//  PAGE MENU
+/////////////////////////
+
+
+
+  ////////////////////
+  // FOOTER
+  .esri-footer {
+    color: $blue_btn_color;
+  }
+  // FOOTER
+  ////////////////////
+
+  ////////////////////
+  // GENERAL
+  .esri-background {
+    background-color: $blue_background_color;
+    @include borderRadius(4px);
+  }
+  .esri-shadow {
+    background-color: $blue_background_color;
+  }
+  .esri-btn {
+    color: $blue_btn_color;
+    &:hover {
+      color: $blue_btn_hover_color;
+    }
+  }
+
+  // GENERAL
+  ////////////////////
+
+}

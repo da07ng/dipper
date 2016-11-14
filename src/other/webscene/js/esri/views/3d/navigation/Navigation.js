@@ -1,0 +1,6 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../../../core/Accessor","../../../core/Evented","../../../core/watchUtils","./Picker","./mixins/CamerasMixin"],function(c,d,b,e,f){return c.createSubclass([f,d],{classMetadata:{properties:{interacting:{getter:function(){return this._interacting},readOnly:!0},mapUnitInMeters:{dependsOn:["mapCoordsHelper"],getter:function(){return this.mapCoordsHelper?this.mapCoordsHelper.mapUnitInMeters:1}}}},initialize:function(){this._renderCoordsHelperHandle=b.init(this.view,"renderCoordsHelper",function(a){this.renderCoordsHelper=
+a}.bind(this));this._mapCoordsHelperHandle=b.init(this.view,"mapCoordsHelper",this.updateMapCoordsHelper.bind(this));this.picker=new e(this,this.view);this._interacting=!1},destroy:function(){this._renderCoordsHelperHandle.remove();this._mapCoordsHelperHandle.remove()},updateMapCoordsHelper:function(a){this.mapCoordsHelper=a;this.inherited(arguments)},begin:function(a){this.pan&&this.pan.continuous&&this.pan.continuous.stop();this._interacting=!0;this.notifyChange("interacting")},end:function(a){this._interacting=
+!1;this.notifyChange("interacting")}})});

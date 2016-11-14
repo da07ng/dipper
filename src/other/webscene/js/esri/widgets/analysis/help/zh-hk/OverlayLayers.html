@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link rel="Stylesheet" href="../css/analysis.css" />
+    <script type="text/javascript">
+        function init() {
+            if (window.location.hash) {
+                var parentDiv, nodes, i, helpId;
+                helpId = window.location.hash.substring(1);
+                parentDiv = document.getElementById("topics");
+                nodes = parentDiv.children;
+                for(i=0; i < nodes.length; i++) {
+                    if(nodes[i].id !== helpId) {
+                        nodes[i].style.display ="none";
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="init()">
+<div id="topics">
+    <div id="toolDescription" class="largesize">
+        <h2>圖層疊加</h2><p/>
+        <h2><img src="../images/GUID-F7C42432-C8C5-4E4F-8275-EC7E95D00CB7-web.png" alt="圖層疊加"></h2>
+        <hr/>
+    <p>疊加將兩個或多個圖層合併成一個圖層。 您可以把疊加想成透過一疊地圖互連，並建立包含在堆疊發現之所有資訊的單一地圖。 疊加操作不僅合併線圖徵，還會將參與疊加的所有圖徵屬性傳遞到最終結果。 疊加用於回答一個最基本的地理問題，&ldquo;什麼在什麼之上？&rdquo; 例如：
+        <ul>
+            <li>哪些宗地位於百年一遇的洪泛區中？ （&ldquo;在...中&rdquo;只是&ldquo;在...上&rdquo;的另一種表達方式。）
+                  
+            </li>
+            <li>哪條道路在哪個國家？
+            </li>
+            <li>哪種土壤類型上的土地利用是什麼？
+                 
+            </li>
+            <li>在廢棄軍事基地中的是什麼井？
+            </li>
+        </ul>
+        
+    </p>
+    <p>如果勾選 <b>使用當前地圖範圍</b>，只能看到要疊加於當前地圖範圍中，分析和疊加圖層的圖徵。 如果未勾選，則將疊加分析圖層和疊加圖層中的所有圖徵（即使它們處於當前地圖範圍外）。
+    </p>
+    </div>
+    <!--Parameter divs for each param-->
+    <div id="OverlayLayer">
+        <div><h2>選擇疊加圖層</h2></div>
+        <hr/>
+        <div>
+            <p>與分析圖層疊加的圖層。 
+            </p> 
+        </div>
+    </div>
+    <div id="OverlayType">
+        <div><h2>選擇疊加方法</h2></div>
+        <hr/>
+        <div>
+            <p>疊加方法定義分析圖層和疊加圖層的合併方式。
+                <ul>
+                    <li> <b>相交</b> - 結果將僅包括疊加圖層中與分析圖層中的圖徵相重疊的圖徵或部分圖徵。 當交叉線圖徵或面圖徵時，您可以透過該選項指定做為輸出的圖徵類型。
+                        <table border="1">
+                        <tr>
+                            <td>
+                                <p>點與點相交
+                                </p>
+                            </td>
+                            <td>
+                                <p> <img src="../images/GUID-B456C1ED-F5A1-4F8A-A1ED-1BC35A4A8B40-web.png" alt="點與點輸入">
+                                </p>
+                            </td>
+                            <td>
+                                <p> <img src="../images/GUID-49B1A536-8426-4149-B067-5A16936E0BBC-web.png" alt="點與帶有點輸出的點">
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>點與線相交 
+                                </p>
+                            </td>
+                            <td>
+                                <p> <img src="../images/GUID-F1E6C6C8-4F51-4063-984D-0FC8D08EB2D2-web.png" alt="點與線輸入">
+                                </p>
+                            </td>
+                            <td>
+                                <p> <img src="../images/GUID-02CFAFDC-1B3C-4C4B-A58C-7B0B78BA0B56-web.png" alt="點與帶有點輸出的線">
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>點與面相交 
+                                </p>
+                            </td>
+                            <td>
+                                <p> <img src="../images/GUID-5EE90BD6-CC3D-4E2F-A5D0-DC57298E8416-web.png" alt="點與面輸入">
+                                </p>
+                            </td>
+                            <td> <img src="../images/GUID-5CCA360F-D4C9-43AB-8FB2-E6E62DE93BD4-web.png" alt="點與帶有點輸出的面">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>線與線相交 
+                                </p>
+                            </td>
+                            <td>
+                                <p> <img src="../images/GUID-CF8DDF87-919D-43D5-BBB6-87F0EAC33891-web.png" alt="線與線輸入">
+                                </p>
+                            </td>
+                            <td>
+                                <p> <img src="../images/GUID-DDCCB226-6490-4914-B87C-299125466256-web.png" alt="線與帶有點輸出的線">
+                                </p>
+                                <p> <img src="../images/GUID-CDE3AAA9-94C1-41E9-8270-229433240743-web.png" alt="線與帶有線輸出的線">
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>線與面相交
+                                </p>
+                            </td>
+                            <td>
+                                <p> <img src="../images/GUID-E38EB7D6-9D35-4E0D-937A-9FEC4144AF2E-web.png" alt="線與面輸入">
+                                </p>
+                            </td>
+                            <td>
+                                <p> <img src="../images/GUID-639F492C-BEE7-4A5F-AEBC-325B74FEC766-web.png" alt="線與帶有點輸出的面">
+                                </p>
+                                <p> <img src="../images/GUID-58DF5CF6-0A56-4717-AD9C-C3BEC8EA6906-web.png" alt="線與帶有線輸出的面">
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>面與面相交
+                                </p>
+                            </td>
+                            <td>
+                                <p> <img src="../images/GUID-10C2CDA7-E6C4-4323-A9FB-5FB77A258CE0-web.png" alt="面與面輸入">
+                                </p>
+                            </td>
+                            <td>
+                                <p> <img src="../images/GUID-3F71AD46-A6A2-436D-8BBA-13E014BB94D0-web.png" alt="面與帶有點輸出的面">
+                                </p>
+                                <p> <img src="../images/GUID-6AF62F09-6D32-4212-97C6-844580E34A22-web.png" alt="面與帶有線輸出的面">
+                                </p>
+                                <p> <img src="../images/GUID-4D397A0E-EF91-4ACE-9655-2483AFC2FDE2-web.png" alt="面與帶有面輸出的面">
+                                </p>
+                            </td>
+                        </tr>
+                        </table>
+                    </li>
+                    <li> <b>聯合</b> - 結果包含分析圖層及疊加圖層中的圖徵。 只有分析圖層和疊加圖層都包含區域圖徵時，&ldquo;聯合&rdquo;選項才可用
+                    </li>
+                    <li> <b>清除</b> - 結果將包含疊加圖層中，不疊加於分析圖層區域的圖徵或部分圖徵。 疊加圖層可以包含區域圖徵、線圖徵或點圖徵。
+                    </li>
+                </ul>
+                
+            </p>
+            <p>如果勾選 <b>使用當前地圖範圍</b>，只能看到要疊加於當前地圖範圍中，分析和疊加圖層的圖徵。 如果未勾選，則將疊加分析圖層和疊加圖層中的所有圖徵（即使它們處於當前地圖範圍外）。
+            </p> 
+        </div>
+    </div>
+    <div id="OutputLayer">
+        <div><h2>結果圖層名稱</h2></div>
+        <hr/>
+        <div>
+            <p> 在 <b>我的內容</b>中建立並新增到地圖中的圖層的名稱。 它的圖徵類型與疊加圖層相同（面、線或點）。 預設名稱是根據疊加方法以及分析圖層名稱。 如果該名稱的圖層已存在，則系統將要求您提供其他名稱。
+            </p>
+            <p>使用 <b>將結果儲存到</b>下拉式方塊，可以在 <b>我的內容</b>中指定文件夾的名稱，結果將儲存到該文件夾中。
+            </p> 
+        </div>
+    </div>
+</div>
+</html>

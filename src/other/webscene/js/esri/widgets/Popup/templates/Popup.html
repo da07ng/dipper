@@ -1,0 +1,77 @@
+<div class="${css.root}" role="presentation">
+  <!-- Popup Container -->
+  <div data-dojo-attach-point="_containerNode" class="${css.container}">
+    <div class="${css.shadow}">
+      <div class="${css.main} ${css.background}">
+        <!-- Popup Header -->
+        <div class="${css.header} ${css.clearfix}">
+          <h1 data-dojo-attach-point="_titleNode" class="${css.title}"></h1>
+          <div class="${css.headerButtons}">
+            <div role="button" tabindex="0" data-dojo-attach-point="_dockNode" class="${css.btn} ${css.dockBtn}">
+              <span aria-hidden="true" data-dojo-attach-point="_dockIconNode" class="${css.icon} ${css.dockIcon} ${css.dockIconRight}" title="${_i18n.dock}"></span>
+              <span class="${css.iconText} ${css.dockIconText}">${_i18n.dock}</span>
+              <span aria-hidden="true" class="${css.icon} ${css.undockIcon}" title="${_i18n.undock}"></span>
+              <span class="${css.iconText} ${css.undockIconText}">${_i18n.undock}</span>
+            </div>
+            <div role="button" tabindex="0" data-dojo-attach-point="_closeNode" class="${css.btn} ${css.close}">
+              <span aria-hidden="true" class="${css.icon} ${css.closeIcon}" title="${_i18n.close}"></span>
+              <span class="${css.iconText}">${_i18n.close}</span>
+            </div>
+          </div>
+        </div>
+        <!-- /Popup Header -->
+        <!-- Popup Content -->
+        <div class="${css.body}">
+          <div class="${css.bodyContent}" data-dojo-attach-point="_bodyContentNode"></div>
+        </div>
+        <!-- /Popup Content -->
+        <!-- Popup Footer -->
+        <div class="${css.footer} ${css.clearfix}">
+          <!-- Popup Actions -->
+          <div data-dojo-attach-point="_actionsNode" class="${css.actions}"></div>
+          <!-- /Popup Actions -->
+          <!-- Popup Pagination -->
+          <div class="${css.pagination}">
+            <div role="presentation" class="${css.loadingContainer}">
+              <span aria-hidden="true" class="${css.icon} ${css.loadingIcon}"></span>
+              <span class="${css.iconText}">${_i18n.loading}</span>
+            </div>
+            <div role="button" tabindex="0" data-dojo-attach-point="_previousNode" class="${css.btn} ${css.previous}">
+              <span aria-hidden="true" class="${css.icon} ${css.previousIcon}" title="${_i18n.previous}"></span>
+              <span class="${css.iconText}">${_i18n.previous}</span>
+            </div>
+            <div data-dojo-attach-point="_pageTextNode" class="${css.pageText}"></div>
+            <div role="button" tabindex="0" data-dojo-attach-point="_nextNode" class="${css.btn} ${css.next}">
+              <span aria-hidden="true" class="${css.icon} ${css.nextIcon}" title="${_i18n.next}"></span>
+              <span class="${css.iconText}">${_i18n.next}</span>
+            </div>
+            <div role="button" tabindex="0" data-dojo-attach-point="_pageMenuNode" class="${css.btn} ${css.pageMenuBtn}">
+              <span aria-hidden="true" class="${css.icon} ${css.pageMenuIcon}" title="${_i18n.menu}"></span>
+              <span class="${css.iconText}">${_i18n.menu}</span>
+            </div>
+          </div>
+          <!-- /Popup Pagination -->
+        </div>
+        <!-- /Popup Footer -->
+      </div>
+      <!-- Popup Pointer -->
+      <div data-dojo-attach-point="_pointerNode" class="${css.pointer} ${css.background} ${css.shadow}">&nbsp;</div>
+      <!-- /Popup Pointer -->
+    </div>
+    <!-- Popup Menu -->
+    <div class="${css.pageMenu}">
+      <div class="${css.pageMenuHeader} ${css.clearfix}">
+        <p data-dojo-attach-point="_pageMenuInfoNode" class="${css.pageMenuInfo}"></p>
+        <div class="${css.pageMenuActions}">
+          <span data-dojo-attach-point="_pageMenuCloseNode" aria-hidden="true" class="${css.icon} ${css.collapseIcon}" title="${_i18n.close}"></span>
+        </div>
+      </div>
+      <div class="${css.pageMenuViewport}">
+        <table role="menu"><tbody data-dojo-attach-point="_pageMenuItemsNode"></tbody></table>
+      </div>
+      <div class="${css.pageMenuPointer}"></div>
+    </div>
+    <!-- /Popup Menu -->
+  </div>
+  <!-- /Popup Container -->
+</div>

@@ -1,0 +1,368 @@
+<div dojoType="dijit.layout.BorderContainer" region="top">
+  <div id="tocContentHeader" class="panel panel_left" dojoType="dijit.layout.ContentPane" region="top">
+    <div id="tocContentButtons" class="viewerPanelButtons">
+      <div class="esriFloatLeading">
+        <button dojotype="dijit.form.Button" type="button" id="webmap-details-content-about" iconclass="esriDetailsAboutIcon" title="${i18n.about}"></button>
+        <button dojotype="dijit.form.ToggleButton" id="webmap-details-content" iconclass="esriDetailsContentsIcon" title="${i18n.showContents}"></button>
+        <button dojotype="dijit.form.Button" type="button" id="webmap-details-content-legend" iconclass="esriDetailsLegendIcon" title="${i18n.showLegend}"></button>
+      </div>
+      <div class="esriFloatTrailing" style="display:inline; padding-top:5px;">
+        <a href="JavaScript:void(0);" dojoAttachPoint="_closeBtn" title="${i18n.close}" class="panel panel_close panel_collapse"><img src="images/close.gif" border="0"/></a>
+      </div>
+    </div><!-- style="border-bottom: #333 thin solid;"-->
+    <div id="tocContentTitle" class="panelSubHeader panel_title panel_subtitle">
+      ${i18n.tocPanelTitle}
+    </div>
+        
+  </div>
+  <div id="tocContentPane" dojoType="dijit.layout.ContentPane" region="center" style="overflow-x:hidden;overflow-y:auto;position:relative;" class="scrollPane">
+    <div id="toc-main" dojoType="dojo.dnd.Source" dojoAttachPoint="_dndSourceNode" skipForm="true">
+    </div>
+    <br/>
+    <div dojoAttachPoint="_statusDiv"></div>
+  </div>
+  <div id="tocContentFooter" dojoType="dijit.layout.ContentPane" region="bottom" style="height:40px; padding: 0 5px 0 5px; display:none;">
+    <div class="footer" id="contentSiteFooter" dojotype="arcgisonline.sharing.dijit.SiteFooterMap" style="white-space:normal;">
+    </div>
+  </div>
+  <div id="layerMenu" dojoType="dijit.Menu" refocus="false" style="display: none;">
+    <div id="layerMenu.zoomTo" dojoType="dijit.MenuItem" iconclass="iconZoomTo">
+      ${i18n.zoomTo}
+    </div>
+    <div id="layerMenu.layerTransp" dojoType="dijit.PopupMenuItem" iconclass="iconOpacity">
+      <span>${i18n.transparency}</span>
+      <div id="layerMenu.layerTransparencyDlg" dojoType="dijit.TooltipDialog" title="${i18n.transparency}">
+        <span class="esriLeadingMargin05">${i18n.layerTransparency}</span>
+        <div id="layerMenu.opacitySlider" class="transparencySlider" dojoType="dijit.form.HorizontalSlider" style="width: 200px;margin: 6px 15px 3px 15px;" showbuttons="true" value="0" minimum="0" maximum="100" discretevalues="101" intermediatechanges="true">
+          <div dojoType="dijit.form.HorizontalRuleLabels" container="topDecoration" labels="${i18n.opaque},${i18n.transparent}" style="height: 1.5em; font-size: 0.8em; color: #666">
+          </div>
+          <div dojoType="dijit.form.HorizontalRule" container="bottomDecoration" count="5" style="height: 5px;">
+          </div>
+          <ol dojoType="dijit.form.HorizontalRuleLabels" container="bottomDecoration" style="height: 1em; font-size: 0.75em; color: darkblue;">
+            <li>
+              ${i18n.zeroPercent}
+            </li>
+            <li>
+              ${i18n.fiftyPercent}
+            </li>
+            <li>
+              ${i18n.oneHundredPercent}
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <div id="layerMenu.scale" dojoType="dijit.PopupMenuItem" iconclass="iconScale">
+      <span>${i18n.setVisibilityRange}</span>
+      <div id="layerMenu.layerScaleDlg" dojoType="dijit.TooltipDialog" title="${i18n.rendererCommon.visibleRangeTooltip}">
+        <span class="esriLeadingMargin05">${i18n.rendererCommon.visibleRange}</span>
+        <div data-dojo-attach-point="tocLayerScaleSuggest" data-dojo-attach-event="onClick:onClickTocScaleSuggest" class="esriFloatTrailing suggestLabel">
+          &nbsp;${i18n.rendererCommon.suggest}&nbsp;
+        </div>
+        <div style="clear:both;padding: 10px; width:300px;">
+          <div id="tocLayerScaleSlider">
+          </div>
+        </div>
+        <div class="esriLeadingMargin05" id="layerMenu.scaleCurrent"></div>
+      </div>
+    </div>
+    <div id="layerMenu.moveSeparator" dojoType="dijit.MenuSeparator">
+    </div>
+    <div id="layerMenu.moveUp" dojoType="dijit.MenuItem" iconclass="iconMoveUp">
+      ${i18n.moveUp}
+    </div>
+    <div id="layerMenu.moveDown" dojoType="dijit.MenuItem" iconclass="iconMoveDown">
+      ${i18n.moveDown}
+    </div>
+    <div id="layerMenu.rename" dojoType="dijit.MenuItem" iconclass="iconRename">
+      ${i18n.rename}
+    </div>
+    <div id="layerMenu.remove" dojoType="dijit.MenuItem" iconclass="iconRemove">
+      ${i18n.remove}
+    </div>
+    <div id="layerMenu.copy" dojoType="dijit.MenuItem" iconclass="iconCopy">
+      ${i18n.copy}
+    </div>
+    <div id="layerMenu.enableShowLegend" dojoType="dijit.MenuItem" iconclass="iconEnableShowLegend">
+      ${i18n.enableShowLegend}
+    </div>
+    <div id="layerMenu.disableShowLegend" dojoType="dijit.MenuItem" iconclass="iconDisableShowLegend">
+      ${i18n.disableShowLegend}
+    </div>
+    <!--<div id="layerMenu.legendSeparator" dojoType="dijit.MenuSeparator">
+    </div>-->
+    <div id="layerMenu.filterSeparator" dojoType="dijit.MenuSeparator">
+    </div>
+    <div id="layerMenu.filterEdits" dojoType="dijit.PopupMenuItem" iconclass="iconFilterEdits">
+      <span>${i18n.filterEdits}</span>
+      <div id="layerMenu.filterEditsDlg" dojoType="dijit.TooltipDialog">
+			  <table>
+			  	<tbody>
+			  		<tr>
+			  			<td nowrap>
+				      	<span id="layerMenu.filterEditsText1"></span>
+				        <select id="layerMenu.filterEditsUserOptions" dojoType="dijit.form.FilteringSelect" style="width:100px;">
+				        </select>
+				        <span id="layerMenu.filterEditsText2"></span>
+              </td>
+              <td>
+								<div id="layerMenu.filterEditsTimeOptionsDiv" style="display:none;">
+					        <select id="layerMenu.filterEditsTimeOptions" dojoType="dijit.form.FilteringSelect" style="width:100px;">
+					        </select>
+								</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="layerMenu.showAllEdits" dojoType="dijit.MenuItem" iconclass="iconShowAllEdits">
+      ${i18n.showAllEdits}
+    </div>
+    <div id="layerMenu.editsSeparator"  dojoType="dijit.MenuSeparator">
+    </div>
+    <div id="layerMenu.enablePopup" dojoType="dijit.MenuItem" iconclass="iconEnablePopup">
+      ${i18n.enablePopup}
+    </div>
+    <div id="layerMenu.removePopup" dojoType="dijit.MenuItem" iconclass="iconRemovePopup">
+      ${i18n.removePopup}
+    </div>
+    <div id="layerMenu.configPopup" dojoType="dijit.MenuItem" iconclass="iconConfigurePopup">
+      ${i18n.configurePopup}
+    </div>
+    <div id="layerMenu.editRenderer" dojoType="dijit.MenuItem" iconclass="iconEditRenderer">
+      ${i18n.changeSymbols}
+    </div>
+    <div id="layerMenu.smartMappingRenderer" dojoType="dijit.MenuItem" iconclass="iconEditRenderer">
+      ${i18n.changeStyle}
+    </div>
+    <div id="layerMenu.editLabels" dojoType="dijit.MenuItem" iconclass="iconEditLabels">
+      ${i18n.createLabels}
+    </div>
+    <div id="layerMenu.editRenderingRule" dojoType="dijit.MenuItem" iconclass="iconEditRenderer">
+      <span>${i18n.changeImageDisplay}</span>  
+    </div>
+    <div id="layerMenu.editMosaicRule" dojoType="dijit.MenuItem" iconclass="iconImageOrder">
+      <span>${i18n.changeImageDisplayOrder}</span>     
+    </div>
+    <div id="layerMenu.editImageProperties" dojoType="dijit.PopupMenuItem" iconclass="iconImageQuality">
+      <span>${i18n.setImageQuality}</span>
+      <div id="layerMenu.editImagePropertiesDlg" dojoType="dijit.TooltipDialog">
+        <div>
+          <div id="layerMenu.performanceQualitySlider" class="performanceQualitySlider" dojoType="dijit.form.HorizontalSlider" style="width: 200px;margin: 3px 25px 3px 25px;" showbuttons="true" value="80" minimum="0" maximum="100" discretevalues="3" intermediatechanges="false">
+            <div dojoType="dijit.form.HorizontalRuleLabels" container="topDecoration" labels="${i18n.imagePerformance}, ${i18n.imageQuality}" style="height: 1.5em; font-size: 0.8em; color: #666">
+            </div>        
+            <div dojoType="dijit.form.HorizontalRule" container="bottomDecoration" count="3" style="height: 5px;">
+            </div>
+          </div> 
+        </div>
+      </div>      
+    </div>    
+    <div id="layerMenu.enableEditing" dojoType="dijit.MenuItem" iconclass="iconEnableEditing">
+      ${i18n.enableEditing}
+    </div>
+    <div id="layerMenu.disableEditing" dojoType="dijit.MenuItem" iconclass="iconDisableEditing">
+      ${i18n.disableEditing}
+    </div>
+    <div id="layerMenu.popupSeparator" dojoType="dijit.MenuSeparator">
+    </div>
+    <div id="layerMenu.performAnalysis" dojoType="dijit.MenuItem" iconclass="iconPerformAnalysis">
+      ${i18n.performAnalysis}
+    </div>
+    <div id="layerMenu.performAnalysisPopup" dojoType="dijit.PopupMenuItem" iconclass="iconPerformAnalysis">
+      <span>${i18n.performAnalysis}</span>
+      <div id="layerMenu.performAnalysisDlg" dojoType="dijit.Menu">
+        <div dojoType="dijit.MenuItem" dojoAttachPoint="_lyrpointMenu"  style="display:none">
+          ${i18n.points}
+        </div>
+        <div dojoType="dijit.MenuItem" dojoAttachPoint="_lyrlineMenu" style="display:none">
+          ${i18n.lines}
+        </div>
+        <div dojoType="dijit.MenuItem" dojoAttachPoint="_lyrareaMenu" style="display:none" >
+          ${i18n.areas}
+        </div>
+      </div>      
+    </div>           
+    <div id="layerMenu.reviewGeocode" dojoType="dijit.MenuItem" iconclass="iconReviewGeocode">
+      ${i18n.reviewGeocode}
+    </div>
+    <div id="layerMenu.streaming" dojoType="dijit.PopupMenuItem" iconclass="iconStreaming">
+      <span>${i18n.streamingControls}</span>
+      <div id="layerMenu.streamingDlg" dojoType="dijit.TooltipDialog">
+        <div>
+          <table>
+            <tbody>
+              <tr>
+                <td nowrap>
+                  <span class="esriItemLinks" style="white-space:nowrap;"><A id="layerMenu.startStopStream" href="JavaScript:void(0);">${i18n.stopStreaming}</A></span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="esriItemLinks" id="layerMenu.spatialFilterStreamEnabled" style="white-space:nowrap;"><A id="layerMenu.spatialFilterStream" href="JavaScript:void(0);">${i18n.limitObservations}</A></span>
+                  <span class="esriItemLinks" id="layerMenu.spatialFilterStreamDisabled" style="white-space:nowrap;">${i18n.limitObservations}</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="esriItemLinks" id="layerMenu.clearStreamDivEnabled" style="white-space:nowrap;"><A id="layerMenu.clearStream" href="JavaScript:void(0);">${i18n.clearObservations}</A></span>
+                  <span class="esriItemLinks" id="layerMenu.clearStreamDivDisabled" style="white-space:nowrap;">${i18n.clearObservations}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div id="layerMenu.analysisSeparator" dojoType="dijit.MenuSeparator">
+    </div>
+    <div id="layerMenu.showAttrTable" dojoType="dijit.MenuItem" iconclass="iconShowAttributeTable">
+      ${i18n.showTable}
+    </div>
+    <div id="layerMenu.hideAttrTable" dojoType="dijit.MenuItem" iconclass="iconHideAttributeTable">
+      ${i18n.hideTable}
+    </div>
+    <div id="layerMenu.filter" dojoType="dijit.MenuItem" iconclass="iconFilter">
+      ${i18n.filter}
+    </div>
+    <div id="layerMenu.multidimensionalFilter" dojoType="dijit.MenuItem" iconclass="iconMultidimensionalFilter">
+      ${i18n.multidimensionalFilter}
+    </div>
+    <div id="layerMenu.refreshInterval" dojoType="dijit.PopupMenuItem" iconclass="iconRefreshInterval">
+      <span>${i18n.refreshInterval}</span>
+       <div id="layerMenu.refreshIntervalDlg" dojoType="dijit.TooltipDialog">
+        <table cellspacing="5">
+          <tbody>
+            <tr>
+              <td nowrap>
+                <div dojoAttachPoint="layerMenuRefreshIntervalEnabled" dojoType="dijit.form.CheckBox" type="checkbox" checked="false"></div>
+                <span id="layerMenu.refreshIntervalText1"></span>
+                <div dojoAttachPoint="layerMenuRefreshIntervalMinutes" dojotype="dijit.form.NumberTextBox" constraints='{min:0,max:1440,pattern:"#0.#"}' intermediateChanges="true" style="width:50px; padding:2px;"></div>
+                <span id="layerMenu.refreshIntervalText2"></span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="layerMenu.enableTime" dojoType="dijit.MenuItem" iconclass="iconEnableTime">
+      ${i18n.enableTimeAnimation}
+    </div>
+    <div id="layerMenu.disableTime" dojoType="dijit.MenuItem" iconclass="iconDisableTime">
+      ${i18n.disableTimeAnimation}
+    </div>
+    <div id="layerMenu.enableDimension" dojoType="dijit.MenuItem" iconClass="iconDimensionAnimation">
+      ${i18n.enableMapDimension}
+    </div>
+    <div id="layerMenu.disableDimension" dojoType="dijit.MenuItem" iconClass="iconDimensionAnimation">
+      ${i18n.disableMapDimension}
+    </div>
+    <div id="layerMenu.routeToAll" dojoType="dijit.MenuItem" iconclass="iconRouteToAll">
+      ${i18n.routeToAllFeatures}
+    </div>
+    <div id="layerMenu.attrTableSeparator" dojoType="dijit.MenuSeparator">
+    </div>
+    <div id="layerMenu.layerInfo" dojoType="dijit.MenuItem" iconclass="iconDescription">
+      ${i18n.description}
+    </div>
+    <div id="layerMenu.saveProps" dojoType="dijit.MenuItem" iconclass="iconSave">
+      ${i18n.saveItemProperties}
+    </div>
+    <div id="layerMenu.saveAsItem" dojoType="dijit.MenuItem" iconclass="iconSave">
+      ${i18n.saveItemProperties}
+    </div>
+  </div>
+  <div id="subLayerMenu" dojoType="dijit.Menu" refocus="false" style="display: none;">
+    <div id="subLayerMenu.scale" dojoType="dijit.PopupMenuItem" iconclass="iconScale">
+      <span>${i18n.setVisibilityRange}</span>
+      <div id="subLayerMenu.layerScaleDlg" dojoType="dijit.TooltipDialog" title="${i18n.rendererCommon.visibleRangeTooltip}">
+        <span class="esriLeadingMargin05">${i18n.rendererCommon.visibleRange}</span>
+        <div data-dojo-attach-point="tocSubLayerScaleSuggest" data-dojo-attach-event="onClick:onClickTocScaleSuggest" class="esriFloatTrailing suggestLabel">
+          &nbsp;${i18n.rendererCommon.suggest}&nbsp;
+        </div>
+        <div style="clear:both;padding: 10px; width:300px;">
+          <div id="tocSubLayerScaleSlider">
+          </div>
+        </div>
+        <div class="esriLeadingMargin05" id="subLayerMenu.scaleCurrent"></div>
+      </div>
+    </div>
+    <div id="subLayerMenu.scaleSeparator" dojoType="dijit.MenuSeparator">
+    </div>
+    <div id="subLayerMenu.moveUp" dojoType="dijit.MenuItem" iconclass="iconMoveUp">
+      ${i18n.moveUp}
+    </div>
+    <div id="subLayerMenu.moveDown" dojoType="dijit.MenuItem" iconclass="iconMoveDown">
+      ${i18n.moveDown}
+    </div>
+    <div id="subLayerMenu.rename" dojoType="dijit.MenuItem" iconclass="iconRename">
+      ${i18n.rename}
+    </div>
+    <div id="subLayerMenu.remove" dojoType="dijit.MenuItem" iconclass="iconRemove">
+      ${i18n.remove}
+    </div>
+    <div id="subLayerMenu.removeSeparator" dojoType="dijit.MenuSeparator">
+    </div>
+    <div id="subLayerMenu.enablePopup" dojoType="dijit.MenuItem" iconclass="iconEnablePopup">
+      ${i18n.enablePopup}
+    </div>
+    <div id="subLayerMenu.removePopup" dojoType="dijit.MenuItem" iconclass="iconRemovePopup">
+      ${i18n.removePopup}
+    </div>
+    <div id="subLayerMenu.configPopup" dojoType="dijit.MenuItem" iconclass="iconConfigurePopup">
+      ${i18n.configurePopup}
+    </div>
+    <div id="subLayerMenu.editRenderer" dojoType="dijit.MenuItem" iconclass="iconEditRenderer">
+      ${i18n.changeSymbols}
+    </div>
+    <div id="subLayerMenu.smartMappingRenderer" dojoType="dijit.MenuItem" iconclass="iconEditRenderer">
+      ${i18n.changeStyle}
+    </div>
+    <div id="subLayerMenu.editLabels" dojoType="dijit.MenuItem" iconclass="iconEditLabels">
+      ${i18n.createLabels}
+    </div>
+    <div id="subLayerMenu.popupSeparator" dojoType="dijit.MenuSeparator">
+    </div>
+    <div id="subLayerMenu.enableShowLegend" dojoType="dijit.MenuItem" iconclass="iconEnableShowLegend">
+      ${i18n.enableShowLegend}
+    </div>
+    <div id="subLayerMenu.disableShowLegend" dojoType="dijit.MenuItem" iconclass="iconDisableShowLegend">
+      ${i18n.disableShowLegend}
+    </div>
+    <div id="subLayerMenu.legendSeparator" dojoType="dijit.MenuSeparator">
+    </div>
+    <div id="subLayerMenu.performAnalysis" dojoType="dijit.MenuItem" iconclass="iconPerformAnalysis">
+      ${i18n.performAnalysis}
+    </div>
+    <div id="subLayerMenu.performAnalysisPopup" dojoType="dijit.PopupMenuItem" iconclass="iconPerformAnalysis">
+      <span>${i18n.performAnalysis}</span>
+      <div id="subLayerMenu.performAnalysisDlg" dojoType="dijit.Menu">
+        <div dojoType="dijit.MenuItem" dojoAttachPoint="_subpointMenu">
+          ${i18n.points}
+        </div>
+        <div dojoType="dijit.MenuItem" dojoAttachPoint="_sublineMenu">
+          ${i18n.lines}
+        </div>
+        <div dojoType="dijit.MenuItem" dojoAttachPoint="_subareaMenu">
+          ${i18n.areas}
+        </div>
+      </div>
+    </div>     
+    <div id="subLayerMenu.analysisSeparator" dojoType="dijit.MenuSeparator">
+    </div>    
+    <div id="subLayerMenu.showAttrTable" dojoType="dijit.MenuItem" iconclass="iconShowAttributeTable">
+      ${i18n.showTable}
+    </div>
+    <div id="subLayerMenu.hideAttrTable" dojoType="dijit.MenuItem" iconclass="iconHideAttributeTable">
+      ${i18n.hideTable}
+    </div>
+    <div id="subLayerMenu.filter" dojoType="dijit.MenuItem" iconclass="iconFilter">
+      ${i18n.filter}
+    </div>
+    <div id="subLayerMenu.attrTableSeparator" dojoType="dijit.MenuSeparator">
+    </div>
+    <div id="subLayerMenu.layerInfo" dojoType="dijit.MenuItem" iconclass="iconDescription">
+      ${i18n.description}
+    </div>
+  </div>
+</div>

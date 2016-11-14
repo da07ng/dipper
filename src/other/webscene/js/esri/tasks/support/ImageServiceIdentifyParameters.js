@@ -1,0 +1,6 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../../core/declare","../../core/Accessor","../../core/lang","../../geometry/support/jsonUtils"],function(d,e,c,f){return d(e,{declaredClass:"esri.tasks.ImageServiceIdentifyParameters",geometry:null,mosaicRule:null,noData:null,renderingRule:null,pixelSizeX:null,pixelSizeY:null,pixelSize:null,returnGeometry:!1,returnCatalogItems:!0,timeExtent:null,toJson:function(a){try{throw Error("toJson is deprecated, use toJSON instead");}catch(b){console.warn(b.stack)}return this.toJSON(a)},toJSON:function(a){var b=
+a&&a.geometry||this.geometry;a={geometry:b,returnGeometry:this.returnGeometry,returnCatalogItems:this.returnCatalogItems,mosaicRule:this.mosaicRule?JSON.stringify(this.mosaicRule.toJSON()):null,renderingRule:this.renderingRule?JSON.stringify(this.renderingRule.toJSON()):null};b&&(a.geometryType=f.getJsonType(b));b=this.timeExtent;a.time=b?b.toJSON().join(","):null;c.isDefined(this.pixelSizeX)&&c.isDefined(this.pixelSizeY)?a.pixelSize=JSON.stringify({x:parseFloat(this.pixelSizeX),y:parseFloat(this.pixelSizeY)}):
+this.pixelSize&&(a.pixelSize=this.pixelSize?JSON.stringify(this.pixelSize.toJSON()):null);return a}})});

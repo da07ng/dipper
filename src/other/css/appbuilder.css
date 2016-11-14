@@ -1,0 +1,46 @@
+/*app detail css*/
+.dec{
+    padding: 50px 0;
+    color: #5a5a5a;
+}
+.dec .media{
+    text-align: center;
+    padding-left: 100px;
+}
+.dec .media-body{
+    vertical-align: middle;
+    text-align: center;
+}
+.dec .media-left{
+    opacity: 0.8;
+    padding: 10px;
+    border-radius: 90%;
+    background-color: #A3CA4B;
+}
+.dec .media-left:hover{
+    opacity: 1;
+    box-shadow: 1px 2px 3px #eeeeee;
+}
+.dec .row div p{
+    text-indent: 1.5em;
+    font-size: 16px;
+    margin-top: 30px;
+    line-height: 2em
+}
+.odd{
+    background-color: #F1F1F1;
+}
+.dec.last{
+    color: #ffffff;
+    background: #1F354A;
+}
+.last.last h3{
+    background: #1F354A;
+}
+.dec h3{
+    background-color: #ffffff;
+}
+.odd h3{
+    background-color: #F1F1F1;
+}
+

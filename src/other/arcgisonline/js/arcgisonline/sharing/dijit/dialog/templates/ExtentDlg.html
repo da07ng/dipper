@@ -1,0 +1,60 @@
+<div class="widgetContent" >
+  <div data-dojo-type="dijit.Dialog" data-dojo-attach-point="_extentDialog" title="${i18n.extentDlgTitle}" data-dojo-attach-event="onHide:destroyMap" execute="" style="width: 430px;">
+    <div data-dojo-attach-point="_extentErrorDiv"></div>
+    <div>
+      <div class="esriLeadingMargin05" id="extentSearchDiv"></div>
+      <div data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="design:'headline', gutters:false" class="esriLeadingPadding05" style="width:400px; height:450px;">
+        <div data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region:'top'" style="padding: 10px 0;">
+          <div class="calcite light small" data-dojo-attach-point="_buttonSetExtent" data-dojo-attach-event="onClick:toggleMapNavigation" data-dojo-props="type:'button'" data-dojo-type="dijit.form.Button">
+            ${i18n.drawExtent}
+          </div>
+        </div>
+
+        <div data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="region:'center', design:'headline', gutters:false" style="width:400px; height:300px;">
+          <div id="extentMapDiv" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region:'center'" style="width:400px; height:300px; border:1px solid #000;"></div>
+        </div>
+
+        <div data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region:'bottom'" style="padding-bottom:0 !important;">
+          <table cellspacing="5" cellpadding="0">
+            <tr>
+              <td rowspan="3">
+              <div style="width:20px;"/>
+              </td>
+              <td>&nbsp; </td>
+              <td><span class="esriAlignTrailing esriFloatTrailing"><label for="extent-top">${i18n.topLabel}</label></span></td>
+              <td align="center"><div id="extent-top" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true, required:true" style="width:80px;"></div></td>
+              <td align="center" valign="middle">&nbsp; </td>
+            </tr>
+            <tr id="ltr_row">
+              <td valign="middle"><span class="esriAlignTrailing esriFloatTrailing"><label for="extent-left">${i18n.leftLabel}</label></span></td>
+              <td align="center" valign="middle"><div id="extent-left" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true, required:true" style="width:80px;"></div></td>
+              <td valign="middle"><span class="esriAlignTrailing esriFloatTrailing"><label for="extent-right">${i18n.rightLabel}</label></span></td>
+              <td><div id="extent-right" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true, required:true" style="width:80px;"></div></td>
+            </tr>
+            <tr id="rtl_row" style="display:none;">
+              <td valign="middle"><span class="esriAlignTrailing esriFloatTrailing"><label for="extent-left-rtl">${i18n.leftLabel}</label></span></td>
+              <td align="center" valign="middle"><div id="extent-left-rtl" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true, required:true" style="width:80px;"></div></td>
+              <td valign="middle"><span class="esriAlignTrailing esriFloatTrailing"><label for="extent-right-rtl">${i18n.rightLabel}</label></span></td>
+              <td><div id="extent-right-rtl" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true, required:true" style="width:80px;"></div>
+              </td>
+            </tr>
+            <tr>
+              <td>&nbsp; </td>
+              <td><span class="esriAlignTrailing esriFloatTrailing"><label for="extent-bottom">${i18n.bottomLabel}</label></span></td>
+              <td align="center"><div id="extent-bottom" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true, required:true" style="width:80px;"></div></td>
+              <td>&nbsp; </td>
+            </tr>
+          </table>
+          <div>
+            <button id="button_extent-cancel" data-dojo-attach-event="onClick:_handleCancelBtnClick" type="button" data-dojo-type="dijit.form.Button" class="esriFloatTrailing cancel">
+              ${i18n.cancel}
+            </button>
+            <button id="button_extent-ok" data-dojo-attach-event="onClick:_handleOkBtnClick" data-dojo-type="dijit.form.Button" class="esriFloatTrailing primary">
+              ${i18n.ok}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

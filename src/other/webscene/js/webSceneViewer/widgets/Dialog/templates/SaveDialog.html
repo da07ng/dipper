@@ -1,0 +1,66 @@
+<div class="dijitDialog saveDialog" role="dialog" aria-labelledby="${id}_title">
+  <div data-dojo-attach-point="titleBar" class="dijitDialogTitleBar">
+    <span data-dojo-attach-point="titleNode" class="dijitDialogTitle" id="${id}_title" role="heading" level="1"></span>
+    <span data-dojo-attach-point="closeButtonNode" class="dijitDialogCloseIcon" data-dojo-attach-event="ondijitclick: onCancel" title="${buttonCancel}" role="button" tabindex="0">
+      <span data-dojo-attach-point="closeText" class="closeText" title="${buttonCancel}">x</span>
+    </span>
+  </div>
+  <div data-dojo-attach-point="containerNode" class="dijitDialogPaneContent">
+    <div data-dojo-attach-point="ownerNode" class="ownershipText" >owned by ...</div>
+    <div class="dijitDialogPaneContentArea">
+      <div class="saveDialogContentNode">
+        <div class="scenePropertiesNode">
+          <label for="${id}_thumbnailBox" data-dojo-attach-point="labelThumbnail" class="thumbnailLabel"></label>
+          <table>
+            <tr>
+              <td colspan=2 rowspan=4>
+                <div class="thumbnailContainer">
+                  <img class="scenePropertiesInput thumbnail" data-dojo-attach-point="thumbnailBox" id="${id}_thumbnailBox" data-dojo-props="required: true">
+                  <button class="thumbnailUpdateButton" data-dojo-type="dijit/form/Button" type="button" data-dojo-attach-event="click: _thumbnailUpdateClickHandler" data-dojo-attach-point="buttonThumbnailUpdate" data-dojo-props="iconClass:'iconRefresh', showLabel:false"></button>
+                </div>
+              </td>
+              <td><label for="${id}_titleTextBox" data-dojo-attach-point="labelTitle"></label></td>
+            </tr>
+            <tr>
+              <td><input class="scenePropertiesInput marginBelow" data-dojo-attach-point="titleTextBox" data-dojo-type="dijit/form/ValidationTextBox" id="${id}_titleTextBox" data-dojo-props="required: true, trim: false, maxLength: 100" ></td>
+            </tr>
+            <tr>
+              <td><label for="${id}_descriptionTextBox" data-dojo-attach-point="labelDescription"></label></td>
+            </tr>
+            <tr>
+              <td><input class="scenePropertiesInput" data-dojo-attach-point="descriptionTextBox" data-dojo-type="dijit/form/ValidationTextBox" id="${id}_descriptionTextBox" data-dojo-props="required: false, maxLength: 250"></td>
+            </tr>
+          </table>
+          <br>
+          <label data-dojo-attach-point="labelTags" class="tagsLabel"></label>
+          <div class="dijitInline"  data-dojo-attach-point="tagsWidgetDiv" id="${id}_tagsTextBox"></div>
+          <br>
+          <br>
+          <label data-dojo-attach-point="labelLocation" class="locationLabel"></label>
+          <div class="locationToggleContainer" data-dojo-attach-point="locationToggleContainer">
+            <div class="locationToggle"  data-dojo-attach-point="locationToggle">
+              <div class="otherLocationDiv"  data-dojo-attach-point="otherLocationButton"></div>
+              <div class="myLocationDiv" data-dojo-attach-point="myLocationButton"></div>
+            </div>
+            <div class="locationHint" data-dojo-attach-point="hintLocation"></div>
+          </div>
+          <br>
+          <br>
+        </div>
+        <br>
+        <input data-dojo-attach-point="saveInitialStateCheckBox" data-dojo-type="dijit/form/CheckBox" id="${id}_saveInitialStateCheckBox">
+        <label for="${id}_saveInitialStateCheckBox" data-dojo-attach-point="labelSaveInitialState"></label>
+        <br>
+        <br>
+        <input data-dojo-attach-point="saveAsCheckBox" data-dojo-type="dijit/form/CheckBox" id="${id}_saveAsCheckBox">
+        <label for="${id}_saveAsCheckBox" data-dojo-attach-point="labelSaveAs"></label>
+        <br>
+        <br>
+      </div>
+      <div class="dijitDialogPaneActionBar">
+        <button data-dojo-type="dijit/form/Button" type="submit" data-dojo-attach-event="click: _saveButtonClickHandler" data-dojo-attach-point="buttonSave"></button>
+        <button data-dojo-type="dijit/form/Button" type="button" data-dojo-attach-event="click: onCancel" title="${buttonCancel}" data-dojo-attach-point="buttonCancel"></button>
+      </div>
+
+    </div>
+  </div>

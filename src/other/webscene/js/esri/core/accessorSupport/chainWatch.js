@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["dojo/has","../lang","./once"],function(n,l,m){var d=function(a,b,c){this._hdl=this._obj=null;this.name=a;this.callback=b;this.next=c;this.handler=this.handler.bind(this)};d.prototype={handler:function(a,b,c,e){this.next&&(this.next.obj=a);this.name===c&&this.callback(a,b,c,e)},remove:function(){this.obj=null}};Object.defineProperty(d.prototype,"obj",{get:function(){return this._obj},set:function(a){this._hdl&&(this._hdl.remove(),this._hdl=null);if((this._obj=a)&&a._accessorProps)this._hdl=
+a._accessorProps.watch(this.name,this.handler);this.next&&(this.next.obj=null==a?a:a[this.name])}});var h=function(a,b,c){Array.isArray(b)||(b=[b]);return 0<b.length?(b=new d(b[0],c,h(null,b.slice(1),c)),b.obj=a,b):null},f=function(a,b,c){if(a)return a=a[b[c]],c===b.length-1?a:f(a,b,++c)};return function(a,b,c){var e=b.split("."),d=f(a,e,0),k=h(a,e,function(){var g=f(a,e,0);l.equals(d,g)||(c.call(a,g,d,b,a),d=g)});return{remove:m(function(){k.remove();k=null})}}});

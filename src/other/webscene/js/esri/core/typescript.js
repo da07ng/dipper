@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["./declare","dojo/_base/lang"],function(l,m){var k={declareDefinition:function(b,a){var e=[],f=Object.getPrototypeOf(b.prototype);f!==Object.prototype&&e.push(f.constructor);a&&(e=e.concat(a));for(var k={},g=Object.getOwnPropertyNames(b.prototype),d=0;d<g.length;d++){var c=g[d];if("constructor"!==c){var h=c;"dojoConstructor"===c&&(h="constructor");k[h]=b.prototype[c]}}g=Object.getOwnPropertyNames(b);f=Object.getOwnPropertyNames(f.constructor);h={};for(d=0;d<g.length;d++)c=g[d],-1===f.indexOf(c)&&
+(h[c]=b[c]);return{bases:e,instanceMembers:k,classMembers:h}},subclass:function(b){return function(a){a=k.declareDefinition(a,b);return m.mixin(l(a.bases,a.instanceMembers),a.classMembers)}},shared:function(b){return function(a,e){a[e]=b}}};return k});

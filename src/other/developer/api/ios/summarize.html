@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>summarize</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <style>
+      html, body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #FFF;
+        font-family: "Microsoft Yahei","微软雅黑", "Pinghei";
+      }
+      article{
+        display: block;
+      }
+      img {
+        border: none;
+        max-width: 745px;
+      }
+      a {
+        text-decoration: none;
+        blr: expression(this.onFocus=this.blur());
+      }
+      a:-webkit-any-link {
+        text-decoration: none;
+        cursor: auto;
+      }
+      #page_content {
+        background: #fff;
+        padding: 10px 30px;
+        clear: right;
+        overflow: hidden;
+        font-size: 14px;
+        border: 1px solid #ccc;
+      }
+      #page_content p {
+        margin: 10px 0;
+        overflow: hidden;
+      }
+      .md-body {
+        font-size: 12px;
+        line-height: 2;
+        color: #808080;
+        padding: 0 20px 20px;
+        margin: 0 auto;
+      }
+      .md-body > h1:first-child {
+        margin-top: -10px;
+      }
+      .md-body h1 {
+        line-height: 60px;
+        font-size: 20px;
+        color: #333;
+        text-indent: 30px;
+        font-weight: normal;
+        margin: 16px -30px 16px;
+        border-bottom: 1px solid #e5e5e5;
+      }
+      .md-body h2 {
+        color: #0075c2;
+        font-size: 18px;
+        font-weight: normal;
+        margin: 16px -30px;
+        clear: left;
+        border-top: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5;
+        line-height: 58px;
+        text-indent: 20px;
+        position: relative;
+        padding: 0 30px;
+        background: url(../images/h2.png) no-repeat 30px center;
+      }
+      .md-body h2::before, .md-body h2::after {
+        content: '';
+        width: 30px;
+        height: 1px;
+        bottom: 0px;
+        margin: 0 0 -1px -50px;
+        background: #fff;
+        position: absolute;
+        box-sizing: border-box;
+      }
+      .md-body h2::after {
+        right: 0;
+      }
+      .md-body h1 + h2 {
+        margin-top: -17px;
+      }
+      .mw-content-ltr {
+        direction: ltr;
+      }
+      .clearfix:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+      }
+      .bluepoint {
+        display: inline-block;
+        width: 0px;
+        height: 0px;
+        border: solid 3px #626262;
+        border-radius: 4px;
+        padding: 0px;
+        line-height: 0px;
+        margin-right: 15px;
+        position: relative;
+        top: -2px;
+      }
+      .picBox {
+      }
+      .picBox .item{
+        width:230px;
+        float:left;
+        display: inline;
+        margin-right: 5px;
+        margin-bottom: 5px;
+      }
+      .picBox .item .pic p {
+        padding: 0 !important;
+      }
+      .picBox1 .item{
+        width:50%;
+      }
+      .picBox .item .pic img{
+        padding:4px;
+        border:1px solid #e0e0e0;
+        width: 216px;
+        height: 140px;
+        box-shadow:1px 2px 1px 0 #f0f0f0;
+      }
+
+      .picBox1 .item .pic img{
+        width: 340px;
+        height: 179px;
+      }
+
+      .picBox .item .pic a:hover img{
+        border-color:#0088CC;
+      }
+      .picBox .item dl {
+        padding: 0;
+        margin: 0;
+      }
+      .picBox .item dt{
+        font-weight:bold;
+        color:#0088cc;
+        height:20px;
+        padding-top:5px;
+        line-height:20px;
+      }
+      .picBox .item dd{
+        line-height: 16px;
+        height:51px;
+        color:#707070;
+      }
+      .picBox .item dd a{
+        color:#707070;
+      }
+      .picBox .item dd a:hover{
+        color:#0088cc;
+        text-decoration:none;
+      }
+      @media only screen and (min-width: 1280px) and (max-width: 2048px) {
+        .picBox .item{
+            width:230px !important;
+            float:left;
+            display: inline;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        .picBox .item .pic img{
+            padding:4px;
+            border:1px solid #e0e0e0;
+            width: 216px !important;
+            height: 140px !important;
+            box-shadow:1px 2px 1px 0 #f0f0f0;
+        }
+      }
+      @media only screen and (max-width: 1280px) {
+        .picBox .item{
+            width:220px !important;
+            float:left;
+            display: inline;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        .picBox .item .pic img{
+            padding:4px;
+            border:1px solid #e0e0e0;
+            width: 210px !important;
+            height: 130px !important;
+            box-shadow:1px 2px 1px 0 #f0f0f0;
+        }
+       
+
+      }
+      .Center-Container {
+  position: relative;
+}
+.aligncenter { 
+clear: both; 
+display: block; 
+margin:auto; 
+} 
+    </style>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/respond.min.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+  </head>
+
+  <body>
+    <div class="container-fluid layoutContainer">
+    <article id="page_content" class="md-body mw-content-ltr">
+    <h1>概述-IOS API</h1>
+    <h2>简介</h2>
+    <p>新华社地图iOS API是一套由Objective-C开发的应用程序接口，支持开发丰富的移动地图应用，可以运行在iPad、iPhone 和 iPod touch 上，本指南提供了入门指导和接口介绍。</p>
+    <h2>功能介绍</h2>
+    <div>
+        <div>基础地图服务:图层（layer）在地图容器（MapView）中是按顺序加载的,默认第一个图层为基础底图，基础底图非常重要，它决定了地图应用需要的基本参数，包括投影类型、显示范围、比例尺等
+        </div>
+        <div align="center">
+          <img id="img" src="../images/iossummarizemap.png" width="300px" 
+        </div>
+    </div>
+
+    <div>
+      <p>空间查询服务：提供本地数据和在线数据对应的API，实现空间查询。查询一般分为属性查询和空间查询，属性查询通过构造标准的SQL语句实现，而空间查询比较特殊，需要构建几何范围并指定空间关系。
+      </p>
+    </div>
+    <div align="center">
+      <img id="img" src="../images/iosandroidQuery.png" width="600px">
+    </div>
+
+    <div>
+      <p>空间统计服务：基于空间查询的结果，进行信息的统计分析。</p>
+    </div>
+    <div align="center">
+      <img src="../images/iosStatis.png" height="500px"></div>
+
+    <div>
+      <p>定位服务：定位能力是智能设备的标配，SDK提供了对定位信息的管理功能，用户可以通过LocationDisplayManager来进行定位操作</p>
+    </div>
+    <div align="center">
+      <img src="../images/iosLocation.png" height="500px"></div>
+
+    <div>
+      <p>标注服务：包括所有叠加到地图的内容，如标注、矢量图形元素(包括折线和多边形和圆)、信息窗体等。覆盖物具有地理坐标，当地图拖动或缩放时，它们会对应的移动。
+      </p>
+    </div>
+    <div align="center">
+      <img src="../images/iosLabel.png" height="400px">
+    </div>
+
+    <div>
+      <p>分级渲染服务-点：英文为Render，可以用一种或多种符号实现空间要素数据（点、线、面）的批量符号化，以下通过ClassBreakRenderer接口实现点要素数据的分级渲染，分级渲染器定义了一组符号和数值属性值之间的映射，其中ClassBreak是最基本的单元，需要指定该分级区间的最小、最大值和符合样式。
+      </p>
+    </div>
+    <div align="center">
+      <img src="../images/iosRenderPoint.png" height="550px">
+    </div>
+
+    <div>
+      <p>分级渲染服务-面：通过ClassBreakRenderer接口实现面要素的分级渲染，分级渲染器定义了一组符号和数值属性值之间的映射，其中ClassBreak是最基本的单元，需要指定该分级区间的最小、最大值和符合样式。
+      </p>
+    </div>
+    <div align="center">
+      <img src="../images/iosRenderPolygen.png" height="550px">
+    </div>
+
+    <div>
+      <p>时态展示服务：地图API支持可视化时态数据，通过时间渲染器（temporal render）,可以很容易地展示包含时间属性的地图图层（Time-aware Layers）随时间发生的变化，并且可以按时间过滤数据。
+      </p>
+    </div>
+    <div align="center">
+      <img src="../images/iostime.png" height="600px">
+    </div>
+
+    <div>
+      <p>大数据渲染服务：通过分级渲染器（ClassBreaksRenderer）对大数据进行分级渲染。
+      </p>
+    </div>
+    <div align="center">
+      <img src="../images/iosBigdata.png" height="600px">
+    </div>
+
+        
+
+      </div>
+      </article>
+    </div>
+  </body>
+</html>

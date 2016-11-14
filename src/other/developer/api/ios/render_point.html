@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>pointRender</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+      <link rel="stylesheet" href="../css/apiNative.css">
+    <style>
+      #map {
+        height: 720px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: url(../images/iosRenderPoint.png) no-repeat center center;
+        background-size: contain;
+      }
+    </style>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+  </head>
+
+  <body>
+    <div class="container-fluid layoutContainer">
+      <article id="page_content" class="md-body">
+        <h1>分级渲染服务-点</h1>
+        <h2>简介</h2>
+        <p>渲染，英文为Render，可以用一种或多种符号实现空间要素数据（点、线、面）的批量符号化，以下通过ClassBreakRenderer接口实现点要素数据的分级渲染，分级渲染器定义了一组符号和数值属性值之间的映射，其中ClassBreak是最基本的单元，需要指定该分级区间的最小、最大值和符合样式。</p>
+        <h2>示例</h2>
+        <div id="map"></div>
+        <h2>代码</h2>
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+//create the renderer with a default simple marker symbol  
+[super viewDidLoad];
+    ……
+    NSURL *featureUrl = [NSURL URLWithString:@"http://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/Warren_College_Trees/FeatureServer/0"];
+    AGSFeatureLayer *featureLayer = [AGSFeatureLayer featureServiceLayerWithURL:featureUrl mode:AGSFeatureLayerModeSnapshot];
+    featureLayer.outFields = @[@"Cmn_Name", @"GroundArea", @"Sci_Name", @"Height", @"C_Seq"];
+    
+    AGSClassBreaksRenderer *classBreaksRenderer  = [AGSClassBreaksRenderer new];
+    classBreaksRenderer.defaultSymbol = [AGSSimpleFillSymbol simpleFillSymbolWithColor:[UIColor colorWithRed:15./255 green:15./255 blue:0 alpha:0.5] outlineColor:[UIColor lightGrayColor]];
+    classBreaksRenderer.field = @"C_Seq";
+    AGSClassBreak *classBreak1 = [AGSClassBreak new];
+    classBreak1.maxValue =12;
+    AGSSimpleMarkerSymbol *sml1 = [AGSSimpleMarkerSymbol simpleMarkerSymbolWithColor:[UIColor colorWithRed:237./255 green:247./255 blue:232./255 alpha:0.5]];
+    sml1.size = CGSizeMake(5, 5);
+    sml1.outline.color = [UIColor clearColor];
+    classBreak1.symbol = sml1;
+    AGSClassBreak *classBreak2 = [AGSClassBreak new];
+    classBreak2.maxValue =30;
+    AGSSimpleMarkerSymbol *sml2 = [AGSSimpleMarkerSymbol simpleMarkerSymbolWithColor:[UIColor colorWithRed:189./255 green:227./255 blue:187./255 alpha:0.5]];
+    sml2.size = CGSizeMake(10, 10);
+    sml2.outline.color = [UIColor clearColor];
+    classBreak2.symbol = sml2;
+    AGSClassBreak *classBreak3 = [AGSClassBreak new];
+    classBreak3.maxValue =61;
+    AGSSimpleMarkerSymbol *sml3 = [AGSSimpleMarkerSymbol simpleMarkerSymbolWithColor:[UIColor colorWithRed:140./255 green:206./255 blue:141./255 alpha:0.5]];
+    sml3.size = CGSizeMake(15, 15);
+    sml3.outline.color = [UIColor clearColor];
+    classBreak3.symbol = sml3;
+    AGSClassBreak *classBreak4 = [AGSClassBreak new];
+    classBreak3.maxValue =102;
+    AGSSimpleMarkerSymbol *sml4 = [AGSSimpleMarkerSymbol simpleMarkerSymbolWithColor:[UIColor colorWithRed:93./255 green:179./255 blue:103./255 alpha:0.5]];
+    sml4.size = CGSizeMake(20, 20);
+    sml4.outline.color = [UIColor clearColor];
+    classBreak3.symbol = sml4;
+    AGSClassBreak *classBreak5 = [AGSClassBreak new];
+    classBreak3.maxValue =164;
+    AGSSimpleMarkerSymbol *sml5 = [AGSSimpleMarkerSymbol simpleMarkerSymbolWithColor:[UIColor colorWithRed:46./255 green:144./255 blue:74./255 alpha:0.5]];
+    sml5.size = CGSizeMake(25, 25);
+    sml5.outline.color = [UIColor clearColor];
+    classBreak3.symbol = sml5;
+    
+    classBreaksRenderer.classBreaks = @[classBreak1,classBreak2,classBreak3,classBreak4,classBreak5];
+    featureLayer.renderer = classBreaksRenderer;
+    //Add it to the map view
+    [self.mapView addMapLayer:featureLayer withName:@"feature Layer"];
+
+
+          </textarea>
+        </p>
+      </article>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+<div class="widgetContent">
+  <div class="${baseClass}" data-dojo-type="dijit.Dialog" id="select-account-user-dialog" title="${i18n.selectUser}" execute="">
+    <div style="margin-top:1em;" id="select-account-user-content">
+      Select a user.
+    </div>
+    <div style="margin-top:1em;">
+      <div id="userList" data-dojo-attach-point="userList" data-dojo-attach-event="onChange:onUserSelect" data-dojo-type="dijit.form.ComboBox" value="${i18n.selectUserLabel}"></div>
+    </div>
+    <div style="float:right; clear:both; margin-top:2em;">
+      <button id="button_select-account-user-submit" class="jevent primary" data-dojo-type="dijit.form.Button">${i18n.selectUser}</button>
+      <button id="button_select-account-user-close" class="jevent cancel" data-dojo-type="dijit.form.Button">${i18n.cancel}</button>
+    </div>
+    <div style="clear:both; float:none; height:0;"></div>
+  </div>
+</div>

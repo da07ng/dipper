@@ -1,0 +1,155 @@
+<div class="widgetContent">
+    <div data-dojo-type="dijit.Dialog" data-dojo-attach-point="_shareGroupDialog" id="share-group-dialog" title="${i18n.share}">
+        <div data-dojo-type="dijit.layout.StackContainer" id="share-group-stack" data-dojo-attach-point="_stackContainer">
+            <!-- all options -->
+            <div data-dojo-type="dijit.layout.ContentPane" data-dojo-attach-point="_stackAllOptions" class="share-map-stack-stack" style="overflow-y:auto;">
+                <div data-dojo-attach-point="_shareGroupNotice">${i18n.shareGroup}</div>
+                <div style="padding-top:30px;"><label style="font-weight:bold;">${i18n.linkToGroup}</label></div>
+                <div class="esriLeadingPadding05" style="clear:both; height:30px;">
+                    <div class="esriFloatLeading" style="padding-top:10px; width:320px;">
+                        <div data-dojo-attach-point="_shareGroupUrl" data-dojo-type="dijit.form.Textarea" style="width:270px; color:#000;"></div>
+                    </div>
+                    <div id="socialNetworkLinks" style="padding-top:10px;" class="socialNetworkBadges esriFloatLeading">
+                        <div class="esriItemLinks">
+                            <!-- use table because of RTL + IE -->
+                            <table><tbody><tr><td style="width:30px;">
+                                <a id="facebookLink" href="#" title="${i18n.shareFacebook}" target="_blank"><span class="badge facebookBadge dijitInline"></span></a>
+                            </td><td>
+                                <a id="facebookLink2" class="label" style="vertical-align:top;" title="${i18n.shareFacebook}" target="_blank">${i18n.facebook}</a>
+                            </td><td style="width:25px;">
+                                &nbsp;
+                            </td><td style="width:30px;">
+                                <a id="twitterLink" href="#" title="${i18n.shareTwitter}" target="_blank"><span class="badge twitterBadge dijitInline"></span></a>
+                            </td><td>
+                                <a id="twitterLink2" class="label" style="vertical-align:top;" title="${i18n.shareTwitter}" target="_blank">${i18n.twitter}</a>
+                            </td></tr></tbody></table>
+                        </div>
+                    </div>
+                </div>
+                <div style="clear:both; padding-top:15px;"><label style="font-weight:bold;">${i18n.embedGroup}</label></div>
+
+                <div class="esriFloatLeading esriLeadingPadding05" style="clear:both; padding-top:10px;">
+                    <button id="button-share-group-embed" data-dojo-type="dijit.form.Button" type="button" data-dojo-attach-event="onClick:onEmbed">${i18n.embedInWebsite}</button>
+                    <button id="button-share-group-application" data-dojo-type="dijit.form.Button" type="button" data-dojo-attach-event="onClick:onApplication">${i18n.makeWebApp}</button>
+                </div>
+                <div class="esriFloatTrailing buttonContainer">
+                    <button class="calcite primary" data-dojo-type="dijit.form.Button" type="button" data-dojo-attach-event="onClick:onClose">${i18n.done}</button>
+                </div>
+            </div>
+            <!-- embed option -->
+            <div data-dojo-type="dijit.layout.ContentPane" data-dojo-attach-point="_stackEmbed" class="share-map-stack-stack" style="overflow-y:auto;">
+                <!--<div><label style="font-weight:bold; text-decoration:underline;">${i18n.embedInWebsite}</label></div>-->
+
+                <div style="padding-top:15px;">${i18n.embedGroupInWebsite}</div>
+
+                <div style="padding-bottom:5px; padding-top:15px;">
+                    <label for="share-group-embed" style="font-weight:bold;">${i18n.copyPaste}</label>
+                </div>
+                <div data-dojo-attach-point="_shareGroupEmbed" id="share-group-embed" data-dojo-type="dijit.form.Textarea" style="width:98%; min-height:100px; max-height:100px;"></div>
+
+                <div id="share-group-groupsize" style="padding-top:20px; line-height:18px;">
+                    <div class="esriFloatLeading esriLeadingMargin2" style="width:34px; text-align:center;">
+                        <div class="groupGallerySize1"><label for="groupSize:one">&nbsp;</label></div>
+                        <input type="radio" name="groupSize" data-dojo-type="dijit.form.RadioButton" data-dojo-attach-event="onClick:onGroupSizeClick" data-dojo-attach-point="_groupSizeOne" id="groupSize:one" checked/>
+                    </div>
+                    <div class="esriFloatLeading esriLeadingMargin2" style="width:34px; text-align:center;">
+                        <div class="groupGallerySize2"><label for="groupSize:two">&nbsp;</label></div>
+                        <input type="radio" name="groupSize" data-dojo-type="dijit.form.RadioButton" data-dojo-attach-event="onClick:onGroupSizeClick" id="groupSize:two"/>
+                    </div>
+                    <div class="esriFloatLeading esriLeadingMargin2" style="width:34px; text-align:center;">
+                        <div class="groupGallerySize3"><label for="groupSize:three">&nbsp;</label></div>
+                        <input type="radio" name="groupSize" data-dojo-type="dijit.form.RadioButton" data-dojo-attach-event="onClick:onGroupSizeClick" id="groupSize:three"/>
+                    </div>
+                    <div class="esriFloatLeading esriLeadingMargin2" style="width:34px; text-align:center;">
+                        <div class="groupGallerySize4"><label for="groupSize:four">&nbsp;</label></div>
+                        <input type="radio" name="groupSize" data-dojo-type="dijit.form.RadioButton" data-dojo-attach-event="onClick:onGroupSizeClick" id="groupSize:four"/>
+                    </div>
+                    <div class="esriFloatLeading esriLeadingMargin2" style="width:34px; text-align:center;">
+                        <div class="groupGallerySize5"><label for="groupSize:five">&nbsp;</label></div>
+                        <input type="radio" name="groupSize" data-dojo-type="dijit.form.RadioButton" data-dojo-attach-event="onClick:onGroupSizeClick" id="groupSize:five"/>
+                    </div>
+                    <div class="esriFloatLeading esriLeadingMargin2" style="width:34px; text-align:center;">
+                        <div class="groupGallerySize6"><label for="groupSize:six">&nbsp;</label></div>
+                        <input type="radio" name="groupSize" data-dojo-type="dijit.form.RadioButton" data-dojo-attach-event="onClick:onGroupSizeClick" id="groupSize:six"/>
+                    </div>
+                </div>
+
+                <div style="clear:both; padding-top:15px;">
+                    <table border="0" style="width:100%;">
+                        <tbody>
+                        <tr>
+                            <td style="vertical-align:top;">${i18n.displayWebMaps}</td>
+                            <td style="vertical-align:top; width:425px;">
+                                <div>
+                                    <span><input type="radio" name="displayWebMaps" id="displayWebMaps:over" data-dojo-type="dijit.form.RadioButton" data-dojo-attach-point="_displayWebMapsOver" data-dojo-attach-event="onClick:onDisplayWebMapsClick" checked /> <label for="displayWebMaps:over">${i18n.displayOverEmbeddedGallery}</label></span><br/>
+                                </div>
+                                <div>
+                                    <span><input type="radio" name="displayWebMaps" id="displayWebMaps:predefined" data-dojo-type="dijit.form.RadioButton" data-dojo-attach-event="onClick:onDisplayWebMapsClick"/> <label for="displayWebMaps:predefined">${i18n.displayInPredefinedApp}</label></span><br/>
+                                    <div style="margin-left:20px; line-height:18px;" id="sharePredefinedApp" data-dojo-attach-point="_sharePredefinedApp" data-dojo-attach-event="onChange:onPreconfiguredAppChange" data-dojo-type="arcgisonline.sharing.dijit.ComboBox"></div>
+                                </div>
+                                <div>
+                                    <span><input type="radio" name="displayWebMaps" id="displayWebMaps:configured" data-dojo-type="dijit.form.RadioButton" data-dojo-attach-event="onClick:onDisplayWebMapsClick"/> <label for="displayWebMaps:configured">${i18n.displayInConfiguredApp}</label></span><br/>
+                                    <div style="margin-left:20px; padding-left:5px;" data-dojo-attach-point="_shareConfiguredApp" data-dojo-attach-event="onChange:onConfiguredAppChange,onKeyPress:onConfiguredAppKeyPress" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="esriFloatTrailing buttonContainer">
+                    <button class="calcite default" data-dojo-type="dijit.form.Button" data-dojo-attach-event="onClick:onApplicationBack">${i18n.back}</button>
+                    <button class="calcite primary" data-dojo-type="dijit.form.Button" data-dojo-attach-event="onClick:onClose">${i18n.done}</button>
+                </div>
+            </div>
+            <!-- application option gallery  -->
+            <div data-dojo-type="dijit.layout.ContentPane" data-dojo-attach-point="_stackApplicationGallery" class="share-map-stack-stack">
+                <div id="share-map-application-gallery-box">
+                    <div id="gallery-grid"></div>
+                </div>
+                <div class="esriFloatTrailing buttonContainer">
+                    <button class="calcite default" data-dojo-type="dijit.form.Button" type="button" data-dojo-attach-event="onClick:onApplicationBack">${i18n.back}</button>
+                    <button class="calcite cancel" data-dojo-type="dijit.form.Button" type="button" data-dojo-attach-event="onClick:onClose">${i18n.cancel}</button>
+                </div>
+            </div>
+            <!-- application option publish  -->
+            <div id="share-group-application-publish" data-dojo-type="dijit.layout.ContentPane" data-dojo-attach-point="_stackApplicationPublish" class="share-map-stack-stack" style="overflow-y:auto;">
+                <div data-dojo-attach-point="_itemProperties"></div>
+                <div class="esriFloatTrailing buttonContainer">
+                    <button id="publish-back-button" class="calcite default" type="button" data-dojo-type="dijit.form.Button" data-dojo-attach-event="onClick:onApplicationPublishBack">${i18n.back}</button>
+                    <button id="publish-group-button" class="calcite primary" type="button" data-dojo-type="dijit.form.Button">${i18n.done}</button>
+                    <button id="publish-cancel-button" class="calcite cancel" data-dojo-type="dijit.form.Button" data-dojo-attach-event="onClick:onClose">${i18n.cancel}</button>
+                </div>
+            </div>
+            <!-- application option help  -->
+            <div id="share-map-application-help" data-dojo-type="dijit.layout.ContentPane" data-dojo-attach-point="_stackApplicationHelp" class="share-map-stack-stack" style="overflow-y:auto;">
+                <!--<div><label style="font-weight:bold; text-decoration:underline; ">${i18n.makeWebApp}</label></div>-->
+                <div style="padding-top:15px;"><label>${i18n.followSteps}</label></div>
+                <div style="padding-top:0;">
+                    <ul>
+                        <li>
+                            <span style="font-weight:bold;">${i18n.unzipFile}</span>
+                            <div>${i18n.unzipFileInstructions}</div>
+                        </li>
+                        <li style="margin-top:10px;">
+                            <span style="font-weight:bold;">${i18n.deployTheApp}</span>
+                            <div>${i18n.copyAppToWeb}</div>
+                        </li>
+                        <li style="margin-top:10px;">
+                            <span style="font-weight:bold;">${i18n.configureTheApp}</span>
+                            <div>${i18n.makeAppChanges}</div>
+                        </li>
+                    </ul>
+                    <div style="padding-top:10px;">
+                        <span id="share-group-groupId">${i18n.yourGroupId} </span>
+                    </div>
+                </div>
+
+                <div class="esriFloatTrailing buttonContainer">
+                    <button class="calcite default" data-dojo-type="dijit.form.Button" type="button" data-dojo-attach-event="onClick:onApplicationHelpBack">${i18n.back}</button>
+                    <button class="calcite primary" data-dojo-type="dijit.form.Button" data-dojo-attach-event="onClick:onClose">${i18n.done}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

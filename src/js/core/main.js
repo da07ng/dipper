@@ -1,8 +1,8 @@
 // // import 'babel-polyfill'
-// import { config } from '../config/config'
+import { config } from '../config/config'
 
-// import { generateToken } from '../portal/token'
-// import { getPortalSelf } from '../portal/portals'
+import { generateToken } from '../portal/token'
+import { getPortalSelf } from '../portal/portals'
 
 import cookie from '../utils/cookie'
 
@@ -14,6 +14,16 @@ if (token === undefined || token === '') {
   $('.account').hide()
   $('.dashboard').show()
 }
+
+getPortalSelf(token).then(response => {
+  if (response.ok) {
+    response.json().then(json => {
+      window.dipper.orgid = json.id
+    })
+  }
+}).catch(err => {
+  console.log(err)
+})
 
 $('#signout').on('click', function(e) {
   e.preventDefault()

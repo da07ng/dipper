@@ -1,0 +1,19 @@
+<div class="widgetContent">
+  <div dojotype="dijit.Dialog" id="delete-warning-dialog" title="${i18n.deleteWarningDlgTitle}" execute="">
+    <div style="margin-top:0 !important;" id="delete-warning-dialog-content">
+    </div>
+
+    <div class="esriFloatTrailing" style="clear: both; margin-top: 2em;">
+      <span id="delete-status" style="display:none;">${!i18n.deletingSpace}&nbsp;&nbsp;&nbsp;</span>
+	<!-- "primary" / "calcite orange" used since this is a delete confirmation -->
+      <button id="button_delete-warning-submit" class="jevent calcite orange" dojoType="dijit.form.Button">
+        ${i18n.deleteLabel}
+      </button>
+      <button id="button_delete-warning-close" class="jevent cancel" dojoType="dijit.form.Button">
+        ${i18n.cancel}
+      </button>
+    </div>
+    <div style="clear:both; float:none; height: 0;">
+    </div>
+  </div>
+</div>

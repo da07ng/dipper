@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Label</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="../css/apiNative.css">
+    <style>
+
+        #info {
+            margin: 10px;
+        }
+        #info button {
+            margin-right: 5px;
+        }
+        #map {
+            height: 700px;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background: url(../images/androidLocation.png) no-repeat center center;
+            background-size: contain;
+        }
+    </style>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+</head>
+
+<body>
+<div class="container-fluid layoutContainer">
+    <article id="page_content" class="md-body">
+        <h1>定位服务</h1>
+
+        <h2>简介</h2>
+
+
+        <p>ArcGIS Runtime for Android 为我们提供了定位管理功能，用户可以通过LocationDisplayManager来进行定位操作，定位显示管理模块提供了三种显示模式：NAVIGATION、COMPASS、LOCATION。</p>
+        <p>用户可以根据自己的需要选择相应的模式，通过LocationDisplayManager的start方法进行定位。</p>
+
+        <h2>示例</h2>
+
+        <div id="map"></div>
+        <h2>代码</h2>
+
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    MapView mapView = new MapView(this);
+    setContentView(mapView);
+    ArcGISTiledMapServiceLayer tiledMapServiceLayer = new ArcGISTiledMapServiceLayer(getString(R.string.default_baseLayer));
+    mapView.addLayer(tiledMapServiceLayer);
+
+    LocationDisplayManager locationDisplayManager = mapView.getLocationDisplayManager();
+    locationDisplayManager.setAutoPanMode(LocationDisplayManager.AutoPanMode.NAVIGATION);
+    locationDisplayManager.start();
+
+}
+          </textarea>
+        </p>
+    </article>
+</div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["./GLFBO","./Util"],function(g,d){return function(a){var b,c;this.setEnableState=function(a){a!==this.getEnableState()&&(a?this.enable():this.disable())};this.getEnableState=function(){return void 0!==b};this.getNormalFBO=function(){return b};this.enable=function(){d.assert(!this.getEnableState());b=new g(a.RGBA,a.UNSIGNED_BYTE,!0,a.NEAREST,a)};this.disable=function(){d.assert(this.getEnableState());b.dispose();b=void 0};var e,f;this.setupFBOs=function(b){d.assert(this.getEnableState());c=
+b=b.viewport;e=b[2];f=b[3];a.viewport(0,0,e,f)};this.prepareNormalPass=function(){d.assert(this.getEnableState());b.setSize(e,f);b.bind();a.clearColor(0,0,0,0);a.clear(a.COLOR_BUFFER_BIT|a.DEPTH_BUFFER_BIT)};this.finish=function(b){a.bindFramebuffer(a.FRAMEBUFFER,b);a.viewport(c[0],c[1],c[2],c[3])}}});

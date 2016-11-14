@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>mapService</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="../css/serviceStyle.css">
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+</head>
+
+<body>
+<div class="container-fluid layoutContainer">
+    <article id="page_content" class="md-body">
+        <h1>基础地图服务</h1>
+
+        <h2>简介</h2>
+
+        <p>ArcGIS
+            包含一套底图，可用于提供世界和您的工作环境的参考地图。这些地图根据大量权威数据提供者所提供的最佳可用数据构建而成，可呈现多种制图样式。它们旨在强调以不同的角度(从物质到政治)看世界。用户可以选择最适合地图或应用程序的底图。
+        </p>
+
+        <p>ArcGIS提供多种底图供用户选择，包括在线数据源、ArcGIS离线数据源（自10.2版本起），以及第三方数据源。
+            在线数据源包括切片地图服务，动态地图服务，影像服务，要素服务；离线数据源包括紧凑型切片，tpk切片包，地名地址库等；第三方数据源包括Bing地图，Open Street map，以及OGC图层。</p>
+
+        <p>本实例支持多个Google、MapBox及ArcGIS Online等多种基础底图的加载。</p>
+
+        <h2>示例</h2>
+
+        <div id="map"></div>
+        <div class="center">
+            <label class="radio"><input type="radio" name="optionsRadios" id="arcgisonlinebutton" value="option1"
+                                        checked>ArcGIS Online 地形图</label>
+            <label class="radio"><input type="radio" name="optionsRadios" id="googlebutton"
+                                        value="option1">谷歌影像图</label>
+            <label class="radio"><input type="radio" name="optionsRadios" id="mapboxbutton"
+                                        value="option1">Mapbox地形图</label>
+        </div>
+        <h2>API示例</h2>
+
+        <div class="biaoge">
+            <table>
+
+
+                <tr>
+                    <td>
+                        <div class="apilink1">
+                            <a href="../api.html?type=js&title=maps" target="view_window1"><img
+                                    src="images/imac-full.png" alt=""></a>
+                            <a href="../api.html?type=js&title=maps" target="view_window1"><h3
+                                    class="leader-1 trailer-half">JavaScript开发</h3></a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="apilink2">
+                            <a href="../iosApi.html?type=ios&title=iosmaps" target="view_window2"><img
+                                    src="images/apple-full.png" alt=""></a>
+                            <a href="../iosApi.html?type=ios&title=iosmaps" target="view_window2"><h3
+                                    class="leader-1 trailer-half">IOS开发</h3></a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="apilink3">
+                            <a href="../androidApi.html?type=android&title=maps" target="view_window3"><img
+                                    src="images/android-full.png" alt=""></a>
+                            <a href="../androidApi.html?type=android&title=maps" target="view_window3"><h3
+                                    class="leader-1 trailer-half">Android开发</h3></a>
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+        <script src="http://js.arcgis.com/3.13/"></script>
+        <script>
+            var map;
+            var mapConfigs = {
+                'google': {
+                    "url": "http://${subDomain}.google.cn/vt/lyrs=s@145&hl=zh-CN&gl=CN&src=app&x=${col}&y=${row}&z=${level}&scale=1.100000023841858&s=G",
+                    "type": "WebTiledLayer",
+                    "subDomains": ["mt0", "mt1", "mt2", "mt3"],
+                    "copyright": "MapQuest © 2012",
+                    "name": "谷歌影像图"
+                },
+                'mapbox': {
+                    "url": "https://api.tiles.mapbox.com/v4/mapbox.mapbox-terrain-v1/${level}/${col}/${row}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q",
+                    "type": "WebTiledLayer",
+                    "copyright": "Mapbox",
+                    "name": "Mapbox地形图"
+                },
+                'arcgisonline': {
+                    "url": "http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer",
+                    "type": "ArcGISTiledMapServiceLayer",
+                    "name": "ArcGISOnline地形图"
+                }
+            };
+            require(["esri/map", "esri/layers/FeatureLayer", "dojo/dom", "dojo/on", "esri/layers/WebTiledLayer", "esri/layers/ArcGISTiledMapServiceLayer", "dojo/domReady!"], function (Map, FeatureLayer, dom, on, WebTiledLayer, ArcGISTiledMapServiceLayer) {
+                map = new Map("map", {
+                    slider: true,
+                    resizeDelay: 100, // 300ms(default) seemed a little slow in this case
+                    center: [-74.985, 4.579],
+                    zoom: 8
+                });
+                map.on("load", function () {
+                    map.disableScrollWheelZoom();
+                });
+
+                var googleurl = mapConfigs.google.url;
+                var googleFeatureLayer = new WebTiledLayer(googleurl, {
+                    "id": "google",
+                    "copyright": mapConfigs.google.copyright,
+                    "subDomains": mapConfigs.google.subDomains
+                });
+                map.addLayer(googleFeatureLayer);
+                googleFeatureLayer.setVisibility(false);
+
+                var mapboxurl = mapConfigs.mapbox.url;
+                var mapboxFeatureLayer = new WebTiledLayer(mapboxurl, {
+                    "id": "mapbox",
+                    "copyright": mapConfigs.mapbox.copyright,
+                    "subDomains": mapConfigs.mapbox.subDomains
+                });
+                map.addLayer(mapboxFeatureLayer);
+                mapboxFeatureLayer.setVisibility(false);
+
+                var arcgisonlineurl = mapConfigs.arcgisonline.url;
+                var arcgisonlineArcGISTiledMapServiceLayer = new ArcGISTiledMapServiceLayer(arcgisonlineurl, {
+                    "id": "arcgisonline",
+                    "copyright": mapConfigs.arcgisonline.copyright,
+                    "subDomains": mapConfigs.arcgisonline.subDomains
+                });
+                map.addLayer(arcgisonlineArcGISTiledMapServiceLayer);
+
+                $('#googlebutton').on('click', function (e) {
+                    map.getLayer("mapbox").hide();
+                    map.getLayer("arcgisonline").hide();
+                    map.getLayer("google").show();
+                });
+
+                $('#mapboxbutton').on('click', function (e) {
+                    map.getLayer("google").hide();
+                    map.getLayer("arcgisonline").hide();
+                    map.getLayer("mapbox").show();
+                });
+
+                $('#arcgisonlinebutton').on('click', function (e) {
+                    map.getLayer("google").hide();
+                    map.getLayer("mapbox").hide();
+                    map.getLayer("arcgisonline").show();
+                });
+            });
+        </script>
+        <style>
+            #api1 {
+                border: 1px solid #ccc;
+
+            }
+
+            #api {
+                left: -10%;
+
+            }
+        </style>
+</body>
+</html>

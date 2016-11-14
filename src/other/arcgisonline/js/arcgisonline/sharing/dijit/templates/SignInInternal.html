@@ -1,0 +1,76 @@
+<div class="widgetContent">
+  <div id="login-form" class="grid_16 esriFloatLeading" style="display:block;clear:both;">
+    <div dojotype="dijit.form.Form" id="sign-in-form" method="POST" action="">
+      <div id="organizationTitle" style="display:none; margin:10px 0 40px 0; text-align:center;"></div>
+      <div id="left" class="grid_7 esriFloatLeading">
+        <h1 id="leftPanelTitle">${i18n.firstTimeSignIn}</h1>
+        <br/>
+        <div id="not_a_member_msg">
+        </div>
+        <br/>
+        <br/>
+      </div>
+      <div id="right" class="grid_7 esriFloatTrailing">
+        <h1 id="rightPanelTitle">${i18n.signIn}</h1>
+        <br/>
+        <div id="sign-in-error">
+        </div>
+        <div id="rightPanelDesc" style="font-weight:bold;"></div><br/>
+        <iframe dojoattachpoint="_iFrame" id="oAuthFrame" scrolling="no" style="display:none; border:0" marginheight="0" marginwidth="0" frameborder="0" width="400" height="400">
+           Your browser does not support iframes.
+        </iframe>
+        <table id="authTable" style="width:100%;display:none">
+          <tbody>
+            <tr>
+              <td class="grid_2 alpha">
+                <label for="user_username" style="padding:0;margin:0;">
+                  ${i18n.userLabel}
+                </label>
+              </td>
+              <td>
+                <div id="user_username" name="user_username" class="grid_5 omega" style="padding:2px;margin:0;" dojotype="dijit.form.TextBox" trim="true" dojoAttachEvent="keyDown: onKeyDown">
+                </div>
+              </td>
+            </tr>
+            <tr height="5">
+              <td colspan="2" height="5">
+              </td>
+            </tr>
+            <tr>
+              <td class="grid_2 alpha">
+                <label for="user_password" style="padding:0;margin:0;">
+                  ${i18n.passwordLabel}
+                </label>
+              </td>
+              <td>
+                <div id="user_password" name="user_password" class="grid_5 omega" style="padding:2px;margin:0;" type="password" dojotype="dijit.form.TextBox" trim="true" dojoAttachEvent="keyDown: onKeyDown">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+              </td>
+              <td>
+                <div id="signInHelp">
+                  <a id="signInHelpLink">${i18n.needHelpSign}</a>
+                  <br/>
+                  <br/>
+                </div>
+                <input id="remember-me" style="height:24px;margin:auto;" value="off" dojotype="dijit.form.CheckBox" />
+                <label id="remember-me-label" for="remember-me">${i18n.rememberMe}</label>
+                <br/>
+                <br/>
+                <button id="button_sign_in" class="calcite small btn primary" style="margin:0;padding:0;" type="submit" dojotype="dijit.form.Button">
+                  ${i18n.signIn}
+                </button>
+                <br/>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div style="width:100%; clear:both;">
+  </div>
+</div>

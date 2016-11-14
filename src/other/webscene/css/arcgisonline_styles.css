@@ -1,0 +1,902 @@
+@font-face {
+  font-family: "Avenir LT W01 35 Light";
+  src: url("../fonts/3511a780-31ca-4ee1-9083-89b1b7185748.eot?#iefix");
+  src: url("../fonts/3511a780-31ca-4ee1-9083-89b1b7185748.eot?#iefix") format("eot"), url("../fonts/c4352a95-7a41-48c1-83ce-d8ffd2a3b118.woff") format("woff"), url("../fonts/3e419b5b-c789-488d-84cf-a64009cc308e.ttf") format("truetype"), url("../fonts/ca038835-1be3-4dc5-ba25-be1df6121499.svg#ca038835-1be3-4dc5-ba25-be1df6121499") format("svg");
+}
+@font-face {
+  font-family: "Avenir LT W01 65 Medium";
+  src: url("../fonts/212ab03d-5db2-4d6a-b94c-171cc702aa51.eot?#iefix");
+  src: url("../fonts/212ab03d-5db2-4d6a-b94c-171cc702aa51.eot?#iefix") format("eot"), url("../fonts/2cac77ec-9bc0-4ee7-87e4-27650190744f.woff") format("woff"), url("../fonts/aaf11848-aac2-4d09-9a9c-aac5ff7b8ff4.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Avenir LT W01 85 Heavy";
+  src: url("../fonts/f61bf0f6-c193-4100-b940-12a1a01dcee5.eot?#iefix");
+  src: url("../fonts/f61bf0f6-c193-4100-b940-12a1a01dcee5.eot?#iefix") format("eot"), url("../fonts/7147ec3a-8ff8-4ec9-8c5c-bd1571dc6ae6.woff") format("woff"), url("../fonts/d1dc54b2-878d-4693-8d6e-b442e99fef68.ttf") format("truetype");
+}
+/* Calcite Styles needed for Header/Sub-Nav - START */
+.clearfix:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.avenir-light {
+  letter-spacing: 0em;
+  font-family: 'Avenir LT W01 35 Light', 'Avenir Next', 'Avenir', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+.avenir-light b,
+.avenir-light strong {
+  font-weight: 500;
+}
+.avenir-regular,
+.top-nav,
+.top-nav-link,
+.dropdown-link {
+  letter-spacing: 0em;
+  font-family: 'Avenir LT W01 35 Light', 'Avenir Next', 'Avenir', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.avenir-regular b,
+.top-nav b,
+.top-nav-link b,
+.avenir-regular strong,
+.top-nav strong,
+.top-nav-link strong {
+  font-weight: 500;
+}
+.avenir-demi {
+  letter-spacing: 0em;
+  font-family: 'Avenir LT W01 35 Light', 'Avenir Next', 'Avenir', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+.avenir-demi b,
+.avenir-demi strong {
+  font-weight: 600;
+}
+.dropdown-btn:after {
+  font-family: 'CalciteWebCoreIcons';
+  padding-right: 0.5166666667em;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.dropdown-btn:after {
+  padding-right: 0;
+  padding-left: 0.5166666667em;
+}
+[class^="icon-ui-"]:before,
+[class*=" icon-ui-"]:before {
+  font-family: 'CalciteWebCoreIcons';
+  padding-right: 0.5166666667em;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-ui-link-external:before {
+  content: "\e65c";
+}
+.icon-ui-down-arrow:before,
+.dropdown-btn:after {
+  content: "\e608";
+}
+.icon-ui-user:before {
+  content: "\e675";
+}
+.icon-ui-menu:before {
+  content: "\e663";
+}
+.top-nav-username {
+  max-width: 175px;
+}
+@media screen and (max-width: 1080px) {
+  .top-nav-username {
+    max-width: 130px;
+  }
+}
+.top-nav {
+  font-size: 17px;
+  height: 60px;
+  background-color: white;
+  padding: 0 .5em;
+  overflow: visible;
+  z-index: 100;
+}
+.top-nav a {
+  text-decoration: none;
+  cursor: pointer;
+}
+.top-nav .dropdown-btn {
+  display: block;
+}
+.top-nav .dropdown-btn:after {
+  top: 20px;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown.is-active .dropdown-menu {
+  pointer-events: auto;
+  display: block;
+}
+.dropdown-btn:after {
+  font-family: 'CalciteWebCoreIcons';
+  padding-right: 0.5166666667rem;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.dropdown-btn:after {
+  padding-right: 0;
+  padding-left: 0.5166666667rem;
+}
+.dropdown-btn {
+  padding-right: 1.2rem;
+  cursor: pointer;
+  position: relative;
+}
+.dropdown-btn:after {
+  font-size: 0.8125rem;
+  line-height: 1.55rem;
+  position: absolute;
+  right: 0rem;
+}
+.dropdown-menu {
+  position: absolute;
+  min-width: 200px;
+  max-width: 300px;
+  margin-top: -12px;
+  top: 100%;
+  -webkit-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+  pointer-events: none;
+  display: none;
+}
+.dropdown-menu.dropdown-right {
+  right: 0;
+}
+.side-nav,
+.dropdown-menu {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+  border: 1px solid #efefef;
+  border-top: none;
+  background-color: white;
+}
+.side-nav-title {
+  margin: 0;
+  padding: 0.5166666667em;
+  font-size: 0.9375em;
+  line-height: 1.55em;
+  background-color: #f8f8f8;
+  border-top: 1px solid #efefef;
+}
+.side-nav-link,
+.dropdown-link {
+  position: relative;
+  display: block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0.5166666667em 1.55em 0.5166666667em 0.5166666667em;
+  font-size: 0.875em;
+  line-height: 1.55em;
+  color: #6e6e6e;
+  background-color: white;
+  border-top: 1px solid #efefef;
+  -webkit-transition: all 150ms linear;
+  transition: all 150ms linear;
+  cursor: pointer;
+}
+.side-nav-link:after,
+.dropdown-link:after {
+  content: "\00BB";
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: .5em;
+  padding: 0 0.3875em;
+  -webkit-transition: all 150ms linear;
+  transition: all 150ms linear;
+}
+.side-nav-link:hover,
+.dropdown-link:hover {
+  text-decoration: none;
+  color: #828282;
+}
+.side-nav-link:hover:after,
+.dropdown-link:hover:after {
+  opacity: 1;
+}
+.side-nav-link.is-active,
+.is-active.dropdown-link {
+  background-color: #d2e9f9;
+  font-weight: inherit !important;
+}
+.dropdown-link {
+  white-space: nowrap;
+}
+.dropdown-link-external {
+  padding: 0.5166666667em 2em !important;
+}
+.dropdown-link-external-icon {
+  position: absolute;
+  left: .5em;
+}
+.top-nav {
+  border-bottom: 1px solid #efefef;
+}
+.top-nav .esri-logo {
+  margin-top: 1em;
+}
+.top-nav .sign-in {
+  padding-top: 1.55em;
+}
+.top-nav-title {
+  font-size: 1em;
+  float: left;
+  line-height: 1.5em;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: #4c4c4c;
+}
+.top-nav-title:hover {
+  color: #3b8fc4;
+  background: url('../images/top-nav-ie9.gif') repeat-x bottom left transparent;
+  text-decoration: none;
+}
+.top-nav-title.icon-ui-menu:before {
+  vertical-align: -1px;
+  padding-right: .5em;
+}
+.top-nav-list {
+  padding: 0;
+  float: left;
+}
+.top-nav-list .top-nav-link + .top-nav-link {
+  margin-left: .75em;
+}
+.top-nav-link {
+  font-size: 0.9375em;
+  line-height: 1.55em;
+  color: #4c4c4c !important;
+  padding-top: 19px;
+  padding-bottom: 19px;
+  line-height: 1.5em;
+  display: inline-block;
+}
+.top-nav-link:hover,
+.top-nav-link:focus {
+  color: #3b8fc4 !important;
+  background: url('../images/top-nav-ie9.gif') repeat-x bottom left transparent;
+  text-decoration: none;
+}
+.top-nav-link:hover a,
+.top-nav-link:focus a {
+  color: #3b8fc4;
+}
+.top-nav-link:focus {
+  outline: none;
+}
+.top-nav-link.is-active {
+  background: url('../images/top-nav-ie9.gif') repeat-x bottom left transparent;
+}
+.top-nav-link a {
+  color: #4c4c4c;
+}
+.top-nav-link a:hover {
+  text-decoration: none;
+}
+.top-nav-link.dropdown-btn {
+  padding-right: 1.2rem;
+}
+.top-nav-link.dropdown-btn:after {
+  right: 0;
+}
+.top-nav .dropdown-btn:after {
+  top: 18px;
+}
+.sign-in {
+  float: right;
+  margin-top: -0.7em;
+}
+.user-nav-name {
+  padding: 0.3875em;
+}
+.user-nav-image {
+  width: 1.55em;
+  height: 1.55em;
+  margin-right: 0.3875em;
+  vertical-align: -0.3875em;
+}
+.text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.font-size--3 {
+  font-size: 0.8125em;
+  line-height: 1.55em;
+}
+.font-size--2 {
+  font-size: 0.875em;
+  line-height: 1.55em;
+}
+.font-size--1 {
+  font-size: 0.9375em;
+  line-height: 1.55em;
+}
+.font-size-0 {
+  font-size: 1em;
+  line-height: 1.55em;
+}
+.font-size-1 {
+  font-size: 1.1875em;
+  line-height: 1.55em;
+}
+.font-size-2 {
+  font-size: 1.25em;
+}
+.font-size-3 {
+  font-size: 1.484375em;
+  line-height: 2.325em;
+}
+.leader-half {
+  margin-top: 11px;
+}
+.trailer-half {
+  margin-bottom: 0.775em;
+}
+.padding-leader-half {
+  padding-top: 0.775em;
+}
+.padding-trailer-half {
+  padding-bottom: 0.775em;
+}
+.leader-0 {
+  margin-top: 0em;
+}
+.trailer-0 {
+  margin-bottom: 0em;
+}
+.padding-leader-0 {
+  padding-top: 0em;
+}
+.padding-trailer-0 {
+  padding-bottom: 0em;
+}
+.leader-1 {
+  margin-top: 14px;
+}
+.padding-leader-1 {
+  padding-top: 22px;
+}
+.gutter-left-half {
+  padding-left: 0.5em;
+}
+.gutter-right-half {
+  padding-right: 0.5em;
+}
+.gutter-left-0 {
+  padding-left: 0em;
+}
+.gutter-right-0 {
+  padding-right: 0em;
+}
+.gutter-left-1 {
+  padding-left: 1em;
+}
+.gutter-right-1 {
+  padding-right: 1.4em;
+}
+.gutter-right-2 {
+  padding-right: 2em;
+}
+/* Right to left styles */
+.esriRtl .left {
+  float: right;
+}
+.esriRtl .right {
+  float: left;
+}
+.esriRtl .top-nav-title {
+  float: right;
+}
+.esriRtl .top-nav-link {
+  float: right;
+}
+.esriRtl .top-nav-list {
+  float: right;
+}
+.esriRtl .top-nav-link + .top-nav-link {
+  margin-left: 0;
+  margin-right: .75em;
+}
+.esriRtl .gutter-left-half {
+  padding-right: 0.5em;
+}
+.esriRtl .gutter-right-half {
+  padding-left: 0.5em;
+}
+.esriRtl .gutter-left-0 {
+  padding-right: 0em;
+}
+.esriRtl .gutter-right-0 {
+  padding-left: 0em;
+}
+.esriRtl .gutter-left-1 {
+  padding-right: 1em;
+}
+.esriRtl .gutter-right-1 {
+  padding-left: 1em;
+  padding-right: 0.5em;
+}
+.esriRtl .gutter-right-2 {
+  padding-left: 2em;
+}
+.esriRtl .top-nav-link.dropdown-btn:after {
+  left: 0;
+  right: auto;
+  padding-right: 0.5166666667em;
+  padding-left: 0;
+}
+.esriRtl .top-nav-link.dropdown-btn {
+  padding-left: 1em;
+  padding-right: 0;
+}
+.esriRtl .side-nav-link:after,
+.esriRtl .dropdown-link:after {
+  left: 0;
+  right: auto;
+}
+.esriRtl .side-nav-link,
+.esriRtl .dropdown-link {
+  padding: 0.5166666667em 0.5166666667em 0.5166666667em 2.5em;
+}
+.esriRtl .dropdown-menu {
+  right: 0;
+}
+.esriRtl .dropdown-menu.dropdown-right {
+  right: auto;
+  left: 0;
+}
+.esriRtl [class^="icon-ui-"]:before,
+.esriRtl [class*=" icon-ui-"]:before {
+  padding-right: 0;
+  padding-left: 0.5166666667em;
+}
+.esriRtl .dropdown-link-external-icon {
+  left: auto;
+  right: .5em;
+}
+/* Calcite Styles - END */
+/* Scene Title Fixes */
+#webmap-title {
+  max-width: 65%;
+}
+@media screen and (max-width: 1080px) {
+  #webmap-title {
+    max-width: 50%;
+  }
+}
+@media screen and (max-width: 720px) {
+  #webmap-title {
+    max-width: 30%;
+  }
+}
+@media screen and (max-width: 480px) {
+  #webmap-title {
+    max-width: 20%;
+  }
+}
+.dropdown-username {
+  display: inline-block;
+  max-width: 95%;
+}
+/* Logo Styles */
+.site_logo {
+  color: #333333;
+  font-family: "Avenir LT W01 65 Medium", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+.site_logo span {
+  font-family: "Avenir LT W01 85 Heavy", Arial, Helvetica, sans-serif;
+}
+/* Logo Styles End */
+.btn,
+.esri .dijitDialog .dijitButton {
+  border-radius: 4px;
+  background: #a6a6a6;
+  filter: none;
+  font-size: .875em;
+  line-height: 1.71429em;
+  font-family: "Avenir LT W01 65 Medium", Arial, Helvetica, sans-serif;
+  padding: 0;
+  border: none;
+  color: #fff;
+  display: inline-block;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.125);
+  letter-spacing: 1px;
+  position: relative;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.125);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.125);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.125);
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-transition: all .05s linear;
+  -moz-transition: all .05s linear;
+  -o-transition: all .05s linear;
+  transition: all .05s linear;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  -webkit-font-smoothing: antialiased;
+}
+.dijitReset {
+  font-size: 12px !important;
+}
+.dijitToggleButton,
+.dijitButton,
+.dijitDropDownButton {
+  margin: 0.2em;
+  vertical-align: middle;
+}
+.dijitInline {
+  display: inline-block;
+  border: 0;
+  padding: 0;
+  vertical-align: middle;
+}
+.dijitReset {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  line-height: normal;
+  color: inherit;
+}
+.dijitButtonNode,
+.dijitButtonNode * {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.dijitButtonContents {
+  display: block;
+}
+.dijitStretch {
+  white-space: nowrap;
+  background-repeat: repeat-x;
+}
+.dijitButtonNode * {
+  vertical-align: middle;
+}
+.dijitButtonNode,
+.dijitButtonNode * {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.dijitToggleButtonIconChar {
+  display: none !important;
+}
+.dijitOffScreen {
+  visibility: visible;
+}
+.dijitOffScreen {
+  position: absolute !important;
+  left: -10000px !important;
+  top: -10000px !important;
+}
+body,
+textarea,
+input {
+  color: #444;
+  font-size: 12px;
+  font-family: Verdana, Helvetica, sans-serif !important;
+}
+body,
+div,
+dl,
+dt,
+dd,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+fieldset,
+input,
+textarea,
+p,
+blockquote,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+.esri .dijitSelect,
+.esri .dijitTextBox,
+.esri .dijitTextArea {
+  background: none;
+  background-image: none !important;
+  background-color: #fff;
+}
+.esri .dijitSelect,
+.esri .dijitTextBox,
+.esri .dijitTextArea {
+  background: none;
+  background-image: none !important;
+  background-color: #fff;
+}
+.esri .dijitButtonNode .dijitArrowButtonInner {
+  margin: 0 4px 0 5px;
+}
+h1 {
+  font-size: 180%;
+  font-style: normal !important;
+  line-height: 1.5em;
+}
+.esri .dijitDialogUnderlay {
+  width: 100%;
+  height: 612px;
+  display: block;
+  float: left;
+  background: #444;
+  opacity: 0.5;
+}
+.esri .dijitDialog {
+  border-color: #555 !important;
+  background-color: #fff !important;
+  -moz-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.35) !important;
+  -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.35) !important;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.35) !important;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+.esri .dijitDialog .dijitDialogTitleBar {
+  padding: 10px 10px 0 10px !important;
+  -moz-border-radius: 3px 3px 0 0;
+  -webkit-border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
+  background: none;
+}
+.esri .dijitDialog .dijitDialogTitle,
+.soria .dijitDialog .dijitDialogTitle {
+  font-weight: normal !important;
+  padding: 0 10px 5px 0 !important;
+  color: #333 !important;
+  font-family: "Avenir LT W01 65 Medium", Arial, Helvetica, sans-serif;
+  font-size: 24px !important;
+  line-height: 28px !important;
+  display: inline-block;
+}
+.esri .dijitDialog .dijitDialogPaneContent,
+.soria .dijitDialog .dijitDialogPaneContent {
+  border-color: inherit;
+  background-color: transparent;
+  padding: 10px;
+  background: none !important;
+  border-top: none !important;
+}
+.esri .dijitDialogCloseIcon {
+  background-image: url(../images/ago_sprite.png) !important;
+  background-repeat: no-repeat !important;
+  background-position: -16px 0 !important;
+  background-clip: border-box;
+  cursor: hand;
+  right: 0;
+  margin: 6px 10px 0 0;
+  outline: none;
+}
+.esri .dijitDialogCloseIcon:hover,
+.esri .dijitDialogCloseIcon:focus {
+  background-position: -16px -16px !important;
+}
+.dijitDialog .closeText,
+.esri .dijitDialogCloseIcon .closeText {
+  display: none;
+  position: absolute;
+  outline: none;
+}
+.btn,
+.esri .dijitDialog .dijitButton {
+  border-radius: 4px;
+  background: #a6a6a6;
+  filter: none;
+  font-size: .875em;
+  line-height: 1.71429em;
+  font-family: "Avenir LT W01 65 Medium", Arial, Helvetica, sans-serif;
+  /*padding: .3em 1.25em .3em !important;*/
+  padding: 0;
+  border: none;
+  color: #fff;
+  display: inline-block;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.125);
+  letter-spacing: 1px;
+  position: relative;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.125);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.125);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.125);
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-transition: all .05s linear;
+  -moz-transition: all .05s linear;
+  -o-transition: all .05s linear;
+  transition: all .05s linear;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  -webkit-font-smoothing: antialiased;
+}
+.esri .dijitDialog .dijitButton {
+  line-height: normal !important;
+}
+.esri .dijitDialog .dijitButton .dijitButtonText {
+  font-size: 14px !important;
+}
+.esri .dijitDialog .dijitButtonNode,
+.esri .calcite .dijitButtonNode,
+.esri .dijitButton.calcite .dijitButtonNode,
+.esri .dijitDropDownButton.calcite .dijitButtonNode,
+.esri .dijitToggleButton.calcite .dijitButtonNode {
+  margin: 0 !important;
+  padding: 0 !important;
+  height: auto;
+  font-size: 14px;
+}
+.btn:hover,
+.btn:focus {
+  background: gray;
+  color: #fff;
+}
+.btn.light,
+.esri .dijitButton.calcite.light,
+.esri .dijitDialog .dijitButton {
+  background: #ededed;
+  color: gray;
+  text-shadow: none;
+}
+.btn.light:hover,
+.btn.light:focus,
+.esri .dijitDropDownButton.calcite.light:hover,
+.esri .dijitDropDownButton.calcite.light:focus,
+.esri .dijitDropDownButton.calcite.light.selected {
+  background: #cccccc;
+}
+p {
+  margin: 1em 0;
+}
+/* Arrow pointing left */
+.esriRtl .esri .panel.panel_left .panel.panel_close.panel_expand,
+.esri .panel.panel_left .panel.panel_close.panel_collapse {
+  background-position: -30px -10px;
+}
+.esriRtl .esri .panel.panel_left .panel.panel_close.panel_expand:hover,
+.esriRtl .esri .panel.panel_left .panel.panel_close.panel_expand:focus,
+.esri .panel.panel_left .panel.panel_close.panel_collapse:hover,
+.esri .panel.panel_left .panel.panel_close.panel_collapse:focus {
+  background-position: -62px -10px;
+}
+/* Arrow pointing right */
+.esriRtl .esri .panel.panel_left .panel.panel_close.panel_collapse,
+.esri .panel.panel_left .panel.panel_close.panel_expand {
+  background-position: -52px -10px;
+}
+.esriRtl .esri .panel.panel_left .panel.panel_close.panel_collapse:hover,
+.esriRtl .esri .panel.panel_left .panel.panel_close.panel_collapse:focus,
+.esri .panel.panel_left .panel.panel_close.panel_expand:hover,
+.esri .panel.panel_left .panel.panel_close.panel_expand:focus {
+  background-position: -84px -10px;
+}
+.esriRtl .esri .orgEditTabs .dijitTabContainerLeft-tabs .dijitTab,
+.esriRtl .esri.soria .orgEditTabs .dijitTabContainerLeft-tabs .dijitTab,
+.esriRtl .esri .orgEditTabs .dijitTabContainerRight-tabs .dijitTab,
+.esriRtl .esri.soria .orgEditTabs .dijitTabContainerRight-tabs .dijitTab {
+  text-align: right;
+}
+.esriRtl .esri .simpleDirections .esriStopsGetDirectionsContainer .esriStopsGetDirections {
+  margin-right: 0;
+  margin-left: 5px;
+}
+.esriRtl .profile-icon {
+  right: 0;
+}
+.esriRtl .galleryNode {
+  float: right;
+  margin: 10px 20px 10px 20px;
+}
+.esriRtl .esri .esriFloatLeading {
+  float: right;
+}
+.esriRtl .esri .esriFloatTrailing {
+  float: left;
+}
+.esriRtl #header .dropdown-wrapper .dropdown-content,
+.esriRtl #contentNode .dropdown-wrapper .dropdown-content,
+.esriRtl #header_map_signin .dropdown-wrapper .dropdown-content {
+  left: 0;
+}
+.esriRtl #header .dropdown-wrapper .dropdown-content,
+.esriRtl #contentNode .dropdown-wrapper .dropdown-content,
+.esriRtl #header_map_signin .dropdown-wrapper .dropdown-content {
+  right: auto;
+}
+.esriRtl #header_map_home .dropdown-wrapper .dropdown-content {
+  left: auto;
+  text-align: right;
+}
+.esriRtl .esri .dijitDialogCloseIcon {
+  left: 10px;
+  right: auto;
+}
+.esriRtl .profile-icon {
+  right: 0;
+}
+.dijitSliderRtl .dijitSliderImageHandleH {
+  left: -50%;
+}
+.dijitSliderRtl .dijitSliderMoveableH {
+  left: 0;
+  right: auto;
+}
+.esriRtl .dijitSliderDecrementIconH {
+  background-position: -30px top;
+}
+.esriRtl .dijitSliderIncrementIconH {
+  background-position: 0 top;
+}
+.esriRtl .dijitDialogPaneActionBar {
+  text-align: left;
+}
+.esri .dijitDownArrowButton .dijitArrowButtonInner,
+.esri .dijitComboBox.arrowSpaceDefault .dijitDownArrowButton .dijitArrowButtonInner {
+  background-position: -67px -34px;
+}

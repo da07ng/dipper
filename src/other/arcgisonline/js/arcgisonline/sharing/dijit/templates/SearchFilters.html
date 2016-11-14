@@ -1,0 +1,159 @@
+<div dojoAttachPoint="containerNode" class="filters">
+  
+  <div>
+  <div class="set" root="true">
+    <div><a class="item dijitInline" name="all">${i18n.allResults}</a></div>
+    <div><a class="item dijitInline" name="maps">${i18n.filters.maps}</a></div>
+    <div><a class="item dijitInline" name="layers">${i18n.filters.layers}</a></div>
+    <div><a class="webScene item dijitInline" name="scenes">${i18n.filters.scenes}</a></div>
+    <div><a class="item dijitInline" name="applications">${i18n.filters.apps}</a></div>
+    <div><a class="item dijitInline" name="tools">${i18n.filters.tools}</a></div>
+    <div><a class="item dijitInline" name="files">${i18n.filters.files}</a></div>
+  </div>
+
+  <div class="set" parent="maps" root="true" style="display:none;">
+    <div><a class="GIS item dijitInline" name="maps">${i18n.allMaps}</a></div>
+    <div><a class="GIS item dijitInline" name="maps-webmaps">${i18n.webMaps}</a></div>
+    <div><a class="GIS item dijitInline" name="maps-mapfiles">${i18n.mapFiles}</a></div>
+  </div>
+  
+  <!--<div class="set" parent="maps-packages" root="true" style="display:none;">-->
+    <!--<div style="margin-top:0.7em;"><a class="item dijitInline" name="maps-packages">${i18n.allPackages}</a></div>-->
+    <!--<div><a class="item dijitInline" name="maps-packages-layer">${i18n.layerPackages}</a></div>-->
+    <!--<div><a class="item dijitInline" name="maps-packages-map">${i18n.mapPackages}</a></div>-->
+  <!--</div>-->
+
+  <div class="set" parent="layers" root="true" style="display:none;">
+    <div style="margin-top:0.7em;"><a class="item dijitInline" name="layers">${i18n.layers.all_layers}</a></div>
+     <div><a class="item dijitInline" name="layers-weblayers">${i18n.layers.weblayers}</a></div>
+     <div><a class="item dijitInline" name="layers-layerfiles">${i18n.layers.layerFiles}</a></div>
+  </div>
+
+  
+  <div class="set" parent="applications" root="true" style="display:none;">
+    <div><a class="item dijitInline" name="applications">${i18n.allApplications}</a></div>
+    <div><a class="item dijitInline" name="applications-web">${i18n.webApplications}</a></div>
+    <div><a class="item dijitInline" name="applications-mobile">${i18n.mobileApplications}</a></div>
+    <div><a class="item dijitInline" name="applications-desktop">${i18n.desktopApplications}</a></div>
+  </div>
+  
+  <!--<div class="set" parent="applications-web" root="true" style="display:none;">-->
+    <!--<div><a class="item dijitInline" name="applications-web">${i18n.allWebApps}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-web-flex">${i18n.Flex}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-web-javascript">${i18n.JavaScript}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-web-silverlight">${i18n.Silverlight}</a></div>-->
+  <!--</div>-->
+  <!---->
+  <!--<div class="set" parent="applications-mobile" root="true" style="display:none;">-->
+    <!--<div style="margin-top:0.7em;"><a class="item dijitInline" name="applications-mobile">${i18n.mobileApplications}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-javascript">${i18n.JavaScript}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-flex">${i18n.Flex}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-iphone">${i18n.ios}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-windowsmobile">${i18n.mobile}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-windowsphone">${i18n.windowsPhone}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-android">${i18n.Android}</a></div>-->
+  <!--</div>-->
+
+    <!--<div class="set" parent="applications-desktop" root="true" style="display:none;">-->
+      <!--<div style="margin-top:0.7em;"><a class="item dijitInline" name="applications-desktop">${i18n.desktopApplications}</a></div>-->
+      <!--<div><a class="item dijitInline" name="applications-desktop-java">Java</a></div>-->
+      <!--<div><a class="item dijitInline" name="applications-desktop-dotnet">.NET–Windows Desktop</a></div>-->
+      <!--<div><a class="item dijitInline" name="applications-desktop-osx">OS X</a></div>-->
+      <!--<div><a class="item dijitInline" name="applications-desktop-qt">Qt</a></div>-->
+      <!--<div><a class="item dijitInline" name="applications-desktop-wpf">WPF</a></div>-->
+    <!--</div>-->
+  
+  <!--<div class="set" parent="applications-web-flex" root="true" style="display:none;">-->
+    <!--<div><a class="item dijitInline" name="applications-web-flex">${i18n.allFlexApps}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-web-flex-codesample">${i18n.codeSample}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-web-flex-configurable">${i18n.configurable}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-web-flex-readytouse">${i18n.readyUse}</a></div>-->
+  <!--</div>-->
+  <!---->
+  <!--<div class="set" parent="applications-web-javascript" root="true" style="display:none;">-->
+    <!--<div><a class="item dijitInline" name="applications-web-javascript">${i18n.allJsApps}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-web-javascript-codesample">${i18n.codeSample}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-web-javascript-configurable">${i18n.configurable}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-web-javascript-readytouse">${i18n.readyUse}</a></div>-->
+  <!--</div>-->
+  <!---->
+  <!--<div class="set" parent="applications-web-silverlight" root="true" style="display:none;">-->
+    <!--<div><a class="item dijitInline" name="applications-web-silverlight">${i18n.allSilverApps}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-web-silverlight-codesample">${i18n.codeSample}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-web-silverlight-configurable">${i18n.configurable}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-web-silverlight-readytouse">${i18n.readyUse}</a></div>-->
+  <!--</div>-->
+  <!---->
+  <!--<div class="set" parent="applications-mobile-iphone" root="true" style="display:none;">-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-iphone">${i18n.allIosApps}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-iphone-codesample">${i18n.codeSample}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-iphone-configurable">${i18n.configurable}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-iphone-readytouse">${i18n.readyUse}</a></div>-->
+  <!--</div>-->
+  <!---->
+  <!--<div class="set" parent="applications-mobile-windowsmobile" root="true" style="display:none;">-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-windowsmobile">${i18n.allMobApps}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-windowsmobile-codesample">${i18n.codeSample}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-windowsmobile-configurable">${i18n.configurable}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-windowsmobile-readytouse">${i18n.readyUse}</a></div>-->
+  <!--</div>-->
+  <!---->
+  <!--<div class="set" parent="applications-mobile-windowsphone" root="true" style="display:none;">-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-windowsphone">${i18n.allWPhoneApps}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-windowsphone-codesample">${i18n.codeSample}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-windowsphone-configurable">${i18n.configurable}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-windowsphone-readytouse">${i18n.readyUse}</a></div>-->
+  <!--</div>-->
+  <!---->
+  <!--<div class="set" parent="applications-mobile-android" root="true" style="display:none;">-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-android">${i18n.allAndroidApps}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-android-codesample">${i18n.codeSample}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-android-configurable">${i18n.configurable}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-android-readytouse">${i18n.readyUse}</a></div>-->
+  <!--</div>-->
+
+  <!--<div class="set" parent="applications-mobile-javascript" root="true" style="display:none;">-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-javascript">${i18n.allJsApps}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-javascript-codesample">${i18n.codeSample}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-javascript-configurable">${i18n.configurable}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-javascript-readytouse">${i18n.readyUse}</a></div>-->
+  <!--</div>-->
+
+  <!--<div class="set" parent="applications-mobile-flex" root="true" style="display:none;">-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-flex">${i18n.allFlexApps}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-flex-codesample">${i18n.codeSample}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-flex-configurable">${i18n.configurable}</a></div>-->
+    <!--<div><a class="item dijitInline" name="applications-mobile-flex-readytouse">${i18n.readyUse}</a></div>-->
+  <!--</div>-->
+
+  <div class="set" parent="layers-weblayers" root="true" style="display:none;">
+    <div><a class="item dijitInline" name="layers-weblayers">${i18n.weblayers.all_weblayers}</a></div>
+    <div><a class="item dijitInline" name="layers-weblayers-features">${i18n.weblayers.features}</a></div>
+    <div><a class="item dijitInline" name="layers-weblayers-tiles">${i18n.weblayers.tiles}</a></div>
+    <div><a class="item dijitInline" name="layers-weblayers-mapimage">${i18n.weblayers.mapservice}</a></div>
+    <div><a class="item dijitInline" name="layers-weblayers-imagery">${i18n.weblayers.imagery}</a></div>
+    <!--<div><a class="webScene item dijitInline" name="layers-weblayers-scenelayers">${i18n.weblayers.scenelayers}</a></div>-->
+    <div><a class="item dijitInline" name="layers-weblayers-tables">${i18n.weblayers.tables}</a></div>
+  </div>
+    
+  <div class="set" parent="tools" style="display:none;">
+    <div><a class="item dijitInline" name="tools">${i18n.allTools}</a></div>
+    <div><a class="item dijitInline" name="tools-locators">${i18n.addressLocators}</a></div>
+    <div><a class="item dijitInline" name="tools-geodatabase">${i18n.geodatabaseAccess}</a></div>
+    <div><a class="item dijitInline" name="tools-geometric">${i18n.geoOperations}</a></div>
+    <div><a class="item dijitInline" name="tools-geoprocessing">${i18n.geoTasks}</a></div>
+    <div><a class="item dijitInline" name="tools-network">${i18n.netAnalysis}</a></div>
+  </div>
+
+  <div class="set" parent="files" style="display:none;">
+    <div><a class="item dijitInline" name="files">${i18n.files.all_files}</a></div>
+    <div><a class="item dijitInline" name="files-document">${i18n.files.document}</a></div>
+    <div><a class="item dijitInline" name="files-image">${i18n.files.image}</a></div>
+    <div><a class="item dijitInline" name="files-pdf">${i18n.files.pdf}</a></div>
+  </div>
+  </div>
+  <div class="related" id="contentSearchSection" style="margin-top:1em;">
+    <div dojoAttachPoint="_contentSearchChk" dojoType="dijit.form.CheckBox" type="checkbox" checked="false"></div>
+    <span id="contentSearchLabel">${i18n.webOnly}</span>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define("../../kernel dijit/form/Select dojo/_base/array ../../core/declare dojo/_base/lang dojo/dom-class dojo/has".split(" "),function(g,e,d,f,h,c,k){return f("esri.widgets.SymbolStyler.IconSelect",[e],{baseClass:"esriIconSelect dijitSelect dijitValidationTextBox",_extraIconClass:null,addIconOptions:function(a,b){b=b||"";var c=d.map(a,function(a){return{value:a,iconClass:b+" "+a}});this.addOption(c)},_getMenuItemForOption:function(a){var b=this.inherited(arguments);b.set("iconClass",a.iconClass);
+return b},_setValueAttr:function(a){this.inherited(arguments);var b=this.containerNode;c.remove(b,this._getAllIconClasses());c.add(b,this.get("selectedOptions").iconClass)},_getAllIconClasses:function(){return d.map(this.options,function(a){return a.iconClass})}})});

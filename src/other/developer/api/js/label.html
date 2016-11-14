@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Label</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="css/js.css">
+    <style>
+
+        #info {
+            margin: 10px;
+        }
+
+        #info button {
+            margin-right: 5px;
+        }
+    </style>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+</head>
+
+<body>
+<div class="container-fluid layoutContainer">
+    <article id="page_content" class="md-body">
+        <h1>标注服务</h1>
+
+        <h2>简介</h2>
+
+        <p>ArcGIS API for Javascript包含了很多符号类，每个类都允许用户使用唯一的方式制定一种符号。每种符号都特定于一种类型（点、线，面和文本）。</p>
+        <li>点：SimpleMarkerSymbol, PictureMarkerSymbol；</li>
+        <li>线：SimpleLineSymbol, CartographicLineSymbol；</li>
+        <li>面：SimpleFillSymbol, PictureFillSymbol；</li>
+        <li>文本：TextSymbol, Font</li>
+        <h2>示例</h2>
+
+        <div id="map"></div>
+        <div id="info" class="center">
+            <button id="textPoint">添加文本</button>
+            <button id="picPoint">添加图片</button>
+        </div>
+        <h2>代码</h2>
+
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;
+    &lt;meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/&gt;
+    &lt;title&gt;Simple Map&lt;/title&gt;
+    &lt;link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css"&gt;
+    &lt;style&gt;
+      html, body, #map {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #FFF;
+        overflow: hidden;
+        font-family: "Trebuchet MS";
+      }
+    &lt;/style&gt;
+    &lt;script src="http://js.arcgis.com/3.13/"&gt;&lt;/script&gt;
+    &lt;script&gt;
+      var map, tb;
+
+      require([
+        "esri/map", "esri/toolbars/draw",
+        "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleLineSymbol",
+        "esri/symbols/PictureFillSymbol", "esri/symbols/CartographicLineSymbol", 
+        "esri/graphic", "esri/symbols/TextSymbol","esri/symbols/Font","esri/symbols/PictureMarkerSymbol",
+        "esri/Color", "dojo/dom", "dojo/on", "dojo/domReady!"
+      ], function(
+        Map, Draw,
+        SimpleMarkerSymbol, SimpleLineSymbol,
+        PictureFillSymbol, CartographicLineSymbol, 
+        Graphic, TextSymbol,Font,PictureMarkerSymbol,
+        Color, dom, on
+      ) {
+        map = new Map("map", {
+          basemap: "streets",
+          center: [-25.312, 34.307],
+          zoom: 3
+        });
+        map.on("load", initToolbar);
+        map.on("load", function() {
+          map.disableScrollWheelZoom();
+        });
+
+       com/icons/#talkq for more examples
+        var font = new Font("20px", Font.STYLE_NORMAL, Font.VARIANT_NORMAL, Font.WEIGHT_BOLDER);
+        var textSymbol = new TextSymbol("添加文本",font, new Color([0, 0, 0]));
+       
+        
+        var picSymbol= new PictureMarkerSymbol("images/speech-full.png", 20, 20);
+
+        var currentSymbol = null;
+
+        function initToolbar() {
+          tb = new Draw(map);
+          tb.on("draw-end", addGraphic);
+
+         
+          on(dom.byId("info"), "click", function(evt) {
+            if ( evt.target.id === "info" ) {
+              return;
+            }
+          currentSymbol = evt.target.id === "textPoint" ? textSymbol : picSymbol;
+
+            map.disableMapNavigation();
+            tb.activate('point');
+          });
+        }
+
+        function addGraphic(evt) {
+          //deactivate the toolbar and clear existing graphics 
+          tb.deactivate(); 
+          map.enableMapNavigation();
+          map.graphics.add(new Graphic(evt.geometry, currentSymbol));
+        }
+      });
+    &lt;/script&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;div id="map"&gt;
+     &lt;div id="info"&gt;
+       &lt;button id="textPoint">添加文本 &lt;/button&gt;
+       &lt;button id="picPoint">添加图片 &lt;/button&gt;
+     &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+          </textarea>
+        </p>
+    </article>
+</div>
+<script src="http://js.arcgis.com/3.13/"></script>
+<script>
+    var map, tb;
+
+    require([
+        "esri/map", "esri/toolbars/draw",
+        "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleLineSymbol",
+        "esri/symbols/PictureFillSymbol", "esri/symbols/CartographicLineSymbol",
+        "esri/graphic", "esri/symbols/TextSymbol", "esri/symbols/Font", "esri/symbols/PictureMarkerSymbol",
+        "esri/Color", "dojo/dom", "dojo/on", "dojo/domReady!"
+    ], function (Map, Draw,
+                 SimpleMarkerSymbol, SimpleLineSymbol,
+                 PictureFillSymbol, CartographicLineSymbol,
+                 Graphic, TextSymbol, Font, PictureMarkerSymbol,
+                 Color, dom, on) {
+        map = new Map("map", {
+            basemap: "streets",
+            center: [-25.312, 34.307],
+            zoom: 3
+        });
+        map.on("load", initToolbar);
+        map.on("load", function () {
+            map.disableScrollWheelZoom();
+        });
+
+
+        var font = new Font("20px", Font.STYLE_NORMAL, Font.VARIANT_NORMAL, Font.WEIGHT_BOLDER);
+        var textSymbol = new TextSymbol("文本信息", font, new Color([0, 0, 0]));
+
+
+        var picSymbol = new PictureMarkerSymbol("images/speech-full.png", 20, 40);
+
+        var currentSymbol = null;
+
+        function initToolbar() {
+            tb = new Draw(map);
+            tb.on("draw-end", addGraphic);
+
+
+            on(dom.byId("info"), "click", function (evt) {
+                if (evt.target.id === "info") {
+                    return;
+                }
+                currentSymbol = evt.target.id === "textPoint" ? textSymbol : picSymbol;
+
+                map.disableMapNavigation();
+                tb.activate('point');
+            });
+        }
+
+        function addGraphic(evt) {
+
+            tb.deactivate();
+            map.enableMapNavigation();
+            map.graphics.add(new Graphic(evt.geometry, currentSymbol));
+        }
+    });
+</script>
+</body>
+</html>

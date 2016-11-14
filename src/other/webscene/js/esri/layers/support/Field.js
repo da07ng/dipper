@@ -1,0 +1,4 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../../core/declare","dojo/_base/lang","./RangeDomain","./CodedValueDomain"],function(c,b,d,e){return c(null,{declaredClass:"esri.layers.support.Field",constructor:function(a){if(a&&b.isObject(a)&&(this.name=a.name,this.type=a.type,this.alias=a.alias,this.length=a.length,this.editable=a.editable,this.nullable=a.nullable,(a=a.domain)&&b.isObject(a)))switch(a.type){case "range":this.domain=new d(a);break;case "codedValue":this.domain=new e(a)}}})});

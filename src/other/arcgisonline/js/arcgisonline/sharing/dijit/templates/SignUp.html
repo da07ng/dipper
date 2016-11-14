@@ -1,0 +1,78 @@
+<div class="widgetContent">
+  <div id="sign-up-form" class="grid_16">
+    <h1 id="sign_up_title"></h1>
+    <div id="register-error">
+    </div>
+    <div dojotype="dijit.form.Form" id="register-form" method="POST" action="">
+      <p class="register">
+        <b id="sign-up-title"></b>
+      </p>
+      <p class="freeTrial" style="display:none;">${i18n.activateTrialMsg}</p>
+      <p>
+        <table>
+          <tbody>
+            <tr>
+              <td class="grid_2 alpha">
+                <label for="register_username" style="padding:0;margin:0;">
+                  ${i18n.userLabel}
+                </label>
+              </td>
+              <td>
+                <div id="register_username" name="register_username" class="grid_6 omega" style="padding:2px;margin:0;" dojotype="dijit.form.TextBox" trim="true">
+                </div>
+              </td>
+            </tr>
+            <tr height="5">
+              <td colspan="2" height="5">
+              </td>
+            </tr>
+            <tr>
+              <td class="grid_2 alpha">
+                <label for="register_password" style="padding:0;margin:0;">
+                  ${i18n.passwordLabel}
+                </label>
+              </td>
+              <td>
+                <div id="register_password" name="register_password" class="grid_6 omega" style="padding:2px;margin:0;" type="password" dojotype="dijit.form.TextBox"trim="true">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+                <div class="freeTrial" style="display:none;">
+                  <a dojoAttachPoint="_signInHelpLink" href="troubleshoot.html">${i18n.needHelpSign}</a>
+                  <div>
+                    <input id="remember-me" value="off" dojotype="dijit.form.CheckBox" />
+                    <label for="remember-me">${i18n.rememberMe}</label>
+                  </div>
+                </div>
+                <div class="register">
+                  <div id="forgotPasswordLinkDiv">
+                    <a id="forgotPasswordLink">${i18n.forgotPassword}</a>
+                  </div>
+                </div>
+                <div style="margin-top:10px;">
+                  <button id="button_sign_in" class="calcite blue" dojoAttachPoint='_btnSignIn' type="submit" label="${i18n.register}" dojotype="dijit.form.Button">
+
+                  </button>
+                  <img dojoAttachPoint='_keyImgicon' style="display:none; position:absolute; padding-left:10px;"/>
+                  <br/>
+                  <br/>
+                  <div id="registerDiv">
+                  <p>
+                    <b id="sign-up-no-account"></b>
+                    <br/>
+                    <span><a id="registerLink">${i18n.createAccount}</a></span>
+                  </p>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <div style="width:100%; clear:both;">
+      </div>
+    </div>

@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define("../../core/declare dojo/_base/lang ../../core/Accessor ../../core/lang ../../geometry/support/jsonUtils ./SpatialRelationship".split(" "),function(a,c,d,e,f,g){a=a(d,{declaredClass:"esri.tasks.DataLayer",geometry:null,name:null,spatialRelationship:null,where:null,toJson:function(){try{throw Error("toJson is deprecated, use toJSON instead");}catch(b){console.warn(b.stack)}return this.toJSON()},toJSON:function(){var b={type:"layer",layerName:this.name,where:this.where,spatialRel:this.spatialRelationship},
+a=this.geometry;a&&(b.geometryType=f.getJsonType(a),b.geometry=a.toJSON());return e.filter(b,function(a){if(null!==a)return!0})}});c.mixin(a,g);return a});

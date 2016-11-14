@@ -1,0 +1,18 @@
+<div>
+<div dojotype="dijit.Dialog" dojoAttachPoint="_folderDialog" title="${i18n.folderDlgTitle}" style="width:460px;">
+    <div dojoAttachPoint="_folderErrorDiv"></div>
+    <div dojoAttachPoint="_folderForm" dojoAttachEvent="onSubmit:createFolder,onkeydown:onKeyDown">
+      <div style="margin:2px;">
+        <label class="long" for="fldr_title">${i18n.folderName}</label>
+        <div dojoAttachPoint="_folderTitleInput" name="fldr_title" dojotype="dijit.form.TextBox" trim="true" required="true" maxlength="125" style="padding:2px;"></div>
+      </div>
+      <br/>
+      <div style="float:right;">
+        <button type="button" dojotype="dijit.form.Button" class="primary" dojoAttachEvent="onClick:createFolder">${i18n.create}</button>
+        <button dojotype="dijit.form.Button" class="cancel" dojoAttachEvent="onClick:_handleCancelBtn">${i18n.cancel}</button>
+      </div>
+      <br/>
+      <br/>
+    </div>
+  </div>
+</div>

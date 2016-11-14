@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>RenderPolygon</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="../css/apiNative.css">
+    <style>
+        #map {
+            height: 700px;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background: url(../images/androidPolygen.png) no-repeat center center;
+            background-size: contain;
+        }
+    </style>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+</head>
+
+<body>
+<div class="container-fluid layoutContainer">
+    <article id="page_content" class="md-body">
+        <h1>分级渲染服务-面</h1>
+
+        <h2>简介</h2>
+
+        <p>分级渲染允许为特定属性值范围内的一组图形指定符号，通过ClassBreaksRenderer实现Graphic对象的分级渲染。</p>
+
+        <p>可以通过多种方式进行结果展示，通过点的方式进行结果展示。</p>
+
+        <h2>示例</h2>
+
+        <div id="map"></div>
+
+        <h2>代码</h2>
+
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+MapView mMapView = null;
+GraphicsLayer graphicsLayer = null;
+Graphic fillGraphic = null;
+
+boolean boolQuery = true;
+ProgressDialog progress;
+IdentifyParameters params = null;
+Callout callout = null;
+
+// UniqueValueRenderer used to assign unique values to feature
+UniqueValueRenderer uvrenderer = null;
+
+// Unique Values are objects containing the unique properties
+UniqueValue uv1, uv2, uv3, uv4, uv5, uv6, uv7, uv8, uv9;
+
+// Rendering Type which is used to fill the region
+SimpleFillSymbol defaultsymbol = null;
+
+// The set of unique attributes for rendering
+String[] uniqueAttribute1 = new String[1];
+String[] uniqueAttribute2 = new String[1];
+String[] uniqueAttribute3 = new String[1];
+String[] uniqueAttribute4 = new String[1];
+String[] uniqueAttribute5 = new String[1];
+String[] uniqueAttribute6 = new String[1];
+String[] uniqueAttribute7 = new String[1];
+String[] uniqueAttribute8 = new String[1];
+String[] uniqueAttribute9 = new String[1];
+
+// create UI objects
+static ProgressDialog dialog;
+
+/** Called when the activity is first created. */
+@SuppressWarnings("serial")
+@Override
+public void onCreate(Bundle savedInstanceState) {
+
+   super.onCreate(savedInstanceState);
+   setContentView(R.layout.unique_value_renderer_layout);
+
+   mMapView = (MapView) findViewById(R.id.map);
+
+   // add demographic layer to the map
+   final ArcGISFeatureLayer feature = new ArcGISFeatureLayer(this
+         .getResources().getString(R.string.states_URL),
+         ArcGISFeatureLayer.MODE.SNAPSHOT);
+
+   uvrenderer = new UniqueValueRenderer();
+
+   // setting the field for the unique values
+   uvrenderer.setField1("SUB_REGION");
+
+   uv1 = new UniqueValue();
+   uv2 = new UniqueValue();
+   uv3 = new UniqueValue();
+   uv4 = new UniqueValue();
+   uv5 = new UniqueValue();
+   uv6 = new UniqueValue();
+   uv7 = new UniqueValue();
+   uv8 = new UniqueValue();
+   uv9 = new UniqueValue();
+
+   Resources res = getResources();
+
+   // Defining the Unique attributes for classifier
+   uniqueAttribute1[0] = res.getString(R.string.Mtn);
+   uv1.setDescription(res.getString(R.string.Mtn));
+   uv1.setValue(uniqueAttribute1);
+
+   uniqueAttribute2[0] = res.getString(R.string.Pacific);
+   uv2.setDescription(res.getString(R.string.Pacific));
+   uv2.setValue(uniqueAttribute2);
+
+   uniqueAttribute3[0] = res.getString(R.string.N_Eng);
+   uv3.setDescription(res.getString(R.string.N_Eng));
+   uv3.setValue(uniqueAttribute3);
+
+   uniqueAttribute4[0] = res.getString(R.string.S_Atl);
+   uv4.setDescription(res.getString(R.string.S_Atl));
+   uv4.setValue(uniqueAttribute4);
+
+   uniqueAttribute5[0] = res.getString(R.string.Mid_Atl);
+   uv5.setDescription(res.getString(R.string.Mid_Atl));
+   uv5.setValue(uniqueAttribute5);
+
+   uniqueAttribute6[0] = res.getString(R.string.E_N_Cen);
+   uv6.setDescription(res.getString(R.string.E_N_Cen));
+   uv6.setValue(uniqueAttribute6);
+
+   uniqueAttribute7[0] = res.getString(R.string.W_N_Cen);
+   uv7.setDescription(res.getString(R.string.W_N_Cen));
+   uv7.setValue(uniqueAttribute7);
+
+   uniqueAttribute8[0] = res.getString(R.string.E_S_Cen);
+   uv8.setDescription(res.getString(R.string.E_S_Cen));
+   uv8.setValue(uniqueAttribute8);
+
+   uniqueAttribute9[0] = res.getString(R.string.W_S_Cen);
+   uv9.setDescription(res.getString(R.string.W_S_Cen));
+   uv9.setValue(uniqueAttribute9);
+
+   // The symbol definition for each region
+   final SimpleFillSymbol symbol1 = new SimpleFillSymbol(Color.BLUE);
+   final SimpleFillSymbol symbol2 = new SimpleFillSymbol(Color.CYAN);
+   final SimpleFillSymbol symbol3 = new SimpleFillSymbol(Color.GRAY);
+   final SimpleFillSymbol symbol4 = new SimpleFillSymbol(Color.MAGENTA);
+   final SimpleFillSymbol symbol5 = new SimpleFillSymbol(Color.GREEN);
+   final SimpleFillSymbol symbol6 = new SimpleFillSymbol(Color.RED);
+   final SimpleFillSymbol symbol7 = new SimpleFillSymbol(Color.YELLOW);
+   final SimpleFillSymbol symbol8 = new SimpleFillSymbol(Color.WHITE);
+   final SimpleFillSymbol symbol9 = new SimpleFillSymbol(Color.BLACK);
+
+   // The default symbol
+   defaultsymbol = new SimpleFillSymbol(Color.GREEN);
+
+   // Setting the symbol to the unique values defined
+   uv1.setSymbol(symbol1);
+   uv2.setSymbol(symbol2);
+   uv3.setSymbol(symbol3);
+   uv4.setSymbol(symbol4);
+   uv5.setSymbol(symbol5);
+   uv6.setSymbol(symbol6);
+   uv7.setSymbol(symbol7);
+   uv8.setSymbol(symbol8);
+   uv9.setSymbol(symbol9);
+
+   // Add the unique values to the renderer
+   uvrenderer.setDefaultSymbol(defaultsymbol);
+   uvrenderer.addUniqueValue(uv1);
+   uvrenderer.addUniqueValue(uv2);
+   uvrenderer.addUniqueValue(uv3);
+   uvrenderer.addUniqueValue(uv4);
+   uvrenderer.addUniqueValue(uv5);
+   uvrenderer.addUniqueValue(uv6);
+   uvrenderer.addUniqueValue(uv7);
+   uvrenderer.addUniqueValue(uv8);
+   uvrenderer.addUniqueValue(uv9);
+
+   // Add the renderer to the feature
+   feature.setRenderer(uvrenderer);
+   feature.setOpacity(0.5f);
+
+   // Add feature to the mapview
+   mMapView.addLayer(feature);
+
+          </textarea>
+        </p>
+    </article>
+</div>
+</body>
+</html>

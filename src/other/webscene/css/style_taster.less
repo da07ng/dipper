@@ -1,0 +1,58 @@
+.MenuContainer.vertical .MenuTabsContainer{
+  .tab {
+    &:hover, &.active {
+      .taster_layerAndLayerView_icon, .taster_selection_icon, .taster_engineStats_icon, .taster_camera_icon, .taster_globe_icon, .taster_i3s_icon, .taster_resourceController_icon, .taster_renderer_icon, .taster_memory_icon, .taster_layerview_icon, .taster_navigation_icon {
+        background-position: 6px 8px;
+        color: #0079C1;
+      }
+    }
+
+    .taster_layerAndLayerView_icon, .taster_selection_icon, .taster_engineStats_icon, .taster_camera_icon, .taster_terrainStats_icon, .taster_globe_icon, .taster_i3s_icon, .taster_resourceController_icon, .taster_renderer_icon, .taster_memory_icon, .taster_layerview_icon, .taster_navigation_icon {
+      font-weight: bold;
+      background-image: url(../images/icon_taster.png);
+      background-position: 6px 8px;
+      background-size: 25px 50px;
+      background-repeat: no-repeat;
+      height: 24px;
+      width: 24px;
+    }
+  }
+}
+
+
+.debug-widget {
+  padding: 10px;
+  &.selection tr {
+    height: 25px;
+  }
+  &.camera td+td, &.navigation td+td {
+    font-size: 0.8em;
+    font-weight: bold;
+  }
+  input[type=button] {
+    padding: 3px 6px 3px 6px;
+  }
+}
+
+table.memTrace {
+  border-collapse: separate;
+  border-spacing: 12px 6px;
+  font-family: monospace;
+  width: 100%;
+  white-space: pre;
+  th {
+    font-weight: bold;
+  }
+  td {
+    vertical-align: top;
+  }
+}
+
+.expand{
+  display:none;
+}
+
+.tab.hideTab{
+  opacity: 1;
+  pointer-events: all;
+}

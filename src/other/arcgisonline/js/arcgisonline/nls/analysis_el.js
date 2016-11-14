@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/3.15/esri/copyright.txt for details.
+//>>built
+define("arcgisonline/nls/analysis_el",{"dojox/form/nls/CheckedMultiSelect":{multiSelectLabelText:"\u0395\u03c0\u03b9\u03bb\u03ad\u03c7\u03b8\u03b7\u03ba\u03b5(-\u03b1\u03bd) {num} \u03c3\u03c4\u03bf\u03b9\u03c7\u03b5\u03af\u03bf(-\u03b1)",invalidMessage:"\u03a0\u03c1\u03ad\u03c0\u03b5\u03b9 \u03bd\u03b1 \u03b5\u03c0\u03b9\u03bb\u03ad\u03be\u03b5\u03c4\u03b5 \u03c4\u03bf\u03c5\u03bb\u03ac\u03c7\u03b9\u03c3\u03c4\u03bf\u03bd \u03ad\u03bd\u03b1 \u03c3\u03c4\u03bf\u03b9\u03c7\u03b5\u03af\u03bf.",_localized:{}},
+"dgrid/extensions/nls/pagination":{gotoLast:"Go to last page",gotoFirst:"Go to first page",gotoPage:"Go to page",gotoNext:"Go to next page",_localized:{},gotoPrev:"Go to previous page",status:"${start} - ${end} of ${total} results",rowsPerPage:"Number of rows per page",jumpPage:"Jump to page"}});

@@ -1,0 +1,42 @@
+<div style='position: relative;'>
+    <div class='sizer content'>
+        <div class='contentPane' style="padding: 6px 10px;">
+            <div class="dijitDialogTitleBar" style="padding: 10px 10px 0 10px !important; border-radius: 3px 3px 0 0;background: none;">
+                <span class="dijitDialogTitle" style="display: inline-block; font-size: 20px !important; color: #333 !important; line-height: 28px !important; font-weight: normal !important;">${title}</span>
+                <span class="dijitDialogCloseIcon tooltipCloseIcon" title="关闭">
+                    <span class="closeText" title="关闭">x</span>
+                </span>
+            </div>
+            <div>
+                <div style="padding: 6px 20px; margin-top: 10px; border-width: 1px 0 0 0; border-style: solid; border-color: #ddd;">
+                    <div id="item-summary" style="line-height: 1.75; font-size: 14px;">${snippet}</div>
+                </div>
+                <div style="background-color: #fff; border: 1px solid #ddd; border-radius: 4px; line-height: 1.42857; padding: 9px; height: 102px;">
+                    <div class="esriWebThumbnail" style="float: left;">
+                        <img src="${thumbnailUrl}" alt="Thumbnail" width="150" height="100" style="display: block; margin: 0 auto; box-sizing: border-box;vertical-align: middle;" />
+                    </div>
+                    <div style="float:left; margin-left: 20px;">
+                        <div>
+                            <span>
+                                <img src="${iconUrl}"></img>
+                            </span>
+                            <span class='esriAlignLeading' style="color: #656565; font-size: 14px; margin-left: 4px;">${type}</span>
+                        </div>
+                        <div style="line-height: 28px; vertical-align: middle;">
+                            <span class='esriAlignLeading' style='color:#656565; font-size: 14px; margin-left: 4px;'>由 ${owner} 提供</span>
+                        </div>
+                        <div style="padding: 9px 0; color: #333; box-sizing: border-box;">
+                            <a href="JavaScript:void(0);" onclick="JavaScript:window.open('item.html?id=' + '${id}' + '&activeMenu=dataGallery');">项目详细信息</a>
+                            <a href="JavaScript:void(0);" onclick="JavaScript:event && event.preventDefault && event.preventDefault(); arcgisonline.map.save_open.switchBaseMap('${id}');" style="${basemapDisplay}">用作底图</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='sizer'>
+        <div class='actionsPane'>
+            <div class='actionList'></div>
+        </div>
+    </div>
+</div>

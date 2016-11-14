@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>grid</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <style>
+    
+      html, body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #FFF;
+        font-family: "Microsoft Yahei","微软雅黑", "Pinghei";
+      }
+      article{
+        display: block;
+      }
+      .radio, .checkbox {
+        min-height: 20px;
+        padding-left: 20px;
+      }
+      .center {
+        width: auto;
+        display: table;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+      #page_content {
+        background: #fff;
+        padding: 10px 30px;
+        clear: right;
+        overflow: hidden;
+        font-size: 14px;
+        border: 1px solid #ccc;
+      }
+      #page_content p {
+        margin: 10px 0;
+        overflow: hidden;
+      }
+      .md-body {
+        font-size: 12px;
+        line-height: 2;
+        color: #808080;
+        padding: 0 20px 20px;
+        margin: 0 auto;
+      }
+      .md-body > h1:first-child {
+        margin-top: -10px;
+      }
+      .md-body h1 {
+        line-height: 60px;
+        font-size: 20px;
+        color: #333;
+        text-indent: 30px;
+        font-weight: normal;
+        margin: 16px -30px 16px;
+        border-bottom: 1px solid #e5e5e5;
+      }
+      .md-body h2 {
+        color: #0075c2;
+        font-size: 18px;
+        font-weight: normal;
+        margin: 16px -30px;
+        clear: left;
+        border-top: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5;
+        line-height: 58px;
+        text-indent: 20px;
+        position: relative;
+        padding: 0 30px;
+        background: url(../images/h2.png) no-repeat 30px center;
+      }
+      .md-body h2::before, .md-body h2::after {
+        content: '';
+        width: 30px;
+        height: 1px;
+        bottom: 0px;
+        margin: 0 0 -1px -50px;
+        background: #fff;
+        position: absolute;
+        box-sizing: border-box;
+      }
+      .md-body h2::after {
+        right: 0;
+      }
+      .md-body h1 + h2 {
+        margin-top: -17px;
+      }
+      #map {
+        height: 420px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: url(../images/loading.gif) no-repeat center center;
+      }
+    </style>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script> 
+  </head>
+
+  <body>
+    <div class="container-fluid layoutContainer">
+      <article id="page_content" class="md-body">
+        <h1>格网图展示</h1>
+        <h2>简介</h2>
+        <p>在地图制图中格网是指地图上的分割线，有方里网，经纬网等表现形式。格网是由间隔均匀的水平线和垂直线组成的网络，用于在地图上识别各个位置。例如，通过选择参考格网类型可放置一个格网，从而为某地图划分出指定数量的行和列。通常，参考格网的行标注和列标注可用于识别地图索引中所列的各个位置。通过格网您还可以使用投影到地图上的坐标显示测得的位置。要显示方里格网共有多种方式。</p>
+        <p>本实例通过addLayer添加格网。</p>
+        <h2>示例</h2>
+        <div id="map"></div>
+        <h2>代码</h2>
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;
+    &lt;meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/&gt;
+    &lt;title&gt;Simple Map&lt;/title&gt;
+    &lt;link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css"&gt;
+    &lt;style&gt;
+      html, body, #map {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #FFF;
+        overflow: hidden;
+        font-family: "Trebuchet MS";
+      }
+    &lt;/style&gt;
+    &lt;script src="http://js.arcgis.com/3.13/"&gt;&lt;/script&gt;
+    &lt;script&gt;
+      require(["esri/map","modules/d3Layer", "dojo/domReady!"], function(Map,d3Layer) { 
+        var map = new Map("map", {
+        center: [116.37617980956833, 39.914747986720364],
+        zoom: 11,
+        basemap: "topo"
+        });
+
+        map.on("load", function(){
+
+          map.disableScrollWheelZoom();
+        
+          setTimeout(function(){
+            var url = "data/bj_grid_1km.json";
+      var option = {
+        geojson: true,
+        key: 'FID',
+        styles: [{
+          key: 'fill',
+          value: 'rgb(125,125,125)'
+        },{
+          key: 'stroke',
+          value: '#DDD'
+        },{
+          key: 'stroke-width',
+          value: 1
+        },{
+          key: 'opacity',
+          value: 0.35
+        }],
+        attrs:[{
+          key:"value",
+          value:function(){
+            var randomvalue;
+            randomvalue = Math.floor(Math.random()*10);
+            return randomvalue;
+          }
+        },{
+          key:"id",
+          value:function(d){
+              return 'path'+d.properties["FID"];
+            }
+        }]
+      };
+
+      var d3L = new d3Layer(url,option);
+      
+      dojo.connect(d3L, "onLoad", function(lyr){
+        d3.selectAll('path')
+        .on('mouseover', function(e){
+          d3.select('path#'+this.getAttribute('id'))
+            .style('opacity', 0.5)
+            .style('stroke-width',2);
+        })
+        .on('mouseout', function(e){
+          d3.select('path#'+this.getAttribute('id'))
+            .style('opacity', 0.35)
+            .style('stroke-width',1);
+        });
+        lyr._paths()
+        .style('fill', function(d){
+          var value = parseInt(this.getAttribute('value'));
+            if(value <= 2 )
+              return '#007502';
+            else if(value > 2 && value <= 4)
+              return '#92C601';
+            else if(value > 4 && value <= 6)
+              return '#FFFF01';
+            else if(value > 6 && value <= 8)
+              return '#FF9C01';
+            else if(value > 8)
+              return '#FE0000';
+          return 'rgb(125,125,125)';
+        });
+      });
+      map.addLayer(d3L);
+          },1000);
+          
+        }); 
+        window.map = map;
+      });
+    &lt;/script&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;div id="map"&gt;&lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+          </textarea>
+        </p>
+      </article>
+    </div>
+    <script>  
+            var baseUrl = location.pathname.replace(/\/[^\/]+$/, '');  
+            var jsurl = baseUrl.substr(0,baseUrl.lastIndexOf('/'))+'/';  
+            var dojoConfig = {  
+                _debug:false,  
+                parseOnLoad: true,
+                locale: 'zh',  
+                packages: [{  
+                    "name": "modules",  
+                    "location": jsurl + "lib" 
+                }]  
+            };  
+    </script> 
+    <script src="http://js.arcgis.com/3.13/"></script>
+    <script type="text/javascript" src="../lib/d3.v3.min.js"></script>
+    <script>
+      require(["esri/map","modules/d3Layer", "dojo/domReady!"], function(Map,d3Layer) { 
+        var map = new Map("map", {
+        center: [116.37617980956833, 39.914747986720364],
+        zoom: 11,
+        basemap: "topo"
+        });
+
+        map.on("load", function(){
+
+          map.disableScrollWheelZoom();
+        
+          setTimeout(function(){
+            var url = "data/bj_grid_1km.json";
+      var option = {
+        geojson: true,
+        key: 'FID',
+        styles: [{
+          key: 'fill',
+          value: 'rgb(125,125,125)'
+        },{
+          key: 'stroke',
+          value: '#DDD'
+        },{
+          key: 'stroke-width',
+          value: 1
+        },{
+          key: 'opacity',
+          value: 0.35
+        }],
+        attrs:[{
+          key:"value",
+          value:function(){
+            var randomvalue;
+            randomvalue = Math.floor(Math.random()*10);
+            return randomvalue;
+          }
+        },{
+          key:"id",
+          value:function(d){
+              return 'path'+d.properties["FID"];
+            }
+        }]
+      };
+
+      var d3L = new d3Layer(url,option);
+      
+      dojo.connect(d3L, "onLoad", function(lyr){
+        d3.selectAll('path')
+        .on('mouseover', function(e){
+          d3.select('path#'+this.getAttribute('id'))
+            .style('opacity', 0.5)
+            .style('stroke-width',2);
+        })
+        .on('mouseout', function(e){
+          d3.select('path#'+this.getAttribute('id'))
+            .style('opacity', 0.35)
+            .style('stroke-width',1);
+        });
+        lyr._paths()
+        .style('fill', function(d){
+          var value = parseInt(this.getAttribute('value'));
+            if(value <= 2 )
+              return '#007502';
+            else if(value > 2 && value <= 4)
+              return '#92C601';
+            else if(value > 4 && value <= 6)
+              return '#FFFF01';
+            else if(value > 6 && value <= 8)
+              return '#FF9C01';
+            else if(value > 8)
+              return '#FE0000';
+          return 'rgb(125,125,125)';
+        });
+      });
+      map.addLayer(d3L);
+          },1000);
+          
+        }); 
+        window.map = map;
+      });
+
+      
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>maps</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="css/js.css">
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+</head>
+
+<body>
+<div class="container-fluid layoutContainer">
+    <article id="page_content" class="md-body">
+        <h1>基础地图服务</h1>
+
+        <h2>简介</h2>
+
+        <p>ArcGIS API for Javascript中通过Map对象实现地图加载。Map对象是跟DIV元素一样，可以容纳其他元素或者对象，不同的是Map是可以承载图层，而后者不可以。</p>
+
+        <p>Map对象是ArcGIS API for
+            Javascript的核心对象，其它控件或多或少的都将Map对象作为其参数，它主要用于呈现地图服务、影像服务等。一个地图对象需要通过一个DIV元素才可以添加到页面中，通常地图控件的宽度和高度是通过DIV容器初始化的。Map对象不仅仅用来承载地图服务和GraphicsLayer同时还可以监听用户在地图上的各种操作事件，并做出响应，Map对象提供了非常丰富的事件，使用这些事件，就可以让地图跟用户随心所欲的去交互。
+        </p>
+
+        <p>本实例支持多个Google、MapBox及ArcGIS Online等多种基础底图的加载。</p>
+
+        <h2>示例</h2>
+
+        <div id="map"></div>
+        <div class="center">
+            <label class="radio"><input type="radio" name="optionsRadios" id="arcgisonlinebutton" value="option1"
+                                        checked>ArcGIS Online 地形图</label>
+            <label class="radio"><input type="radio" name="optionsRadios" id="googlebutton"
+                                        value="option1">谷歌影像图</label>
+            <label class="radio"><input type="radio" name="optionsRadios" id="mapboxbutton"
+                                        value="option1">Mapbox地形图</label>
+        </div>
+        <h2>代码</h2>
+
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;
+    &lt;meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/&gt;
+    &lt;title&gt;Simple Map&lt;/title&gt;
+    &lt;link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css"&gt;
+    &lt;style&gt;
+      html, body, #map {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #FFF;
+        overflow: hidden;
+        font-family: "Trebuchet MS";
+      }
+      .radio, .checkbox {
+        min-height: 20px;
+        padding-left: 20px;
+      }
+      .center {
+        width: auto;
+        display: table;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+    &lt;/style&gt;
+    &lt;script src="http://js.arcgis.com/3.13/"&gt;&lt;/script&gt;
+    &lt;script&gt;
+      var map;
+      var mapConfigs={
+        'google':{
+          "url":"http://${subDomain}.google.cn/vt/lyrs=s@145&hl=zh-CN&gl=CN&src=app&x=${col}&y=${row}&z=${level}&scale=1.100000023841858&s=G",
+              "type":"WebTiledLayer",
+              "subDomains":["mt0","mt1","mt2","mt3"],
+              "copyright": "MapQuest © 2012",
+              "name":"谷歌影像图"
+            },
+          'mapbox':{
+            "url":"https://api.tiles.mapbox.com/v4/mapbox.mapbox-terrain-v1/${level}/${col}/${row}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q",
+              "type":"WebTiledLayer",
+              "copyright": "Mapbox",
+              "name":"Mapbox地形图"
+            },
+            'arcgisonline':{
+              "url":"http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer",
+              "type":"ArcGISTiledMapServiceLayer",
+              "name":"ArcGISOnline地形图"
+            }
+      };
+      require(["esri/map",  "esri/layers/FeatureLayer", "dojo/dom", "dojo/on", "esri/layers/WebTiledLayer","esri/layers/ArcGISTiledMapServiceLayer", "dojo/domReady!"], function(Map,FeatureLayer,dom, on, WebTiledLayer,ArcGISTiledMapServiceLayer) {
+        map = new Map("map", {
+          slider: false,
+          resizeDelay: 100, // 300ms(default) seemed a little slow in this case
+          center: [-74.985, 4.579],
+          zoom: 8
+        });
+        map.on("load", function() {
+          map.disableScrollWheelZoom();
+        });
+          var googleurl = mapConfigs.google.url;
+          var googleFeatureLayer = new WebTiledLayer(googleurl, {
+            "id": "google",
+            "copyright": mapConfigs.google.copyright,
+            "subDomains": mapConfigs.google.subDomains
+          });
+        map.addLayer(googleFeatureLayer); 
+        googleFeatureLayer.setVisibility(false);
+
+        var mapboxurl = mapConfigs.mapbox.url;
+          var mapboxFeatureLayer = new WebTiledLayer(mapboxurl, {
+            "id": "mapbox",
+            "copyright": mapConfigs.mapbox.copyright,
+            "subDomains": mapConfigs.mapbox.subDomains
+          });
+        map.addLayer(mapboxFeatureLayer); 
+        mapboxFeatureLayer.setVisibility(false);
+
+        var arcgisonlineurl = mapConfigs.arcgisonline.url;
+          var arcgisonlineArcGISTiledMapServiceLayer = new ArcGISTiledMapServiceLayer(arcgisonlineurl, {
+            "id": "arcgisonline",
+            "copyright": mapConfigs.arcgisonline.copyright,
+            "subDomains": mapConfigs.arcgisonline.subDomains
+          });
+        map.addLayer(arcgisonlineArcGISTiledMapServiceLayer); 
+
+        $('#googlebutton').on('click', function(e){
+            map.getLayer("mapbox").hide();
+            map.getLayer("arcgisonline").hide();
+            map.getLayer("google").show();
+        });
+
+        $('#mapboxbutton').on('click', function(e){
+            map.getLayer("google").hide();
+            map.getLayer("arcgisonline").hide();
+            map.getLayer("mapbox").show();
+        });
+
+        $('#arcgisonlinebutton').on('click', function(e){
+            map.getLayer("google").hide();
+            map.getLayer("mapbox").hide();
+            map.getLayer("arcgisonline").show();
+        });
+      });
+    &lt;/script&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;div id="map"&gt;
+     &lt;div class="center">
+           &lt;label class="radio"&gt;&lt;input type="radio" name="optionsRadios" id="arcgisonlinebutton" value="option1" checked&gt;ArcGIS Online 地形图&lt;/label&gt;
+           &lt;label class="radio"&gt;&lt;input type="radio" name="optionsRadios" id="googlebutton" value="option1" &gt;谷歌影像图&lt;/label&gt;
+           &lt;label class="radio"&gt;&lt;input type="radio" name="optionsRadios" id="mapboxbutton" value="option1" &gt;Mapbox地形图&lt;/label&gt;
+     &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+          </textarea>
+        </p>
+    </article>
+</div>
+<script src="http://js.arcgis.com/3.13/"></script>
+<script>
+    var map;
+    var mapConfigs = {
+        'google': {
+            "url": "http://${subDomain}.google.cn/vt/lyrs=s@145&hl=zh-CN&gl=CN&src=app&x=${col}&y=${row}&z=${level}&scale=1.100000023841858&s=G",
+            "type": "WebTiledLayer",
+            "subDomains": ["mt0", "mt1", "mt2", "mt3"],
+            "copyright": "MapQuest © 2012",
+            "name": "谷歌影像图"
+        },
+        'mapbox': {
+            "url": "https://api.tiles.mapbox.com/v4/mapbox.mapbox-terrain-v1/${level}/${col}/${row}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q",
+            "type": "WebTiledLayer",
+            "copyright": "Mapbox",
+            "name": "Mapbox地形图"
+        },
+        'arcgisonline': {
+            "url": "http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer",
+            "type": "ArcGISTiledMapServiceLayer",
+            "name": "ArcGISOnline地形图"
+        }
+    };
+    require(["esri/map", "esri/layers/FeatureLayer", "dojo/dom", "dojo/on", "esri/layers/WebTiledLayer", "esri/layers/ArcGISTiledMapServiceLayer", "dojo/domReady!"], function (Map, FeatureLayer, dom, on, WebTiledLayer, ArcGISTiledMapServiceLayer) {
+        map = new Map("map", {
+            slider: true,
+            resizeDelay: 100, // 300ms(default) seemed a little slow in this case
+            center: [-74.985, 4.579],
+            zoom: 8
+        });
+        map.on("load", function () {
+            map.disableScrollWheelZoom();
+        });
+
+        var googleurl = mapConfigs.google.url;
+        var googleFeatureLayer = new WebTiledLayer(googleurl, {
+            "id": "google",
+            "copyright": mapConfigs.google.copyright,
+            "subDomains": mapConfigs.google.subDomains
+        });
+        map.addLayer(googleFeatureLayer);
+        googleFeatureLayer.setVisibility(false);
+
+        var mapboxurl = mapConfigs.mapbox.url;
+        var mapboxFeatureLayer = new WebTiledLayer(mapboxurl, {
+            "id": "mapbox",
+            "copyright": mapConfigs.mapbox.copyright,
+            "subDomains": mapConfigs.mapbox.subDomains
+        });
+        map.addLayer(mapboxFeatureLayer);
+        mapboxFeatureLayer.setVisibility(false);
+
+        var arcgisonlineurl = mapConfigs.arcgisonline.url;
+        var arcgisonlineArcGISTiledMapServiceLayer = new ArcGISTiledMapServiceLayer(arcgisonlineurl, {
+            "id": "arcgisonline",
+            "copyright": mapConfigs.arcgisonline.copyright,
+            "subDomains": mapConfigs.arcgisonline.subDomains
+        });
+        map.addLayer(arcgisonlineArcGISTiledMapServiceLayer);
+
+        $('#googlebutton').on('click', function (e) {
+            map.getLayer("mapbox").hide();
+            map.getLayer("arcgisonline").hide();
+            map.getLayer("google").show();
+        });
+
+        $('#mapboxbutton').on('click', function (e) {
+            map.getLayer("google").hide();
+            map.getLayer("arcgisonline").hide();
+            map.getLayer("mapbox").show();
+        });
+
+        $('#arcgisonlinebutton').on('click', function (e) {
+            map.getLayer("google").hide();
+            map.getLayer("mapbox").hide();
+            map.getLayer("arcgisonline").show();
+        });
+    });
+</script>
+</body>
+</html>

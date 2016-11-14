@@ -1,0 +1,6 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../core/declare","dojo/_base/lang","../core/lang","./FillSymbol","./SimpleLineSymbol"],function(a,b,e,g,h){var f={style:"solid",outline:new h,color:[0,0,0,0.25]};a=a(g,{declaredClass:"esri.symbols.SimpleFillSymbol",_styles:{solid:"esriSFSSolid",none:"esriSFSNull",horizontal:"esriSFSHorizontal",vertical:"esriSFSVertical","forward-diagonal":"esriSFSForwardDiagonal","backward-diagonal":"esriSFSBackwardDiagonal",cross:"esriSFSCross","diagonal-cross":"esriSFSDiagonalCross"},getDefaults:function(){return b.mixin(this.inherited(arguments),
+f)},normalizeCtorArgs:function(c,a,b){if(c&&"string"!==typeof c)return c;var d={};c&&(d.style=c);a&&(d.outline=a);b&&(d.color=b);return d},type:"simplefillsymbol",_styleReader:function(a){return e.valueOf(this._styles,a)},toJSON:function(){return e.fixJson(b.mixin(this.inherited(arguments),{type:"esriSFS",style:this._styles[this.style]}))}});b.mixin(a,{STYLE_SOLID:"solid",STYLE_NULL:"none",STYLE_HORIZONTAL:"horizontal",STYLE_VERTICAL:"vertical",STYLE_FORWARD_DIAGONAL:"forward-diagonal",STYLE_BACKWARD_DIAGONAL:"backward-diagonal",
+STYLE_CROSS:"cross",STYLE_DIAGONAL_CROSS:"diagonal-cross"});a.defaultProps=f;return a});

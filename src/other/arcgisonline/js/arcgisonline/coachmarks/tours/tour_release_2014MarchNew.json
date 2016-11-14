@@ -1,0 +1,41 @@
+{
+	"tour_coachmarks": {	
+		"tour_type": "showall",
+		"tour_steps": [
+			{
+				"id": 1, 
+				"elementID": "webmap-details-about-content",
+				"top": "43",
+				"left": "50",
+				"contentId": "prompt1",
+				"size": "default",
+				"arrowPosition": "bottom",
+				"showClose": true,
+				"showNext": false, 
+				"showPrevious": false,
+				"showNextID": 2,
+				"workflow": null,
+				"functionCall": null,
+				"helpDocURL": "http://resources.arcgis.com/en/help/arcgisonline/index.html#/What_s_new/010q00000006000000/",
+				"analyticsTracking": null
+			},
+			{
+				"id": 2, 
+				"elementID": "webmap-details-about-content",
+				"top": "200",
+				"left": "150",
+				"contentId": "prompt2",
+				"size": "default",
+				"arrowPosition": "none",
+				"showClose": true,
+				"showNext": false, 
+				"showPrevious": true,
+				"showNextID": 3,
+				"workflow": null,
+				"functionCall": null,
+				"helpDocURL": null,
+				"analyticsTracking": null
+			}
+		]
+	}
+}

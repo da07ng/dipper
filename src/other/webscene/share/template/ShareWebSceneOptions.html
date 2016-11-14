@@ -1,0 +1,26 @@
+<div style="line-height:25px; padding-left:15px; padding-top:5px;">
+  <div id="share-loading">
+    <label>
+      正在加载...
+    </label>
+  </div>
+  <div id="share-everyone-check_div" style="display:none;">
+    <input id="share-everyone-check" data-dojo-attach-point="_shareEveryoneCheck" type="checkbox" />
+    <label id="share-everyone-check-label" for="share-everyone-check">
+      公开
+    </label>
+  </div>
+  <div id="share-groups-div" style="display:none;">
+    <input id="share-groups-check" data-dojo-attach-point="_shareGroupCheck" type="checkbox" />
+    <label id="share-groups-check-label" for="share-groups-check">
+      以下的工作组:
+    </label>
+    <br/>
+    <div style="padding-left:20px; padding-top:5px;">
+      <div dojotype="dijit.layout.BorderContainer" gutters="false" design="headline" style="width:95%; height:300px;">
+        <div id="share-groups-list" data-dojo-attach-point="_shareGroupList" dojotype="dijit.layout.ContentPane" region="middle" splitter="false">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

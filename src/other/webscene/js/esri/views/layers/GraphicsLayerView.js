@@ -1,0 +1,6 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../../core/declare","./LayerView"],function(g,h){return g(h,{declaredClass:"esri.views.layers.GraphicsLayerView",constructor:function(b){},getRenderer:function(b){if(!b||b.symbol)return null;var a=this._rndForScale||this.layer.get("renderer");b&&(a&&a.getObservationRenderer)&&(a=a.getObservationRenderer(b));return a},getSymbol:function(b){if(b.symbol)return b.symbol;var a=this.getRenderer(b);return a&&a.getSymbol(b)},getRenderingInfo:function(b){var a=this.getRenderer(b),e=this.getSymbol(b),
+c;if(!e)return null;e={renderer:a,symbol:e};if(a&&(a.colorInfo&&(e.color=a.getColor(b)),a.sizeInfo&&(c=a.getSize(b),e.size=[c,c,c]),a.visualVariables)){b=a.getVisualVariableValues(b);c=["proportional","proportional","proportional"];for(a=0;a<b.length;a++){var d=b[a];if("outline"!==d.variable.target){var f=d.variable.type;"colorInfo"===f?e.color=d.value:"sizeInfo"===f?(f=d.variable.axis,d=d.variable.useSymbolValue?"symbolValue":d.value,"width"===f?c[0]=d:"depth"===f?c[1]=d:"height"===f?c[2]=d:c[0]=
+"widthAndDepth"===f?c[1]=d:c[1]=c[2]=d):"opacityInfo"===f&&(e.opacity=d.value)}}if(isFinite(c[0])||isFinite(c[1])||isFinite(c[2]))e.size=c}return e},_evalSDRenderer:function(){}})});

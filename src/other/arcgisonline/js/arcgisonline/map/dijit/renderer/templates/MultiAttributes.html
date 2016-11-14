@@ -1,0 +1,34 @@
+<div data-dojo-type="dijit.layout.BorderContainer" region="top" style="height:100%;">
+  <div class="panel panel_left" data-dojo-type="dijit.layout.ContentPane" region="center" style="padding:7px;margin-bottom:-5px;">
+    <div id="rendererMultiAttributesHeader" data-dojo-type="dijit.layout.ContentPane" region="top">
+      <div class="esriFloatTrailing" style="display:inline;">
+        <a href="JavaScript:void(0);" data-dojo-attach-point="_closeBtn" data-dojo-attach-event="onClick:_onClose" title="${i18n.close}" class="panel panel_close panel_collapse"></a>
+      </div>
+      <div id="rendererTitle" class="esriFloatLeading panel_title">
+        ${i18n.rendererPanelTitle}
+      </div>
+      <div data-dojo-attach-point="_rendererMultiAttributesLayer" class="esriFloatLeading panel_title" style="clear:both;">
+      </div>
+      <div style="clear:both; height:1px;"></div>
+    </div>
+    <div data-dojo-type="dijit.layout.ContentPane" region="center" id="rendererMultiAttributesPane" style="padding-top:10px;">
+      <div data-dojo-attach-point="_rendererTitle1">
+      </div>
+      <div style="margin:5px 0 5px 0; clear:both;">    
+        <div class="esriFloatLeading">    
+          <div class="esriFloatLeading subTitle">${i18n.layerHasMultipleStyles}</div>
+        </div>    
+        <div data-dojo-attach-point="_rendererTypes" class="esriFloatLeading rendererTypes" style="clear: both; overflow-y:auto;">  
+        </div>    
+      </div>
+    </div>
+  </div>
+  <div id="rendererMultiAttributesContentClose">
+    <button data-dojo-type="dijit.form.Button" type="button" class="calcite blue" data-dojo-attach-point="_doneButton" data-dojo-attach-event="onClick:_onDone"><span>${i18n.done}</span></button>
+    <button data-dojo-type="dijit.form.Button" type="button" class="calcite transparent" data-dojo-attach-point="_cancelButton" data-dojo-attach-event="onClick:_onCancel"><span>${i18n.cancel}</span></button>
+  </div>
+  <div id="rendererMultiAttributesFooterDiv" data-dojo-type="dijit.layout.ContentPane" region="bottom" style="height:40px; padding: 0 5px 0 5px;">
+    <div class="footer" id="rendererMultiAttributesFooter" data-dojo-type="arcgisonline.sharing.dijit.SiteFooterMap" style="white-space:normal;">
+    </div>
+  </div>
+</div>

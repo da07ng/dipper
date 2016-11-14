@@ -1,0 +1,6 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["./Widget","dojo/dom-construct","dojo/dom-style"],function(e,c,f){return e.createSubclass([],{declaredClass:"esri.widgets.Ripple",constructor:function(a){this._nodes=[]},destroy:function(){this._destroyNodes();this.inherited(arguments)},css:{ripple:"esri-ripple",rippleStart:"esri-ripple-start"},view:null,show:function(a){this._mapPoint=a;this.view.then(function(){var b=this.view.toScreen(a.x,a.y);this._destroyNodes();b=c.create("div",{className:this.css.ripple+" "+this.css.rippleStart,style:{left:b.x+
+"px",top:b.y+"px"}},this.view.surface);this._nodes.push(b)}.bind(this))},_setViewAttr:function(a){this._set("view",a);this._viewChange()},_destroyNodes:function(){for(var a=0,b=this._nodes.length;a<b;a++)c.destroy(this._nodes[a]);this._nodes.length=0},_viewMoved:function(){var a=this._mapPoint,b=this._nodes,c=b.length;if(c&&a)for(var a=this.view.toScreen(a.x,a.y),d=0;d<c;d++)f.set(b[d],{left:a.x+"px",top:a.y+"px"})},_viewChange:function(){this._viewWatch&&this._viewWatch.remove();this.view&&(this._viewWatch=
+this.view.watch("viewpoint",this._viewMoved.bind(this)),this.own(this._viewWatch))}})});

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Cluster</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <style>
+    
+      html, body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #FFF;
+        font-family: "Microsoft Yahei","微软雅黑", "Pinghei";
+      }
+      article{
+        display: block;
+      }
+      .radio, .checkbox {
+        min-height: 20px;
+        padding-left: 20px;
+      }
+      .center {
+        width: auto;
+        display: table;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+      #page_content {
+        background: #fff;
+        padding: 10px 30px;
+        clear: right;
+        overflow: hidden;
+        font-size: 14px;
+        border: 1px solid #ccc;
+      }
+      #page_content p {
+        margin: 10px 0;
+        overflow: hidden;
+      }
+      .md-body {
+        font-size: 12px;
+        line-height: 2;
+        color: #808080;
+        padding: 0 20px 20px;
+        margin: 0 auto;
+      }
+      .md-body > h1:first-child {
+        margin-top: -10px;
+      }
+      .md-body h1 {
+        line-height: 60px;
+        font-size: 20px;
+        color: #333;
+        text-indent: 30px;
+        font-weight: normal;
+        margin: 16px -30px 16px;
+        border-bottom: 1px solid #e5e5e5;
+      }
+      .md-body h2 {
+        color: #0075c2;
+        font-size: 18px;
+        font-weight: normal;
+        margin: 16px -30px;
+        clear: left;
+        border-top: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5;
+        line-height: 58px;
+        text-indent: 20px;
+        position: relative;
+        padding: 0 30px;
+        background: url(../images/h2.png) no-repeat 30px center;
+      }
+      .md-body h2::before, .md-body h2::after {
+        content: '';
+        width: 30px;
+        height: 1px;
+        bottom: 0px;
+        margin: 0 0 -1px -50px;
+        background: #fff;
+        position: absolute;
+        box-sizing: border-box;
+      }
+      .md-body h2::after {
+        right: 0;
+      }
+      .md-body h1 + h2 {
+        margin-top: -17px;
+      }
+      #map {
+        height: 420px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: url(../images/loading.gif) no-repeat center center;
+      }
+    </style>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script> 
+  </head>
+
+  <body>
+    <div class="container-fluid layoutContainer">
+      <article id="page_content" class="md-body">
+        <h1>新型聚合图展示</h1>
+        <h2>简介</h2>
+        <p>聚类是根据某个相似性准则对模式进行分组达到组内相似性最大、组间差异行最大以发现有意义的结构特征的过程。在空间数据挖掘的技术体系中，聚类分析由于其具有探索性数据分析方法的内在特质，被认为是从空间数据库中发现知识的一种主要方法并取得了相当大的进展。</p>
+        <p>绝大多数划分方法基于对象之间的距离进行聚类。本实基于对象之间的距离进行聚类，调整地图的显示范围即可实现聚类。</p>
+        <h2>示例</h2>
+        <div id="map"></div>
+        <h2>代码</h2>
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;
+    &lt;meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/&gt;
+    &lt;title&gt;Simple Map&lt;/title&gt;
+    &lt;link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css"&gt;
+    &lt;style&gt;
+      html, body, #map {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #FFF;
+        overflow: hidden;
+        font-family: "Trebuchet MS";
+      }
+    &lt;/style&gt;
+    &lt;script src="http://js.arcgis.com/3.13/"&gt;&lt;/script&gt;
+    &lt;script&gt;
+      var map;
+      require([
+        "dojo/parser", 
+        "dojo/ready",
+        "dojo/_base/array",
+        "esri/Color",
+        "dojo/dom-style",
+        "dojo/query",
+        
+        "esri/map", 
+        "esri/request",
+        "esri/graphic",
+        "esri/geometry/Extent",
+
+        "esri/symbols/SimpleMarkerSymbol",
+        "esri/symbols/SimpleFillSymbol",
+        "esri/symbols/PictureMarkerSymbol",
+        "esri/renderers/ClassBreaksRenderer",
+        "esri/layers/GraphicsLayer",
+        "esri/SpatialReference",
+        "esri/dijit/PopupTemplate",
+        "esri/geometry/Point",
+        "esri/geometry/webMercatorUtils",
+        "lib/ClusterLayer",
+        "dojo/domReady!"
+      ], function(
+        parser, ready, arrayUtils, Color, domStyle, query,
+        Map, esriRequest, Graphic, Extent,
+        SimpleMarkerSymbol, SimpleFillSymbol, PictureMarkerSymbol, ClassBreaksRenderer,
+        GraphicsLayer, SpatialReference, PopupTemplate, Point, webMercatorUtils, ClusterLayer, domReady
+      ) {
+        ready(function() {
+          parser.parse();
+          var clusterLayer;
+          map = new Map("map", {
+            basemap: "oceans",
+            center: [-117.789, 33.543],
+            zoom: 13
+          });
+          clusterLayer = new ClusterLayer(null,{
+                map: map,
+                id: "clusterLayer",
+                clusterImage: 'images/cluster72x72.png',
+                clusterHoverImage: 'images/clusterHover72x72.png'
+            });
+          map.on("load", function() {
+
+          map.disableScrollWheelZoom();
+
+            domStyle.set(query("a.action.zoomTo")[0], "display", "none");
+            
+            var photos = esriRequest({
+              url: "data/1000-photos.json",
+              handleAs: "json"
+            });
+            photos.then(addClusters, error);
+          });
+
+          function addClusters(resp) {
+            var photoInfo = {};
+            var wgs = new SpatialReference({
+              "wkid": 4326
+            });
+            photoInfo.data = arrayUtils.map(resp, function(p) {
+              var latlng = new  Point(parseFloat(p.lng), parseFloat(p.lat), wgs);
+              var webMercator = webMercatorUtils.geographicToWebMercator(latlng);
+              var attributes = {
+                "Caption": p.caption,
+                "Name": p.full_name,
+                "Image": p.image,
+                "Link": p.link
+              };
+              return {
+                "geometry":{
+                "x": webMercator.x,
+                "y": webMercator.y
+                },
+                "attributes": attributes
+              };
+            });
+
+            var popupTemplate = new PopupTemplate({
+              "title": "",
+              "fieldInfos": [{
+                "fieldName": "Caption",
+                visible: true
+              }, {
+                "fieldName": "Name",
+                "label": "By",
+                visible: true
+              }, {
+                "fieldName": "Link",
+                "label": "On Instagram",
+                visible: true
+              }],
+              "mediaInfos": [{
+                "title": "",
+                "caption": "",
+                "type": "image",
+                "value": {
+                  "sourceURL": "{Image}",
+                  "linkURL": "{Link}"
+                }
+              }]
+            });
+
+          
+            
+            clusterLayer.setData(photoInfo.data);
+            map.addLayer(clusterLayer);
+            map.on("click", cleanUp);
+            map.on("key-down", function(e) {
+              if (e.keyCode === 27) {
+                cleanUp();
+              }
+            });
+          }
+
+          function cleanUp() {
+            map.infoWindow.hide();
+            clusterLayer.clearSingles();
+          }
+
+          function error(err) {
+            console.log("something failed: ", err);
+          }
+
+          window.showExtents = function() {
+            var extents = map.getLayer("clusterExtents");
+            if ( extents ) {
+              map.removeLayer(extents);
+            }
+            extents = new GraphicsLayer({ id: "clusterExtents" });
+            var sym = new SimpleFillSymbol().setColor(new Color([205, 193, 197, 0.5]));
+
+            arrayUtils.forEach(clusterLayer._clusters, function(c, idx) {
+              var e = c.attributes.extent;
+              extents.add(new Graphic(new Extent(e[0], e[1], e[2], e[3], map.spatialReference), sym));
+            }, this);
+            map.addLayer(extents, 0);
+          };
+        });
+});
+
+    &lt;/script&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;div id="map"&gt;&lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+          </textarea>
+        </p>
+      </article>
+    </div>
+    <script>  
+           var dojoConfig = { 
+        paths: {
+          lib: location.pathname.replace(/\/[^/]+$/, "") + "/lib"
+        }
+      };
+    </script> 
+    <script src="http://js.arcgis.com/3.13/"></script>
+    <script>
+      var map;
+      require([
+        "dojo/parser", 
+        "dojo/ready",
+        "dojo/_base/array",
+        "esri/Color",
+        "dojo/dom-style",
+        "dojo/query",
+        
+        "esri/map", 
+        "esri/request",
+        "esri/graphic",
+        "esri/geometry/Extent",
+
+        "esri/symbols/SimpleMarkerSymbol",
+        "esri/symbols/SimpleFillSymbol",
+        "esri/symbols/PictureMarkerSymbol",
+        "esri/renderers/ClassBreaksRenderer",
+        "esri/layers/GraphicsLayer",
+        "esri/SpatialReference",
+        "esri/dijit/PopupTemplate",
+        "esri/geometry/Point",
+        "esri/geometry/webMercatorUtils",
+        "lib/ClusterLayer",
+        "dojo/domReady!"
+      ], function(
+        parser, ready, arrayUtils, Color, domStyle, query,
+        Map, esriRequest, Graphic, Extent,
+        SimpleMarkerSymbol, SimpleFillSymbol, PictureMarkerSymbol, ClassBreaksRenderer,
+        GraphicsLayer, SpatialReference, PopupTemplate, Point, webMercatorUtils, ClusterLayer, domReady
+      ) {
+        ready(function() {
+          parser.parse();
+          var clusterLayer;
+          map = new Map("map", {
+            basemap: "oceans",
+            center: [-117.789, 33.543],
+            zoom: 13
+          });
+          clusterLayer = new ClusterLayer(null,{
+                map: map,
+                id: "clusterLayer",
+                clusterImage: 'images/cluster72x72.png',
+                clusterHoverImage: 'images/clusterHover72x72.png'
+            });
+          map.on("load", function() {
+
+          map.disableScrollWheelZoom();
+
+            domStyle.set(query("a.action.zoomTo")[0], "display", "none");
+            
+            var photos = esriRequest({
+              url: "data/1000-photos.json",
+              handleAs: "json"
+            });
+            photos.then(addClusters, error);
+          });
+
+          function addClusters(resp) {
+            var photoInfo = {};
+            var wgs = new SpatialReference({
+              "wkid": 4326
+            });
+            photoInfo.data = arrayUtils.map(resp, function(p) {
+              var latlng = new  Point(parseFloat(p.lng), parseFloat(p.lat), wgs);
+              var webMercator = webMercatorUtils.geographicToWebMercator(latlng);
+              var attributes = {
+                "Caption": p.caption,
+                "Name": p.full_name,
+                "Image": p.image,
+                "Link": p.link
+              };
+              return {
+                "geometry":{
+                "x": webMercator.x,
+                "y": webMercator.y
+                },
+                "attributes": attributes
+              };
+            });
+
+            var popupTemplate = new PopupTemplate({
+              "title": "",
+              "fieldInfos": [{
+                "fieldName": "Caption",
+                visible: true
+              }, {
+                "fieldName": "Name",
+                "label": "By",
+                visible: true
+              }, {
+                "fieldName": "Link",
+                "label": "On Instagram",
+                visible: true
+              }],
+              "mediaInfos": [{
+                "title": "",
+                "caption": "",
+                "type": "image",
+                "value": {
+                  "sourceURL": "{Image}",
+                  "linkURL": "{Link}"
+                }
+              }]
+            });
+
+          
+            
+            clusterLayer.setData(photoInfo.data);
+            // map.addLayer(clusterLayer);
+            map.on("click", cleanUp);
+            map.on("key-down", function(e) {
+              if (e.keyCode === 27) {
+                cleanUp();
+              }
+            });
+          }
+
+          function cleanUp() {
+            map.infoWindow.hide();
+          }
+
+          function error(err) {
+            console.log("something failed: ", err);
+          }
+
+          window.showExtents = function() {
+            var extents = map.getLayer("clusterExtents");
+            if ( extents ) {
+              map.removeLayer(extents);
+            }
+            extents = new GraphicsLayer({ id: "clusterExtents" });
+            var sym = new SimpleFillSymbol().setColor(new Color([205, 193, 197, 0.5]));
+
+            arrayUtils.forEach(clusterLayer._clusters, function(c, idx) {
+              var e = c.attributes.extent;
+              extents.add(new Graphic(new Extent(e[0], e[1], e[2], e[3], map.spatialReference), sym));
+            }, this);
+            map.addLayer(extents, 0);
+          };
+        });
+});
+    </script>
+  </body>
+</html>

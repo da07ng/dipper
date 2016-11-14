@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link rel="Stylesheet" href="../css/analysis.css" />
+    <script type="text/javascript">
+        function init() {
+            if (window.location.hash) {
+                var parentDiv, nodes, i, helpId;
+                helpId = window.location.hash.substring(1);
+                parentDiv = document.getElementById("topics");
+                nodes = parentDiv.children;
+                for(i=0; i < nodes.length; i++) {
+                    if(nodes[i].id !== helpId) {
+                        nodes[i].style.display ="none";
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="init()">
+<div id="topics">
+    <div id="toolDescription" class="largesize">
+        <h2>尋找熱點</h2><p/>
+        <h2><img src="../images/GUID-C2575FC6-F14C-4332-B3BF-AB4EDA15177B-web.png" alt="尋找熱點"></h2>
+        <hr/>
+    <p>&ldquo;尋找熱點&rdquo;工具可根據數據的空間分佈確定是否存在統計顯著性的叢集。
+        <ul>
+            <li>各個點圖徵（犯罪事件、樹木、交通事故）是否可進行叢集？ 您又是如何確定的？
+            </li>
+            <li>您是否確實發現了具有統計顯著性的熱點（消費、嬰兒死亡率、一致的高測試分數）？或者說如果更改地圖的符號化方式，地圖會呈現出另一種結果嗎？
+            </li>
+        </ul>
+        &ldquo;尋找熱點&rdquo;工具可協助您充滿信心地回答這些問題。
+    </p>
+    </div>
+    <!--Parameter divs for each param-->
+    <div id="AnalysisFieldPoly">
+        <div><h2>選擇分析欄位</h2></div>
+        <hr/>
+        <div>
+            <p>此分析將回答以下問題：高值和低值（對於指定的分析欄位）在空間上叢集於何處？ 
+            </p>
+            <p>該分析的結果圖層將是分析圖層的副本。 表中將包含所選的分析欄位以及反映叢集強度、統計顯著性以及信賴水準的其他欄位。
+            </p> 
+        </div>
+    </div>
+    <div id="AnalysisFieldPoint">
+        <div><h2>選擇分析欄位</h2></div>
+        <hr/>
+        <div>
+            <p>如果提供一個分析欄位，則該工具將回答以下問題：眾多點中哪裡存在高值叢集和低值叢集？ 
+            </p>
+            <p>該分析的結果圖層將是點分析圖層的副本。 表中將包含所選的分析欄位以及反映叢集強度、統計顯著性以及信賴水準的其他欄位。
+            </p>
+            <p>如果不提供分析欄位，則該工具將評估點圖徵的空間排列以回答如下問題：點在哪裡出現異常叢集或擴散？ 
+            </p>
+            <p>未提供分析欄位時，工具將建立漁網網格，並計數落到每個漁網方塊的點。 僅分析點計數大於零的方塊。 結果圖層是漁網方塊；此結果圖層表中將包含計數值以及反映叢集強度、統計顯著性以及信賴水準的其他欄位。
+            </p> 
+        </div>
+    </div>
+    <div id="BoundingPolygonLayer">
+        <div><h2>確定哪裡可能發生事故</h2></div>
+        <hr/>
+        <div>
+            <p>繪製或提供一個邊界區域圖層來回答以下問題：邊界區域內，是否有任何位置具有異常高或低的點集結？ 
+            </p>
+            <p>您所繪製的區域圖徵或者指定之區域圖層中的圖徵，應定義點可能出現的位置。 要繪製這些區域，請按一下繪製按鈕，然後按一下地圖以建立區域形狀。 要繪製其他區域，請再次按一下繪製按鈕，然後按一下地圖並繼續操作。
+            </p>
+            <p>注：如果要將點與區域而非漁網網格進行疊加，請 <b>提供加總事件的匯聚區域</b>。
+            </p>
+            <p>該分析的結果圖層將是覆蓋所提供之邊界區域的漁網網格。 表中將包含漁網方塊點計數，加上反映叢集強度、統計顯著性以及信賴水準的其他欄位。 
+            </p> 
+        </div>
+    </div>
+    <div id="AggregationPolygonLayer">
+        <div><h2>提供匯聚區域</h2></div>
+        <hr/>
+        <div>
+            <p>提供一個區域圖層（通常這些圖層將反映行政報告區，如人口普查區、市界或者縣）來回答以下問題：給定每個區域圖徵內的點數，是否存在具有統計顯著性之高點計數或低點計數空間叢集的位置？ 
+            </p>
+            <p>該分析的結果圖層將是匯聚區域的副本。 表中包含每個區域的點計數以及反映叢集強度、統計顯著性以及信賴水準的其他欄位。 
+            </p> 
+        </div>
+    </div>
+    <div id="OutputLayerName">
+        <div><h2>結果圖層名稱</h2></div>
+        <hr/>
+        <div>
+            <p>為在 <b>我的內容</b>中建立並新增到地圖中的圖層命名。 此結果圖層將顯示具有統計顯著性的叢集（高值和低值或點計數）。 如果結果圖層名稱已存在，則系統會要求您重新命名該圖層。
+            </p>
+            <p>使用 <b>將結果儲存到</b>下拉式方塊，可以在 <b>我的內容</b>中指定文件夾的名稱，結果將儲存到該文件夾中。
+            </p>
+        </div>
+    </div>
+</div>
+</html>

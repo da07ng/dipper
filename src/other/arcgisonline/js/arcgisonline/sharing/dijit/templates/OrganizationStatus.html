@@ -1,0 +1,67 @@
+<div dojoAttachPoint="containerNode" class="esriItemLinks" style="width:100%;height:100%;min-height:600px;">
+  <div class="organizationInfo esriFloatLeading">
+      <!--<span class="thumbnail esriFloatLeading"><img dojoAttachPoint="_thumbnail" class="groupThumbnail" /></span>-->
+      <!--<h1 style="line-height: 2.9em;" dojoAttachPoint="_title"></h1><span class="state esriLeadingMargin05" dojoAttachPoint="_state">${i18n.usage.trial}</span>-->
+      <a class="helpLink" target="_blank">${i18n.learnMore}</a>
+      <ul dojoAttachPoint="_creditsSummary" class="container_creditsSummary"></ul>
+  </div>
+  <div class="organizationStatus esriFloatLeading esriLeadingMargin0" dojoAttachPoint="_status">
+    <!--<button dojoAttachPoint='_showStatistics' style="display:'';" class="showStatisticsBtn" dojoType="dijit.form.Button" type="button">${i18n.showStatisticsBtn}</button>-->
+    <!--<label class="showStatisticsBtn" style="display:'';">${i18n.forLbl}</label>-->
+    <label for="selectDateRange" class="showStatisticsLbl">${i18n.showStatistics}</label>
+    <span dojoAttachPoint='_selectDate'></span>
+    <div class='customdate esriLeadingMargin2' style="display:none;">
+      <label class="esriLeadingMargin1" for="customStart">${i18n.customStart}</label>
+      <span style="width:150px;" dojoType="dijit.form.DateTextBox" dojoAttachPoint='_customStart'></span>
+      <label class="esriLeadingMargin1" for="customEnd">${i18n.customEnd}</label>
+      <span style="width:150px;" dojoType="dijit.form.DateTextBox" dojoAttachPoint='_customEnd'></span>
+      <!--<button dojoAttachPoint='_customDate' dojoType="dijit.form.Button" type="button" style="display:none;">${i18n.showReport}</button>-->
+    </div>
+    <span dojoAttachPoint="spinnerNode" class="pleaseWaitImg"></span>
+    <div class="organizationGraphs" style="display:none;">
+      <fieldset>
+        <legend class="esriLeadingMargin1 esriTrailingMargin1" dojoAttachPoint='_creditUsage'></legend>
+        <div class="organizationCredits">
+          <div class="piechart esriFloatLeading">
+            <div class="nodata nodatapie esriFloatLeading esriLeadingMargin7">${i18n.nodata}</div>
+            <div class="graph creditGraph" dojoAttachPoint="_creditsGraph"></div>
+            <div class="creditGraph instruction esriFloatLeading esriLeadingMargin4">${i18n.instruction}</div>
+          </div>
+          <div class="table esriTrailingMargin4" dojoAttachPoint="_creditsTable"></div>
+        </div>
+      </fieldset>
+      <fieldset class="organizationDetails" style="display:none;">
+        <legend class="esriLeadingMargin1 esriTrailingMargin1" dojoAttachPoint='_creditDetailsLbl'></legend>
+        <div style="margin:10px;">
+          <div class="filter" style="display:none;">
+	        <div dojoAttachPoint="_creditSelect">
+              <label for="selectCredit">${i18n.showLbl}</label>
+              <span dojoAttachPoint='_selectCredit'></span>
+	        </div>
+	        <div dojoAttachPoint="_deomgmapsTaskSelect">
+              <label id="forTaskLbl" for="selectTask">${i18n.forLbl}</label>
+              <span dojoAttachPoint='_selectTask'></span>
+          </div>
+          <div dojoAttachPoint="_storageTaskSelect">
+            <label id="forTaskLbl" for="selectTask">${i18n.forLbl}</label>
+            <span dojoAttachPoint='_storageTask'></span>
+          </div>
+	      </div>
+        </div>
+        <div class="organizationCredits">
+          <div class="esriFloatLeading" style="width:50%;">
+            <div dir='ltr' class="graph esriFloatLeading" dojoAttachPoint="_detailsGraph"></div>
+            <div class="esriFloatLeading" dojoAttachPoint="_lineLegend"></div>
+          </div>
+          <div class="esriFloatTrailing details">
+            <div class="grid esriLeadingMargin0 esriTrailingMargin4"  dojoAttachPoint="_detailsTable"></div>
+            <div class="detailssum esriLeadingMargin0 esriLeadingMargin05">
+              <input name="check" type="checkbox" style="vertical-align:bottom" checked disabled='true'/>
+              <label id="_sum" dojoAttachPoint="_detailsSum" for="check">${i18n.totalcredits}</label>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["esri/core/declare","dojo/dom-construct","dojo/on","dojo/i18n!../nls/widgets"],function(e,d,f,g){return e(null,{constructor:function(){this._compassContainerDiv=d.create("div",{className:"compassContainer",title:g.compass.compass});this._setPerspectiveStyle(this._compassContainerDiv,500);this._compassDiv=d.create("div",{className:"compass"},this._compassContainerDiv)},addToView:function(a){d.place(this._compassContainerDiv,a.container);f(this._compassDiv,"click",function(){a.animateTo({heading:0})});
+a.watch("camera",function(a){var c=Math.min(65/90*a.get("tilt"),65);this._setTransformStyle(this._compassDiv,"rotateX("+c+"deg) rotateY(0) rotateZ("+-a.get("heading")+"deg)")}.bind(this));return this},_setTransformStyle:function(a,b){a.style.transform=b;a.style["-moz-transform"]=b;a.style["-webkit-transform"]=b;a.style["-o-transform"]=b;a.style["-ms-transform"]=b},_setPerspectiveStyle:function(a,b){var c=b+"px";a.style.perspective=c;a.style["-webkit-perspective"]=c;a.style["-moz-perspective"]=c;a.style["-o-perspective"]=
+c;a.style["-ms-perspective"]=c}})});

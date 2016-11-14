@@ -1,0 +1,26 @@
+<div class="widgetContent" >
+    <div dojotype="dijit.Dialog" id="open-map-dialog" title="${i18n.title}">
+  		<div id="open-map-dialog-content">
+  		  <div style="margin-bottom: 10px;">${i18n.unsavedChangesMsg}</div>
+  		  <table cellpadding="0" cellspacing="0"><tbody><tr><td valign="top">
+  		    <div>${i18n.titleLabel}</div>
+        </td><td width="5">&nbsp;</td><td>
+          <div id="open-map-dialog-title"></div>
+  		  </td></tr><tr id="open-map-dialog-layersRow"><td valign="top">
+          <div id="open-map-dialog-layersLabel"></div>
+        </td><td width="5">&nbsp;</td><td>
+          <div id="open-map-dialog-layers"></div>
+        </td></tr><tr id="open-map-dialog-tablesRow"><td valign="top">
+          <div id="open-map-dialog-tablesLabel"></div>
+        </td><td width="5">&nbsp;</td><td>
+          <div id="open-map-dialog-tables"></div>
+  		  </td></tr></tbody></table>
+        <div style="margin-top: 10px;">${i18n.openAnotherMapQtn}</div>
+  		<br />  
+		<div style="float: right;">
+  			<button id="button_open-map-yes" class="jevent primary" dojoType="dijit.form.Button">${i18n.yesOpen}</button>
+  			<button id="button_open-map-no" class="jevent" dojoType="dijit.form.Button">${i18n.notOpen}</button>
+		</div>
+  	<div style="clear:both;"/>  
+	</div>
+</div>

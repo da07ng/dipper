@@ -1,0 +1,6 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["esri/views/3d/SceneViewEnvironment","esri/core/watchUtils","./spatialReferenceUtils"],function(h,k,l){function f(a,b){a.lighting&&null!=a.lighting.displayUTCOffset&&(b.lighting||(b.lighting={}),b.lighting.displayUTCOffset=a.lighting.displayUTCOffset);return b}var g={fromJSON:function(a){return f(a,h.fromJSON(a))},toJSON:function(a){return f(a,a.toJSON())},clone:function(a){return f(a,a.clone())},applyToView:function(a,b){if(a&&a.lighting){var c=a.lighting,d=b.environment.lighting;null!=c.date&&
+(d.date=c.date);null!=c.displayUTCOffset&&(d.displayUTCOffset=c.displayUTCOffset);d.directShadows=c.directShadows;d.ambientOcclusion=c.ambientOcclusion}},adjustLightDateForLatitude:function(a,b){l.getLatitudeOfPoint(b).then(function(c){var b=a.date.getMonth(),e;66<c&&(4>b||6<b)?e=5:-66>c&&(10>b&&0<b)&&(e=11);e&&(c=new Date(a.date),c.setMonth(e),a.date=c)})},adjustLightForLayer:function(a,b){b.then(function(){var c=b.fullExtent;c&&k.whenTrueOnce(a.environment.lighting,"ready",function(){g.adjustLightDateForLatitude(a.environment.lighting,
+c.center)})})}};return g});

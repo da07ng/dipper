@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Query</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="../css/apiNative.css">
+
+    <style>
+        #map {
+            height: 700px;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background: url(../images/androidQuery.png) no-repeat center center;
+            background-size: contain;
+        }
+    </style>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+</head>
+
+<body>
+<div class="container-fluid layoutContainer">
+    <article id="page_content" class="md-body">
+        <h1>空间查询服务</h1>
+
+        <h2>简介</h2>
+
+        <p>对地图进行空间查询是常见的需求，根据数据来源，
+            查询可以分为本地数据查询和在线数据查询，本地数据主要是本地缓存的geodatabase数据文件，目前API中也提供了相应的方法来对其进行查询；在线数据主要指地图服务、要素服务、影像服务等动态服务，通过封装好的Tasks实现异步查询，简化了开发者处理异步请求的复杂度。</p>
+
+        <p>ArcGIS Runtime SDK for Android提供对应的API实现空间查询。</p>
+
+        <p>本示例通过查询的属性字段和当前的设备范围进行的空间查询操作。</p>
+
+        <h2>示例</h2>
+
+        <div id="map"></div>
+        <h2>代码</h2>
+
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+public void onClickQuery(View view) {
+   String targetLayer = queryLayer.concat("/3");
+   String[] queryArray = { targetLayer, editText.getText().toString() };
+   AsyncQueryTask ayncQuery = new AsyncQueryTask();
+   ayncQuery.execute(queryArray);
+}
+private class AsyncQueryTask extends AsyncTask<String, Void, FeatureResult> {
+
+   @Override
+   protected void onPreExecute() {
+      progress = new ProgressDialog(QueryTaskActivity.this);
+
+      progress = ProgressDialog.show(QueryTaskActivity.this, "",
+            "Please wait....query task is executing");
+
+   }
+
+   /**
+    * First member in string array is the query URL; second member is the
+    * where clause.
+    */
+   @Override
+   protected FeatureResult doInBackground(String... queryArray) {
+
+      if (queryArray == null || queryArray.length <= 1)
+         return null;
+
+      String url = queryArray[0];
+      QueryParameters qParameters = new QueryParameters();
+      String whereClause = queryArray[1];
+      SpatialReference sr = SpatialReference.create(102100);
+      qParameters.setGeometry(mMapView.getExtent());
+      qParameters.setOutSpatialReference(sr);
+      qParameters.setReturnGeometry(true);
+      qParameters.setWhere(whereClause);
+
+      QueryTask qTask = new QueryTask(url);
+
+      try {
+         FeatureResult results = qTask.execute(qParameters);
+         return results;
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+      return null;
+
+   }
+
+   @Override
+   protected void onPostExecute(FeatureResult results) {
+
+      String message = "No result comes back";
+
+      if (results != null) {
+         int size = (int) results.featureCount();
+         for (Object element : results) {
+            progress.incrementProgressBy(size / 100);
+            if (element instanceof Feature) {
+               Feature feature = (Feature) element;
+               // turn feature into graphic
+               Graphic graphic = new Graphic(feature.getGeometry(),
+                     feature.getSymbol(), feature.getAttributes());
+               // add graphic to layer
+               graphicsLayer.addGraphic(graphic);
+            }
+         }
+         // update message with results
+         message = String.valueOf(results.featureCount())
+               + " results have returned from query.";
+
+      }
+      progress.dismiss();
+      Toast toast = Toast.makeText(QueryTaskActivity.this, message,
+            Toast.LENGTH_LONG);
+      toast.show();
+      boolQuery = false;
+   }
+
+}
+          </textarea>
+        </p>
+    </article>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<div>
+  <div data-dojo-attach-point="_dialog" data-dojo-type="dijit/Dialog" id="invite-users-dialog" title="${i18n.inviteUsersTitle}" execute="">
+    <div id="invite-users-search" data-dojo-attach-point="_userSelector"
+         data-dojo-type="arcgisonline/sharing/dijit/UserSelector"
+         data-dojo-props="restrictSearch: true, excludeCurrentUser: true"></div>
+    <fieldset class="admin" style="margin:1.5em 0 0 0;display:none;">
+      <input data-dojo-attach-point="_addNowChk" style="vertical-align: top" id="addNow" name="addNow"
+             type="checkbox" data-dojo-type="dijit/form/CheckBox">
+      <label style="vertical-align: top" for="addNow">${i18n.addNow}</label>
+    </fieldset>
+    <br>
+    <div class="esriFloatTrailing" style="padding-top:0; padding-bottom:5px;">
+      <button data-dojo-attach-point="_submit" id="button_send-invite"
+              class="calcite blue small" data-dojo-type="dijit/form/Button">${i18n.sendInvitation}</button>
+      <button data-dojo-attach-point="_cancel" id="button_invite-users-close"
+              class="calcite transparent small" data-dojo-type="dijit/form/Button">${i18n.cancel}</button>
+    </div>
+    <br>&nbsp;<br>
+  </div>
+</div>

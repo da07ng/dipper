@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link rel="Stylesheet" href="../css/analysis.css" />
+    <script type="text/javascript">
+        function init() {
+            if (window.location.hash) {
+                var parentDiv, nodes, i, helpId;
+                helpId = window.location.hash.substring(1);
+                parentDiv = document.getElementById("topics");
+                nodes = parentDiv.children;
+                for(i=0; i < nodes.length; i++) {
+                    if(nodes[i].id !== helpId) {
+                        nodes[i].style.display ="none";
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="init()">
+<div id="topics">
+    <div id="toolDescription" class="largesize">
+        <h2>豐富圖層</h2><p/>
+        <h2><img src="../images/GUID-2B1E8F2B-B474-4AC2-AF32-FFFAA1C43B2E-web.png" alt="豐富圖層"></h2>
+        <hr/>
+    <p>此工具透過獲取您的數據位置周邊的人口、場所及商業資訊來豐富您的數據，進而讓您可以回答僅根據地圖無法回答的新位置問題。 例如：當地居住的是哪一類人？ 該地區的人群有什麼喜好？ 他們的習慣和生活方式是什麼？ 該地區有何種商業形式？
+    </p>
+    <p>結果為一個新圖層，其包含給定數據集的所有人口統計和地理資訊。 此新資訊將作為欄位新增到表中。
+    </p>
+    <p>如果勾選 <b>使用當前地圖範圍</b>，則僅分析當前地圖範圍中可見的分析圖層以及區域圖層中的圖徵。 如果未勾選，則會對分析圖層和區域圖層內的所有圖徵進行分析，包括超出當前地圖範圍的圖徵。
+    </p>
+    </div>
+    <!--Parameter divs for each param-->
+    <div id="DataCollection">
+        <div><h2>豐富變數</h2></div>
+        <hr/>
+        <div>
+            
+            <p>按一下 <b>選擇變數</b>以打開 <b>數據瀏覽器</b>。 <b>數據瀏覽器</b>可用於單獨或按集合尋找與選擇豐富變數。
+            </p>
+            <p>可自動根據數據選擇區域。 數據涵蓋多個國家或地區時，您可以選擇不同地區。 
+            </p>
+            <p>為了容易存取，豐富變數組織成數據集合的形式。 選擇數據集合時，瀏覽器會顯示幾個此集合中最常見的豐富變數。 在 <b>繼續瀏覽</b>之下，還會顯示集合中的類別。 在每個類別中，可以選擇所有子類別，也可以展開某個子類別單獨選擇豐富變數。 您還可以在類別中使用搜尋方塊來尋找特定變數。
+            </p>
+            <p>選擇要用於豐富的變數後，這些變數會新增到 <b>數據瀏覽器</b>角落的購物車中。 利用此購物車追蹤已選變數的數量。
+            </p>
+            <p>每個已選變數將新增為結果圖層中的一個欄位。
+            </p> 
+        </div>
+    </div>
+    <div id="BufferOption">
+        <div><h2>定義要豐富的區域</h2></div>
+        <hr/>
+        <div>
+            <p>定義將使用直線距離或選取行進模式進行豐富的輸入點或線周圍的區域。 僅當您的分析圖層包含點時才能使用行進模式。 可用選項包括：行駛距離、行駛時間、貨運距離、貨運時間、步行距離或步行時間。 使用某一行進模式時，將沿著道路或人行道進行測量，並且支持適用的規則，例如單行道和違規轉彎等。
+            </p>
+        </div>
+    </div>
+    <div id="OutputName">
+        <div><h2>結果圖層名稱</h2></div>
+        <hr/>
+        <div>
+            <p>在 <b>我的內容</b>中建立並新增到地圖中的圖層的名稱。 預設名稱是根據分析類型以及分析圖層名稱。 如果該名稱的圖層已存在，則系統將要求您提供其他名稱。
+            </p>
+            <p>使用 <b>將結果儲存到</b>下拉式方塊，可以在 <b>我的內容</b>中指定文件夾的名稱，結果將儲存到該文件夾中。
+            </p>
+        </div>
+    </div>
+</div>
+</html>

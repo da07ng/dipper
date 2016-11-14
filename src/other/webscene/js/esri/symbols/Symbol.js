@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../core/lang","../Color","../core/JSONSupport"],function(c,b,d){var e=0;return d.createSubclass({declaredClass:"esri.symbols.Symbol",classMetadata:{properties:{color:{type:b}}},constructor:function(){this.id="sym"+e++},symbolLayers:null,type:null,_typeReader:function(a,b){return a&&0===a.indexOf("esri")?{esriSMS:"simplemarkersymbol",esriPMS:"picturemarkersymbol",esriSLS:"simplelinesymbol",esriCLS:"cartographiclinesymbol",esriSFS:"simplefillsymbol",esriPFS:"picturefillsymbol",esriTS:"textsymbol",
+esriSHD:"shieldlabelsymbol"}[a]:a},color:new b([0,0,0,1]),_colorReader:function(a){if(a&&c.isDefined(a[0]))return[a[0],a[1],a[2],a[3]/255]},addLayer:function(a){null===this.symbolLayers?this.symbolLayers=[a]:this.symbolLayers.push(a)},removeLayer:function(a){null!==this.symbolLayers&&(a=this.symbolLayers.indexOf(a),-1<a&&this.symbolLayers.splice(a,1))},toJSON:function(){return{color:b.toJSON(this.color)}}})});

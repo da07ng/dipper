@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>maps</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="../css/apiNative.css">
+    <style>
+        #map {
+            height: 700px;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background: url(../images/map.png) no-repeat center;
+            background-size: contain;
+        }
+    </style>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+</head>
+
+<body>
+<div class="container-fluid layoutContainer">
+    <article id="page_content" class="md-body">
+        <h1>基础地图服务</h1>
+
+        <h2>简介</h2>
+
+        <p>ArcGIS Runtime SDK for Android支持多种空间数据源，主要分为3大类：ArcGIS在线数据源、ArcGIS离线数据源（自10.2版本起），以及第三方数据源。</p>
+
+        <p>在线数据源包括切片地图服务，动态地图服务，影像服务，要素服务；离线数据源包括紧凑型切片，tpk切片包，地名地址库等；第三方数据源包括Bing地图，Open Street map，以及OGC图层。</p>
+
+        <p>本实例以ArcGIS Online、谷歌地图图和天地图等多种基础底图的加载。</p>
+
+        <h2>示例</h2>
+
+        <div id="map"></div>
+        <div class="center">
+            <label class="radio"><input type="radio" name="optionsRadios" id="arcgisonlinebutton" value="option1"
+                                        checked>ArcGIS Server 地形图</label>
+            <label class="radio"><input type="radio" name="optionsRadios" id="googlebutton"
+                                        value="option1">谷歌影像图</label>
+            <label class="radio"><input type="radio" name="optionsRadios" id="mapboxbutton"
+                                        value="option1">天地图地形图</label>
+        </div>
+        <h2>代码</h2>
+
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+//ArcGIS Server 底图加载代码
+public class ArcGISActivity extends ActionBarActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        ArcGISTiledMapServiceLayer tiledMapServiceLayer = new ArcGISTiledMapServiceLayer(getString(R.string.default_baseLayer));
+        MapView mapView = new MapView(this);
+        mapView.addLayer(tiledMapServiceLayer);
+
+        setContentView(mapView);
+
+    }
+
+}
+
+//Google地图加载代码：
+public class GoogleActivity extends Activity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        GoogleMapLayer googleMapLayer = new GoogleMapLayer();
+        MapView mapView = new MapView(this);
+        mapView.addLayer(googleMapLayer);
+
+        setContentView(mapView);
+    }
+}
+//天地图地图加载：
+public void onCreate(Bundle savedInstanceState) {
+
+   super.onCreate(savedInstanceState);
+
+   setContentView(R.layout.tianditu_main);
+   map2000 = (MapView) this.findViewById(R.id.map2000);
+   mapMercator = (MapView) this.findViewById(R.id.mapMercator);
+
+   mapLayer = new TianDiTuLayer(
+         TianDiTuLayerTypes.TIANDITU_VECTOR_MERCATOR);
+   annotationLayer = new TianDiTuLayer(
+         TianDiTuLayerTypes.TIANDITU_VECTOR_ANNOTATION_CHINESE_MERCATOR);
+   this.addToMapMercator();
+
+   mapLayer = new TianDiTuLayer(TianDiTuLayerTypes.TIANDITU_IMAGE_2000);
+   annotationLayer = new TianDiTuLayer(
+         TianDiTuLayerTypes.TIANDITU_IMAGE_ANNOTATION_CHINESE_2000);
+
+   this.addToMap2000();
+}
+
+
+          </textarea>
+        </p>
+    </article>
+</div>
+<script>
+    $('#googlebutton').on('click', function (e) {
+        $("#map").css("background-image", "url(../images/androidGoogle.png)");
+    });
+    $('#mapboxbutton').on('click', function (e) {
+        $("#map").css("background-image", "url(../images/androidtiandi.png)");
+    });
+
+    $('#arcgisonlinebutton').on('click', function (e) {
+        $("#map").css("background-image", "url(../images/map.png)");
+    });
+</script>
+</body>
+</html>

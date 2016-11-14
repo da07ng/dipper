@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>BigDataRender</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <style>
+    
+      html, body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #FFF;
+        font-family: "Microsoft Yahei","微软雅黑", "Pinghei";
+      }
+      article{
+        display: block;
+      }
+      .radio, .checkbox {
+        min-height: 20px;
+        padding-left: 20px;
+      }
+      .center {
+        width: auto;
+        display: table;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+      #page_content {
+        background: #fff;
+        padding: 10px 30px;
+        clear: right;
+        overflow: hidden;
+        font-size: 14px;
+        border: 1px solid #ccc;
+      }
+      #page_content p {
+        margin: 10px 0;
+        overflow: hidden;
+      }
+      .md-body {
+        font-size: 12px;
+        line-height: 2;
+        color: #808080;
+        padding: 0 20px 20px;
+        margin: 0 auto;
+      }
+      .md-body > h1:first-child {
+        margin-top: -10px;
+      }
+      .md-body h1 {
+        line-height: 60px;
+        font-size: 20px;
+        color: #333;
+        text-indent: 30px;
+        font-weight: normal;
+        margin: 16px -30px 16px;
+        border-bottom: 1px solid #e5e5e5;
+      }
+      .md-body h2 {
+        color: #0075c2;
+        font-size: 18px;
+        font-weight: normal;
+        margin: 16px -30px;
+        clear: left;
+        border-top: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5;
+        line-height: 58px;
+        text-indent: 20px;
+        position: relative;
+        padding: 0 30px;
+        background: url(../images/h2.png) no-repeat 30px center;
+      }
+      .md-body h2::before, .md-body h2::after {
+        content: '';
+        width: 30px;
+        height: 1px;
+        bottom: 0px;
+        margin: 0 0 -1px -50px;
+        background: #fff;
+        position: absolute;
+        box-sizing: border-box;
+      }
+      .md-body h2::after {
+        right: 0;
+      }
+      .md-body h1 + h2 {
+        margin-top: -17px;
+      }
+      #map {
+        height: 600px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: url(../images/iosBigdata.png) no-repeat center center;
+        background-size: contain;
+      }
+    </style>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+  </head>
+
+  <body>
+    <div class="container-fluid layoutContainer">
+      <article id="page_content" class="md-body">
+        <h1>大数据专题渲染</h1>
+        <h2>简介</h2>
+        <p>专题地图是指突出而尽可能完善、详尽地表示制图区内的一种或几种自然或社会经济（人文）要素的地图。专题地图的制图领域宽广，凡具有空间属性的信息数据都可用其来表示。其内容、形式多种多样，能够广泛应用于国民经济建设、教学和科学研究、国防建设等行业部门。专题地图和普通地图相比，具有独特的特征。专题地图突出表达了普通地图中的一种或几种要素，有些专题地图的主题内容是普通地图中所没有的要素。</p>
+        <p>本实例通过分级渲染器（ClassBreaksRenderer）对大数据进行分级渲染。分级渲染器（ClassBreaksRenderer）允许为特定属性值范围内的一组图形指定符号，因此在使用的时候，必须为分级渲染器设置一个数值型字段，为属性值不同的范围，分别设置渲染符号渲染器会根据该字段所在的范围的值进行分级渲染。</p>
+        <p>在示例中，通过"WIND_DIRECT"设置箭头旋转方向，"WIND_SPEED"字段定义箭头大小，"TEMP"字段定义渲染颜色。</p>
+        <h2>示例</h2>
+        <div id="map"></div>
+       
+      </article>
+    </div>
+  </body>
+</html>

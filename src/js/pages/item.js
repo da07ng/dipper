@@ -19,12 +19,12 @@ function getItemInfo(itemid) {
     if (response.ok) {
       response.json().then(json => {
         $('.item-title').text(json.title)
-        $('.item-abstract').text(json.snippet)
+        $('.item-abstract').text(json.snippet||'')
         $('.item-type').text(json.type)
-        $('.itemAuthor').text(json.owner)
-        $('.itemModify').text(formatTime(json.modified))
+        $('#itemAuthor').text(json.owner)
+        $('#itemModify').text(formatTime(json.modified))
         $('.item-item-description-text').text(json.description)
-        $('.open-in-webmap').attr('href', `webmap.html?webmap=${json.id}`)
+        $('.open-in-webmap').attr('href', `map.html?webmap=${json.id}`)
 
         let tags = json.tags
         let tagHtml = '<span>标签：</span>'

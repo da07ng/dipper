@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>maps</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+      <link rel="stylesheet" href="css/js.css">
+    <style>
+      #search {
+         display: block;
+         position: absolute;
+         z-index: 2;
+         right: 70px;
+         margin: 10px 0;
+      }
+    </style>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+  </head>
+
+  <body>
+    <div class="container-fluid layoutContainer">
+      <article id="page_content" class="md-body">
+        <h1>定位服务</h1>
+        <h2>简介</h2>
+        <p>在ArcGIS API for Javascript中，定位是通过Locator对象执行，参数根据方法不同而稍有区别，但都是JSON格式的对象。</p>
+        <P>进行定位时，可以每次只输入一个位置描述，也可以表的形式一次提供多个描述，得到的位置将以带属性的地理要素形式输出，可以用于制图或空间分析操作。</P>
+        <h2>API示例</h2>
+        <div id="map"><div id="search"></div></div>
+        <h2>代码</h2>
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+&lt;!DOCTYPE html&gt;
+&lt;html dir="ltr"&gt;
+
+&lt;head>
+   &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;
+   &lt;meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no" /&gt;
+   &lt;title&gt;ArcGIS API for JavaScript | Basic Search&lt;/title&gt;
+   &lt;link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/claro/claro.css"&gt;
+   &lt;link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css"&gt;
+   &lt;style&gt;
+      html,
+      body,
+      #map {
+         height: 100%;
+         width: 100%;
+         margin: 0;
+         padding: 0;
+      }
+      #search {
+         display: block;
+         position: absolute;
+         z-index: 2;
+         top: 20px;
+         left: 74px;
+      }
+   &lt;/style&gt;
+   &lt;script src="http://js.arcgis.com/3.13/"&gt;&lt;/script&gt;
+   &lt;script&gt;
+      require([
+
+        "esri/map",
+        "esri/dijit/Search",
+        "dojo/domReady!"
+
+      ], function (Map, Search) {
+         var map = new Map("map", {
+            basemap: "gray",
+            center: [-120.435, 46.159], // lon, lat
+            zoom: 7
+         });
+
+         var s = new Search({
+            map: map
+         }, "search");
+         s.startup();
+
+      });
+   &lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+   &lt;div id="search"&gt;&lt;/div&gt;
+   &lt;div id="map"&gt;&lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+          </textarea>
+        </p>
+      </article>
+    </div>
+   <script src="http://js.arcgis.com/3.13/"></script>
+   <script>
+      require([
+
+        "esri/map",
+        "esri/dijit/Search",
+        "dojo/domReady!"
+
+      ], function (Map, Search) {
+         var map = new Map("map", {
+            basemap: "gray",
+            center: [-120.435, 46.159], // lon, lat
+            zoom: 7
+         });
+
+         var s = new Search({
+            map: map
+         }, "search");
+         s.startup();
+
+      });
+   </script>
+  </body>
+</html>

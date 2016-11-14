@@ -1,0 +1,781 @@
+<div>
+  <div data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region:'top'" class="esriItemLinks">
+    <form id="item-form" data-dojo-type="dijit.form.Form" enctype="multipart/form-data" action="" method="post" onSubmit="return false;">
+      <input id="item-form-overwrite" name="overwrite" data-dojo-type="dijit.form.TextBox" type="hidden" value="false"/>
+      <input id="item-form-item" name="item" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+      <input id="item-form-url" name="url" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+      <input id="item-form-title" name="title" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+      <input id="item-form-tags" name="tags" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+      <input id="item-form-type" name="type" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+      <input id="item-form-type-keywords" name="typeKeywords" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+      <input id="item-form-description" name="description" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+      <input id="item-form-snippet" name="snippet" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+      <input id="item-form-licenseInfo" name="licenseInfo" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+      <input id="item-form-accessInformation" name="accessInformation" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+      <input id="item-form-extent" name="extent" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+      <input id="item-form-thumbnailURL" name="thumbnailURL" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+      <input id="item-form-listingProperties" name="listingProperties" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+      <input id="clearEmptyFields" name="clearEmptyFields" data-dojo-type="dijit.form.TextBox" type="hidden" value="true"/>
+
+      <!--<div data-dojo-type="dijit.layout.ContentPane" class="dijitReset ownerOnly">-->
+        <div id="item-edit-toolbar" class="editOnly item_edit_toobar item_edit_toobar_top" style="display:none;">
+          <button data-dojo-type="dijit.form.Button" type="button" id="item-save-button" class="calcite blue">
+            <span>${i18n.save}</span>
+          </button>
+          <button data-dojo-type="dijit.form.Button" type="button" id="item-close-button" class="calcite transparent">
+            <span>${i18n.cancel}</span>
+          </button>
+        </div>
+      <!--</div>-->
+
+      <!-- don't add "position: relative;", otherwise the search box menu opens below -->
+      <div style="clear:both;">
+        <h1 class="esriItemTitle page_title readOnly" id="item-title"></h1>
+        <span id="item-title-edit" class="editOnly">
+          <span style="clear:none;margin-top:10px;" class="esriItemProperties">${i18n.title}</span>
+          <input id="item-title-edit-input" class="esriItemTitle" data-dojo-type="dijit.form.TextBox" maxlength="250" data-dojo-props="trim:true" required="true" style="width:700px;" />
+        </span>
+      </div>
+
+      <!-- fills entire width and clears  -->
+      <!-- don't add "position: relative;", otherwise the search box menu opens below -->
+      <div class="itemDetail medium left" style="margin-top: 15px; width: 100%;">
+        <div class="itemThumbnailContainer" style="position:relative;">
+          <span id="item-thumbnail"></span>
+
+          <div data-dojo-attach-point="_favoritesNode" class="fav-icon" style="display:none;">
+            <a href="#">
+              <div data-dojo-attach-point="_favon" class="fav-on" style="display:none;">
+                <div class="star-on"></div>
+                <p id="addString">${i18n.gallery.addFavorite}</p>
+              </div>
+            </a>
+            <a href="#">
+              <div data-dojo-attach-point="_favoff" class="fav-off" style="display:none;">
+                <div class="star-off"></div>
+                <p id="remString">${i18n.gallery.removeFavorite}</p>
+              </div>
+            </a>
+          </div>
+
+          <span id="item-thumbnail-text" style="padding-top:3px;color:#7B797B; display:none;"></span>
+          <!--<span data-dojo-attach-point="_openMenuContainer"></span>--> <!-- moved to button -->
+        </div>
+        <div class="itemTextContainer">
+          <span class="esriItemSnippet readOnly" id="item-summary"></span>
+          <span class="editOnly" id="item-summary-edit">
+            <span style="clear:none;" class="esriItemProperties">${i18n.summary}</span>
+            <input id="item-summary-edit-input" class="esriItemSnippet" data-dojo-type="dijit.form.TextBox" maxlength="250" data-dojo-props="trim:true" required="true" style="width:700px;" />
+          </span>
+          <span class="readOnly">
+            <!-- item author line -->
+            <span class="dim"><span id="item-icon"></span><span id="item-type"></span>&nbsp;${i18n.by} </span>
+            <span class="esriItemAuthor" id="item-owner"></span><br/>
+            <div style="display:none" class="esriItemAuthor ownerOnly" id="item-source">${i18n.source}&nbsp;<a id="item-source-url" href="#"></a></div>
+            <span class="dim">${i18n.lastModified}: <span id="item-modified"></span></span>
+            <div data-dojo-attach-point="_premiumNode" class="dim esriHide"></div>
+          </span>
+          <span class="dim readOnly"><span data-dojo-attach-point="ratingNode" style="zoom:0"></span>&nbsp;<span>(<span class="ratingCount"></span><span class="viewCount"></span>)</span></span>
+          <span class="dim itemRatingLabel readOnly"></span>
+        </div>
+        <div data-dojo-attach-point="_connectContainer" class="esriFloatLeading socialNetworkBadges"></div>
+      </div>
+
+      <div data-dojo-type="dijit.layout.ContentPane" data-dojo-attach-point="tools" class="toolbar dijitReset" style="margin-top: 1em; clear:both; visibility:hidden;">
+        <span style="display:inline-block;">
+          <button data-dojo-type="dijit.form.DropDownButton" id="item-open-button" class="readOnly calcite blue" data-dojo-props="iconClass:'esriOpenIcon'">
+            <span>${i18n.open}</span>
+          </button>
+          <span id="item-share-toolbar" class="ownerOnly readOnly" style="display:none;">
+            <button data-dojo-type="dijit.form.Button" type="button" id="item-share-button" class="readOnly calcite narrow transparent" data-dojo-props="iconClass:'esriShareIcon'">
+              <span>${i18n.share}</span>
+            </button>
+          </span>
+          <span id="item-create-toolbar" class="createApp" style="display:none;">
+            <button data-dojo-type="dijit.form.Button" type="button" id="item-create-button"
+                    class="readOnly calcite narrow transparent" data-dojo-props="iconClass:'esriPublishIcon'">
+              <span>${i18n.create}</span>
+            </button>
+          </span>
+          <span id="item-owner-toolbar" class="ownerOnly sharedOwner readOnly" style="display:none;">
+            <button data-dojo-type="dijit.form.Button" type="button" id="item-edit-button" class="calcite narrow transparent" data-dojo-props="iconClass:'esriEditIcon'">
+              <span>${i18n.edit}</span>
+            </button>
+            <button data-dojo-type="dijit.form.Button" type="button" id="item-delete-button" class="notSharedOwner calcite narrow transparent" data-dojo-props="iconClass:'esriDeleteIcon'">
+              <span>${i18n.deleteLabel}</span>
+            </button>
+            <button data-dojo-type="dijit.form.Button" type="button" class="publishOnly calcite narrow transparent" id="item-publish-button" data-dojo-props="iconClass:'esriPublishIcon'" data-dojo-attach-event="onClick:publishItem_onClick">
+              <span>${i18n.publishItem}</span>
+            </button>
+            <button data-dojo-type="dijit.form.Button" type="button" id="item-publish-tile-service-button" class="calcite narrow transparent" data-dojo-props="iconClass:'esriPublishIcon'" data-dojo-attach-event="onClick:publishTileService_onClick" style="display:none;">
+              <span>${i18n.publishItem}</span>
+            </button>
+            <button data-dojo-type="dijit.form.DropDownButton" id="item-moveto-button" class="notSharedOwner calcite narrow transparent" disabled data-dojo-props="iconClass:'esriMoveToIcon'">
+              <span>${i18n.moveTo}</span>
+              <!-- if we do this here the dropdown doesn't work
+              <div data-dojo-type="dijit.Menu" id="item-moveto-menu">
+              </div>
+              -->
+            </button>
+            <button data-dojo-type="dijit.form.Button" type="button" id="item-reassign-button" class="calcite transparent" data-dojo-props="iconClass:'esriReassignIcon'" style="display:none;">
+                <span>${i18n.reassign}</span>
+            </button>
+            <button data-dojo-type="dijit.form.Button" type="button" class="usageOnly calcite transparent" id="item-usage-button" data-dojo-props="iconClass:'esriUsageIcon'" data-dojo-attach-event="onClick:showUsage_onClick">
+              <span>${i18n.itemUsage}</span>
+            </button>
+            <span>
+                <button data-dojo-type="dijit.form.Button" type="button" class="appOnly codeAttachment calcite transparent" id="item-attach-button" data-dojo-props="iconClass:'esriAttachIcon'" disabled data-dojo-attach-point="attachCodeButton" data-dojo-attach-event="onClick:attachCode_onClick">
+                  <span id="esriAttachButtonLabel">${i18n.attachCode}</span>
+                </button>
+            </span>
+            <button data-dojo-type="dijit.form.Button" type="button" class="calcite transparent" data-dojo-props="iconClass:'esriConfigureIcon',disabled:true" style="display:none;" data-dojo-attach-point="configureAppButton" data-dojo-attach-event="onClick:configureApp_onClick">
+              <span id="esriConfigureButtonLabel">${i18n.configureApp}</span>
+            </button>
+            <!--<button data-dojo-type="dijit.form.Button" type="button" class="appOnly" data-dojo-props="iconClass:'esriRegisterIcon'" style="display:none;" data-dojo-attach-point="registerAppButton" data-dojo-attach-event="onClick:showRegisterDlg_onClick">-->
+              <!--<span id="esriRegisterButtonLabel">${i18n.registerApp}</span>-->
+            <!--</button>-->
+            <span id="item-update-button-div" style="display:none;">
+              <button data-dojo-type="dijit.form.Button" type="button" id="item-update-button" class="calcite transparent" data-dojo-props="iconClass:'esriUpdateIcon'">
+                <span>${i18n.update}</span>
+              </button>
+            </span>
+          </span>
+
+          <span id="item-metadata-button-span" style="display:none;">
+            <button data-dojo-type="dijit.form.Button" type="button" id="item-metadata-button" class="calcite transparent" data-dojo-props="iconClass:'esriMetadataIcon'">
+              <span>${i18n.metadata}</span>
+            </button>
+          </span>
+
+          <span id="item-export-toolbar" class="readOnly" style="display:none;">
+            <button data-dojo-type="dijit.form.DropDownButton" id="item-export-layers-button" class="calcite narrow transparent" style="display:none;" data-dojo-props="iconClass:'esriExportLayerIcon'">
+              <span>${i18n.exportLayers}</span>
+            </button>
+          </span>
+
+        </span>
+        <div id="item-wait-toolbar" style="display:none;">
+          <span style="padding-left:10px;line-height:25px;">${i18n.wait}</span>
+        </div>
+      </div>
+
+        <div class="section">
+          <!-- Item Description -->
+          <span class="esriItemProperties">${i18n.description}</span>
+          <p>
+            <span id="item-description" class="readOnly" style="display: block; overflow: auto;"></span>
+            <span id="item-description-edit-div" class="editOnly"></span>
+          </p>
+        </div>
+
+        <div class="section" data-dojo-attach-point="_itemAccessSection">
+          <!-- Item Access -->
+          <span class="esriItemProperties">${i18n.access}</span>
+          <p>
+            <span id="item-licenseInfo" class="readOnly" style="display: block; overflow: auto;"></span>
+            <span id="item-licenseInfo-edit-div" class="editOnly"></span>
+          </p>
+        </div>
+
+      <div class="section" style="display:none;" data-dojo-attach-point="_screenshotSection">
+        <span class="readOnly esriItemProperties">${i18n.screenshots}</span>
+        <div id="screenshots" class="readOnly screenshots"></div>
+      </div>
+
+       <div class="section registerSection" data-dojo-attach-point="_itemRegistrationSection">
+          <!-- Item Registration -->
+          <span class="esriItemProperties">${i18n.registration}</span>
+          <div>
+            <span data-dojo-attach-point="_registrationInfo" class="unRegisteredApp" style="display: block; overflow: auto;">${i18n.notRegistered}</span>
+            <div class="registered" style="margin-top:0.5em;">
+              <div class="readOnly">
+                <button class="registeredApp calcite transparent" data-dojo-type="dijit.form.Button" type="button"
+                        data-dojo-props="disabled:true" data-dojo-attach-point="registeredInfoButton" data-dojo-attach-event="onClick:showRegisterInfo_onClick">${i18n.registerAppInfo}</button>
+                <button class="unRegisteredApp calcite transparent" data-dojo-type="dijit.form.Button" type="button" data-dojo-attach-point="registerAppButton" data-dojo-attach-event="onClick:showRegisterDlg_onClick">
+                  ${i18n.register}
+                </button>
+                <div class="registeredApp registration">
+                  <div data-dojo-attach-point="_registration" style="margin:0.5em 0 0 0"></div>
+                </div>
+              </div>
+              <button class="editOnly calcite transparent" data-dojo-type="dijit.form.Button" type="button" data-dojo-attach-point="registerEditButton" data-dojo-attach-event="onClick:showRegisterEditDlg_onClick">
+                ${i18n.registerEdit}
+              </button>
+              <button class="editOnly calcite transparent" data-dojo-type="dijit.form.Button" data-dojo-attach-point="_unRegisterApp" data-dojo-attach-event="onClick:unregisterApp" type="button">
+                ${i18n.unRegisterApp}
+              </button>
+            </div>
+          </div>
+      </div>
+
+      <div class="readOnly section marketplaceSection" style="display:none;" data-dojo-attach-point="_itemMarketplaceSection">
+          <span class="esriItemProperties">${i18n.marketplace}</span>
+          <p data-dojo-attach-point="marketplaceInfo">${i18n.marketplaceInfo}</p>
+          <div>
+            <button class="createListing calcite transparent"  data-dojo-type="dijit.form.Button" type="button" data-dojo-attach-point="createListingButton" data-dojo-attach-event="onClick:createListing_onClick">
+              ${i18n.createListing}
+            </button>
+            <button class="viewListing calcite transparent"  data-dojo-type="dijit.form.Button" type="button" data-dojo-attach-point="viewListingButton" data-dojo-attach-event="onClick:viewListing_onClick">
+              ${i18n.viewListing}
+            </button>
+            <button class="viewListing calcite transparent" data-dojo-type="dijit.form.Button" type="button" data-dojo-attach-point="unlistItemButton" data-dojo-attach-event="onClick:unlist_onClick">
+              ${i18n.unlistListing}
+            </button>
+          </div>
+      </div>
+
+      <div class="readOnly section advancedSection" style="display:none;"
+           data-dojo-attach-point="_itemAdvancedSection">
+        <span class="esriItemProperties">${i18n.advanced}</span>
+        <div>
+          <button class="calcite transparent" data-dojo-type="dijit.form.Button" type="button"
+                  data-dojo-attach-event="onClick:_showRateLimitDlg">
+            ${i18n.rateLimitingTitle}
+          </button>
+        </div>
+      </div>
+
+      <div class="mapOnly urlOnly">
+      <div class="section readOnly">
+          <!-- Map Contents -->
+          <div class="mapOnly">
+            <div class="readOnly">
+              <span class="esriItemProperties" id="map-contents-span" data-dojo-attach-point="mapContentsSpan">${i18n.mapContents}</span>
+              <span id="item-map-contents" class="mapContents" style="display:block; overflow:hidden;"></span>
+            </div>
+          </div>
+
+          <div class="urlOnly">
+            <div class="readOnly">
+              <span id="item-rest-url-title" class="esriItemProperties">${i18n.restUrl}</span>
+              <p>
+               <span id="item-rest-url" style="display:block; overflow:hidden;"></span>
+              </p>
+            </div>
+          </div>
+         </div>
+       </div>
+         <div class="section">
+         <!-- Item Properties -->
+          <span class="esriItemProperties">${i18n.properties}</span>
+          <div style="margin-top:1.0em;">
+          <div class="appOnly application serviceEdit">
+            <table style="border-collapse: collapse;" width="100%">
+              <tbody>
+                <tr>
+                  <td valign="top" width="140"><span>${i18n.url}</span></td>
+                  <td valign="top">
+                    <div class="readOnly" id="item-url"></div>
+                    <input id="item-url-edit-input" style="width: 95%;" class="editOnly serviceEdit" data-dojo-type="dijit.form.TextBox" maxlength="250" data-dojo-props="trim:true" />
+                  </td>
+                </tr>
+                <tr><td colspan="0" style="height: 0.5em;"></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="appOnly">
+            <table class="readOnly" style="border-collapse: collapse;" width="100%">
+              <tbody>
+                <tr>
+                  <td valign="top" width="140" nowrap="nowrap"><span class="codeAttachment">${i18n.codeAttachment}</span></td>
+                  <td valign="top">
+                    <div class="readOnly codeAttachment" id="item-attachment" style="width:460px;overflow:hidden;"></div>
+                  </td>
+                </tr>
+                <tr><td colspan="0" style="height: 0.5em;"></td></tr>
+                <tr>
+                  <td valign="top"><span>${i18n.purpose}</span></td>
+                  <td><span id="item-purpose"></span></td>
+                </tr>
+                <tr><td colspan="0" style="height: 0.5em;"></td></tr>
+                <tr>
+                  <td valign="top"><span data-dojo-attach-point="_apiLabel">${i18n.api}</span></td>
+                  <td><span id="item-api"></span></td>
+                </tr>
+                <tr><td colspan="0" style="height: 0.5em;"></td></tr>
+              </tbody>
+            </table>
+            <table class="editOnly" style="border-collapse: collapse;" width="100%">
+              <tbody>
+                <tr>
+                  <td valign="top" width="140"><span>${i18n.purpose}</span></td>
+                  <td valign="top">
+                    <select style="margin:0;padding:0;" data-dojo-type="dijit.form.FilteringSelect" disabled="true" data-dojo-attach-point="_appPurposeSelect">
+                      <option value="Ready To Use" selected>${i18n.readyToUse}</option>
+                      <option value="Configurable">${i18n.configurable}</option>
+                      <option value="selfConfigured">${i18n.selfConfigurable}</option>
+                      <option value="Code Sample">${i18n.codeSample}</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr><td colspan="0" style="height: 0.5em;"></td></tr>
+                <tr>
+                  <td valign="top"><span data-dojo-attach-point="_apiEditLabel">${i18n.api}</span></td>
+                  <td valign="top">
+                    <select data-dojo-type="arcgisonline.sharing.dijit.ComboBox" disabled="true" style="margin:0;padding:0;display:none;" data-dojo-attach-point="_webAppApiSelect">
+                      <option value="JavaScript" selected>JavaScript</option>
+                      <option value="Flex">Flex</option>
+                      <option value="Silverlight">Silverlight</option>
+                      <option value="Web ADF">Web ADF</option>
+                      <option value="Other">${i18n.other}</option>
+                    </select>
+
+                    <select data-dojo-type="arcgisonline.sharing.dijit.ComboBox" disabled="true" style="margin:0;padding:0;display:none;" data-dojo-attach-point="_mobileAppApiSelect">
+                      <option value="ArcGIS for iPhone" selected>iOS</option>
+                      <option value="Windows Mobile">Mobile</option>
+                      <option value="ArcGIS for Windows Phone">Windows Phone</option>
+                      <option value="ArcGIS for Android">Android</option>
+                    </select>
+
+                    <select data-dojo-type="arcgisonline.sharing.dijit.ComboBox" disabled="true" style="margin:0;padding:0;display:none;" data-dojo-attach-point="_platformAppApiSelect">
+                      <option value="Java" selected>Java</option>
+                      <option value=".NET–Windows Desktop">.NET–Windows Desktop</option>
+                      <option value="OS X">OS X</option>
+                      <option value="Qt">Qt</option>
+                      <option value="WPF">WPF</option>
+                    </select>
+
+                  </td>
+                </tr>
+                <tr><td colspan="0" style="height: 0.5em;"></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="ownerOnly readOnly">
+            <div class="registeredApp">
+              <table class="registerSection appUsageSection" style="display:none;border-collapse: collapse;" width="100%">
+                <tbody>
+                  <tr>
+                    <td valign="top" width="140"><span>${i18n.creditUsage}</span></td>
+                    <td>
+                      <a href="#" data-dojo-attach-point="_itemUsage" id="item-usage">${i18n.creditUsageLink}</a>
+                    </td>
+                  </tr>
+                  <tr><td colspan="0" style="height: 0.5em;"></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="ownerOnly">
+            <div class="readOnly">
+              <table class="readOnly" style="border-collapse: collapse;" width="100%">
+                <tbody>
+                  <tr>
+                    <td valign="top" width="140"><span>${i18n.sharedWith}</span></td>
+                    <td>
+                      <span id="item-shared-title"></span>
+                      <span id="item-groups"></span>
+                    </td>
+                  </tr>
+                  <tr><td colspan="0" style="height: 0.5em;"></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="editOnly">
+            <div data-dojo-attach-point="_serviceInfoPaneDiv" style="display:none;"></div>
+          </div>
+
+          <table style="border-collapse: collapse;" width="100%">
+            <tbody>
+              <tr>
+                <td valign="top" width="140"><span>${i18n.tags}</span></td>
+                <td>
+                  <span id="item-tags" class="readOnly"></span>
+                  <div id="item-tags-edit" class="editOnly">
+                    <div id="item-tags-edit-input" data-dojo-attach-point="_tags" data-dojo-type="esri/dijit/Tags" data-dojo-props="minWidth:'500px',maxWidth:'500px'"></div>
+                  </div>
+                </td>
+              </tr>
+              <tr><td colspan="0" style="height: 0.5em;"></td></tr>
+              <tr>
+                <td valign="top"><span>${i18n.credits}</span></td>
+                <td>
+                  <span id="item-copyright" class="readOnly"></span>
+                  <div id="item-copyright-edit" class="editOnly" style="line-height:20px;">
+                    <div id="item-copyright-edit-input" data-dojo-type="dijit.form.TextBox" maxlength="250" data-dojo-props="trim:true" required="true" style="width:498px;"></div>
+                  </div>
+                </td>
+              </tr>
+              <tr><td colspan="0" style="height: 0.5em;"></td></tr>
+              <tr class="readOnly">
+                <td valign="top"><span>${i18n.size}</span></td>
+                <td><span class="" id="item-size"></span></td>
+              </tr>
+              <tr><td class="ownerOnly" colspan="0" style="height: 0.5em;"></td></tr>
+              <tr class="ownerOnly">
+                <td valign="top"><span>${i18n.deleteProtectionLbl}</span></td>
+                <td>
+                  <span id="item-delete-protection" class="readOnly"></span>
+                  <div id="item-delete-protection-edit" class="editOnly" style="line-height:20px;">
+                    <input id="item-delete-protection-edit-input" data-dojo-type="dijit.form.CheckBox"/>&nbsp;<label style="vertical-align:middle;">${i18n.deleteProtectionMsg}</label>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+              <td class="viewOnly" colspan="0" style="display:none;height: 0.5em;"></td>
+              </tr>
+              <tr class="viewOnly" style="display:none;">
+                <td class="ownerOnly sharedOwner" valign="top"><span>${i18n.saveAs}</span></td>
+                <td class="ownerOnly sharedOwner">
+                  <span id="item-view-only" class="readOnly"></span>
+                  <div id="item-view-only-edit" class="editOnly" style="line-height:20px;">
+                    <input id="item-view-only-edit-input" data-dojo-type="dijit.form.CheckBox"/>&nbsp;<label style="vertical-align:middle;">${i18n.viewOnlyMsg}</label>
+                  </div>
+                </td>
+              </tr>
+              <tr class="orgMapOnly">
+                <td colspan="0" style="height: 0.5em;"></td>
+              </tr>
+              <tr class="orgMapOnly" style="width:100%;">
+                <td class="ownerOnly sharedOwner" valign="top"><span>${i18n.offlineModeLabel}</span></td>
+                <td class="ownerOnly sharedOwner" valign="top">
+                  <span id="item-offline-map" class="readOnly"></span>
+                  <div id="item-offline-map-edit" class="editOnly" style="line-height:20px;">
+                    <input id="item-offline-map-edit-input" data-dojo-type="dijit.form.CheckBox" data-dojo-attach-event="onClick:checkOfflineModeSupport"/>&nbsp;<label style="vertical-align:middle;">${i18n.offlineModeEnable}</label>
+                  </div>
+                </td>
+              </tr>
+              <tr><td colspan="0" style="height: 0.5em;"></td></tr>
+              <tr>
+                <td valign="top"><span>${i18n.extent}</span></td>
+                <td valign="top">
+                  <div id="item-description-extent-unavailable" style="display:none;">
+                    <div id="item-extent-button-div1" style="display:none;">
+                      <button style="margin:0;" data-dojo-type="dijit.form.Button" class="calcite light" type="button" id="item-extent-button1">${i18n.setExtent}</button>
+                    </div>
+                  </div>
+
+                  <div id="item-description-extent-available" style="display:none;">
+                    <table>
+                      <tr>
+                        <td>${i18n.left}:</td>
+                        <td align="right" nowrap="nowrap"><span id="item-extent-left"></span></td>
+                        <td style="width: 2em;"></td>
+                        <td>${i18n.right}:</td>
+                        <td align="right" nowrap="nowrap"><span id="item-extent-right"></span></td>
+                        <td rowspan="3">
+                          <div id="item-extent-button-div2" style="display:none;padding-left:30px;">
+                            <button data-dojo-type="dijit.form.Button" type="button" class="calcite light" style="margin:0;" id="item-extent-button2">${i18n.setExtent}</button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="5" style="line-height:5px;">&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td>${i18n.top}:</td>
+                        <td align="right" nowrap="nowrap"><span id="item-extent-top"></span></td>
+                        <td></td>
+                        <td>${i18n.bottom}:</td>
+                        <td align="right" nowrap="nowrap"><span id="item-extent-bottom"></span></td>
+                        <td></td>
+                      </tr>
+                    </table>
+                  </div>
+                </td>
+              </tr>
+              <tr class="operationsCollector" style="display:none;line-height: 20px;">
+                <!--Collector app properties-->
+                <td class="column" valign="top"><span>${i18n.operationsCollector}</span></td>
+                <td class="column">
+                  <div class="editOnly">
+                      <span style="margin-top:0.7em;">${i18n.operationsCollectorSummary}</span>
+                      <br/>
+                      <fieldset style="margin:0.7em 0 0.7em 0;">
+                          <input label="${i18n.opRouting}" class="opSetting" data-dojo-attach-point="_opRouting" type="checkbox" checked data-dojo-type="dijit.form.CheckBox" name="opRouting"/>
+                          <label class="esriLeadingMargin05" for="opRouting">${i18n.opRouting}</label>
+                          <br/>
+                          <input label="${i18n.opMeasure}" class="opSetting" data-dojo-attach-point="_opMeasure" type="checkbox" checked data-dojo-type="dijit.form.CheckBox" name="opMeasure"/>
+                          <label class="esriLeadingMargin05" for="opMeasure">${i18n.opMeasure}</label>
+                          <br/>
+                          <input label="${i18n.opBasemap}" class="opSetting" data-dojo-attach-point="_opBasemap" type="checkbox" checked data-dojo-type="dijit.form.CheckBox" name="opBasemap"/>
+                          <label class="esriLeadingMargin05" for="opBasemap">${i18n.opBasemap}</label>
+                          <br/>
+                          <input label="${i18n.opFindLocations}" class="opSetting opFindLocations" data-dojo-attach-point="_opFindLocations" type="checkbox" checked data-dojo-type="dijit.form.CheckBox" name="opFindLocations"/>
+                          <label class="esriLeadingMargin05 opFindLocations" for="opFindLocations">${i18n.opFindLocations}</label>
+                          <span data-dojo-attach-point="_opFindLocationsLink" class="expcon opFindLocations">${i18n.customRoles.contract}</span>
+                            <div class="fieldsGrid opFindLocationsDiv opFindLocations esriLeadingMargin23" style="padding-top:5px;">
+                              <label class="opFindLocations" for="opFindLocations">${i18n.hintText}</label>&nbsp;
+                              <div class="opFindLocations" id="item-hint-text-input" data-dojo-attach-point="_opFindLocationsHintText" data-dojo-type="dijit.form.TextBox" value="${i18n.findPlace}" maxlength="250" data-dojo-props="trim:true"></div>
+                              <br />
+                              <div style="margin-top:10px;">
+                                <input label="${i18n.findByLayer}" class="opSetting opFindLocations" data-dojo-attach-point="_opByLayer" type="checkbox" checked data-dojo-type="dijit.form.CheckBox" name="opByLayer"/>
+                                <label class="esriLeadingMargin05 opFindLocations" for="opByLayer">${i18n.byLayer}</label>
+                                <br/>
+                                <div data-dojo-attach-point="_byLayerDiv" class="byLayerDiv esriLeadingMargin23">
+                                  <div class="opFindLocations" style="width:700px;height:auto;display:none;" data-dojo-attach-point="_opFindLocationsGrid"></div>
+                                  <div id="addFieldBtn" class="calcite transparent opFindLocations" data-dojo-type="dijit.form.Button">${i18n.addLayerFromUrlDlg.addLayerBtn}</div>
+                                </div>
+                              </div>
+                              <div style="margin-top:10px;">
+                                <input label="${i18n.findByAddress}" class="opSetting opFindLocations" data-dojo-attach-point="_opByAddress" type="checkbox" checked data-dojo-type="dijit.form.CheckBox" name="opByAddress"/>
+                                <label class="esriLeadingMargin05 opFindLocations" for="opByAddress">${i18n.byAddress}</label>
+                              </div>
+                            </div>
+                          <br/>
+                          <div class="opTracking">
+                              <input label="${i18n.opLocationTracking}" class="opSetting" type="checkbox" data-dojo-attach-point="_opTracking" data-dojo-type="dijit.form.CheckBox" name="opTracking"/>
+                              <label class="esriLeadingMargin05" for="opTracking">${i18n.opTrackFrequency}</label>
+                              <select class="esriLeadingMargin05 opSetting" data-dojo-attach-point="_opTrackingSelect" disabled data-dojo-type="dijit.form.Select">
+                                  <option value="30">${i18n.thirtysec}</option>
+                                  <option value="60">${i18n.onemin}</option>
+                                  <option value="120">${i18n.twomin}</option>
+                                  <option value="300">${i18n.fivemin}</option>
+                                  <option value="1800">${i18n.thirtymin}</option>
+                                  <option value="3600">${i18n.onehour}</option>
+                              </select>
+                          </div>
+                      </fieldset>
+                  </div>
+                  <div data-dojo-attach-point="_opCollectorReadOnly" class="readOnly"></div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan='2'>
+                    <!--Configuration string-->
+                    <div id="item-configuration" style="margin-top:2.0em;display:none;">
+                      <label for="item-form-text" style="margin-top:1.5em;">${i18n.configurationParameters}</label><br/>
+                      <textarea data-dojo-type="dijit.form.SimpleTextarea" id="item-form-text" data-dojo-attach-point="configurationSettings" data-dojo-props="trim:true" name="text" class="dijitReset" style="margin: 0.7em 0 0 0;padding:0;border: 1px solid #ccc; clear:both; width:99%; height: 100px;">
+                      </textarea>
+                    </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="hostedTilesOnly" style="border-collapse:collapse; margin-top:2em;" width="100%">
+            <tbody>
+              <tr class="manageTiles-flag">
+                <td valign="top" width="140" class="hostedTilesCol"><span>${i18n.tilesLabel}</span></td>
+                <td><span class="" id="item-percentTiles"></span></td>
+              </tr>
+              <tr><td colspan="0" style="height: 0.5em;"></td></tr>
+              <tr>
+                <td valign="top" width="140" class="hostedTilesCol"><span>${i18n.visibleRangeLabel}</span></td>
+                <td>
+                  <span class="readOnly" id="item-scaleRange"></span>
+                  <div class="editOnly" id="item-scaleRangeEdit">
+                    <div style="width:200px;display:inline-block;" data-dojo-type="arcgisonline.sharing.dijit.ComboBox" data-dojo-attach-point="fromScaleRange"></div>
+                    ${i18n.to}
+                    <div style="width:200px;display:inline-block;" data-dojo-type="arcgisonline.sharing.dijit.ComboBox" data-dojo-attach-point="toScaleRange"></div>
+                    <br/>
+                    <span class="editOnly" data-dojo-attach-point="scaleNote">${i18n.scaleNote}</span>
+                  </div>
+                </td>
+              </tr>
+              <tr><td colspan="0" style="height: 0.5em;"></td></tr>
+              <tr class="exportTiles-flag">
+                <td valign="top" width="140" class="hostedTilesCol"><span>${i18n.offlineModeLabel}</span></td>
+                <td>
+                  <span class="readOnly" id="item-exportTiles"></span>
+                  <div class="editOnly" id="item-exportTiles-edit">
+                    <span>
+                      <div id="item-exportTiles-enable" data-dojo-attach-point="enableExportTiles"
+                           data-dojo-type="dijit.form.CheckBox" type="checkbox"></div>
+                      <label for="item-exportTiles-enable">${i18n.offlineModeEnable}</label>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="hostedFeaturesOnly" style="border-collapse:collapse; margin-top:2em;" width="100%">
+            <tbody>
+              <tr>
+                <td valign="top" width="140" class="hostedFeaturesCol"><span>${i18n.editFeatures}</span></td>
+                <td>
+                    <span class="readOnly" id="item-editFeatures"></span>
+                    <div class="editOnly">
+                      <span>
+                        <div id="item-enable-editing" data-dojo-attach-point="enableEditing" data-dojo-type="dijit.form.CheckBox" data-dojo-attach-event="onChange:onEnableEditingChange" type="checkbox"></div>
+                        <label for="item-enable-editing">${i18n.configEditFeatures}</label>
+                      </span><br/>
+                      <span class="esriLeadingMargin15">
+                        <div name="editPermissions" id="item-enable-geometry-update" data-dojo-attach-point="enableGeometryUpdate" data-dojo-type="dijit.form.RadioButton" type="radio"></div>
+                        <label for="item-enable-geometry-update">${i18n.configEditFeaturesAll}</label>
+                      </span><br/>
+                      <span class="esriLeadingMargin15">
+                        <div name="editPermissions" id="item-disable-geometry-update" data-dojo-attach-point="disableGeometryUpdate" data-dojo-type="dijit.form.RadioButton" type="radio"></div>
+                        <label for="item-disable-geometry-update">${i18n.configEditFeaturesUpdate}</label>
+                      </span><br/>
+                      <span class="esriLeadingMargin15">
+                        <div name="editPermissions" id="item-enable-add-only" data-dojo-attach-point="allowAddOnly" data-dojo-type="dijit.form.RadioButton" type="radio"></div>
+                        <label for="item-enable-add-only">${i18n.configEditFeaturesAdd}</label>
+                      </span>
+                    </div>
+                </td>
+              </tr>
+              <tr><td colspan="0" style="height: 0.5em;"></td></tr>
+              <tr class="enableExport">
+                <td valign="top" class="hostedFeaturesCol"><span>${i18n.exportLabel}</span></td>
+                <td>
+                  <span class="readOnly" id="item-exportData"></span>
+                  <div class="editOnly" id="item-exportData-edit">
+                    <span>
+                        <div id="item-export-data" data-dojo-attach-point="enableExport" data-dojo-type="dijit.form.CheckBox" type="checkbox"></div>
+                        <label for="item-export-data">${i18n.configEnableExport}</label>
+                      </span>
+                  </div>
+                </td>
+              </tr>
+              <tr><td colspan="0" style="height: 0.5em;"></td></tr>
+              <tr>
+                <td valign="top" class="hostedFeaturesCol portalSync"><span>${i18n.syncLabel}</span></td>
+                <td class="portalSync">
+                  <span class="readOnly" id="item-editSync"></span>
+                  <div class="editOnly" id="item-editSync-edit">
+                    <span>
+                        <div id="item-enable-sync" data-dojo-attach-point="enableSync" data-dojo-type="dijit.form.CheckBox" type="checkbox"></div>
+                        <label for="item-enable-sync">${i18n.configEnableSync}</label>
+                      </span>
+                  </div>
+                </td>
+              </tr>
+              <tr><td colspan="0" style="height: 0.5em;"></td></tr>
+              <tr>
+                <td valign="top" class="hostedFeaturesCol portalEdits"><span>${i18n.trackEdits}</span></td>
+                <td class="portalEdits">
+                  <span class="readOnly" id="item-trackEdits"></span>
+                  <div class="editOnly" id="item-trackEdits-edit">
+                    <span>
+                      <div id="item-enable-tracking" data-dojo-attach-point="enableTracking" data-dojo-type="dijit.form.CheckBox" data-dojo-attach-event="onChange:onEnableTrackingChange" type="checkbox"></div>
+                      <label for="item-enable-tracking">${i18n.configTrackEdits}</label>
+                    </span><br/>
+                    <span class="esriLeadingMargin15">
+                      <div id="item-restrict-edits" data-dojo-attach-point="enableRestrictedEdits" data-dojo-type="dijit.form.CheckBox" data-dojo-attach-event="onClick:onRestrictedEditChange" type="checkbox"></div>
+                      <label for="item-restrict-edits">${i18n.trackEditsRestricted}</label>
+                    </span><br/>
+                    <span class="esriLeadingMargin15">
+                      <div id="item-restrict-view-edits" data-dojo-attach-point="enableViewEdits" data-dojo-type="dijit.form.CheckBox" data-dojo-attach-event="onClick:onRestrictedEditChange" type="checkbox"></div>
+                      <label for="item-restrict-edits">${i18n.trackEditsView}</label>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        <div id="item-save-buttons" class="disply_none item_edit_toobar item_edit_toobar_bottom" style="display:none; ">
+          <button data-dojo-type="dijit.form.Button" type="button" id="item-save-button2" class="calcite blue">
+            <span>${i18n.save}</span>
+          </button>
+          <button data-dojo-type="dijit.form.Button" type="button" id="item-close-button2" class="calcite transparent">
+            <span>${i18n.cancel}</span>
+          </button>
+        </div>
+        </div>
+        </div>
+
+        <div class="section" data-dojo-attach-point="_commentsSection">
+          <!-- Comments -->
+          <span class="esriItemProperties">${i18n.comments} <span style="font-weight:lighter;">(<span class="commentCount"></span>)</span> <a href="#" target="_blank" data-dojo-attach-point="commentsRSSLink" style="display:none;"><img data-dojo-attach-point="commentsRSS" alt="${i18n.commentsFeed}" class="feedRSS" style="vertical-align:middle;" title="${i18n.commentsFeed}"></a></span>
+
+          <div style="height: auto; padding: 0.5em; margin-top: 1em;" class="commentsDisabled">
+            <span>${i18n.commentsDisabled}</span>
+          </div>
+
+          <div style="clear:both; height: auto; overflow: auto; padding: 0.5em; margin-top: 1em;" class="commentsEnabled scrollPane">
+            <div data-dojo-attach-point="comments"><!-- comments go in here --></div>
+          </div>
+
+          <p></p>
+
+          <div data-dojo-attach-point="addCommentPane" style="display:none;">
+          <span>${i18n.addComment}</span>
+          <textarea data-dojo-attach-point="newComment" class="dijitReset" style="margin-top:0.5em;border: 1px solid #ccc; width:99% !important; max-width:99% !important; min-width:99% !important; height:100px; max-height:100px !important; min-height:100px !important; resize:none;"></textarea>
+          <div data-dojo-type="dijit.form.Button" data-dojo-attach-point="publishCommentButton" class="calcite light" data-dojo-attach-event="onClick:publishComment" style="margin-top:0.5em;">${i18n.publishComment}</div>
+          </div>
+
+          <div data-dojo-attach-point="signInPane" style="display:none;">
+            <span class="commentsEnabled"  style="display:block; text-align:center;">
+              <a href="#">${i18n.signIn}</a> ${i18n.toAddNewComment}
+            </span>
+          </div>
+
+        </div>
+
+      <div style=""></div>
+
+      <div id="layerMenu" class="layerMenu" data-dojo-type="dijit.Menu" style="display:none;">
+        <div id="layerMenu-exportShapefile" data-dojo-type="dijit.MenuItem" data-dojo-props="iconClass:'iconExportData'">
+          ${i18n.exportToShapefile}
+        </div>
+        <div id="layerMenu-exportData" data-dojo-type="dijit.MenuItem" data-dojo-props="iconClass:'iconExportFile'">
+          ${i18n.exportToCSVFile}
+        </div>
+        <div id="layerMenu-exportFgdb" data-dojo-type="dijit.MenuItem" data-dojo-props="iconClass:'iconExportFile'">
+          ${i18n.exportToFgdb}
+        </div>
+        <div id="layerMenu-exportGeoJson" data-dojo-type="dijit.MenuItem" data-dojo-props="iconClass:'iconExportFile'">
+            ${i18n.exportToGeoJson}
+        </div>
+        <div id="layerMenu-exportFeatureCollection" data-dojo-type="dijit.MenuItem" data-dojo-props="iconClass:'iconExportFile'">
+            ${i18n.exportToFeatureCollection}
+        </div>
+        <div id="layerMenu-serviceUrl" data-dojo-type="dijit.MenuItem" data-dojo-props="iconClass:'iconServiceUrl'">
+          ${i18n.serviceURL}
+        </div>
+        <div id="layerMenu-enableAttachments" data-dojo-type="dijit.MenuItem" data-dojo-props="iconClass:'iconAttachment'" style="display:none;">
+          ${i18n.enableAttachments}
+        </div>
+        <div id="layerMenu-disableAttachments" data-dojo-type="dijit.MenuItem" data-dojo-props="iconClass:'iconAttachment'" style="display:none;">
+          ${i18n.disableAttachments}
+        </div>
+        <div id="layerMenu-timeSettings" data-dojo-type="dijit.MenuItem" data-dojo-props="iconClass:'iconServiceUrl'">
+          ${i18n.timeSettings}
+        </div>
+        <div id="layerMenu-reviewAddresses" style="display:none;" data-dojo-type="dijit.MenuItem" data-dojo-props="iconClass:'iconReviewGeocode'">
+          ${i18n.geocodePanel.geocodePanelTitle}
+        </div>
+      </div>
+
+      <div id="metadataMenu" data-dojo-type="dijit.Menu" style="display:none;">
+        <div id="metadataMenu-view" data-dojo-type="dijit.MenuItem">
+          ${i18n.metadataView}
+        </div>
+        <div id="metadataMenu-edit" data-dojo-type="dijit.MenuItem">
+          ${i18n.metadataEdit}
+        </div>
+      </div>
+
+      <div id="publishFromFeaturesMenu" data-dojo-type="dijit.Menu" style="display:none;">
+        <div id="publishFromFeaturesMenu-tiles" data-dojo-type="dijit.MenuItem">
+          ${i18n.publishTileLayer}
+        </div>
+        <div id="publishFromFeaturesMenu-scene" data-dojo-type="dijit.MenuItem">
+          ${i18n.publishSceneLayer}
+        </div>
+      </div>
+
+      <div id="item-thumbnail-dialog" class="thumbnailDialog dijitDialog">
+        <div id="item-thumbnail-header">
+          <div style="background:none;padding-top:2px;" class="dijitDialogTitle dijitDialogTitleBar">${i18n.uploadThumbnail}</div>
+          <div id="item-thumbnail-close" title="${i18n.close}" class="dijitDialogCloseIcon"></div>
+        </div>
+        <div id="item-thumbnail-content">
+          <div class="esriFloatLeading"><label for="item-thumbnail-file">${i18n.thumbnailImage}</label></div>
+          <br/>
+          <br/>
+          <span class="esriFloatLeading" style="margin-top:6px;"><label for="item-thumbnail-file">${i18n.image}:&nbsp;</label></span>
+          <!--<input type="hidden" name="MAX_FILE_SIZE" value="1024000">-->
+          <input type="file" id="item-thumbnail-file" name="thumbnail" size="44">
+          <br />
+          <br />
+          <div style="font-size:0.9em; padding-bottom:10px;">${i18n.thumbnailSpecification}</div>
+          <button id="item-thumbnail-cancel" class="esriFloatTrailing jevent calcite transparent" data-dojo-type="dijit.form.Button">${i18n.cancel}</button>
+          <button id="item-thumbnail-ok" class="esriFloatTrailing jevent calcite blue" data-dojo-type="dijit.form.Button">${i18n.ok}</button>
+          &nbsp;<br /> &nbsp;
+        </div>
+      </div>
+      <div style="padding: 10px" data-dojo-attach-point="_basicStandby" data-dojo-type="dojox.widget.Standby" centerIndicator="text" target="item-thumbnail"></div>
+    </form>
+
+    <img id="${id}_testImage" style="position:absolute;top:0;left:-3000px"/>
+
+  </div>
+</div>

@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["./Promise","dojo/aspect","dojo/Deferred","dojo/errors/create"],function(b,c,d,e){var f=e("CancelLoadError",null,function(a){this.target=a},{code:0,message:"instance cancelled"});return b.createSubclass({declaredClass:"esri.core.Loadable","-chains-":{load:"after"},classMetadata:{properties:{loadStatus:{},loadError:{}}},constructor:function(){var a=new d;this.addResolvingPromise(a.promise);c.around(this,"load",function(g){return function(){"not-loaded"===this.loadStatus&&(this.loadStatus="loading",
+g.apply(this),a.resolve(),a=null);return this}});this.then(function(a){this.loadStatus="loaded"}.bind(this),function(a){this.loadStatus="failed";this.loadError=a}.bind(this))},loadError:null,loadStatus:"not-loaded",load:function(){},cancelLoad:function(){if(this.isFulfilled())return this;this.loadError=new f(this);this._promiseProps.cancel(this.loadError);return this}})});

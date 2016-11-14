@@ -1,0 +1,406 @@
+<div class="${baseClass} widgetContent">
+  <div id="buttonBar" data-dojo-attach-point="_buttonBar" style="clear:both;">
+    <span class="esriFloatLeading">
+      <button class="calcite transparent" data-dojo-type="dijit/form/Button" data-dojo-attach-point="_myOrgBtn"
+          data-dojo-attach-event="onClick:openMyOrg">${i18n.myAccount}</button>
+    </span>
+    <span class="productTabs" data-dojo-attach-point="_licenseSwitches">
+      <span class="productTab selected" data-dojo-attach-point="_proProductsTab">${i18n.licenseTypes.agsProLabel}</span>
+      <span class="productTab" data-dojo-attach-point="_additionalProductsTab">${i18n.addProducts.title}</span>
+    </span>
+    <span class="esriFloatTrailing">
+      <button class="calcite transparent" data-dojo-type="dijit/form/Button" data-dojo-attach-point="_helpBtn"
+          data-dojo-attach-event="onClick:openHelp">${i18n.help}</button>
+    </span>
+  </div>
+  <br style="clear:both;"/>
+  <div data-dojo-attach-point="_loading" style="display:none;text-align:center;"></div>
+  <div data-dojo-attach-point="_provisionsExceededWarning" class="provisionsExceededWarning" style="display:none;">${i18n.provisionsExceededWarning}</div>
+  <div data-dojo-attach-point="_licenseStatus" class="marginTop1">
+    <div class="esriFloatLeading">
+      <table id="licenseTable">
+        <tbody>
+        <tr>
+          <td id="licensedUsersTable" class="borderTrailing">
+            <table>
+              <tbody>
+                <tr>
+                  <td colspan="2" class="licensedUsersRow"><strong>${i18n.licensedUsersLabel}</strong></td>
+                </tr>
+                <tr><td>&nbsp;</td></tr>
+                <tr>
+                  <td class="maximumRow"><strong>${i18n.maximumUsersLabel}</strong></td>
+                  <td class="countColumn"><label data-dojo-attach-point="_maximumUsersLabel"></label></td>
+                </tr>
+                <tr><td>&nbsp;</td></tr>
+                <tr>
+                  <td class="currentRow"><strong>${i18n.currentUsersLabel}</strong></td>
+                  <td class="countColumn"><label data-dojo-attach-point="_currentUsersLabel"></label></td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+          <td id="productTable">
+            <table>
+              <tbody>
+                <tr>
+                  <td class="productRow"><strong>${i18n.licenseStatus.title}</strong></td>
+                </tr>
+                <tr><td>&nbsp;</td></tr>
+                <tr>
+                  <td class="purchasedRow"><strong>${i18n.licenseStatus.purchasedLabel}</strong></td>
+                </tr>
+                <tr><td>&nbsp;</td></tr>
+                <tr>
+                  <td class="remainingRow"><strong>${i18n.licenseStatus.remainingLabel}</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="licenseCountContainer" class="esriFloatLeading" data-dojo-attach-point="_licenseCountContainer">
+      <div>
+        <table>
+          <tbody data-dojo-attach-point="_licenseCountBody">
+          <tr>
+            <td style="display:none;" data-dojo-attach-point="_proBasicTitle" class="productTitle"><strong>${i18n.licenseTypes.agsProLabel} ${i18n.licenseTypes.basicLabel}</strong></td>
+            <td style="display:none;" data-dojo-attach-point="_proStdTitle" class="productTitle"><strong>${i18n.licenseTypes.agsProLabel} ${i18n.licenseTypes.standardLabel}</strong></td>
+            <td style="display:none;" data-dojo-attach-point="_proAdvTitle" class="productTitle"><strong>${i18n.licenseTypes.agsProLabel} ${i18n.licenseTypes.advancedLabel}</strong></td>
+            <td style="display:none;" data-dojo-attach-point="_spatialAnalystTitle" class="productTitle"><strong>${i18n.licenseTypes.spatialAnalyst}</strong></td>
+            <td style="display:none;" data-dojo-attach-point="_threeDAnalystTitle" class="productTitle"><strong>${i18n.licenseTypes.threeDAnalyst}</strong></td>
+            <td style="display:none;" data-dojo-attach-point="_networkAnalystTitle" class="productTitle"><strong>${i18n.licenseTypes.networkAnalyst}</strong></td>
+            <td style="display:none;" data-dojo-attach-point="_geostatAnalystTitle" class="productTitle"><strong>${i18n.licenseTypes.geostatisticalAnalyst}</strong></td>
+            <td style="display:none;" data-dojo-attach-point="_dataReviewerTitle" class="productTitle"><strong>${i18n.licenseTypes.dataReviewer}</strong></td>
+            <td style="display:none;" data-dojo-attach-point="_workflowManagerTitle" class="productTitle"><strong>${i18n.licenseTypes.workflowManager}</strong></td>
+            <td style="display:none;" data-dojo-attach-point="_dataInteropTitle" class="productTitle"><strong>${i18n.licenseTypes.dataInterop}</strong></td>
+            <td style="display:none;" data-dojo-attach-point="_defenseTitle" class="productTitle"><strong>${i18n.licenseTypes.defenseMapping}</strong></td>
+            <td style="display:none;" data-dojo-attach-point="_fmvTitle" class="productTitle"><strong>${i18n.licenseTypes.fullMotionVideo}</strong></td>
+            <td style="display:none;" data-dojo-attach-point="_businessBasicTitle" class="productTitle"><strong>${i18n.licenseTypes.businessBasic}</strong></td>
+            <td style="display:none;" data-dojo-attach-point="_businessStdTitle" class="productTitle"><strong>${i18n.licenseTypes.businessStd}</strong></td>
+            <td style="display:none;" data-dojo-attach-point="_roadsHighwaysTitle" class="productTitle"><strong>${i18n.licenseTypes.roadsHighways}</strong></td>
+            <td style="display:none;" data-dojo-attach-point="_publisherTitle" class="productTitle"><strong>${i18n.licenseTypes.publisher}</strong></td>
+            <td style="display:none;" data-dojo-attach-point="_productionMapTitle" class="productTitle"><strong>${i18n.licenseTypes.productionMapping}</strong></td>
+            <td style="display:none;" data-dojo-attach-point="_schematicsTitle" class="productTitle"><strong>${i18n.licenseTypes.schematics}</strong></td>
+            <td style="display:none;" data-dojo-attach-point="_trackingTitle" class="productTitle"><strong>${i18n.licenseTypes.tracking}</strong></td>
+            <td style="display:none;" data-dojo-attach-point="_aviationTitle" class="productTitle"><strong>${i18n.licenseTypes.aviation}</strong></td>
+            <td style="display:none;" data-dojo-attach-point="_airportsTitle" class="productTitle"><strong>${i18n.licenseTypes.airports}</strong></td>
+            <td style="display:none;" data-dojo-attach-point="_maritimeTitle" class="productTitle"><strong>${i18n.licenseTypes.maritime}</strong></td>
+            <td style="display:none;" data-dojo-attach-point="_bathymetryTitle" class="productTitle"><strong>${i18n.licenseTypes.bathymetry}</strong></td>
+            <td style="display:none;" data-dojo-attach-point="_streetMapNATitle" class="productTitle longTitle"><strong>${i18n.licenseTypes.streetMapNA}</strong></td>
+            <td style="display:none;" data-dojo-attach-point="_streetMapEUTitle" class="productTitle"><strong>${i18n.licenseTypes.streetMapEU}</strong></td>
+            <td style="display:none;" data-dojo-attach-point="_streetMapAPACTitle" class="productTitle"><strong>${i18n.licenseTypes.streetMapAPAC}</strong></td>
+            <td style="display:none;" data-dojo-attach-point="_streetMapMEATitle" class="productTitle veryLongTitle"><strong>${i18n.licenseTypes.streetMapMEA}</strong></td>
+            <td style="display:none;" data-dojo-attach-point="_streetMapLATitle" class="productTitle longTitle"><strong>${i18n.licenseTypes.streetMapLA}</strong></td>
+            <td style="display:none;" data-dojo-attach-point="_streetMapJATitle" class="productTitle"><strong>${i18n.licenseTypes.streetMapJA}</strong></td>
+          </tr>
+          <tr><td colspan="100">&nbsp;</td></tr>
+          <tr>
+            <td style="display:none;" data-dojo-attach-point="_proBasicStatus" class="productTitle productStatus"></td>
+            <td style="display:none;" data-dojo-attach-point="_proStdStatus" class="productTitle productStatus"></td>
+            <td style="display:none;" data-dojo-attach-point="_proAdvStatus" class="productTitle productStatus"></td>
+            <td style="display:none;" data-dojo-attach-point="_spatialAnalystStatus" class="productTitle productStatus"></td>
+            <td style="display:none;" data-dojo-attach-point="_threeDAnalystStatus" class="productTitle productStatus"></td>
+            <td style="display:none;" data-dojo-attach-point="_networkAnalystStatus" class="productTitle productStatus"></td>
+            <td style="display:none;" data-dojo-attach-point="_geostatAnalystStatus" class="productTitle productStatus"></td>
+            <td style="display:none;" data-dojo-attach-point="_dataReviewerStatus" class="productTitle productStatus"></td>
+            <td style="display:none;" data-dojo-attach-point="_workflowManagerStatus" class="productTitle productStatus"></td>
+            <td style="display:none;" data-dojo-attach-point="_dataInteropStatus" class="productTitle productStatus"></td>
+            <td style="display:none;" data-dojo-attach-point="_defenseStatus" class="productTitle productStatus"></td>
+            <td style="display:none;" data-dojo-attach-point="_fmvStatus" class="productTitle productStatus"></td>
+            <td style="display:none;" data-dojo-attach-point="_businessBasicStatus" class="productTitle productStatus"></td>
+            <td style="display:none;" data-dojo-attach-point="_businessStdStatus" class="productTitle productStatus"></td>
+            <td style="display:none;" data-dojo-attach-point="_roadsHighwaysStatus" class="productTitle productStatus"></td>
+            <td style="display:none;" data-dojo-attach-point="_publisherStatus" class="productTitle productStatus"></td>
+            <td style="display:none;" data-dojo-attach-point="_productionMapStatus" class="productTitle productStatus"></td>
+            <td style="display:none;" data-dojo-attach-point="_schematicsStatus" class="productTitle productStatus"></td>
+            <td style="display:none;" data-dojo-attach-point="_trackingStatus" class="productTitle productStatus"></td>
+            <td style="display:none;" data-dojo-attach-point="_aviationStatus" class="productTitle productStatus"></td>
+            <td style="display:none;" data-dojo-attach-point="_airportsStatus" class="productTitle productStatus"></td>
+            <td style="display:none;" data-dojo-attach-point="_maritimeStatus" class="productTitle productStatus"></td>
+            <td style="display:none;" data-dojo-attach-point="_bathymetryStatus" class="productTitle productStatus"></td>
+            <td style="display:none;" data-dojo-attach-point="_streetMapNAStatus" class="productTitle productStatus"></td>
+            <td style="display:none;" data-dojo-attach-point="_streetMapEUStatus" class="productTitle productStatus"></td>
+            <td style="display:none;" data-dojo-attach-point="_streetMapAPACStatus" class="productTitle productStatus"></td>
+            <td style="display:none;" data-dojo-attach-point="_streetMapMEAStatus" class="productTitle productStatus"></td>
+            <td style="display:none;" data-dojo-attach-point="_streetMapLAStatus" class="productTitle productStatus"></td>
+            <td style="display:none;" data-dojo-attach-point="_streetMapJAStatus" class="productTitle productStatus"></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="productLicenseCountContainer" class="esriFloatLeading" data-dojo-attach-point="_productLicenseCountContainer" style="display:none;">
+      <div>
+        <table>
+          <tbody data-dojo-attach-point="_productLicenseCountBody">
+          <tr data-dojo-attach-point="_productLicenseCountNameRow">
+            <!--<td class="productTitle"><strong>title</strong></td>-->
+          </tr>
+          <tr><td colspan="100">&nbsp;</td></tr>
+          <tr data-dojo-attach-point="_productLicenseCountDataRow">
+            <!--<td class="productTitle productStatus">[graphic]</td>-->
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <br style="clear:both;"/>
+  <div data-dojo-attach-point="_licenseContent">
+    <div id="membersContentContainer" data-dojo-attach-point="_membersContent" class="esriFloatLeading">
+      <div class="esriFloatLeading display_inline">
+        <label class="contentTitle"><strong>${i18n.membersTitle}</strong></label>
+        <button data-dojo-attach-point="_selectAllBtn" data-dojo-type="dijit/form/Button"
+                data-dojo-attach-event="onClick:onSelectAll" class="calcite transparent small">${i18n.selectAllLabel}</button>
+      </div>
+      <div class="esriFloatTrailing display_inline">
+        <label class="contentTitle">${i18n.searchByLabel}</label>
+        <div data-dojo-attach-point="_searchBySelect" data-dojo-type="arcgisonline/sharing/dijit/ComboBox"
+             data-dojo-attach-event="onChange:onSearchByChange"
+             class="licenseSearchSelect display_inline"></div>
+        <span data-dojo-attach-point="_searchControls" style="position:relative;">
+          <input data-dojo-attach-point="_search" id="licenseSearchBox" data-dojo-type="dijit/form/TextBox"
+               data-dojo-attach-event="onKeyDown:onSearchKeyDown" data-dojo-props="trim:true" value=""/>
+          <button id="clearSearchBtn" data-dojo-attach-point="_clearSearchBtn" data-dojo-attach-event="onClick:onClearClick">&nbsp;&nbsp;&nbsp;&nbsp;</button>
+          <button id="searchMembersBtn" data-dojo-attach-point="_searchBtn" data-dojo-attach-event="onClick:onSearchClick">&nbsp;&nbsp;&nbsp;&nbsp;</button>
+        </span>
+        <span data-dojo-attach-point="_filterControls" style="display:none;">
+          <div data-dojo-attach-point="_filteringSelect" class="licenseSearchSelect display_inline" id="searchFilter"
+               data-dojo-props="searchAttr:'name'" data-dojo-attach-event="onChange:onFilterChange" data-dojo-type="dijit/form/FilteringSelect"></div>
+        </span>
+      </div>
+      <br style="clear:both;"/>
+      <div style="margin-top:0.5em;">${i18n.clickToSelectLabel}</div>
+      <div data-dojo-attach-point="_memberGridContainer" class="marginTop1">
+        <!-- member grid added programmatically here -->
+      </div>
+    </div>
+    <div id="licensedProductsContainer" data-dojo-attach-point="_licensedProducts" class="esriFloatLeading marginTop1 noPaddingContainer">
+      <div>
+        <div class="esriFloatLeading">
+          <label><strong>${i18n.assignLicense.licensedLabel} <span data-dojo-attach-point="_licensedForLabel"></span></strong></label>
+        </div>
+        <div data-dojo-attach-point="_lastUsedLicenseContainer" class="esriFloatTrailing">
+          <label><strong>${i18n.assignLicense.lastUsedProLabel}</strong></label>&nbsp;&nbsp;
+          <label data-dojo-attach-point="_lastUsedDateLabel"></label>
+        </div>
+      </div>
+      <br style="clear:both;"/><br/>
+      <!--<label><strong>${i18n.assignLicense.esriAppsLabel}</strong></label><br/><br/>-->
+      <div data-dojo-attach-point="_proLevelsContainer" class="licenseGroup esriFloatLeading">
+        <div>
+          <span id="pro-expcon" data-dojo-attach-event="onClick:expconPro" class="expcon">${i18n.assignLicense.contract}</span>
+          <label for="pro-expcon" id="groups-title">${i18n.licenseTypes.agsProLabel}</label>
+        </div>
+        <div id="pro-licenses" class="licenseGroupOpts">
+          <div data-dojo-attach-point="_proBasicSelect">
+            <input id="pro-basic" data-dojo-attach-point="_proBasic" name="proSelection" data-dojo-type="dijit/form/RadioButton"
+                data-dojo-attach-event="onClick:onProGroupClick" type="radio"/>
+            <label for="pro-basic" id="pro-basic-label">${i18n.licenseTypes.basicLabel}</label><br/>
+          </div>
+          <div data-dojo-attach-point="_proStdSelect">
+            <div id="pro-std" data-dojo-attach-point="_proStd" name="proSelection" data-dojo-type="dijit/form/RadioButton"
+                 data-dojo-attach-event="onClick:onProGroupClick"></div>
+            <label for="pro-std" id="pro-std-label">${i18n.licenseTypes.standardLabel}</label><br/>
+          </div>
+          <div data-dojo-attach-point="_proAdvSelect">
+            <input id="pro-adv" data-dojo-attach-point="_proAdv" name="proSelection" data-dojo-type="dijit/form/RadioButton"
+                 data-dojo-attach-event="onClick:onProGroupClick" type="radio"/>
+            <label for="pro-adv" id="pro-adv-label">${i18n.licenseTypes.advancedLabel}</label><br/>
+          </div>
+        </div>
+      </div>
+      <div data-dojo-attach-point="_proExtContainer" class="licenseGroup esriFloatLeading">
+        <div>
+          <span id="ext-expcon" data-dojo-attach-event="onClick:expconExtensions" class="expcon">${i18n.assignLicense.contract}</span>
+          <div id="ext-toggle" data-dojo-attach-point="_extToggle" data-dojo-type="dojox/form/TriStateCheckBox"
+               data-dojo-attach-event="onClick:onExtensionsToggle" class="vertAlignTextTop"></div>
+          <label for="ext-toggle" id="ext-title">${i18n.licenseTypes.extLabel}</label>
+        </div>
+        <div id="ext-licenses" class="licenseGroupOpts">
+          <div data-dojo-attach-point="_spatialAnalystCheck">
+            <div id="ext-spatialanalyst" data-dojo-attach-point="_spatialAnalystExt" data-dojo-type="dijit/form/CheckBox"
+                 data-dojo-attach-event="onClick:onExtensionsGroupClick"></div>
+            <label for="ext-spatialanalyst" id="ext-spatialanalyst-label">${i18n.licenseTypes.spatialAnalyst}</label><br/>
+          </div>
+          <div data-dojo-attach-point="_3DAnalystCheck">
+            <div id="ext-3d-analyst" data-dojo-attach-point="_3DAnalystExt" data-dojo-type="dijit/form/CheckBox"
+                 data-dojo-attach-event="onClick:onExtensionsGroupClick"></div>
+            <label for="ext-3d-analyst" id="ext-3d-analyst-label">${i18n.licenseTypes.threeDAnalyst}</label><br/>
+          </div>
+          <div data-dojo-attach-point="_networkAnalystCheck">
+            <div id="ext-networkanalyst" data-dojo-attach-point="_networkAnalystExt" data-dojo-type="dijit/form/CheckBox"
+                 data-dojo-attach-event="onClick:onExtensionsGroupClick"></div>
+            <label for="ext-networkanalyst" id="ext-networkanalyst-label">${i18n.licenseTypes.networkAnalyst}</label><br/>
+          </div>
+          <div data-dojo-attach-point="_geostatAnalystCheck">
+            <div id="ext-geostatanalyst" data-dojo-attach-point="_geostatAnalystExt" data-dojo-type="dijit/form/CheckBox"
+                 data-dojo-attach-event="onClick:onExtensionsGroupClick"></div>
+            <label for="ext-geostatanalyst" id="ext-geostatanalyst-label">${i18n.licenseTypes.geostatisticalAnalyst}</label><br/>
+          </div>
+          <div data-dojo-attach-point="_dataReviewerCheck">
+            <div id="ext-datareviewer" data-dojo-attach-point="_dataReviewerExt" data-dojo-type="dijit/form/CheckBox"
+                 data-dojo-attach-event="onClick:onExtensionsGroupClick"></div>
+            <label for="ext-datareviewer" id="ext-datareviewer-label">${i18n.licenseTypes.dataReviewer}</label><br/>
+          </div>
+          <div data-dojo-attach-point="_workflowManagerCheck">
+            <div id="ext-workflowmanager" data-dojo-attach-point="_workflowManagerExt" data-dojo-type="dijit/form/CheckBox"
+                 data-dojo-attach-event="onClick:onExtensionsGroupClick"></div>
+            <label for="ext-workflowmanager" id="ext-workflowmanager-label">${i18n.licenseTypes.workflowManager}</label><br/>
+          </div>
+          <div data-dojo-attach-point="_dataInteropCheck">
+            <div id="ext-datainterop" data-dojo-attach-point="_dataInteropExt" data-dojo-type="dijit/form/CheckBox"
+                 data-dojo-attach-event="onClick:onExtensionsGroupClick"></div>
+            <label for="ext-datainterop" id="ext-datainterop-label">${i18n.licenseTypes.dataInterop}</label><br/>
+          </div>
+          <div data-dojo-attach-point="_defenseCheck">
+            <div id="ext-defense" data-dojo-attach-point="_defenseExt" data-dojo-type="dijit/form/CheckBox"
+                 data-dojo-attach-event="onClick:onExtensionsGroupClick"></div>
+            <label for="ext-defense" id="ext-defense-label">${i18n.licenseTypes.defenseMapping}</label><br/>
+          </div>
+          <div data-dojo-attach-point="_fmvCheck">
+            <div id="ext-fmv" data-dojo-attach-point="_fmvExt" data-dojo-type="dijit/form/CheckBox"
+                 data-dojo-attach-event="onClick:onExtensionsGroupClick"></div>
+            <label for="ext-fmv" id="ext-fmv-label">${i18n.licenseTypes.fullMotionVideo}</label><br/>
+          </div>
+          <div data-dojo-attach-point="_businessBasicCheck">
+            <div id="ext-businessbasic" data-dojo-attach-point="_businessBasicExt" data-dojo-type="dijit/form/CheckBox"
+                 data-dojo-attach-event="onClick:onExtensionsGroupClick"></div>
+            <label for="ext-businessbasic" id="ext-businessbasic-label">${i18n.licenseTypes.businessBasic}</label><br/>
+          </div>
+          <div data-dojo-attach-point="_businessStdCheck">
+            <div id="ext-businessstd" data-dojo-attach-point="_businessStdExt" data-dojo-type="dijit/form/CheckBox"
+                 data-dojo-attach-event="onClick:onExtensionsGroupClick"></div>
+            <label for="ext-businessstd" id="ext-businessstd-label">${i18n.licenseTypes.businessStd}</label><br/>
+          </div>
+          <div data-dojo-attach-point="_roadsHighwaysCheck">
+            <div id="ext-roadshighways" data-dojo-attach-point="_roadsHighwaysExt" data-dojo-type="dijit/form/CheckBox"
+                 data-dojo-attach-event="onClick:onExtensionsGroupClick"></div>
+            <label for="ext-roadshighways" id="ext-roadshighways-label">${i18n.licenseTypes.roadsHighways}</label><br/>
+          </div>
+          <div data-dojo-attach-point="_publisherCheck">
+            <div id="ext-publisher" data-dojo-attach-point="_publisherExt" data-dojo-type="dijit/form/CheckBox"
+                 data-dojo-attach-event="onClick:onExtensionsGroupClick"></div>
+            <label for="ext-publisher" id="ext-publisher-label">${i18n.licenseTypes.publisher}</label><br/>
+          </div>
+          <div data-dojo-attach-point="_productionMapCheck">
+            <div id="ext-productionmap" data-dojo-attach-point="_productionMapExt" data-dojo-type="dijit/form/CheckBox"
+                 data-dojo-attach-event="onClick:onExtensionsGroupClick"></div>
+            <label for="ext-productionmap" id="ext-productionmap-label">${i18n.licenseTypes.productionMapping}</label><br/>
+          </div>
+          <div data-dojo-attach-point="_schematicsCheck">
+            <div id="ext-schematics" data-dojo-attach-point="_schematicsExt" data-dojo-type="dijit/form/CheckBox"
+                 data-dojo-attach-event="onClick:onExtensionsGroupClick"></div>
+            <label for="ext-schematics" id="ext-schematics-label">${i18n.licenseTypes.schematics}</label><br/>
+          </div>
+          <div data-dojo-attach-point="_trackingCheck">
+            <div id="ext-tracking" data-dojo-attach-point="_trackingExt" data-dojo-type="dijit/form/CheckBox"
+                 data-dojo-attach-event="onClick:onExtensionsGroupClick"></div>
+            <label for="ext-tracking" id="ext-tracking-label">${i18n.licenseTypes.tracking}</label><br/>
+          </div>
+          <div data-dojo-attach-point="_aviationCheck">
+            <div id="ext-aviation" data-dojo-attach-point="_aviationExt" data-dojo-type="dijit/form/CheckBox"
+                 data-dojo-attach-event="onClick:onExtensionsGroupClick"></div>
+            <label for="ext-aviation" id="ext-aviation-label">${i18n.licenseTypes.aviation}</label><br/>
+          </div>
+          <div data-dojo-attach-point="_airportsCheck">
+            <div id="ext-airports" data-dojo-attach-point="_airportsExt" data-dojo-type="dijit/form/CheckBox"
+                 data-dojo-attach-event="onClick:onExtensionsGroupClick"></div>
+            <label for="ext-airports" id="ext-airports-label">${i18n.licenseTypes.airports}</label><br/>
+          </div>
+          <div data-dojo-attach-point="_maritimeCheck">
+            <div id="ext-maritime" data-dojo-attach-point="_maritimeExt" data-dojo-type="dijit/form/CheckBox"
+                 data-dojo-attach-event="onClick:onExtensionsGroupClick"></div>
+            <label for="ext-maritime" id="ext-maritime-label">${i18n.licenseTypes.maritime}</label><br/>
+          </div>
+          <div data-dojo-attach-point="_bathymetryCheck">
+            <div id="ext-bathymetry" data-dojo-attach-point="_bathymetryExt" data-dojo-type="dijit/form/CheckBox"
+                 data-dojo-attach-event="onClick:onExtensionsGroupClick"></div>
+            <label for="ext-bathymetry" id="ext-bathymetry-label">${i18n.licenseTypes.bathymetry}</label><br/>
+          </div>
+          <div data-dojo-attach-point="_streetMapNACheck">
+            <div id="ext-streetMapNA" data-dojo-attach-point="_streetMapNAExt" data-dojo-type="dijit/form/CheckBox"
+                 data-dojo-attach-event="onClick:onExtensionsGroupClick"></div>
+            <label for="ext-streetMapNA" id="ext-streetMapNA-label">${i18n.licenseTypes.streetMapNA}</label><br/>
+          </div>
+          <div data-dojo-attach-point="_streetMapEUCheck">
+            <div id="ext-streetMapEU" data-dojo-attach-point="_streetMapEUExt" data-dojo-type="dijit/form/CheckBox"
+                 data-dojo-attach-event="onClick:onExtensionsGroupClick"></div>
+            <label for="ext-streetMapEU" id="ext-streetMapEU-label">${i18n.licenseTypes.streetMapEU}</label><br/>
+          </div>
+          <div data-dojo-attach-point="_streetMapAPACCheck">
+            <div id="ext-streetMapAPAC" data-dojo-attach-point="_streetMapAPACExt" data-dojo-type="dijit/form/CheckBox"
+                 data-dojo-attach-event="onClick:onExtensionsGroupClick"></div>
+            <label for="ext-streetMapAPAC" id="ext-streetMapAPAC-label">${i18n.licenseTypes.streetMapAPAC}</label><br/>
+          </div>
+          <div data-dojo-attach-point="_streetMapMEACheck">
+            <div id="ext-streetMapMEA" data-dojo-attach-point="_streetMapMEAExt" data-dojo-type="dijit/form/CheckBox"
+                 data-dojo-attach-event="onClick:onExtensionsGroupClick"></div>
+            <label for="ext-streetMapMEA" id="ext-streetMapMEA-label">${i18n.licenseTypes.streetMapMEA}</label><br/>
+          </div>
+          <div data-dojo-attach-point="_streetMapLACheck">
+            <div id="ext-streetMapLA" data-dojo-attach-point="_streetMapLAExt" data-dojo-type="dijit/form/CheckBox"
+                 data-dojo-attach-event="onClick:onExtensionsGroupClick"></div>
+            <label for="ext-streetMapLA" id="ext-streetMapLA-label">${i18n.licenseTypes.streetMapLA}</label><br/>
+          </div>
+          <div data-dojo-attach-point="_streetMapJACheck">
+            <div id="ext-streetMapJA" data-dojo-attach-point="_streetMapJAExt" data-dojo-type="dijit/form/CheckBox"
+                 data-dojo-attach-event="onClick:onExtensionsGroupClick"></div>
+            <label for="ext-streetMapJA" id="ext-streetMap-label">${i18n.licenseTypes.streetMapJA}</label><br/>
+          </div>
+        </div>
+      </div>
+      <div data-dojo-attach-point="_productEsriAppsContainer" class="licenseGroup esriFloatLeading" style="display:none;">
+        <div>
+          <span id="esri-apps-expcon" data-dojo-attach-event="onClick:expconEsriApps" class="expcon">${i18n.assignLicense.contract}</span>
+          <label id="esri-apps-title">${i18n.assignLicense.esriAppsLabel}</label>
+        </div>
+        <div id="esri-apps-licenses" class="licenseGroupOpts" data-dojo-attach-point="_esriAppsLicenseContainer">
+          <!-- Esri products will be built dynamically here -->
+          <!--<div>-->
+            <!--<span id="" data-dojo-attach-event="onClick:" class="expcon">${i18n.assignLicense.contract}</span>-->
+            <!--<label for="" id="-title">group title</label>-->
+          <!--</div>-->
+        </div>
+      </div>
+      <div data-dojo-attach-point="_licenseButtons" class="esriFloatTrailing licenseButtons marginTop1">
+        <button data-dojo-attach-point="_assignBtn" class="calcite blue small"
+                data-dojo-type="dijit/form/Button" data-dojo-attach-event="onClick:onAssignLicenses">${i18n.assignLicense.assignLabel}</button>
+        <button data-dojo-attach-point="_revokeBtn" class="calcite caution small"
+                data-dojo-type="dijit/form/Button" data-dojo-attach-event="onClick:onRevokeLicenses">${i18n.assignLicense.revokeAllLabel}</button>
+        <button data-dojo-attach-point="_cancelBtn" class="calcite transparent small"
+                data-dojo-type="dijit/form/Button" data-dojo-attach-event="onClick:onCancelLicenses">${i18n.cancel}</button><br/>
+        <div data-dojo-attach-point="_exceedsWarning" class="warning marginTop1" style="display:none;">${i18n.assignLicense.exceedsWarning}</div>
+      </div>
+    </div>
+    <div id="sessionContainer" data-dojo-attach-point="_sessionContent" class="esriFloatLeading marginTop1 noPaddingContainer">
+      <div>
+        <div class="esriFloatLeading">
+          <label><strong><span data-dojo-attach-point="_sessionsForLabel"></span></strong></label>
+        </div>
+      </div>
+      <br style="clear:both;"/><br/>
+      <div data-dojo-attach-point="_sessionGridContainer" class="marginTop1"></div>
+      <div class="esriFloatTrailing marginTop1">
+        <button data-dojo-attach-point="_doneBtn" class="calcite blue small"
+                data-dojo-type="dijit/form/Button" data-dojo-attach-event="onClick:onLeaveSessions">${i18n.done}</button>
+      </div>
+    </div>
+    <div id="selectedContentContainer" data-dojo-attach-point="_selectedContent" class="esriFloatTrailing">
+      <label class="contentTitle"><strong>${i18n.selectedTitle}</strong></label>
+      <br style="clear:both;"/>
+      <div style="margin-top:0.5em;">${i18n.clickToRemoveLabel}</div>
+      <div data-dojo-attach-point="_selectedGridContainer" class="marginTop1"></div>
+      <div id="selectedButtonBar" data-dojo-attach-point="_selectedButtonBar" class="esriFloatTrailing">
+        <button data-dojo-attach-point="_configureBtn" class="calcite blue small"
+                data-dojo-type="dijit/form/Button" data-dojo-attach-event="onClick:onConfigureSelected">${i18n.configureLabel}</button>
+        <button data-dojo-attach-point="_clearBtn" class="calcite transparent small"
+                data-dojo-type="dijit/form/Button" data-dojo-attach-event="onClick:onClearSelected">${i18n.clearLabel}</button>
+      </div>
+    </div>
+  </div>
+
+</div>

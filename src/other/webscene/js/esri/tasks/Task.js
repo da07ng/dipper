@@ -1,0 +1,6 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../core/declare","dojo/_base/lang","../core/Accessor","../core/urlUtils"],function(l,h,m,n){return l(m,{declaredClass:"esri.tasks._Task",classMetadata:{properties:{parsedUrl:{readOnly:!0,dependsOn:["url"]}}},normalizeCtorArgs:function(b,e){if("string"!==typeof b)return b;var f={};b&&(f.url=b);e&&h.mixin(f,e);return f},url:null,parsedUrl:null,_parsedUrlGetter:function(){return this.url?n.urlToObject(this.url):null},requestOptions:null,normalization:!0,_useSSL:function(){var b=this.parsedUrl,
+e=/^http:/i;this.url&&this.set("url",this.url.replace(e,"https:"));b&&b.path&&(b.path=b.path.replace(e,"https:"))},_encode:function(b,e,f){var c,a,g={},d,k;for(d in b)if("declaredClass"!==d&&(c=b[d],a=typeof c,null!==c&&void 0!==c&&"function"!==a))if(h.isArray(c)){g[d]=[];k=c.length;for(a=0;a<k;a++)g[d][a]=this._encode(c[a])}else"object"===a?c.toJSON&&(a=c.toJSON(f&&f[d]),"esri.tasks.FeatureSet"===c.declaredClass&&a.spatialReference&&(a.sr=a.spatialReference,delete a.spatialReference),g[d]=e?a:JSON.stringify(a)):
+g[d]=c;return g}})});

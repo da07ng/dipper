@@ -1,0 +1,92 @@
+<div dojoType="dijit.layout.BorderContainer" region="top" style="height:100%;">  
+    <div id="addContent-main-top" class="panel panel_left" dojoType="dijit.layout.ContentPane" region="top">
+        <div id="addContent-main-top-title">
+          <div class="esriFloatTrailing" style="display:inline;">
+            <a href="JavaScript:void(0);" dojoAttachPoint="_closeBtn" title="${i18n.close}" class="panel panel_close panel_collapse"></a>
+          </div>
+  	      <div id="addContentTitle" class="esriFloatLeading panel_title" style="font-weight:bold;">${i18n.addContentPanelTitle}</div>
+          <div style="clear:both; height:1px;"></div><!-- border-bottom: #333 thin solid; -->          
+        </div>
+        <div id="addContent-main-top-input" style="padding-top:10px;">
+            <table cellpadding="0" cellspacing="0">
+                <tr class="row rowOdd row1">
+                    <td id="col1" nowrap>            
+                        <label>${i18n.findLabel}</label>
+                    </td>
+                    <td id="col2">&nbsp;
+                    </td>
+                    <td id="col3" width="100%" nowrap>            
+                        <span dojoAttachPoint="addContentSearchText" id="addContentSearchText" dojotype="dijit.form.TextBox" trim="true" style="line-height:normal;"></span>
+                    </td>
+                    <td id="col4">            
+                        <button dojotype="dijit.form.Button" type="button" class="calcite green tiny" dojoAttachPoint="addContentSearchText_go" id="addContentSearchText-go">
+                            <span>${i18n.go}</span>
+                        </button>   
+                    </td>
+                </tr>
+                <tr class="row rowEven row2">
+                    <td nowrap>
+                        <label>${i18n.inLabel}</label>
+                    </td>
+                    <td>&nbsp;
+                    </td>
+                    <td>
+                        <select dojoType="dijit.form.ComboBox" class="arrowSpaceLarge dijitComboBoxNonEditable" dojoAttachPoint="addContentSearchFrom" id="addContentSearchFrom">
+                        </select>                            
+                    </td>
+                    <td>&nbsp;
+                    </td>
+                </tr>
+                <tr id="addContentSearchURLTableRow" class="row rowOdd rowHidden" style="display:none;">
+                    <td>
+                        <label>${i18n.urlLabel}</label>
+                    </td>
+                    <td>&nbsp;
+                    </td>
+                    <td>
+                        <span dojoAttachPoint="addContentSearchURL" id="addContentSearchURL" dojotype="dijit.form.ValidationTextBox" trim="true" style="line-height:normal;" dir="ltr"></span>
+                    </td>
+                    <td>&nbsp;
+                    </td>
+                </tr>
+                <tr id="addContentWithinMapTableRow" class="row rowEven" nowrap="nowrap">
+                    <td style="padding-top:2px;">
+                      <input dojoAttachPoint="addContentWithinMapCheck" id="addContent-within-map" dojotype="dijit.form.CheckBox" checked="true" type="checkbox" />
+                    </td>
+                    <td>&nbsp;
+                    </td>
+                    <td colspan="2" valign="bottom">
+                      <label for="addContent-within-map">${i18n.withinMapArea}</label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="addContentResultCountDiv" style="padding:5px 0 0 0;font-weight:bold;"> 
+        </div>
+    </div> 
+    <!-- we make the padding with a table, otherwise dojo doesn't calculate the grid size properly -->
+    <table id="addContent-main-center-table" cellpadding="0" cellspacing="0">
+    <tr><td colspan="3" height="3"></td></tr>
+    <tr>
+        <td width="3"><div style="width:3px;"/></td>
+        <td style="border:1px solid #999;"> 
+        <div id="addContent-main-center" dojoType="dijit.layout.BorderContainer" region="center" design="headline" jsid="container" gutters="false" preventcache='true' usecache='false' cachecontent='false'>
+            <div dojotype="dijit.layout.ContentPane" region="top" style="top: 0px; left: 0px; right: 0px;">
+                <div dojoType="arcgisonline.sharing.dijit.ArcGISOnlineServicesGrid" region="center" jsid="arcGISOnlineServicesGrid" id="arcGISOnlineServicesGrid"></div>
+            </div>
+        </div>
+        </td>
+        <td width="3"><div style="width:3px;"/></td>
+    </tr>
+    </table>
+   
+    <div id="addContentClose" style="padding-top:5px;">
+    	<center> 
+    		<button dojotype="dijit.form.Button" type="button" id="addContent-close" class="calcite blue" onclick="JavaScript:arcgisonline.map.leftPanel.openLeftTOCPanel();"><span>${i18n.doneAddingLayersBtn}</span></button>
+        </center>
+    </div>
+    <div id="addContentFooter" dojoType="dijit.layout.ContentPane" region="bottom" style="height:40px; padding: 5px 5px 0 5px; display:none;"> 
+      <div id="addContentSiteFooter" class="footer" dojotype="arcgisonline.sharing.dijit.SiteFooterMap" style="white-space:normal;"></div>
+    </div>
+
+</div>

@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define("dojo/Evented dojo/Deferred ../../../core/declare ../../../config ../../../tasks/support/ProjectParameters ../../../geometry/SpatialReference ../../../geometry/Point ../../../geometry/support/scaleUtils".split(" "),function(c,h,d,k,l,m,e,n){return d(c,{mapUnitInMeters:1,spatialReference:null,constructor:function(a,b){this.spatialReference=a;this.mapUnitInMeters=n.getUnitValueForSR(this.spatialReference);this.geometryService=b||k.geometryService},toGeographic:function(a){var b=new h,f=!0,c=
+this.spatialReference;if(!this.geometryService)return b.reject("Must specify geometryService in esri/config"),b;if(!Array.isArray(a[0])||"number"===typeof a[0])a=[a],f=!1;a.forEach(function(g,b){g instanceof e||(a[b]=new e(g,c))});var d=new l({geometries:a,outSR:m.WGS84});this.geometryService.project(d).then(function(a){try{a=a.map(function(a){return[a.x,a.y]}),b.resolve(f?a:a[0])}catch(c){b.reject(c)}},function(a){b.reject(a)});return b.promise},canProject:function(){return!!this.geometryService}})});

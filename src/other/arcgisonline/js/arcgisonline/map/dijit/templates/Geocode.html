@@ -1,0 +1,24 @@
+<div dojoType="dijit.layout.BorderContainer" region="top" style="height:100%;">  
+    <div id="geocode-main" class="panel panel_left" dojoType="dijit.layout.ContentPane" region="top">
+      <div id="geocode-header" dojotype="dijit.layout.ContentPane" region="top" style="padding:5px 0 1px 5px;">
+      <div class="esriFloatTrailing" style="display:inline;">
+        <a href="JavaScript:void(0)" id="geocodeClose" title="${i18n.close}" class="panel panel_close panel_collapse"></a>
+      </div>
+        <div class="esriFloatLeading panel_title">${i18n.geocodePanelTitle}</div>
+        <div style="clear:both;height:1px;"></div>
+      </div>
+      <div dojotype="dijit.layout.ContentPane" id="geocodeMatchPane" region="right" style="clear:both; margin:3px;">
+          <div id="geocodeMatchDiv"></div>
+      </div>
+      <div id="buttonsDiv" style="padding-bottom:4px;">
+        <center> 
+          <button dojotype="dijit.form.Button" type="button" class="calcite blue" dojoAttachPoint="doneButton" dojoAttachEvent="onClick:onClose"><span>${i18n.doneGeocode}</span></button>
+        </center>
+      </div>
+    </div> 
+   
+    <div id="geocodeContentFooter" dojoType="dijit.layout.ContentPane" region="bottom" style="height:40px; padding: 0 5px 0 5px; display:none;"> 
+      <div class="footer" id="geocodeFooter" dojotype="arcgisonline.sharing.dijit.SiteFooterMap" style="white-space:normal;"></div>
+    </div>
+
+</div>

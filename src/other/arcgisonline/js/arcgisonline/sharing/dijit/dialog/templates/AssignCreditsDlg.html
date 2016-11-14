@@ -1,0 +1,26 @@
+<div>
+  <div class="${baseClass} assign-credits-dialog" data-dojo-type="dijit/Dialog" data-dojo-attach-point="_dialog">
+    <span data-dojo-attach-point="_currentCreditsLabel"></span>
+    <br><br>
+    <span data-dojo-attach-point="_setAllocationLabel"></span>
+    <br><br>
+    <span class="esriLeadingPadding05">
+      <input type="radio" id="setAllocation-${baseClass}" name="allocation"
+             data-dojo-attach-point="_setAllocationRadioBtn" data-dojo-type="dijit/form/RadioButton">
+      <label for="setAllocation-${baseClass}">${i18n.allocateCreditsSet}</label>
+      <input type="text" data-dojo-attach-point="_credits" class="creditEntry" data-dojo-type="dijit/form/NumberTextBox" data-dojo-props="trim:true">
+    </span>
+    <br><br>
+    <span class="esriLeadingPadding05">
+      <input type="radio" id="setUnlimited-${baseClass}" name="allocation"
+             data-dojo-attach-point="_setUnlimitedRadioBtn" data-dojo-type="dijit/form/RadioButton">
+      <label for="setUnlimited-${baseClass}" data-dojo-attach-point="_unlimitedCreditsLabel"></label>
+    </span>
+    <br><br>
+    <div class="esriFloatTrailing">
+      <button type="button" class="calcite secondary small" data-dojo-attach-point="_okBtn" data-dojo-type="dijit/form/Button">${i18n.assign}</button>
+      <button type="button" class="calcite transparent small" data-dojo-attach-point="_cancelBtn" data-dojo-type="dijit/form/Button">${i18n.cancel}</button>
+    </div>
+    <br><br><br>
+  </div>
+</div>

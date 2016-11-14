@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define([],function(){var d=function(b){b=b||d.ZERO;this.extent=b.slice()};d.prototype={expand:function(b){var c=b.declaredClass,a=this.extent;"esri.geometry.Extent"===c?(a[0]=Math.min(a[0],b.xmin),a[1]=Math.min(a[1],b.ymin),a[2]=Math.max(a[2],b.xmax),a[3]=Math.max(a[3],b.ymax)):"esri.geometry.Point"===c?(a[0]=Math.min(a[0],b.x),a[1]=Math.min(a[1],b.y),a[2]=Math.max(a[2],b.x),a[3]=Math.max(a[3],b.y)):4===b.length&&(a[0]=Math.min(a[0],b[0]),a[1]=Math.min(a[1],b[1]),a[2]=Math.max(a[2],b[2]),a[3]=Math.max(a[3],
+b[3]))},isFinite:function(){return this.extent.every(isFinite)},width:function(){return this.extent[2]-this.extent[0]},height:function(){return this.extent[3]-this.extent[1]}};d.positionInsideExtent=function(b,c){return b[0]>=c[0]&&b[1]>=c[1]&&b[0]<=c[2]&&b[1]<=c[3]};d.NEGATIVE_INFINITY=[Infinity,Infinity,-Infinity,-Infinity];d.ZERO=[0,0,0,0];return d});

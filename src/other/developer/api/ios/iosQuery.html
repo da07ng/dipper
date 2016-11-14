@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Query</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="../css/apiNative.css">
+    <style>
+      #map {
+        height: 425px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: url(../images/iosQuery.png) no-repeat center center;
+        background-size: contain;
+      }
+    </style>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+  </head>
+
+  <body>
+    <div class="container-fluid layoutContainer">
+      <article id="page_content" class="md-body">
+        <h1>空间查询服务</h1>
+        <h2>简介</h2>
+        <p>查询一般分为属性查询和空间查询，属性查询通过构造标准的SQL语句实现，而空间查询比较特殊，需要构建几何范围并指定空间关系。</p>
+        <p>查询条件还可以附加在图层（layer）的定义文件中，那样结果只会显示该图层数据的一个子集。</p>
+        <h2>示例</h2>
+        <div id="map"></div>
+        <h2>代码</h2>
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+// 地图及查询初始化.
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  //set map view delegate
+  self.mapView.layerDelegate = self;
+  //create and add a base layer to map
+    AGSTiledMapServiceLayer *tiledMapServiceLayer = [AGSTiledMapServiceLayer tiledMapServiceLayerWithURL:[NSURL URLWithString:kTiledMapServiceURL]];
+    [self.mapView addMapLayer:tiledMapServiceLayer withName:@"World Street Map"];
+  //create and add dynamic layer to map
+  self.dynamicLayer = [[AGSDynamicMapServiceLayer alloc] initWithURL:[NSURL URLWithString:kDynamicMapServiceURL]];
+    [self.mapView addMapLayer:self.dynamicLayer withName:@"Dynamic Layer"];
+
+  //create and add graphics layer to map
+  self.graphicsLayer = [AGSGraphicsLayer graphicsLayer];
+  [self.mapView addMapLayer:self.graphicsLayer withName:@"Graphics Layer"];
+
+    //set up query task against layer, specify the delegate
+    self.queryTask = [AGSQueryTask queryTaskWithURL:[NSURL URLWithString:kDynamicMapServiceURL]];
+    self.queryTask.delegate = self;    
+    //return all fields in query
+self.query = [AGSQuery query];
+//返回全部属性字段
+    self.query.outFields = [NSArray arrayWithObjects:@"*", nil];
+   }
+
+#pragma mark - UISearchBarDelegate
+//when the user searches
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    //设置空间查询范围和属性查询条件
+    [self.graphicsLayer removeAllGraphics];
+    AGSGeometry *rectGeometry = [AGSEnvelope envelopeWithXmin:12455000 ymin:3480000 xmax:13522000 ymax:4134000 spatialReference:self.mapView.spatialReference];
+
+    self.query.geometry = rectGeometry;
+    self.query.spatialRelationship = AGSSpatialRelationshipIntersects;
+
+    self.query.text = searchBar.text;
+    self.query.returnGeometry = YES;
+
+[self.queryTask executeWithQuery:self.query];
+[searchBar resignFirstResponder];
+}
+}
+
+          </textarea>
+        </p>
+      </article>
+    </div>
+    
+  </body>
+</html>

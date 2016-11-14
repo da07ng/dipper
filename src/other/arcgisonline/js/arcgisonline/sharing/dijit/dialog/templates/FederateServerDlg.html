@@ -1,0 +1,42 @@
+<div class="widgetContent">
+  <div class="${baseClass}" data-dojo-type="dijit/Dialog" data-dojo-attach-point="_federateServerDialog"
+       id="federate-server-dialog" title="${i18n.federateServerDialogTitle}">
+    <div data-dojo-attach-point="_federateServerDesc">${i18n.federateArcGISServer}</div><br/>
+
+    <div class="esriAlignLeading valignTop">
+      <table class="esriFloatLeading" border="0" cellpadding="0" cellspacing="0" width="98%">
+        <tbody>
+          <tr>
+            <td class="inputLabel valignTop"><label>${i18n.urlLabel}</label></td>
+            <td class="valignTop">
+              <div data-dojo-attach-point="_urlInput" data-dojo-type="dijit/form/TextBox" data-dojo-props="trim: true" style="width:100%;"></div><br/>
+              <div class="esriAlignLeading example">${i18n.urlInputPlaceHolder}</div><br/>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br style="clear:both;"/>
+    </div>
+    <div class="esriAlignLeading valignTop" style="clear:both;">
+      <table class="esriFloatLeading" border="0" cellpadding="0" cellspacing="0" width="98%">
+        <tbody>
+          <tr>
+            <td class="inputLabel valignTop"><label>${i18n.adminUrlLabel}</label></td>
+            <td class="valignTop">
+              <div data-dojo-attach-point="_adminUrlInput" data-dojo-type="dijit/form/TextBox" data-dojo-props="trim: true" style="width:100%;"></div><br/>
+              <div class="esriAlignLeading example">${i18n.adminUrlInputPlaceHolder}</div><br/>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br style="clear:both;"/>
+    </div>
+    <div data-dojo-attach-point="_credentials" class="${baseClass} credentials esriAlignLeading valignTop" style="clear:both;"></div>
+    <br style="clear:both;"/>
+    <div class="esriAlignTrailing">
+      <span style="display:none;" data-dojo-attach-point="_federatingMsgSpan">${i18n.addingServer}</span>
+      <button data-dojo-attach-point="_okBtn" data-dojo-type="dijit/form/Button" type="button" class="primary">${i18n.addServer}</button>
+      <button data-dojo-attach-point="_cancelBtn" data-dojo-type="dijit/form/Button" type="button" class="cancel">${i18n.cancel}</button>
+    </div>
+  </div>
+</div>

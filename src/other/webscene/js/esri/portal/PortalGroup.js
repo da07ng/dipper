@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../core/declare","dojo/_base/lang"],function(b,c){return b([],{declaredClass:"esri.arcgis.PortalGroup",portal:null,constructor:function(a){c.mixin(this,a);this.url=(this.portal&&this.portal.portalUrl)+"community/groups/"+this.id;this.thumbnailUrl=this.portal.portalUtil.formatUrl(this.url+"/info/"+this.thumbnail);this.modified=this.modified?new Date(this.modified):null;this.created=this.created?new Date(this.created):null},getMembers:function(){return this.portal.portalUtil.request(this.url+
+"/users")},queryItems:function(a,b){a=this.portal.portalUtil.formatQueryParams({},a,b);a.q="group:"+this.id+(a.q?" "+a.q:"");return this.portal.queryItems(a)}})});

@@ -1,0 +1,231 @@
+<div data-dojo-type="dijit.layout.ContentPane" data-dojo-attach-point="containerNode" class="orgDijit">
+  <div id="myOrgView" data-dojo-attach-point="_myOrgView">
+    <div id="newAccountSplash" style="width:780px; clear:both; margin-top:2em; padding-left:10px; display:none;" class="newAccount"></div>
+
+    <div style="width:780px; clear:both; margin-top:2em; margin-bottom: 1em; padding-left:10px;" class="editOnly">
+      <button id="upperSave" data-dojo-attach-event="onClick:saveEdit" data-dojo-type="dijit.form.Button" type="button" class="editOnly calcite blue">${i18n.saveLabel}</button>
+      <button data-dojo-attach-event="onClick:cancelEdit" data-dojo-type="dijit.form.Button" type="button" class="editOnly calcite transparent">${i18n.cancel}</button>
+    </div>
+
+    <div style="clear:both;margin-top:2em;margin-left:-1em;margin-right:-1em;display:none;" id="organization-control-div">
+      <button id="organization-edit-button" data-dojo-attach-event="onClick:startEdit" data-dojo-type="dijit.form.Button" type="button" data-dojo-props="iconClass:'esriEditGroupIcon'" class="readOnly calcite transparent">${i18n.editLabel}</button>
+      <span id="organization-adduser-span"><button id="organization-adduser-btn" data-dojo-attach-event="onClick:inviteUsers" data-dojo-type="dijit.form.Button" type="button" data-dojo-props="iconClass:'esriJoinGroupIcon'" class="readOnly calcite transparent">${i18n.inviteUsersLabel}</button></span>
+      <button id="organization-view-status-button" data-dojo-attach-event="onClick:viewStatus" data-dojo-type="dijit.form.Button" type="button" data-dojo-props="iconClass:'esriViewStatusIcon'" class="calcite transparent">${i18n.subscriptionStatus.viewStatus}</button>
+      <button id="organization-view-health-button" data-dojo-attach-event="onClick:viewHealth" data-dojo-type="dijit.form.Button" type="button" data-dojo-props="iconClass:'esriViewHealthIcon'" class="calcite transparent">${i18n.viewHealth}</button>
+      <span id="organization-manage-licenses-span"><button id="organization-manage-licenses-button" data-dojo-attach-event="onClick:manageLicenses" data-dojo-type="dijit.form.Button" type="button" data-dojo-props="iconClass:'esriManageLicensesIcon'" class="calcite transparent">${i18n.manageLicensesLabel}</button></span>
+    </div>
+
+    <div class="esriFloatLeading editOnly esriLeadingMargin1" style="width:850px; margin-bottom:1em; clear:both;">
+
+      <div id="editTabs" style="width:100%; height:100%;"></div>
+
+    </div>
+
+    <div style="width:780px; clear:both; padding-left:10px;" class="editOnly">
+      <button id="lowerSave" data-dojo-attach-event="onClick:saveEdit" data-dojo-type="dijit.form.Button" type="button" class="editOnly calcite blue">${i18n.saveLabel}</button>
+      <button data-dojo-attach-event="onClick:cancelEdit" data-dojo-type="dijit.form.Button" type="button" class="editOnly calcite transparent">${i18n.cancel}</button>
+    </div>
+
+    <div class="esriFloatLeading readOnly orgTable orgTableLrg" class="esriTrailingMargin2">
+      <span class="section">${i18n.membersLabel}</span><br/>
+      <div data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region:top" class="borderedContent" style="width:100%;">
+        <div id="organizationUsersToolbar" data-dojo-type="dijit.Toolbar" data-dojo-attach-point="_userGridToolbar">
+          ${i18n.viewingLabel} <div data-dojo-attach-point="_memberView" data-dojo-type="arcgisonline.sharing.dijit.ComboBox" style="display:inline-block;zoom:1;*display:inline;"></div>
+          <span class="esriFloatTrailing">
+            <input data-dojo-attach-point="_userSearchText" data-dojo-type="dijit.form.TextBox" data-dojo-attach-event="onKeyPress:onUserSearchKeyPress" class="userSearchText currentMembers" type="text" data-dojo-props="trim:true" value=""/>
+            <button data-dojo-attach-event="onclick:onUserSearchClick" style="margin:0; padding:0; border:0; background-color:transparent;" id="usersearch-submit" alt="" title="" class="currentMembers" data-dojo-attach-point="_userSearchButton">&nbsp;&nbsp;&nbsp;&nbsp;</button>
+          </span>
+        </div>
+      </div>
+      <div data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="design:'headline',gutters:false,preventcache:true,usecache:false,cachecontent:false,region:'center'" class="borderedContent currentMembers" style="width:100%; height:410px;">
+        <div id="userGridContentPane" data-dojo-attach-point="_userGridContentPane" data-dojo-type="dijit.layout.ContentPane" region="center" style="width:100%; height:100%;"></div>
+      </div>
+      <div data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="design:'headline',gutters:false,preventcache:true,usecache:false,cachecontent:false,region:'center'" class="borderedContent pendingMembers" style="width:100%; height:410px; display:none;">
+        <div id="pendingGridContentPane" data-dojo-attach-point="_pendingGridContentPane" data-dojo-type="dijit.layout.ContentPane" region="center" style="width:100%; height:100%;"></div>
+      </div>
+      <div data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region:'top'" class="userGridFooter">
+        <table style="width:100%; border:0;">
+          <tbody><tr>
+          <td style="width:560px;" class="esriTdAlignLeading">
+            <span>
+              <a data-dojo-attach-event="onclick:firstPage"><img data-dojo-attach-point="_firstButton" style="vertical-align:middle;"></a>
+              <a data-dojo-attach-event="onclick:prevPage"><img data-dojo-attach-point="_prevButton"  style="vertical-align:middle;"></a>
+              ${i18n.pageLabel}
+              <input data-dojo-type="dijit.form.NumberTextBox" data-dojo-attach-point="_currentUserPage" style="width:25px;" data-dojo-attach-event="onKeyPress:onChangeUserPage"/>
+              ${i18n.ofLabel} <span data-dojo-attach-point="_userPages">1</span>
+
+              <a data-dojo-attach-event="onclick:nextPage"><img data-dojo-attach-point="_nextButton" style="vertical-align:middle;"></a>
+              <a data-dojo-attach-event="onclick:lastPage"><img data-dojo-attach-point="_lastButton" style="vertical-align:middle;"></a>
+
+              <input data-dojo-type="arcgisonline.sharing.dijit.ComboBox" data-dojo-attach-point="_userPageComboBox" data-dojo-attach-event="onKeyPress:onChangeUserPageKeyPress,onChange:onChangeUserPageChange" data-dojo-props="searchAttr:'page'" value="1" style="width:45px;display:inline-block;zoom:1; margin-left:10px; margin-bottom:0;*display:inline;"/>
+            </span>
+          </td>
+          <td style="width:200px" class="esriAlignTrailing">
+            <span data-dojo-attach-point="_viewingLabel">&nbsp;</span>
+          </td>
+          </tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="esriFloatTrailing readOnly orgTableSml">
+      <div data-dojo-attach-point="_subscriptionStatus" style="display:none;">
+          <span class="section">${i18n.subscriptionStatus.title}</span><br/>
+          <div data-dojo-attach-point="_subscriptionStatusLinks" style="width:auto;" class="esriItemLinks orgPageSubStatus">
+              <span data-dojo-attach-point="_statusMessage"></span><br/>
+              <span data-dojo-attach-point="_subscriptionExpires">
+                <span data-dojo-attach-point="_subscriptionExpiresDate"></span>
+                <div style="display:none;" data-dojo-attach-point="_upgradeSubscriptionButton" data-dojo-attach-event="onClick:onUpgradeSubscription" data-dojo-type="dijit.form.Button" class="calcite transparent">${i18n.upgradeSubscriptionLabel}</div><!--data-dojo-props="iconClass:'esriUpgradeSubscriptionIcon'" -->
+                <div style="display:none;" data-dojo-attach-point="_manageSubscriptionButton" data-dojo-attach-event="onClick:onManageSubscription" data-dojo-type="dijit.form.Button" class="calcite transparent">${i18n.manageSubscriptionLabel}</div><!--data-dojo-props="iconClass:'esriManageSubscriptionIcon'"-->
+              </span><br/>
+              <span data-dojo-attach-point="_subscriptionId"></span>
+              <span style="color:red;display:none;" data-dojo-attach-point="_subscriptionState"></span>
+              <!--<a  href="status.html">${i18n.subscriptionStatus.viewStatus}</a>-->
+          </div>
+      </div>
+
+      <div data-dojo-attach-point="_memberStatus" style="display:none;">
+        <span data-dojo-attach-point="_memberStatusTitle" class="section"></span>
+        <br/>
+        <div style="width:auto;">
+          <table>
+            <tbody>
+              <tr>
+                <td data-dojo-attach-point="_memberStatusCurrTitle"></td>
+                <td data-dojo-attach-point="_memberStatusCurrCount"></td>
+              </tr>
+              <tr>
+                <td data-dojo-attach-point="_memberStatusMaxTitle"></td>
+                <td data-dojo-attach-point="_memberStatusMaxCount"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <span class="section">${i18n.findLinks.title}</span>
+      <div data-dojo-attach-point="_organizationContentLinks"></div>
+
+      <div id="organizationFeaturedGroups" style="display:none;">
+        <br/>
+        <span class="section">${i18n.featuredGroupsLabel}</span>
+        <div data-dojo-attach-point="_organizationFeaturedGroupsLinks"></div>
+      </div>
+
+      <br/>
+
+    </div>
+
+    <div style="clear: both;"></div>
+
+    <div id="group-thumbnail-dialog" class="thumbnailDialog dijitDialog">
+      <div id="group-thumbnail-header">
+        <div style="background:none;padding-top:2px;" class="dijitDialogTitle dijitDialogTitleBar">${i18n.uploadThumbnail}</div>
+        <div id="group-thumbnail-close" title="${i18n.close}" class="dijitDialogCloseIcon"></div>
+      </div>
+      <div id="group-thumbnail-content">
+        <p><span><label>${i18n.specifyThumbnail}</label></span></p>
+        <div>
+          <span style="margin-top:6px;"><label for="thumbnail">${i18n.thumbnailImage} </label></span>
+          <input type="hidden" name="MAX_FILE_SIZE" value="1024000">
+          <form id="thumbnail" data-dojo-attach-point="_thumbnailForm" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" size="44" data-dojo-attach-point="_thumbnailPath">
+            <input type="hidden" id="key" name="key" value="">
+            <input type="hidden" name="text" value="">
+            <input type="hidden" name="f" value="json">
+          </form>
+        </div>
+        <p style="margin-top: 1.5em;"><span>${i18n.thumbnailReminder}</span></p>
+        <div style="margin-top: 1.5em;">
+          <button id="group-thumbnail-cancel" class="esriFloatTrailing jevent calcite transparent" data-dojo-type="dijit.form.Button">${i18n.cancel}</button>
+          <button id="group-thumbnail-ok" class="esriFloatTrailing jevent calcite primary" data-dojo-type="dijit.form.Button">${i18n.ok}</button>
+        </div>
+      </div>
+
+      <div style="clear:both; width:100%;"></div>
+
+    </div>
+
+    <div id="banner-thumbnail-dialog" class="thumbnailDialog dijitDialog">
+        <div id="banner-thumbnail-header">
+          <div style="background:none;padding-top:2px;" class="dijitDialogTitle dijitDialogTitleBar">${i18n.uploadBanner}</div>
+          <div id="banner-thumbnail-close" title="${i18n.close}" class="dijitDialogCloseIcon"></div>
+        </div>
+        <div id="banner-thumbnail-content">
+          <p><span><label>${i18n.specifyBanner}</label></span></p>
+          <div>
+            <span style="margin-top:6px;"><label for="bannerThumbnail">${i18n.thumbnailImage} </label></span>
+            <input type="hidden" name="MAX_FILE_SIZE" value="1024000">
+            <form id="bannerThumbnail" data-dojo-attach-point="_bannerThumbnailForm" method="post" enctype="multipart/form-data">
+              <input type="file" name="file" size="44" data-dojo-attach-point="_bannerThumbnailPath">
+              <input type="hidden" id="banner-key" name="key" value="">
+              <input type="hidden" name="text" value="">
+              <input type="hidden" name="f" value="json">
+            </form>
+          </div>
+          <p style="margin-top: 1.5em;"><span>${i18n.bannerReminder}</span></p>
+          <div style="margin-top: 1.5em;">
+            <button id="banner-thumbnail-cancel" class="esriFloatTrailing jevent calcite transparent" data-dojo-type="dijit.form.Button">${i18n.cancel}</button>
+            <button id="banner-thumbnail-ok" class="esriFloatTrailing jevent calcite primary" data-dojo-type="dijit.form.Button">${i18n.ok}</button>
+          </div>
+        </div>
+
+        <div style="clear:both; width:100%;"></div>
+
+    </div>
+
+    <div id="bg-thumbnail-dialog" class="thumbnailDialog dijitDialog">
+        <div id="bg-thumbnail-header">
+          <div style="background:none;padding-top:2px;" class="dijitDialogTitle dijitDialogTitleBar">${i18n.uploadBackground}</div>
+          <div id="bg-thumbnail-close" title="${i18n.close}" class="dijitDialogCloseIcon"></div>
+        </div>
+        <div id="bg-thumbnail-content">
+          <p><span><label>${i18n.specifyBackground}</label></span></p>
+          <div>
+            <span style="margin-top:6px;"><label for="bgThumbnail">${i18n.thumbnailImage} </label></span>
+            <input type="hidden" name="MAX_FILE_SIZE" value="1024000">
+            <form id="bgThumbnail" data-dojo-attach-point="_bgThumbnailForm" method="post" enctype="multipart/form-data">
+              <input type="file" name="file" size="44" data-dojo-attach-point="_bgThumbnailPath">
+              <input type="hidden" id="bg-key" name="key" value="">
+              <input type="hidden" name="text" value="">
+              <input type="hidden" name="f" value="json">
+            </form>
+          </div>
+          <p style="margin-top: 1.5em;"><span>${i18n.backgroundReminder}</span></p>
+          <div style="margin-top: 1.5em;">
+            <button id="bg-thumbnail-cancel" class="esriFloatTrailing jevent calcite transparent" data-dojo-type="dijit.form.Button">${i18n.cancel}</button>
+            <button id="bg-thumbnail-ok" class="esriFloatTrailing jevent calcite primary" data-dojo-type="dijit.form.Button">${i18n.ok}</button>
+          </div>
+        </div>
+
+        <div style="clear:both; width:100%;"></div>
+
+    </div>
+
+    <div id="pendingActionMenu" class="actionMenu" data-dojo-type="dijit.Menu" data-dojo-attach-point="_pendingActionMenu" style="display:none;">
+      <div id="pendingActionMenu-approve" class="actionMenuItem" data-dojo-type="dijit.MenuItem" data-dojo-attach-point="_pendingActionApprove" style="display:none;">${i18n.formatters.approveInvite}</div>
+      <div id="pendingActionMenu-resend" class="actionMenuItem" data-dojo-type="dijit.MenuItem" data-dojo-attach-point="_pendingActionResend" style="display:none;">${i18n.formatters.resendInvite}</div>
+      <div id="pendingActionMenu-remove" class="actionMenuItem" data-dojo-type="dijit.MenuItem" data-dojo-attach-point="_pendingActionRemove">${i18n.formatters.removeInvite}</div>
+    </div>
+
+    <div id="userActionMenu" class="actionMenu" data-dojo-type="dijit.Menu" data-dojo-attach-point="_userActionMenu" style="display:none;">
+      <div id="userActionMenu-items" class="actionMenuItem" data-dojo-type="dijit.MenuItem" data-dojo-attach-point="_userActionItems">${i18n.formatters.manageItems}</div>
+      <div id="userActionMenu-budget" class="actionMenuItem" data-dojo-type="dijit.MenuItem" data-dojo-attach-point="_userActionBudget" style="display:none;">${i18n.formatters.manageCredits}</div>
+      <div id="userActionMenu-groups" class="actionMenuItem" data-dojo-type="dijit.MenuItem" data-dojo-attach-point="_userActionGroups">${i18n.formatters.viewGroups}</div>
+      <div id="userActionMenu-profile" class="actionMenuItem" data-dojo-type="dijit.MenuItem" data-dojo-attach-point="_userActionProfile">${i18n.formatters.viewProfile}</div>
+      <div id="userActionMenu-expire" class="actionMenuItem" data-dojo-type="dijit.MenuItem" data-dojo-attach-point="_userActionExpire" style="display:none;">${i18n.formatters.expirePassword}</div>
+      <div id="userActionMenu-reset" class="actionMenuItem" data-dojo-type="dijit.MenuItem" data-dojo-attach-point="_userActionReset" style="display:none;">${i18n.formatters.resetPassword}</div>
+      <div id="userActionMenu-disablemfa" class="actionMenuItem" data-dojo-type="dijit.MenuItem" data-dojo-attach-point="_userActionMFA" style="display:none;">${i18n.formatters.disableMultiFactor}</div>
+      <div id="userActionMenu-enableesri" class="actionMenuItem" data-dojo-type="dijit.MenuItem" data-dojo-attach-point="_userActionEnableEsri" style="display:none;">${i18n.formatters.enableEsri}</div>
+      <div id="userActionMenu-disableesri" class="actionMenuItem" data-dojo-type="dijit.MenuItem" data-dojo-attach-point="_userActionDisableEsri" style="display:none;">${i18n.formatters.disableEsri}</div>
+      <div id="userActionMenu-enable" class="actionMenuItem" data-dojo-type="dijit.MenuItem" data-dojo-attach-point="_userActionEnable" style="display:none;">${i18n.formatters.enableUser}</div>
+      <div id="userActionMenu-suspend" class="actionMenuItem" data-dojo-type="dijit.MenuItem" data-dojo-attach-point="_userActionSuspend" style="display:none;">${i18n.formatters.suspendUser}</div>
+      <div id="userActionMenu-delete" class="actionMenuItem" data-dojo-type="dijit.MenuItem" data-dojo-attach-point="_userActionDelete" style="display:none;">${i18n.formatters.deleteUser}</div>
+    </div>
+  </div>
+  <div id="manageLicensesView" data-dojo-attach-point="_manageLicensesView" style="clear:both;margin-top:2em;margin-bottom:1em;display:none;">
+    <!-- manage licenses UI will get created here -->
+  </div>
+
+  <input data-dojo-attach-point="_organizationIdTextBox" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+</div>

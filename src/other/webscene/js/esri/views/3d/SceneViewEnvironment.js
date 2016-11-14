@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../../core/JSONSupport","./SceneViewLighting","./SceneViewAtmosphere"],function(e,c,f){var d=e.createSubclass({declaredClass:"esri.views.3d.SceneViewEnvironment",classMetadata:{properties:{lighting:{type:c},atmosphere:{type:f}},reader:{exclude:["atmosphere"],add:["lighting"]}},getDefaults:function(a){var b={};a.lighting||(b.lighting={});a.atmosphere||(b.atmosphere={});return b},_lightingReader:function(a){return null==a?a:c.fromJSON(a)},clone:function(){return new d({lighting:this.lighting?
+this.lighting.clone():null,atmosphere:this.atmosphere.clone()})},toJSON:function(){var a={};this.lighting&&(a.lighting=this.lighting.toJSON());return a}});return d});

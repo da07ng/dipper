@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>RenderPolygon</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="../css/apiNative.css">
+    <style>
+        #map {
+            height: 700px;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background: url(../images/iosRenderPolygen.png) no-repeat center center;
+            background-size: contain;
+        }
+    </style>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+</head>
+
+<body>
+<div class="container-fluid layoutContainer">
+    <article id="page_content" class="md-body">
+        <h1>分级渲染服务-面</h1>
+
+        <h2>简介</h2>
+
+        <p>通过ClassBreakRenderer接口实现面要素的分级渲染，分级渲染器定义了一组符号和数值属性值之间的映射，其中ClassBreak是最基本的单元，需要指定该分级区间的最小、最大值和符合样式。</p>
+
+        <h2>示例</h2>
+
+        <div id="map"></div>
+
+        <h2>代码</h2>
+
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+//create the renderer with a default simple marker symbol  
+//and an attribute field.  
+AGSClassBreaksRenderer *cityRenderer = [[[AGSClassBreaksRenderer alloc] init] autorelease];  
+cityRenderer.field = @"POP1990";  
+cityRenderer.minValue = DBL_MIN;      
+
+//create three AGSClassBreak objects, one each for  
+//low, medium and high populations and the appropriate  
+//symbol (for clarity, the symbol creation has been omitted)  
+AGSClassBreak* lowClassBreak = [AGSClassBreak classBreakInfoWithLabel:@"Low" description:@"" maxValue:50000 symbol:lowMarkerSymbol];    
+AGSClassBreak* mediumClassBreak =[AGSClassBreak classBreakInfoWithLabel:@"Medium" description:@"" maxValue:250000 symbol:mediumMarkerSymbol];    
+AGSClassBreak* highClassBreak = [AGSClassBreak classBreakInfoWithLabel:@"High" description:@"" maxValue:DBL_MAX symbol:highMarkerSymbol];    
+
+//add the AGSClassBreak objects to the renderer   
+NSMutableArray* classBreaks = [NSMutableArray array];
+[classBreaks addObject:lowClassBreak];   
+[classBreaks addObject:mediumClassBreak];
+[classBreaks addObject:highClassBreak];        
+cityRenderer.classBreaks = classBreaks;
+
+//add the renderer to the graphics layer  
+citiesGraphicsLayer.renderer = cityRenderer;
+
+
+          </textarea>
+        </p>
+    </article>
+</div>
+</body>
+</html>

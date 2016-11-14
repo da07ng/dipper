@@ -1,0 +1,24 @@
+<div class="widgetContent" >
+  <div dojotype="dijit.Dialog" dojoAttachPoint="_tagsDialog" dojoAttachPoint="onHide:clear" title="${i18n.tagDlgTitle}" class="tagsForm">
+    <div dojoAttachPoint="_tagsErrorDiv"></div>
+	<div dojoAttachPoint="_contentTagsDiv" style="display:block;">
+		<label >${i18n.selectTag}</label>
+		<br />
+		<br />
+	    <select dojoAttachPoint="_tagsSelect" dojoType="dijit.form.MultiSelect" style="width:100%;height:150px;"></select>
+		<br />
+		<div dojoAttachPoint="_cancelBtn" dojotype="dijit.form.Button" class="cancel" dojoAttachEvent="onClick:_handleCancelClick" style="float:right;">${i18n.cancel}</div>
+		<div dojoAttachPoint="_submitBtn" dojotype="dijit.form.Button" class="primary" type="submit" dojoAttachEvent="onClick:getSelectedTags" style="float:right;">${i18n.useSelected}</div>  
+		<br />
+		<br />
+	</div>
+	<div dojoAttachPoint="_contentNoTagsDiv" style="display:none;">
+		<label>${i18n.tagsNotAvailable}</label>
+		<br />
+		<br />
+		<div id="button_tags-ok" dojoAttachPoint="_okBtn" dojotype="dijit.form.Button" class="primary" dojoAttachEvent="onClick:_handleCancelClick" style="float:right;">${i18n.ok}</div>
+		<br/>
+		<br/>
+	</div>
+  </div>
+</div>

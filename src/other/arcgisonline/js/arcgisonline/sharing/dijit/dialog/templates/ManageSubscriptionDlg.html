@@ -1,0 +1,40 @@
+<div class="widgetContent" >
+  <div data-dojo-type="dijit.Dialog" id="manage-subscription-dialog" data-dojo-attach-point="_manageSubscriptionDlg" title="${i18n.manageSubscriptionTitle}" execute="" style="width:400px;">
+    <div data-dojo-attach-point="_upgradeSubscriptionDiv" style="display:none;">
+      <div data-dojo-attach-point="_inUSDiv"></div><br/>
+      <div data-dojo-attach-point="_outsideUSDiv"></div>
+    </div>
+    <div data-dojo-attach-point="_manageSubscriptionDiv" style="display:none;">
+      <div data-dojo-attach-point="_manageSubscriptionContainer">
+        <p>${i18n.manageSubscriptionDesc}</p>
+        <input data-dojo-type="dijit.form.RadioButton" type="radio" name="manageOption" data-dojo-attach-point="_upgradeRadioBtn" id="upgrade-radio-button" value="upgrade" checked="true">
+        <span><label for="upgrade-radio-button"><b>${i18n.upgradeOption}</b></label></span><br/>
+        <div class="esriLeadingMargin15">${i18n.upgradeDesc}</div><br/>
+        <div data-dojo-attach-point="_convertOptionDiv">
+          <input data-dojo-type="dijit.form.RadioButton" type="radio" name="manageOption" data-dojo-attach-point="_convertRadioBtn" id="convert-radio-button" value="convert">
+          <span><label for="convert-radio-button"><b>${i18n.convertOption}</b></label></span><br/>
+          <div class="esriLeadingMargin15">${i18n.convertDesc}</div>
+        </div>
+      </div>
+      <div data-dojo-attach-point="_evalSubscriptionContainer" style="display: none;">
+        <p>${i18n.upgradeOption} ${i18n.upgradeDesc}</p>
+        <div data-dojo-attach-point="_purchaseInUSDiv"></div><br/>
+        <div data-dojo-attach-point="_purchaseOutsideUSDiv"></div>
+      </div>
+    </div>
+    <div data-dojo-attach-point="_convertSubscriptionDiv" style="display:none;">
+      <p>${i18n.convertSubscriptionDesc}</p>
+      <p><b>${i18n.deleteHostedMsg}</b><br/>${i18n.notAvailableMsg}</p>
+      <div><b>${i18n.importantMsg}</b><div data-dojo-attach-point="_importantMsgDiv"></div></div>
+      <p><b>${i18n.intendToUpgradeMsg}</b></p>
+    </div>
+    <br/>
+    <div data-dojo-attach-point="_buttonDiv" class="esriFloatTrailing">
+      <button data-dojo-attach-point="_okBtn" data-dojo-attach-event="onClick:onCancel" class="jevent cancel" type="button" data-dojo-type="dijit.form.Button">${i18n.ok}</button>
+      <button data-dojo-attach-point="_nextBtn" data-dojo-attach-event="onClick:onNext" class="jevent primary" type="button" data-dojo-type="dijit.form.Button">${i18n.next}</button>
+      <button data-dojo-attach-point="_convertBtn" data-dojo-attach-event="onClick:onConvert" class="jevent primary" type="button" data-dojo-type="dijit.form.Button">${i18n.convertLabel}</button>
+      <button data-dojo-attach-point="_cancelBtn" data-dojo-attach-event="onClick:onCancel" class="jevent cancel" type="button" data-dojo-type="dijit.form.Button">${i18n.cancel}</button>
+    </div>
+    <br style="clear:both;"/>
+  </div>
+</div>

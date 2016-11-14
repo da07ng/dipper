@@ -1,0 +1,6 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../../core/declare","dojo/_base/array","../../core/Accessor"],function(c,d,e){var f=0;return c(e,{constructor:function(a){this.id="vector-surface-"+f++;this.vectors=[];this.adding=[];this.removing=[];this.updating=[]},visible:!0,_visibleSetter:function(a,b){a!==b&&(this._visibleChanged=!0,this.requestDraw());return a},requestDraw:function(){this._requestDrawFlag||(this._requestDrawFlag=!0,this.nestLevel&&this.stage.requestDraw(this))},requestUpdate:function(){this._requestUpdateFlag||(this._requestUpdateFlag=
+!0,this.nestLevel&&this.stage.requestUpdate(this))},requestVectorDraw:function(a){this.updating.push(a);this.requestDraw()},addVector:function(a){return this.addVectorAt(a,this.vectors.length)},addVectorAt:function(a,b){b=Math.min(this.get("numChildren"),b);this.vectors.splice(b,0,a);a.set({parent:this,view:this.view});this.adding.push(a);return a},removeVector:function(a){if(!this.vectors)return a;var b=d.indexOf(this.vectors,a);-1<b&&(a=this.vectors.splice(b,1)[0],a.set({parent:null,view:null}));
+return a}})});

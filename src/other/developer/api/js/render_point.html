@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>pointRender</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="css/js.css">
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+</head>
+
+<body>
+<div class="container-fluid layoutContainer">
+    <article id="page_content" class="md-body">
+        <h1>分级渲染服务-点</h1>
+
+        <h2>简介</h2>
+
+        <p>
+            分级渲染器（ClassBreaksRenderer）允许为特定属性值范围内的一组图形指定符号，因此在使用的时候，必须为分级渲染器设置一个数值型字段，为属性值不同的范围，分别设置渲染符号渲染器会根据该字段所在的范围的值进行分级渲染。</p>
+
+        <p>通过点的渲染方式进行结果展示。</p>
+
+        <p>本示例通过设定基于所述特征数据值的大小比例来创建符号。</p>
+
+        <h2>示例</h2>
+
+        <div id="map"></div>
+        <h2>代码</h2>
+
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;
+    &lt;meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/&gt;
+    &lt;title&gt;Simple Map&lt;/title&gt;
+    &lt;link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css"&gt;
+    &lt;style&gt;
+      html, body, #map {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #FFF;
+        overflow: hidden;
+        font-family: "Trebuchet MS";
+      }
+    &lt;/style&gt;
+    &lt;script src="http://js.arcgis.com/3.13/"&gt;&lt;/script&gt;
+    &lt;script&gt;
+      var map;
+      require([
+        "esri/map", "esri/layers/FeatureLayer", "esri/InfoTemplate",
+        "dojo/domReady!"
+      ], function(
+        Map, FeatureLayer, InfoTemplate
+      ){
+
+        map = new Map("map", {
+          basemap:"streets",
+          center: [-82.441, 35.612],
+          zoom: 17
+        });
+        map.on("load", function() {
+          map.disableScrollWheelZoom();
+        });
+
+        var template = new InfoTemplate("${Cmn_Name}", "<i>${Sci_Name}</i><br><br>The ${Cmn_Name} is <b>${Height}
+              feet</b> tall with a total ground area of <b>${GroundArea} square feet</b>.  This tree sequestors <b>${C_Seq}
+              pounds</b> of carbon per year.");
+
+        var layer = new FeatureLayer("http://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/Warren_College_Trees/FeatureServer/0", {
+          mode: FeatureLayer.MODE_SNAPSHOT,
+          orderByFields: [ "GroundArea DESC" ],
+          outFields: ["Cmn_Name", "GroundArea", "Sci_Name", "Height", "C_Seq"],
+          infoTemplate: template
+        });
+
+        var sizeInfo = {
+          field:"GroundArea",
+          valueUnit:"feet",
+          valueRepresentation:"area"
+        };
+        
+        layer.on("load", function() {
+          layer.renderer.setSizeInfo(sizeInfo);
+          layer.copyright = "Warren Wilson Center Campus Tree Study";
+        });
+        
+        map.addLayers([layer]);
+      });
+    &lt;/script&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;div id="map"&gt;&lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+          </textarea>
+        </p>
+    </article>
+</div>
+<script src="http://js.arcgis.com/3.13/"></script>
+<script>
+    var map;
+    require([
+        "esri/map", "esri/layers/FeatureLayer", "esri/InfoTemplate",
+        "dojo/domReady!"
+    ], function (Map, FeatureLayer, InfoTemplate) {
+
+        map = new Map("map", {
+            basemap: "streets",
+            center: [-82.441, 35.612],
+            zoom: 17
+        });
+        map.on("load", function () {
+            map.disableScrollWheelZoom();
+        });
+
+        var template = new InfoTemplate("${Cmn_Name}", "<i>${Sci_Name}</i><br><br>The ${Cmn_Name} is <b>${Height} feet</b> tall with a total ground area of <b>${GroundArea} square feet</b>.  This tree sequestors <b>${C_Seq} pounds</b> of carbon per year.");
+
+        var layer = new FeatureLayer("http://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/Warren_College_Trees/FeatureServer/0", {
+            mode: FeatureLayer.MODE_SNAPSHOT,
+            orderByFields: ["GroundArea DESC"],
+            outFields: ["Cmn_Name", "GroundArea", "Sci_Name", "Height", "C_Seq"],
+            infoTemplate: template
+        });
+
+        var sizeInfo = {
+            field: "GroundArea",
+            valueUnit: "feet",
+            valueRepresentation: "area"
+        };
+
+        layer.on("load", function () {
+            layer.renderer.setSizeInfo(sizeInfo);
+            layer.copyright = "Warren Wilson Center Campus Tree Study";
+        });
+
+        map.addLayers([layer]);
+    });
+</script>
+</body>
+</html>

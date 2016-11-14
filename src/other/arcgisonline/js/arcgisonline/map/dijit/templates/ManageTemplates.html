@@ -1,0 +1,88 @@
+<div dojoType="dijit.layout.BorderContainer" region="top">
+  <div id="manageTemplatesContentHeader" class="panel panel_left" dojoType="dijit.layout.ContentPane" region="top">
+    <div class="esriFloatTrailing" style="padding:0;">
+      <A href="JavaScript:void(0);" dojoAttachPoint="_closeBtn" title="${i18n.close}" class="panel panel_close panel_collapse">
+        <img src="images/close.gif" border="0"/>
+      </A>
+    </div>
+    <div id="manageTemplatesTitle" class="esriFloatLeading" style="font-weight:bold;">
+      ${i18n.manageTemplatesPanelTitle}
+    </div>
+    <div style="clear:both; border-bottom: #333 thin solid; height:1px;">
+    </div>
+  </div>
+  <div id="manageTemplatesContentPane" dojoType="dijit.layout.ContentPane" region="center" style="overflow-x:hidden;overflow-y:auto;position:relative;" class="scrollPane">
+    <div id="manageTemplates-main">
+      <div id="manageTemplates-layer">
+        <table cellpadding="0" cellspacing="0">
+          <tbody>
+            <tr>
+              <td id="mgTmplCol1" nowrap>
+                <label>
+                  ${i18n.layerLabel}
+                </label>
+              </td>
+              <td id="mgTmplCol2">
+                &nbsp;
+              </td>
+              <td id="mgTmplCol3">
+                <select dojoType="dijit.form.ComboBox" dojoAttachPoint="manageTemplatesLayer" id="manageTemplatesLayer" class="dijitComboBoxNonEditable">
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="manageTemplates-tree" style="overflow-x:hidden;overflow-y:auto;">
+      </div>
+    </div>
+    <div id="manageTemplates-buttonsDiv">
+      <center>
+        <button dojotype="dijit.form.Button" type="button" class="calcite light" dojoAttachPoint="newFeatureType" dojoAttachEvent="onClick:_addNewFeatureType" style="display:none;">
+          <span>${i18n.addNewTypeBtn}</span>
+        </button>
+        <button dojotype="dijit.form.Button" type="button" class="calcite blue" dojoAttachPoint="saveButton" dojoAttachEvent="onClick:_updateFeatureService">
+          <span>${i18n.saveChangesBtn}</span>
+        </button>
+      </center>
+    </div>
+  </div>
+  <div id="manageTemplatesContentFooter" dojoType="dijit.layout.ContentPane" region="bottom" style="height:40px; padding: 0 5px 0 5px; display:none;">
+    <div class="footer" id="manageTemplatesSiteFooter" dojotype="arcgisonline.sharing.dijit.SiteFooterMap" style="white-space:normal;">
+    </div>
+  </div>
+  <div id="typeMenu" dojoType="dijit.Menu" style="display: none;">
+    <div id="typeMenu.moveUp" dojoType="dijit.MenuItem" iconclass="iconMoveUp">
+      ${i18n.moveUp}
+    </div>
+    <div id="typeMenu.moveDown" dojoType="dijit.MenuItem" iconclass="iconMoveDown">
+      ${i18n.moveDown}
+    </div>
+    <div id="typeMenu.remove" dojoType="dijit.MenuItem" iconclass="iconTemplateRemove">
+      ${i18n.remove}
+    </div>
+    <div id="typeMenu.newTemplate" dojoType="dijit.MenuItem" iconclass="iconTemplateNew">
+      ${i18n.newTemplate}
+    </div>
+     <div id="typeMenu.properties" dojoType="dijit.MenuItem" iconclass="iconTemplateProperties">
+      ${i18n.properties}
+    </div>
+  </div>
+  <div id="templateMenu" dojoType="dijit.Menu" style="display: none;">
+    <div id="templateMenu.moveUp" dojoType="dijit.MenuItem" iconclass="iconMoveUp">
+      ${i18n.moveUp}
+    </div>
+    <div id="templateMenu.moveDown" dojoType="dijit.MenuItem" iconclass="iconMoveDown">
+      ${i18n.moveDown}
+    </div>
+    <div id="templateMenu.copy" dojoType="dijit.MenuItem" iconclass="iconTemplateCopy">
+      ${i18n.copy}
+    </div>
+    <div id="templateMenu.remove" dojoType="dijit.MenuItem" iconclass="iconTemplateRemove">
+      ${i18n.remove}
+    </div>
+    <div id="templateMenu.properties" dojoType="dijit.MenuItem" iconclass="iconTemplateProperties">
+      ${i18n.properties}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="${baseClass}">
+  <div data-dojo-type="dijit/Dialog" data-dojo-attach-point="_dialog" id="select-enterprise-user-dialog" class="${baseClass}" title="${i18n.selectUser}" execute="">
+    <p>${i18n.useSearch}</p>
+    <div class="esriFloatTrailing esriTrailingMargin025">
+      <label for="searchInputUser">${i18n.findUser}</label>
+      <div id="searchInputUser" data-dojo-type="dijit/form/TextBox" class="${baseClass}" data-dojo-attach-point="_search" data-dojo-props="trim:true" data-dojo-attach-event="onKeyDown:onSearchKeyDown"></div>
+      <button data-dojo-type="dijit/form/Button" data-dojo-attach-point="_searchBtn" class="calcite light small" data-dojo-attach-event="onClick:onSearch">${i18n.search}</button>
+    </div>
+    <br style="clear:both;"/>
+    <div data-dojo-attach-point="_gridContainer" style="margin-top:1em;"></div>
+    <div style="margin-top:1em;">
+      <div class="esriFloatLeading" data-dojo-attach-point="_goToPageContainer">
+        <label for="goToInputUser">${i18n.goToPage}</label>
+        <div id="goToInputUser" class="${baseClass}" data-dojo-type="dijit/form/TextBox" data-dojo-attach-point="_goTo" data-dojo-attach-event="onKeyDown:onGoToPageKeyDown" data-dojo-props="trim:true"></div>
+        <button data-dojo-type="dijit/form/Button" data-dojo-attach-point="_goBtn" class="calcite light small" data-dojo-attach-event="onClick:onGoToPage">${i18n.goTo}</button>
+      </div>
+      <div class="esriFloatTrailing">
+        <button data-dojo-type="dijit/form/Button" data-dojo-attach-point="_okBtn" class="calcite blue" data-dojo-attach-event="onClick:onOk">${i18n.selectUser}</button>
+        <button data-dojo-type="dijit/form/Button" data-dojo-attach-point="_cancelBtn" class="calcite transparent" data-dojo-attach-event="onClick:onCancel">${i18n.cancel}</button>
+      </div>
+      <br style="clear:both;"/>
+    </div>
+  </div>
+</div>

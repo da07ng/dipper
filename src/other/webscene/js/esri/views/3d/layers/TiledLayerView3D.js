@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../../../core/declare","../../layers/LayerView","../terrain/TilingScheme","./support/LayerViewUpdatingPercentage"],function(b,c,d,e){return b([c,e],{declaredClass:"esri.views.3d.layers.TiledLayerView3D",_numUpdating:0,_maxNumUpdating:0,initialize:function(){this._minDataLevel=0;this._maxDataLevel=Infinity;this.addResolvingPromise(this.layer.then(function(){var a=d.checkUnsupported(this.layer.tileInfo);if(a)throw a;this._minDataLevel=Infinity;this._maxDataLevel=0;this.layer.tileInfo.lods.forEach(function(a){this._minDataLevel=
+Math.min(a.level,this._minDataLevel);this._maxDataLevel=Math.max(a.level,this._maxDataLevel)}.bind(this))}.bind(this)))},getTileUrl:function(a,b,c){return this.layer.getTileUrl(a,b,c)},isTransparent:function(){return this.layer.tileInfo&&"JPEG"!==this.layer.tileInfo.format}})});

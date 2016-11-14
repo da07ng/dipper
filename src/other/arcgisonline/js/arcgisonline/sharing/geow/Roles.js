@@ -1,0 +1,6 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/3.15/esri/copyright.txt for details.
+//>>built
+define("arcgisonline/sharing/geow/Roles",["require","dojo/_base/declare","arcgisonline/sharing/util"],function(d,e,b){return e(null,{declaredClass:"arcgisonline.geow.Roles",basePath:d.toUrl("arcgisonline/sharing/geow"),createRole:function(a,c){return b.request({url:esriGeowConfig.restBaseUrl+"portals/self/createRole",content:{name:a,description:c}},{usePost:!0})},updateRole:function(a,c,d){return b.request({url:esriGeowConfig.restBaseUrl+"portals/self/roles/"+a+"/update",content:{name:c,description:d}},
+{usePost:!0})},deleteRole:function(a){return b.request({url:esriGeowConfig.restBaseUrl+"portals/self/roles/"+a+"/delete"},{usePost:!0})},setPrivileges:function(a,c){return b.request({url:esriGeowConfig.restBaseUrl+"portals/self/roles/"+a+"/setPrivileges",content:{id:a,privileges:c}},{usePost:!0})},getPrivileges:function(a){return b.request({url:esriGeowConfig.restBaseUrl+"portals/self/roles/"+a+"/privileges"})},getRoles:function(a,c){return b.request({url:esriGeowConfig.restBaseUrl+"portals/self/roles",
+content:{start:a,num:c}})},getRole:function(a){return b.request({url:esriGeowConfig.restBaseUrl+"portals/self/roles/"+a})}})});

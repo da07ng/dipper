@@ -1,0 +1,6 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["dojo/_base/lang","../core/JSONSupport","../core/lang","../core/screenUtils"],function(f,a,k,d){var g={style:"normal",variant:"normal",weight:"normal",size:12,family:"serif",decoration:"none"};a=a.createSubclass({declaredClass:"esri.symbols.Font",getDefaults:function(){return g},normalizeCtorArgs:function(b,h,c,a,d){if(b&&"string"!==typeof b)return b;var e={};null!=b&&(e.size=b);null!=h&&(e.style=h);null!=c&&(e.variant=c);null!=a&&(e.weight=a);d&&(e.family=d);return e},_sizeReader:d.pt2px,
+_sizeSetter:function(b){var a=parseFloat(b),c;a==b?c=b:f.isString(b)&&(-1<b.indexOf("pt")?c=d.pt2px(a):-1<b.indexOf("px")?c=a:-1<b.indexOf("em")?c=d.pt2px(12*a):-1<b.indexOf("%")&&(c=d.pt2px(0.12*a)));return c},toJSON:function(){return k.fixJson({size:d.px2pt(this.size),style:this.style,variant:this.variant,decoration:this.decoration,weight:this.weight,family:this.family})}});a.defaultProps=g;f.mixin(a,{STYLE_NORMAL:"normal",STYLE_ITALIC:"italic",STYLE_OBLIQUE:"oblique",VARIANT_NORMAL:"normal",VARIANT_SMALLCAPS:"small-caps",
+WEIGHT_NORMAL:"normal",WEIGHT_BOLD:"bold",WEIGHT_BOLDER:"bolder",WEIGHT_LIGHTER:"lighter"});return a});

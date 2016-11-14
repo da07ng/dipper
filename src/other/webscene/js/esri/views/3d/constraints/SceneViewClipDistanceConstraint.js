@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../../../core/declare","../../../core/Accessor"],function(c,d){return c([d],{declaredClass:"esri.views.3d.constraints.SceneViewClipDistanceConstraint",constructor:function(){this._far=this._near=0},near:0,far:0,mode:"auto",autoUpdate:function(a,b){"auto"===this.mode&&(this._near!==a&&(this._near=a,this.notifyChange("near")),this._far!==b&&(this._far=b,this.notifyChange("far")))},_nearGetter:function(){return this._near},_nearSetter:function(a){this.mode="manual";this._near=Math.max(1E-8,
+a);this._near>=this._far&&(this.far=this._near+1E-9)},_farGetter:function(){return this._far},_farSetter:function(a){this.mode="manual";this._far=Math.max(1E-8,a);this._far<=this._near&&(this.near=this._far-1E-9)},scale:function(a){this._near*=a;this.notifyChange("near");this._far*=a;this.notifyChange("far")}})});

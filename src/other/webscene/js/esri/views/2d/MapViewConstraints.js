@@ -1,0 +1,6 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../../core/Accessor","./constraints/ZoomConstraint"],function(b,c){return b.createSubclass({classMetadata:{computed:{snapToZoom:["zoom.snapToZoom"],minScale:["zoom.minScale"],maxScale:["zoom.maxScale"],minZoom:["zoom.minZoom"],maxZoom:["zoom.maxZoom"]}},normalizeCtorArgs:function(a){return{zoom:new c({tileInfo:a.tileInfo,minScale:a.minScale,maxScale:a.maxScale,minZoom:a.minZoom,maxZoom:a.maxZoom,snapToZoom:a.snapToZoom})}},destroy:function(){this.zoom=null},enabled:!0,_minScaleGetter:function(){return this.zoom.minScale},
+_minScaleSetter:function(a){this.zoom.minScale=a},_maxScaleGetter:function(){return this.zoom.maxScale},_maxScaleSetter:function(a){this.zoom.maxScale=a},_minZoomGetter:function(){return this.zoom.minZoom},_minZoomSetter:function(a){this.zoom.minZoom=a},_maxZoomGetter:function(){return this.zoom.maxZoom},_maxZoomSetter:function(a){this.zoom.maxZoom=a},_snapToZoomGetter:function(){return this.zoom.snapToZoom},_snapToZoomSetter:function(a){this.zoom.snapToZoom=a},constrain:function(a,b,c){if(!this.enabled)return a;
+this.zoom.constrain(a,b,c);return a}})});

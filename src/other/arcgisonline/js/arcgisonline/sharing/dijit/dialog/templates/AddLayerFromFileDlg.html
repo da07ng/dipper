@@ -1,0 +1,69 @@
+<div class="widgetContainer">
+  <div dojotype="dijit.Dialog" id="add-layer-file-dialog" title="${i18n.addLayerFromFileDlgTitle}" execute="">
+    <form id="add-layer-file-form" enctype="multipart/form-data" name="add-layer-file-form" action="" method="post" onSubmit="return false;">
+      <div id="add-layer-file-msg">
+      </div>
+      <div id="ie_msg" style="display:none;">
+        <span>
+          <br/>
+          ${i18n.ieMsg}
+        </span>
+      </div>
+      <div style="margin-top: 1.5em;">
+        <table cellspacing="5" style="margin-top:0.25em 0 0.2em 0;">
+          <tbody>
+            <tr>
+              <td>
+                <label for="add-layer-file-file">
+                  ${i18n.fileLabel}
+                </label>
+              </td>
+              <td>
+                <input type="file" id="add-layer-file-file" name="file" size="40" onpropertychange="dijit.byId('addLayerFromFileDlg').onFileInputPropertyChange();" style="margin:0 1px 0 1px;">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div id="add-layer-file-tip" class="esriItemLinks" style="margin-top:15px;display:none;">
+          <span>${i18n.tip}</span>
+        </div>
+        <div id="add-layer-shapefile" style="padding-top:10px;padding-bottom:10px;display:none;">
+          <div class="esriFloatLeading" style="width:20px;">
+            <input type="radio" name="option" dojotype="dijit.form.RadioButton" id="option:generalize" checked="checked"/>
+          </div>
+          <div class="esriFloatLeading">
+            <label for="option:generalize">
+              ${i18n.generalize}
+            </label>
+          </div>
+          <div style="clear:both;padding-top:5px;">
+          </div>
+          <div class="esriFloatLeading" style="width:20px;">
+            <input type="radio" name="option" dojotype="dijit.form.RadioButton" id="option:original"/>
+          </div>
+          <div class="esriFloatLeading">
+            <label for="option:original">
+              ${i18n.keepOrig}
+            </label>
+          </div>
+        </div>
+        <div style="margin-top: 1em;">
+          <div class="esriItemLinks esriFloatLeading" style="margin-top:5px;">
+            <A id="helpLink" href="" target="_blank" style="line-height: 20px;"></A>
+          </div>
+        </div>
+        <div class="esriFloatTrailing" style="clear:both;">
+          <span id="add-layer-file-loading" style="display:none;">${i18n.importing}&nbsp;&nbsp;&nbsp;</span>
+          <button id="button_add-layer-file" class="primary" type="submit" dojotype="dijit.form.Button">
+            ${i18n.importLayerBtn} 
+          </button>
+          <button id="button_add-layer-file-cancel" dojoAttachEvent="onClick:hide" class="jevent cancel" type="button" dojotype="dijit.form.Button">
+            ${i18n.cancel}
+          </button>
+        </div>
+        <div style="clear:both; width: 100%; height:1px;">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

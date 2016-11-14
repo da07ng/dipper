@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>RenderPolygon</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="css/js.css">
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+</head>
+
+<body>
+<div class="container-fluid layoutContainer">
+    <article id="page_content" class="md-body">
+        <h1>分级渲染服务-面</h1>
+
+        <h2>简介</h2>
+
+        <p>
+            分级渲染器（ClassBreaksRenderer）允许为特定属性值范围内的一组图形指定符号，因此在使用的时候，必须为分级渲染器设置一个数值型字段，为属性值不同的范围，分别设置渲染符号渲染器会根据该字段所在的范围的值进行分级渲染。</p>
+
+        <p>通过面的渲染方式进行结果展示。</p>
+
+        <p>本示例通过opacityInfo对要素进行数据可视化。当使用opacityInfo和Renderers时，开发者在将信息显示到他们地图上。</p>
+
+        <h2>示例</h2>
+
+        <div id="map"></div>
+
+        <h2>代码</h2>
+
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;
+    &lt;meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/&gt;
+    &lt;title&gt;Simple Map&lt;/title&gt;
+    &lt;link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css"&gt;
+    &lt;style&gt;
+      html, body, #map {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #FFF;
+        overflow: hidden;
+        font-family: "Trebuchet MS";
+      }
+    &lt;/style&gt;
+    &lt;script src="http://js.arcgis.com/3.13/"&gt;&lt;/script&gt;
+    &lt;script&gt;
+      var map;
+      require([
+        "dojo/_base/array",
+        "dojo/number",
+        "esri/Color", "esri/dijit/Legend",
+        "esri/geometry/Extent", "esri/InfoTemplate", "esri/layers/FeatureLayer",
+        "esri/map", "esri/renderers/UniqueValueRenderer",
+        "esri/symbols/SimpleFillSymbol", "esri/symbols/SimpleLineSymbol", "dojo/domReady!"
+      ], function (array, number, Color, Legend, Extent, InfoTemplate, FeatureLayer, Map, UniqueValueRenderer,
+        SimpleFillSymbol, SimpleLineSymbol){
+
+        map = new Map("map", {
+          basemap:"streets",
+          center: [-100.441, 38.612],
+          zoom: "4"
+        });
+        map.on("load", function() {
+          map.disableScrollWheelZoom();
+        });
+
+
+        formatNumber = function (value, key, data){
+          return number.format(value, {places: 0, locale: "en-us"});
+        };
+
+        var featureLayerOptions = {
+          mode: FeatureLayer.MODE_AUTO,
+          outFields: ["M163_07", "M172_07", "M188_07", "M193_07", "M217_07", "COUNTY", "STATE", "AREA", "M086_07"],
+          infoTemplate: new InfoTemplate("${COUNTY}, ${STATE}",
+            "<b>Corn for grain:</b> ${M163_07:formatNumber}<br><b>All wheat for
+              grain:</b> ${M172_07:formatNumber}<br><b>Upland cotton:</b> ${M188_07:formatNumber}<br><b>Soybeans for
+              beans:</b> ${M193_07:formatNumber}<br><b>Vegetables:</b> ${M217_07:formatNumber}")
+        };
+        var featureLayer = new FeatureLayer("//services.arcgis.com/V6ZHFr6zdgNZuVG0/ArcGIS/rest/services/USA_County_Crops_2007/FeatureServer/0",
+          featureLayerOptions);
+
+
+        var uniqueValueRenderer = new UniqueValueRenderer(createSymbol("#d9d9d9"), function (graphic){
+          var maxField = "Other";
+          var max = 0;
+
+          array.forEach(featureLayerOptions.outFields, function (field){
+            if (graphic.attributes[field] > max) {
+              maxField = field;
+              max = graphic.attributes[field];
+            }
+          });
+
+          return maxField;
+        });
+
+
+        function createSymbol(color){
+          return new SimpleFillSymbol()
+            .setColor(new Color(color))
+            .setOutline(
+            new SimpleLineSymbol().setColor(new Color("#999999")).setWidth(1)
+          );
+        }
+
+        uniqueValueRenderer.addValue({ value: "M217_07", symbol: createSymbol("#fd7f6f"), label: "Vegetables" });
+        uniqueValueRenderer.addValue({ value: "M188_07", symbol: createSymbol("#b2e061"), label: "Cotton" });
+        uniqueValueRenderer.addValue({ value: "M172_07", symbol: createSymbol("#bd7ebe"), label: "Wheat" });
+        uniqueValueRenderer.addValue({ value: "M193_07", symbol: createSymbol("#7eb0d5"), label: "Soybeans" });
+        uniqueValueRenderer.addValue({ value: "M163_07", symbol: createSymbol("#ffb55a"), label: "Corn" });
+
+
+        uniqueValueRenderer.setOpacityInfo({
+          field: "M086_07",
+          stops: [
+            { value: 10, opacity: 0   }, // -1 stddev,     transparent
+            { value: 39, opacity: 0.5 }, // average value, 50% transparent
+            { value: 68, opacity: 1   }  // +1 stddev,     completely opaque
+          ]
+        });
+
+        featureLayer.setRenderer(uniqueValueRenderer);
+        map.addLayer(featureLayer);
+
+
+      });
+    &lt;/script&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;div id="map"&gt;&lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+          </textarea>
+        </p>
+    </article>
+</div>
+<script src="http://js.arcgis.com/3.13/"></script>
+<script>
+    var map;
+    require([
+        "dojo/_base/array",
+        "dojo/number",
+        "esri/Color", "esri/dijit/Legend",
+        "esri/geometry/Extent", "esri/InfoTemplate", "esri/layers/FeatureLayer",
+        "esri/map", "esri/renderers/UniqueValueRenderer",
+        "esri/symbols/SimpleFillSymbol", "esri/symbols/SimpleLineSymbol", "dojo/domReady!"
+    ], function (array, number, Color, Legend, Extent, InfoTemplate, FeatureLayer, Map, UniqueValueRenderer,
+                 SimpleFillSymbol, SimpleLineSymbol) {
+
+        map = new Map("map", {
+            basemap: "streets",
+            center: [-100.441, 38.612],
+            zoom: "4"
+        });
+        map.on("load", function () {
+            map.disableScrollWheelZoom();
+        });
+
+
+        formatNumber = function (value, key, data) {
+            return number.format(value, {places: 0, locale: "en-us"});
+        };
+
+        var featureLayerOptions = {
+            mode: FeatureLayer.MODE_AUTO,
+            outFields: ["M163_07", "M172_07", "M188_07", "M193_07", "M217_07", "COUNTY", "STATE", "AREA", "M086_07"],
+            infoTemplate: new InfoTemplate("${COUNTY}, ${STATE}",
+                    "<b>Corn for grain:</b> ${M163_07:formatNumber}<br><b>All wheat for grain:</b> ${M172_07:formatNumber}<br><b>Upland cotton:</b> ${M188_07:formatNumber}<br><b>Soybeans for beans:</b> ${M193_07:formatNumber}<br><b>Vegetables:</b> ${M217_07:formatNumber}")
+        };
+        var featureLayer = new FeatureLayer("//services.arcgis.com/V6ZHFr6zdgNZuVG0/ArcGIS/rest/services/USA_County_Crops_2007/FeatureServer/0",
+                featureLayerOptions);
+
+
+        var uniqueValueRenderer = new UniqueValueRenderer(createSymbol("#d9d9d9"), function (graphic) {
+            var maxField = "Other";
+            var max = 0;
+
+            array.forEach(featureLayerOptions.outFields, function (field) {
+                if (graphic.attributes[field] > max) {
+                    maxField = field;
+                    max = graphic.attributes[field];
+                }
+            });
+
+            return maxField;
+        });
+
+
+        function createSymbol(color) {
+            return new SimpleFillSymbol()
+                    .setColor(new Color(color))
+                    .setOutline(
+                    new SimpleLineSymbol().setColor(new Color("#999999")).setWidth(1)
+            );
+        }
+
+        uniqueValueRenderer.addValue({value: "M217_07", symbol: createSymbol("#fd7f6f"), label: "Vegetables"});
+        uniqueValueRenderer.addValue({value: "M188_07", symbol: createSymbol("#b2e061"), label: "Cotton"});
+        uniqueValueRenderer.addValue({value: "M172_07", symbol: createSymbol("#bd7ebe"), label: "Wheat"});
+        uniqueValueRenderer.addValue({value: "M193_07", symbol: createSymbol("#7eb0d5"), label: "Soybeans"});
+        uniqueValueRenderer.addValue({value: "M163_07", symbol: createSymbol("#ffb55a"), label: "Corn"});
+
+
+        uniqueValueRenderer.setOpacityInfo({
+            field: "M086_07",
+            stops: [
+                {value: 10, opacity: 0}, // -1 stddev,     transparent
+                {value: 39, opacity: 0.5}, // average value, 50% transparent
+                {value: 68, opacity: 1}  // +1 stddev,     completely opaque
+            ]
+        });
+
+        featureLayer.setRenderer(uniqueValueRenderer);
+        map.addLayer(featureLayer);
+
+
+    });
+</script>
+</body>
+</html>

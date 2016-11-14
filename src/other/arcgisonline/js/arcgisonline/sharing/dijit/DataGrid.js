@@ -1,0 +1,4 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/3.15/esri/copyright.txt for details.
+//>>built
+define("arcgisonline/sharing/dijit/DataGrid",["dijit","dojo","dojox","dojo/require!dojox/grid/DataGrid"],function(d,a,b){a.provide("arcgisonline.sharing.dijit.DataGrid");a.require("dojox.grid.DataGrid");a.declare("arcgisonline.sharing.dijit.DataGrid",b.grid.DataGrid,{sort:function(){this.inherited(arguments);setTimeout(a.hitch(this,"update"),300)},_onFetchComplete:function(a,b){var c=!this._isLoaded;this.inherited(arguments);c&&this.update()}})});

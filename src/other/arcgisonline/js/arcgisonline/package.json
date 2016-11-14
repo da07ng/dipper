@@ -1,0 +1,12 @@
+{
+  "name": "arcgisonline",
+  "version": "3.5",
+  "author": "Esri Inc",
+  "directories": {
+    "lib": "."
+  },
+  "description": "",
+  "keywords": [ "Esri", "ArcGIS", "JavaScript", "Map" ],
+  "homepage": "http://www.arcgis.com/home",
+  "dojoBuild": "arcgisonline.profile.js"
+}

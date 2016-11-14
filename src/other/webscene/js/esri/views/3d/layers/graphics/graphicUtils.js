@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../../../../geometry/SpatialReference","../../../../geometry/Point","../../../../geometry/support/webMercatorUtils"],function(d,q,n){var p=function(a,c){var b=a.spatialReference;b.equals(c)||(b.isWebMercator()&&c.wkid===d.WGS84.wkid?n.webMercatorToGeographic(a,!1,a):c.isWebMercator()&&b.wkid===d.WGS84.wkid&&n.geographicToWebMercator(a,!1,a))};return{computeCentroid:function(a,c){if("extent"===a.type)return a.center;for(var b=a["polygon"===a.type?"rings":"paths"],h=0,k=0,l=0,d=a.hasZ,e=0,
+m=0;m<b.length;m++){for(var f=b[m],g=0;g<f.length;g++)h+=f[g][0],k+=f[g][1],d&&(l+=f[g][2]);e+=f.length}b=new q({x:h/e,y:k/e,z:d?l/e:void 0,spatialReference:a.spatialReference});c&&p(b,c);return b},convertToSR:p}});

@@ -1,0 +1,4 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../../core/declare","../../geometry/support/jsonUtils","./LocationProviderClientBase"],function(d,e,f){return d("esri.tasks.locationproviders.GeometryLocationProvider",f,{geometryField:null,getGeometry:function(a){if(a=a.attributes[this.geometryField])try{"string"===typeof a&&(a=JSON.parse(a));var c;a.spatialReference||(c=this.inSpatialReference);var b=e.fromJson(a);if(b&&e.getJsonType(b)===this.geometryType)return c&&b.setSpatialReference(c),b}catch(d){}}})});

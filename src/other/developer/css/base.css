@@ -1,0 +1,207 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+body
+{
+    background:url(../images/background.jpg) repeat-y;
+    font-size: 16px;
+    min-width: 1230px;
+    /*line-height: 20px;*/
+}
+p{
+    font-family: Verdana, Helvetica, sans-serif !important;
+    font-size: 0.5em;
+}
+.container
+{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+.xhs_pub_header
+{
+    width: 100%;
+    height:68px;
+    position: relative;
+    margin: 0px auto;
+}
+.logo
+{
+    float: left;
+    margin-left:150px;
+    border:none;
+}
+/*菜单*/
+.menu {
+    float: right;
+    width: 350px;
+    height: 68px;
+    margin-right: 60px;
+}
+.menu ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+.menu ul li {
+    float: left;
+    width: 80px;
+    height: 68px;
+    text-align: left;
+}
+.menu ul li a {
+    padding: 32px 0px 0px 0px;
+    display: block;
+    height: 14px;
+    /*color: #002cff;*/
+    color :#005EA2;
+    font-family: "微软雅黑";
+    text-decoration:none;
+}
+.menu ul li a:hover {
+    color: #ff6600;
+}
+.menu ul li a.selected {
+    /*color: #002cff;*/
+    color :#005EA2;
+    font-weight: bold;
+}
+.footer{
+    border-top:1px solid #95958d;
+    text-align: center;
+    float: left;
+    width: 100%;
+    height: 92px;
+}
+.footer p {
+    margin-top: 10px;
+    color: #959595;
+    font-family: "黑体";
+    font-weight: lighter;
+}
+.footer p span{
+    color: #333;
+    font-family: "黑体";
+}
+/*查找*/
+/*.searchBtn{*/
+    /*float: right;*/
+    /*height: 15px;*/
+    /*width: 15px;*/
+    /*margin-right: 140px;*/
+    /*background: url("../images/searchBtn.png") no-repeat center;*/
+    /*background-color: #72BFFF;*/
+/*}*/
+/*.searchDiv{*/
+    /*float: right;*/
+    /*margin-right: 140px;*/
+/*}*/
+/*.searchInput{*/
+    /*width: 298px;*/
+    /*height: 68px;*/
+    /*color: white;*/
+    /*font-family: 黑体;*/
+    /*font-size: 14px;*/
+    /*border-top: 1px solid #AAA;*/
+    /*border-left: 1px solid #AAA;*/
+    /*border-right: 1px solid #DDD;*/
+    /*border-bottom: 1px solid #DDD;*/
+    /*background-color: #72BFFF;*/
+/*}*/
+/*分页*/
+.pagination {
+    /*width: 100%;*/
+    font-size: 80%;
+    margin: 1em auto;
+    font:12px/1.333 "\5FAE\8F6F\96C5\9ED1","Hiragino Sans GB",arial,helvetica,clean;
+    text-align: right;
+    float: right;
+    padding: 0.5em;
+}
+.pagination a {
+    text-decoration:none;
+    display: inline-block;
+    margin: 0px 2px;
+    padding: 0px 5px;
+    /*text-align: center;*/
+    /*line-height: 20px;*/
+    /*font-family: "宋体";*/
+    text-decoration: none;
+    border: solid 1px #AAE;
+    color: #15B;
+    background: #fff;
+}
+.pagination a.current {
+    background: #26B;
+    color: #fff;
+    border: solid 1px #AAE;
+}
+.pagination a:hover {
+    background: #26B;
+    color: #fff;
+    border: solid 1px #AAE;
+}
+.select {
+    margin: 0px 5px 0px 0px;
+    padding: 2px;
+    width: 175px;
+    color: #666;
+    font-size: 12px;
+    border-top: 1px solid #AAA;
+    border-left: 1px solid #AAA;
+    border-right: 1px solid #DDD;
+    border-bottom: 1px solid #DDD;
+    background-color: #FFF;
+}
+.input {
+    margin: 0px 5px 0px 0px;
+    padding: 2px;
+    width: 170px;
+    color: #666;
+    font-size: 12px;
+    border-top: 1px solid #AAA;
+    border-left: 1px solid #AAA;
+    border-right: 1px solid #DDD;
+    border-bottom: 1px solid #DDD;
+    background-color: #FFF;
+}
+.searchDiv{
+    float: right;
+    margin-right: 240px;
+    margin-top: 15px;
+    height: 25px;
+    width: 200px;
+    border-top: 1px solid #AAA;
+    border-left: 1px solid #AAA;
+    border-right: 1px solid #DDD;
+    border-bottom: 1px solid #DDD;
+    background-color: #FFF;
+}
+.searchinput{
+    border-right-width: 0px;
+    padding-left: 1px;
+    width: 168px;
+    height: 25px;
+    font-family: arial;
+    float: left;
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+    color: #636365;
+    margin-left: 1px;
+    font-size: 8pt;
+    vertical-align: middle;
+    border-left-width: 0px;
+    margin-right: 1px;
+}
+.searchaction{
+    width: 25px;
+    float: left;
+    height: 25px;
+}
+.clear{
+    clear: both;
+    height: 0px;
+    font-size: 0px;
+    line-height: 0px;
+}

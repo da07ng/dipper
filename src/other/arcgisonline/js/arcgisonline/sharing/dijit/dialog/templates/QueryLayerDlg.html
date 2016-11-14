@@ -1,0 +1,101 @@
+<div>
+  <div class="esriItemLinks dijitDialogPaneContentArea">
+    <span>${i18n.header}</span>
+    <div dojoAttachPoint="_queryLayerChoiceDiv" style="display:none; margin-top:10px; margin-bottom:12px;">
+      <div style="margin-bottom:15px;">
+        ${i18n.choiceMsg}
+      </div>
+      <input dojoType="dijit.form.RadioButton" id="choice:item" name="choice" value="item" dojoAttachEvent="onClick:_onClickChoiceItem" checked="checked" />
+      <label>
+        ${i18n.choiceItems}
+      </label>
+			<span>&nbsp;&nbsp;&nbsp;</span>
+      <input dojoType="dijit.form.RadioButton" id="choice:url" name="choice" value="url" dojoAttachEvent="onClick:_onClickChoiceUrl" />
+      <label>
+        ${i18n.choiceUrl}
+      </label>
+    </div>
+    <div dojoAttachPoint="_queryLayerUrlMsgDiv" style="display:none; margin-top:10px; margin-bottom:10px;">
+      <div>
+        ${i18n.urlMsg}
+      </div>
+    </div>
+    <div dojoAttachPoint="_queryLayerItemsDiv" style="display:none;">
+      <table>
+        <tbody>
+          <tr>
+            <td style="vertical-align:top;">
+              <label style="margin-top:10px;">
+                ${i18n.itemLabel}
+              </label>
+            </td>
+            <td>
+              <div>
+                <select class="queryLayerInput" dojoAttachPoint="_queryLayerItem" dojoAttachEvent="onChange:_onChangeQueryItem" dojotype="dijit.form.FilteringSelect" maxHeight="150" sortByLabel="false">
+                  <option value="-1" selected="selected">${i18n.selectItem}</option>
+                </select>
+              </div>
+              <div dojoAttachPoint="_querLayerOrgItemsDiv" style="display:none;">
+                <input dojoAttachPoint="_querLayerOrgItems" dojotype="dijit.form.CheckBox" dojoAttachEvent="onClick:_onClickOrgItems" checked="false" value="off" type="checkbox" />
+                <label>
+                  ${i18n.includeOrgItems}
+                </label>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="queryLayerUrl">
+                ${i18n.layerLabel}
+              </label>
+            </td>
+            <td>
+              <select class="queryLayerInput" dojoAttachPoint="_queryItemLayer" dojoAttachEvent="onChange:_onChangeQueryServiceLayer" dojoType="dijit.form.FilteringSelect" maxHeight="150" sortByLabel="false" disabled="true">
+                <option value="-1" selected="selected">${i18n.selectLayer}</option>
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div dojoAttachPoint="_queryLayerUrlDiv" style="display:none;">
+    <table>
+      <tbody>
+        <tr>
+          <td style="vertical-align:top;">
+            <label style="margin-top:10px;">
+              ${i18n.urlLabel}
+            </label>
+          </td>
+          <td>
+            <div class="queryLayerInput" dojoAttachPoint="_queryLayerUrl" dojotype="dijit.form.TextBox" trim="true" value="" dojoAttachEvent="onFocus:_onFocusLayerUrl, onBlur:_onBlurLayerUrl, onChange:_onChangeLayerUrl" style="margin-bottom:0;">
+            </div>
+            <div style="font-size:smaller;">
+              ${i18n.enterArcGISUrl}
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="queryLayerUrl">
+              ${i18n.layerLabel}
+            </label>
+          </td>
+          <td>
+            <select class="queryLayerInput" dojoAttachPoint="_queryUrlLayer" dojoAttachEvent="onChange:_onChangeQueryServiceLayer" dojoType="dijit.form.FilteringSelect" maxHeight="150" sortByLabel="false" disabled="true">
+              <option value="-1" selected="selected">${i18n.selectLayer}</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="submitButtons dijitDialogPaneActionBar esriFloatTrailing" style="margin-top:10px;">
+    <span dojoAttachPoint="spinnerNode" style="display:none"></span>
+    <div dojoType="dijit.form.Button" type="submit" class="primary" dojoAttachPoint="_submitButton" dojoAttachEvent="onClick:onOk" label="${i18n.title}">
+    </div>
+    <div dojoType="dijit.form.Button" type="button" class="cancel" dojoAttachEvent="onClick:onCancel" label="${i18n.cancel}">
+    </div>
+  </div>
+</div>

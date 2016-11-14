@@ -1,0 +1,227 @@
+<div data-dojo-type="dijit.layout.ContentPane" data-dojo-attach-point="containerNode" class="${baseClass}">
+  <div id="editMenu" data-dojo-attach-point="editMenu" class="ownerOnly topButtonBar">
+    <div id="profileEditButton" class="dijitInline calcite blue readOnly"
+         data-dojo-type="dijit.form.Button" data-dojo-attach-event="onClick:_startEdit"
+         data-dojo-props="type:'button'">${i18n.editMyProfile}</div>
+    <div id="profileSaveButton" class="dijitInline calcite blue editOnlyBtn" style="display:none;" data-dojo-type="dijit.form.Button" data-dojo-attach-event="onClick:_saveEdit"
+         data-dojo-props="type:'button'">${i18n.save}</div>
+    <div id="profileCancelButton" class="dijitInline calcite transparent editOnlyBtn" style="display:none;" data-dojo-type="dijit.form.Button" data-dojo-attach-event="onClick:_cancelEdit"
+         data-dojo-props="type:'button'">${i18n.cancel}</div>
+  </div>
+  <div class="userDetails">
+    <div class="profileTitle">
+      <span data-dojo-attach-point="_profileTitle"></span>
+    </div>
+    <div class="esriFloatLeading userThumbnailInfo">
+      <div class="profileThumbnailBox" data-dojo-attach-point="_thumbnailDiv" style="position:relative">
+        <img data-dojo-attach-point="thumbnailImage" class="profileThumbnail" src=""/>
+      </div>
+      <center>
+        <p class="editOnly">
+          ${i18n.clickThumbnail}
+        </p>
+        <div class="readOnly">
+          <br />
+          <span data-dojo-attach-point="relatedLinks" class="esriItemLinks"></span>
+        </div>
+      </center>
+      <div class="socialProvider ownerOnly hide" data-dojo-attach-point="_socialProviderlDiv">
+        <span class="socialIcon" data-dojo-attach-point="_socialProviderlIcon"></span><span class="socialProviderName" data-dojo-attach-point="_socialProviderName"></span>
+      </div>
+    </div>
+    <div class="esriFloatLeading esriLeadingMargin3 userProfileColumn">
+      <div id="firstNameProperty" class="property">
+        <label for="first_name"><strong>${i18n.firstNameLabel}</strong></label><br/>
+        <span class="readOnly" data-dojo-attach-point="_firstNameLabel"></span>
+        <span data-dojo-attach-point="_firstNameInput" class="editOnly"><input id="first_name" name="first_name" data-dojo-attach-point="firstName" data-dojo-props="trim:'true'" data-dojo-type="dijit.form.TextBox"/></span>
+      </div>
+      <div id="lastNameProperty" class="property">
+        <label for="last_name"><strong>${i18n.lastNameLabel}</strong></label><br/>
+        <span class="readOnly" data-dojo-attach-point="_lastNameLabel"></span>
+        <span data-dojo-attach-point="_lastNameInput" class="editOnly"><input id="last_name" name="last_name" data-dojo-attach-point="lastName" data-dojo-props="trim:'true'" data-dojo-type="dijit.form.TextBox"/></span>
+      </div>
+      <div id="user_email_edit" class="ownerOnly">
+        <div class="property readOnly">
+          <label><strong>${i18n.changeEmailLabel}</strong></label><br/>
+          <span data-dojo-attach-point="_displayEmail"></span>
+        </div>
+        <div class="editOnly">
+          <div class="property">
+            <label for="newEmail"><strong>${i18n.newEmailLabel}</strong></label><br/>
+            <div id="newEmail" data-dojo-attach-point="newEmail"
+                 data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true, type:'text'"></div>
+          </div>
+          <div class="property">
+            <label for="verifyNewEmail"><strong>${i18n.verifyNewEmailLabel}</strong></label><br/>
+            <div id="verifyNewEmail" data-dojo-attach-point="verifyNewEmail"
+                 data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true, type:'text'"></div>
+          </div>
+        </div>
+      </div>
+      <div id="user_profile_edit" class="property">
+        <span id="user_profile_edit_title"></span><br/>
+        <span class="esriItemLinks"><span data-dojo-attach-point="label_username"></span>&nbsp;&nbsp;&nbsp;<a style="display:none;" id="user_profile_edit_link" href="JavaScript:void(0);" data-dojo-attach-point="editUsernameLink" onclick="window.open(esriGeowConfig.account_edit);">${i18n.editLabel}</a></span>
+      </div>
+      <div class="property">
+        <label><strong>${i18n.bioLabel}</strong></label><br/>
+        <div class="esriItemLinks readOnly bioSpan" data-dojo-attach-point="label_description"></div>
+        <textarea class="editOnly bioBox" data-dojo-attach-point="descriptionTextArea" rows="" cols="">
+        </textarea>
+      </div>
+    </div>
+    <div class="esriFloatLeading esriLeadingMargin1 ownerOnly userProfileColumn">
+      <div id="new_password_edit" style="display:none;">
+        <div id="oAuthChangePwd" class="property">
+          <span><strong>${i18n.newPwdLabel}</strong></span><br/>
+          <div style=""><button data-dojo-attach-point="_changePwdBtn" data-dojo-type="dijit.form.Button" class="calcite tertiary small"
+                                data-dojo-attach-event="onClick:onChangePassword">${i18n.changePwd}</button></div>
+        </div>
+        <div id="nonOAuthChangePwd" class="property" style="display:none;">
+          <span><strong>${i18n.changePwdLabel}</strong></span><br/>
+          <div class="esriLeadingMargin3 esriTrailingMargin3" style="margin-bottom:1em;" data-dojo-attach-point="newPassword"
+               data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true,type:'password'"></div>
+          <br style="clear:both;"/>
+          <div class="esriLeadingMargin3 esriTrailingMargin3" data-dojo-attach-point="verifyNewPassword"
+               data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true, type:'password'"></div>
+        </div>
+      </div>
+      <div id="mfa_edit" class="property" style="display:none;">
+        <span><strong>${i18n.multiFactorAuth}</strong></span><br/>
+        <span class="readOnly esriItemLinks"><span data-dojo-attach-point="mfa_setting"></span></span>
+        <div class="editOnly">
+          <button data-dojo-attach-point="_enableMFA" data-dojo-type="dijit.form.Button" class="calcite tertiary small"
+                  data-dojo-attach-event="onClick:onEnableMFA">${i18n.enable}</button>
+          <button data-dojo-attach-point="_disableMFA" data-dojo-type="dijit.form.Button" class="calcite caution small"
+                  data-dojo-attach-event="onClick:onDisableMFA">${i18n.disable}</button>
+        </div>
+      </div>
+      <div id="question_edit" class="property" style="display:none;">
+        <span><strong>${i18n.questionLabel}</strong></span><br/>
+        <div class="arrowSpaceMedium" style="width:300px;" data-dojo-attach-point="questionSelect"
+             data-dojo-type="dijit.form.FilteringSelect" data-dojo-props="type:'select'"></div>
+      </div>
+      <div id="answer_edit" class="property" style="display:none;">
+        <span><strong>${i18n.answerLabel}</strong></span><br/>
+        <div data-dojo-attach-point="questionAnswer"
+             data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true, type:'text'"></div>
+      </div>
+      <div class="property">
+        <span><strong>${i18n.whoSeeProfile}</strong></span><br/>
+        <span class="readOnly" data-dojo-attach-point="label_privacy"></span>
+        <div class="editOnlyBtn" style="display:none;">
+          <span id="privacy_public_span">
+            <input type="radio" data-dojo-type="dijit.form.RadioButton" name="privacy" id="privacy_public"/>
+            <label for="privacy_public">${i18n.everyone}</label>
+            <br/>
+          </span>
+          <span id="privacy_organization_span">
+            <input type="radio" data-dojo-type="dijit.form.RadioButton" name="privacy" id="privacy_account"/>
+            <label for="privacy_account">${i18n.organization}</label>
+            <br/>
+          </span>
+          <input type="radio" data-dojo-type="dijit.form.RadioButton" name="privacy" id="privacy_private"/>
+          <label for="privacy_private">${i18n.privateLabel}</label>
+        </div>
+      </div>
+      <div id="language_edit" class="property" style="width:300px;">
+        <span><strong>${i18n.languageLabel}</strong></span><br/>
+        <span class="readOnly esriItemLinks"><span data-dojo-attach-point="language_setting"></span></span>
+        <div class="editOnly arrowSpaceMedium" data-dojo-attach-point="languageSelect"
+             data-dojo-type="dijit.form.FilteringSelect" data-dojo-props="type:'select'"></div>
+      </div>
+      <div id="region_edit" class="property">
+        <span><strong>${i18n.regionLabel}</strong></span><br/>
+        <span class="esriItemLinks editOrgOnly" data-dojo-attach-point="region_setting"></span>
+        <div class="editNonOrgOnly" data-dojo-attach-point="regionSelect" data-dojo-type="dijit.form.FilteringSelect" data-dojo-props="type:'select'"></div>
+      </div>
+      <div id="units_edit" class="property">
+        <span><strong>${i18n.unitsLabel}</strong></span><br/>
+        <span class="readOnly esriItemLinks"><span data-dojo-attach-point="units_setting"></span></span>
+        <div class="editOnly arrowSpaceMedium" data-dojo-attach-point="unitsSelect"
+             data-dojo-type="dijit.form.FilteringSelect" data-dojo-props="type:'select'"></div>
+      </div>
+      <div id="organization_role_div" class="property" style="display:none;">
+        <span><strong>${i18n.roleLabel}</strong></span><br/>
+        <span class="esriItemLinks"><span data-dojo-attach-point="organization_role"></span></span>
+      </div>
+      <div id="organization_link_div" class="property">
+        <span><strong>${i18n.orgLabel}</strong></span><br/>
+        <span class="esriItemLinks"><span data-dojo-attach-point="organization_link"></span></span>
+      </div>
+      <div id="organization_url_div" class="property" style="display:none;">
+        <span><strong>${i18n.orgHomeurl}</strong></span><br/>
+        <span class="esriItemLinks"><span data-dojo-attach-point="organization_url_link"></span></span>
+      </div>
+      <div id="licensed_for_div" class="property" style="display:none;">
+        <span><strong>${i18n.licensedProducts}</strong></span><br/>
+        <div id="licensed_products_list"></div>
+      </div>
+      <div>&nbsp;</div>
+    </div>
+  </div>
+  <div class="editOnlyBtn bottomButtonBar" style="display:none;">
+    <div id="lowerProfileSaveButton" class="dijitInline calcite blue" data-dojo-type="dijit.form.Button" data-dojo-attach-event="onClick:_saveEdit"
+         data-dojo-props="type:'button'">${i18n.save}</div>
+    <div id="lowerProfileCancelButton" class="dijitInline calcite transparent" data-dojo-type="dijit.form.Button" data-dojo-attach-event="onClick:_cancelEdit"
+         data-dojo-props="type:'button'">${i18n.cancel}</div>
+  </div>
+  <form data-dojo-attach-point="editForm" method="post" enctype="multipart/form-data" onSubmit="return false;">
+    <input type="hidden" name="username"/>
+    <input type="hidden" name="fullName"/>
+    <input type="hidden" name="firstName"/>
+    <input type="hidden" name="lastName"/>
+    <input type="hidden" name="email"/>
+    <input type="hidden" name="organization"/>
+    <input type="hidden" name="tags"/>
+    <input type="hidden" name="description"/>
+    <input type="hidden" name="preferredView"/>
+    <input type="hidden" name="defaultGroupId"/>
+    <input type="hidden" name="access"/>
+    <input type="hidden" name="sharing"/>
+    <input type="hidden" name="culture"/>
+    <input type="hidden" name="region"/>
+    <input type="hidden" name="units"/>
+
+    <input type="hidden" name="clearEmptyFields" value="true"/>
+
+    <div id="profile-thumbnail-dialog" class="thumbnailDialog dijitDialog">
+      <div id="profile-thumbnail-header">
+        <div style="background:none;padding-top:2px;" class="dijitDialogTitle dijitDialogTitleBar">
+          ${i18n.uploadThumbnail}
+        </div>
+        <div id="profile-thumbnail-close" title="${i18n.close}" class="dijitDialogCloseIcon">
+        </div>
+      </div>
+      <div id="profile-thumbnail-content">
+        <p>
+          <span>
+            <label for="profile-thumbnail-file">
+              ${i18n.specifyImage}
+            </label>
+          </span>
+        </p>
+        <div>
+          <span style="margin-top:6px;">
+            <label for="profile-thumbnail-file">
+              ${i18n.imageLabel}
+            </label>
+          </span>
+          <input type="hidden" name="MAX_FILE_SIZE" value="1024000"><input type="file" id="profile-thumbnail-file" name="thumbnail" size="44" data-dojo-attach-point="thumbnailPath">
+        </div>
+        <p style="margin-top: 1.5em;">
+          <span>${i18n.forBestResults}</span>
+        </p>
+        <div style="margin-top: 1.5em;">
+          <button id="profile-thumbnail-cancel" class="jevent esriFloatTrailing calcite transparent" data-dojo-type="dijit.form.Button">
+            ${i18n.cancel}
+          </button>
+          <button id="profile-thumbnail-ok" class="jevent esriFloatTrailing calcite blue" data-dojo-type="dijit.form.Button">
+            ${i18n.ok}
+          </button>
+        </div>
+      </div>
+      <div style="float: none; clear:both; width: 100%; height: 0;">
+      </div>
+    </div>
+  </form>
+</div>

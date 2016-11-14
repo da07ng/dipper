@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../../core/declare","dojo/_base/lang","dojo/has","../../kernel","../../core/OperationBase"],function(b,d,e,f,c){return b(c,{declaredClass:"esri.widgets.editing.Add",type:"edit",label:"Add Features",constructor:function(a){a=a||{};a.featureLayer?(this._featureLayer=a.featureLayer,a.addedGraphics?this._addedGraphics=a.addedGraphics:console.error("In constructor of 'esri.widgets.editing.Add', no graphics provided")):console.error("In constructor of 'esri.widgets.editing.Add', featureLayer is not provided")},
+performUndo:function(){this._featureLayer.applyEdits(null,null,this._addedGraphics)},performRedo:function(){this._featureLayer.applyEdits(this._addedGraphics,null,null)}})});

@@ -1,0 +1,21 @@
+<div class="widgetContent">
+  <div dojotype="dijit.Dialog" id="account-move-to-dialog" title="${i18n.moveTo}" execute="" style="width:337px; height:auto;">
+    <div style="margin-top:1em;">
+      <span>${i18n.moveSelectedItems}</span>
+    </div>
+    <div style="margin-top:1em;">
+      <div dojoAttachPoint="userList" dojoAttachEvent="onChange:onUserSelect" dojoType="dijit.form.ComboBox" value="${i18n.selectUserValue}" style="width:300px;"></div>
+    </div>
+    <div style="margin-top:1em;">
+      <span class="userFound">${i18n.selectFolderToMove}</span>
+      <div dojoType="dijit.layout.BorderContainer" class="borderedContent userNotFound" gutters="false" design="headline" dojoAttachPoint="userNotFound" style="display:none;width:300px;height:200px;">${i18n.userNotFound}</div>
+      <div dojoType="dijit.layout.BorderContainer" class="borderedContent userFound" gutters="false" design="headline" preventcache='true' usecache='false' cachecontent='false' splitter="false" dojoAttachPoint="userFolderContainer" style="width:300px; height:200px; background:white;"></div>
+      <button id="button_account-create-folder" class="jevent userFound" dojoType="dijit.form.Button" type="button" iconClass="esriNewFolderIcon" dojoAttachEvent="onClick:createFolder">${i18n.newFolder}</button>
+    </div>
+    <div style="float:right; clear:both; margin-top:2em;">
+      <button id="button_account-move-to-submit" class="jevent primary" dojoType="dijit.form.Button" type="button" dojoAttachEvent="onClick:submitRequest">${i18n.move}</button>
+      <button id="button_account-move-to-close" class="jevent cancel" dojoType="dijit.form.Button" type="button" dojoAttachEvent="onClick:hide">${i18n.cancel}</button>
+    </div>
+    <div style="clear:both; float:none; height:0;"></div>
+  </div>
+</div>

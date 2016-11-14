@@ -1,0 +1,391 @@
+<div dojoType="dijit.layout.BorderContainer" region="top">
+
+    <div id="popupBuilderContentHeader" class="panel panel_left" dojoType="dijit.layout.ContentPane" region="top">
+      <div class="esriFloatTrailing" style="display:inline;">
+        <a dojoAttachPoint="_closeBtn" title="${i18n.close}" class="panel panel_close panel_collapse"></a>
+      </div>
+      <div id="popupBuilderContentTitle" class="esriFloatLeading panel_title">
+          ${i18n.popupBuilderTitle}
+      </div>
+      <div dojoAttachPoint="_popupBuilderLayerName" class="esriFloatLeading panel_title" style="clear:both;">
+      </div>
+      <div style="clear:both; border-bottom: #aeaeae thin solid; height:1px;"></div>
+    </div>
+    <div id="popupBuilderContentPane" dojoType="dijit.layout.ContentPane" region="center" style="overflow-x:hidden;overflow-y:auto;">
+        <div>
+            <p style="margin:4px 0px 10px 0px;">
+                ${i18n.titleMessage}
+            </p>
+            <label for="_title" class="title">
+                ${i18n.title}
+            </label>
+            <table style="width:100%;">
+                <tr>
+                    <td style="width:165px;">
+                    <div dojoAttachPoint="_title" name="title" dojotype="dijit.form.Textarea" style="padding:2px;"/>
+                    </td>
+                    <td>
+                    <button dojoAttachPoint="_titleButton" class="calcite transparent tiny"></button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="margin-bottom:10px;">
+            <p style="margin-bottom:3px;" class="title">
+                ${i18n.content}
+            </p>
+            <label dojoAttachPoint="_descriptionTypeLabel" for="popupbuilderContentSelect">
+                ${i18n.displayLabel}
+            </label>
+            <select dojoAttachPoint="_descriptionType" name="popupbuilderContentSelect" dojoAttachEvent="onChange:_onChangePopupContent" dojoType="dijit.form.Select" style="margin:10px 0px 10px 0px;">
+                <option value="_fieldAttributes" selected="selected">${i18n.fieldAttributes}</option>
+                <option value="_oneField" >${i18n.oneField}</option>
+                <option value="_customField">${i18n.customField}</option>
+                <option value="_none">${i18n.noField}</option>
+            </select>
+            <br />
+            <div class="_popContentPane" dojoAttachPoint="_fieldAttributes" style="margin-bottom:0.7em;">
+                <div style="margin-bottom:0.7em;">
+                    ${i18n.fieldDisplay}
+                </div>
+                <table>
+                    <tr>
+                        <td>
+                        <select dojoType="dijit.form.MultiSelect" style="width: 180px;" dojoAttachPoint="_attributesSelect">
+                        </select></td>
+                        <td width="18">
+                        <button  class="button calcite transparent tiny" dojoAttachPoint="_attributesSelectUp" dojoType="dijit.form.Button" iconClass="popupButton popupUpIcon" showLabel="false" type="button">${i18n.moveUp}</button>
+                        <button  class="button calcite transparent tiny" dojoAttachPoint="_attributesSelectDown" dojoType="dijit.form.Button" iconClass="popupButton popupDownIcon" showLabel="false" type="button">${i18n.moveDown}</button>
+                        </td>
+                    </tr>
+                </table>
+                <!--<button  dojoAttachPoint="_changeFieldsBtn" dojoAttachEvent="onClick:_onShowFieldsDlg" dojoType="dijit.form.Button" type="button">-->
+                    <!--${i18n.configureFields}-->
+                <!--</button>-->
+                <!--<p style="margin:0px;"><a href='' dojoAttachEvent="onclick:_onShowFieldsDlg" style="color:blue;margin:0.2em;">${i18n.configureFields}</a></p>-->
+            </div>
+            <div class="_popContentPane" dojoAttachPoint="_oneField" style="margin-bottom:0.7em;display:none;">
+                <!--<div style="margin-bottom:5px;">-->
+                    <!--${i18n.selectDescriptionField}-->
+                <!--</div>-->
+                <select dojoAttachPoint="_singleFieldSelect" dojoType="dijit.form.Select" minSize='150'  maxSize='180'  maxHeight='150' style="width: 200px;" size="4">
+                </select>
+                <br />
+                <!--<a class="_requireNumericDateFld" href='' dojoAttachEvent="onclick:_onShowFieldsDlg" style="color:blue;">${i18n.configureFields}</a>-->
+            </div>
+            <div class="_popContentPane" dojoAttachPoint="_customField" style="margin-bottom:0.7em;display:none;">
+                <button class="calcite green small" style="margin-top:-5px;" dojoType="dijit.form.Button" dojoAttachPoint="_customFieldBtn" type="button">
+                    ${i18n.configure}
+                </button>
+                <br />
+                <!--<a class="_requireNumericDateFld" href='' dojoAttachEvent="onclick:_onShowFieldsDlg" style="margin:0.2em;color:blue;">${i18n.configureFields}</a>-->
+            </div>
+            <div class="_popContentPane" style="margin-bottom:0.7em;display:none;" dojoAttachPoint="_none">
+                <span>
+                  ${i18n.noAttributeInfo}
+                </span>
+                <br />
+                <!--<a class="_requireNumericDateFld" href='' dojoAttachEvent="onclick:_onShowFieldsDlg" style="margin:0.2em;color:blue;">${i18n.configureFields}</a>-->
+            </div>
+            <a href='' dojoAttachEvent="onclick:_onShowFieldsDlg" style="color: #21759b;">${i18n.configureFields}</a>
+        </div>
+        <div dojoAttachPoint="_noDataHandlerDiv">
+        </div><span dojoAttachPoint="_noDataHandlerText"></span>              
+        <div>
+            <input id="_showAttachments" dojoAttachPoint="_showAttachments" dojotype="dijit.form.CheckBox" value="true" checked="false" type="checkbox"/>
+            <label id="_showAttachmentsLabel" dojoAttachPoint="_showAttachmentsLabel" for="_showAttachments">
+                ${i18n.showAttachmentAsLinks}
+            </label>
+            <p style="margin-bottom:3px;" class="title">
+                ${i18n.media}
+            </p>
+            <div style="margin-bottom:5px;">
+                ${i18n.imagesAndCharts}
+            </div>
+            <button dojoAttachPoint="_addMedia" class="calcite light tiny" ></button>
+            <table>
+                <tr>
+                    <td>
+                    <select dojoType="dijit.form.MultiSelect" name="_mediaSelect" style="width:180px;height:130px;" dojoAttachPoint="_mediaSelect">
+                        <option value="-1" selected="false">${i18n.noImagesOrCharts}</option>
+                        <option value="1" selected="false">${i18n.clickAdd}</option>
+                        <option value="2" selected="false">${i18n.useArrows}</option>
+                    </select></td>
+                    <td width="18">
+                    <button dojoAttachPoint="_mediaProperties" dojoType="dijit.form.Button" class="button calcite transparent tiny" iconClass="popupButton popupConfigureIcon" showLabel="false" type="button">${i18n.configureMedia}</button>
+                    <button  dojoAttachPoint="_mediaDelete" class="button calcite transparent tiny" dojoType="dijit.form.Button" iconClass="popupButton popupRemoveIcon" showLabel="false" type="button">${i18n.removeMedia}</button>
+                    <button  dojoAttachPoint="_mediaSelectUp" class="button calcite transparent tiny" dojoType="dijit.form.Button" iconClass="popupButton popupUpIcon" showLabel="false" type="button">${i18n.moveUp}</button>
+                    <button  dojoAttachPoint="_mediaSelectDown" class="button calcite transparent tiny" dojoType="dijit.form.Button" iconClass="popupButton popupDownIcon" showLabel="false" type="button">${i18n.moveDown}</button>
+                    </td>
+                </tr>
+            </table>
+            <br />
+        </div>
+        <div dojoAttachPoint="relatedData" class="hide">
+            <p style="margin-bottom:3px;" class="title">
+                ${i18n.relatedDataTitle}
+            </p>
+            <label class="showRelatedDataNode" for="_showRelatedData" style="vertical-align: middle;">
+                <input dojoAttachPoint="_showRelatedData" dojotype="dijit.form.CheckBox" checked="true" type="checkbox"/>
+                ${i18n.showRelatedData}<br /><br />
+            </label>
+            <button dojoAttachPoint="_sortOptionsBtn" dojoType="dijit.form.Button" class="calcite light small"  type="button">${i18n.sortOptions}</button>
+        </div>
+    </div>
+
+    <div id="popupBuilderContentBottom" dojoType="dijit.layout.BorderContainer" region="bottom" gutters="false" design="headline" style="height:80px;padding:0; margin:0px;">
+    
+      <div id="popupBuilderContentButtons" dojoType="dijit.layout.ContentPane" region="top" style="padding:5px;margin-top:5px;border-top:solid 1px #BBB;">
+        <div align="center" id="popupBuilderContentButtonsCenter">
+          <button dojoType="dijit.form.Button" class="calcite blue" type="submit" dojoAttachPoint="_savePopup">
+              ${i18n.savePopup}
+          </button>
+          <button dojoType="dijit.form.Button" class="calcite transparent" type="submit" dojoAttachPoint="_cancelPopup">
+              ${i18n.cancel}
+          </button>
+        </div> 
+      </div>
+      
+      <div id="popupBuilderContentFooter" dojoType="dijit.layout.ContentPane" region="bottom" style="padding: 0 5px 0 5px; display:none;">
+          <div class="footer" id="popupBuilderSiteFooter" dojotype="arcgisonline.sharing.dijit.SiteFooterMap" style="white-space:normal;"></div>
+      </div>
+      
+    </div>
+
+    <div dojoAttachPoint="_changeFieldsDlg" class="esriChangeFieldsDialog" title="${i18n.configureAttributes}" dojoType="dijit.Dialog">
+        <div id="_changeFieldsTitle" style="margin-bottom:10px;max-width:720px;min-width:400px;width:600px;">${i18n.checkFields}</div>
+          <div style="height:250px;">
+          <div class="_popupGrid" style="height:250px;" dojoAttachPoint="_changeFieldsGridDiv"></div>
+          <div class="_popupSettings esriLeadingMargin1">
+            <div>
+              <button class="button calcite transparent tiny" dojoAttachPoint="_fieldsSelectUp" dojoType="dijit.form.Button" iconClass="popupButton popupUpIcon" showLabel="false" type="button">${i18n.moveUp}</button>
+              <br />
+              <button  class="button calcite transparent tiny" dojoAttachPoint="_fieldsSelectDown" dojoType="dijit.form.Button" iconClass="popupButton popupDownIcon" showLabel="false" type="button">${i18n.moveDown}</button>
+            </div>
+            <fieldset class="statisticType" dojoAttachPoint="_statsFieldSet" style="display:none; width:200px;">
+              <legend dojoAttachPoint="_statsTitle" class="legendTitle">${i18n.statsType}</legend>
+              <div style="display:block;">
+                <select style="width:150px;" dojoAttachPoint="_statsTypeSelect" dojoType="dijit.form.Select">
+                  <option value='count' selected="selected">${i18n.count}</option>
+                  <option value='sum'>${i18n.sum}</option>
+                  <option value='min'>${i18n.min}</option>
+                  <option value='max'>${i18n.max}</option>
+                  <option value='avg'>${i18n.avg}</option>
+                  <option value='stddev'>${i18n.stddev}</option>
+                </select>
+                <br/>
+              </div>
+            </fieldset>
+            <fieldset class="popupFormat" style="display:none; width:180px;">
+              <legend dojoAttachPoint="_legendTitle" class="legendTitle">${i18n.formatFields}</legend>
+              <div class="format formatNumber" style="display:none;">
+                <select style="width:150px;" dojoAttachPoint="_formatNumberSelect" class="formatNumber formatter format" dojoType="dijit.form.Select">
+                  <option value='0' selected="selected">0 ${i18n.decimalPlaces}</option>
+                  <option value='1'>1 ${i18n.decimalPlace}</option>
+                  <option value='2'>2 ${i18n.decimalPlaces}</option>
+                  <option value='3'>3 ${i18n.decimalPlaces}</option>
+                  <option value='4'>4 ${i18n.decimalPlaces}</option>
+                  <option value='5'>5 ${i18n.decimalPlaces}</option>
+                  <option value='6'>6 ${i18n.decimalPlaces}</option>
+                </select>
+                <br />
+                </div>
+                <div class="formatNumber formatter formatInteger format" style="display:none;">
+                  <label class="checkbox"><input dojoAttachPoint="_formatNumberCheck" dojoType="dijit.form.CheckBox"/>&nbsp;${i18n.separator}</label>
+                </div>
+              <div class="formatDate format">
+                <select dojoAttachPoint="_formatDateSelect" class="formatter" style="width:150px;" dojoType="dijit.form.Select">
+                  <option value="shortDate" selected="selected">12/21/1997</option>
+                  <option value="shortDateLE" selected="selected">21/12/1997</option>
+                  <option value="longMonthDayYear">December 21, 1997</option>
+                  <option value="dayShortMonthYear">21 Dec 1997</option>
+                  <option value="longDate">Sunday, December 21, 1997</option>
+                  <option value="longMonthYear">December 1997</option>
+                  <option value="shortMonthYear">Dec 1997</option>
+                  <option value="year">1997</option>
+                </select>
+                <div class="formatTime hide">
+                  <label dojoAttachPoint="timeCheckboxLbl" class="timeCheckbox disabled"><input dojoAttachPoint="_formatTimeCheck" dojoType="dijit.form.CheckBox"/>&nbsp;${i18n.showTime}</label>
+                  <br />
+                  <select dojoAttachPoint="_formatTimeSelect" class="formatter hide" style="width:150px;" dojoType="dijit.form.Select">
+                    <option value="ShortTime" selected="selected">6:00 PM</option>
+                    <option value="LongTime">6:00:00 PM</option>
+                    <option value="ShortTime24">18:00</option>
+                    <option value="LongTime24">18:00:00</option>
+                  </select>
+                </div>
+                <!--<input dojoAttachPoint="_formatDateCheck" dojoType="dijit.form.CheckBox"/>-->
+                <!--<label class="checkbox">${i18n.localTime}</label>-->
+              </div>
+              <div class="formatString format">
+                <label>${i18n.textboxType}</label>
+                <select dojoAttachPoint="_formatStringSelect" dojoType="dijit.form.Select">
+                  <option value='textbox' selected="selected">${i18n.singleLine}</option>
+                  <option value='textarea'>${i18n.multipleLine}</option>
+                  <option value='richtext'>${i18n.richText}</option>
+                </select>
+              </div>
+              <div class="formatHint format">
+                <br />
+                <label>${i18n.editHint}</label>
+                <input dojoAttachPoint="_formatTooltip" dojoType="dijit.form.TextBox"/>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+        <div style="margin:40px 0 10px 0;float:right;">
+          <button dojoType="dijit.form.Button" type="submit" dojoAttachEvent="onClick:_onSaveFields" class="calcite blue">${i18n.ok}</button>
+          <button dojoType="dijit.form.Button" type="button" dojoAttachEvent="onClick:_onCancelSaveFields" class="calcite transparent">${i18n.cancel}</button>
+        </div>
+    </div>
+    <div dojoAttachPoint="_customFieldDlg" id="_customFieldDlg" title="${i18n.customAttributeDisplay}" dojoType="dijit.Dialog" style="height:auto;width:575px;overflow-y:hidden;">
+        <div style="margin-bottom:10px;">
+            ${i18n.defineInfo}
+        </div>
+        <!--<div dojoType="dijit.Editor" plugins="['bold','italic','underline','|', 'justifyLeft', 'justifyCenter', 'justifyRight','|', 'insertOrderedList', 'insertUnorderedList', '|', 'createEsriLink', 'unlink', '|', 'undo', 'redo']" extraPlugins="['foreColor','hiliteColor']" dojoAttachPoint="_customAttributeEditor" trim="true" style="border:1px solid #CCCCCC;height:160px;"></div>-->
+        <div dojoAttachPoint="_customFieldEditor"></div>
+        <div style="float:right;margin:10px 0px 10px 0px">
+            <button dojoType="dijit.form.Button" type="submit" class="calcite blue">
+                ${i18n.ok}
+            </button>
+            <button dojoType="dijit.form.Button" type="button" class="calcite transparent" onClick="dijit.byId('_customFieldDlg').hide();">
+                ${i18n.cancel}
+            </button>
+        </div>
+    </div>
+     <div dojoAttachPoint="_mediaConfigDlg" id="_mediaConfigDlg" style="width:400px;height:auto;overflow-y:auto;" title="" dojoType="dijit.Dialog" >
+        <div style="margin-bottom:10px;" dojoAttachPoint="_mediaConfigDescription"></div>
+            <label for="_mediaTitle" style="margin:3px 0px 3px 0px">${i18n.titleLabel}</label>
+            <table style="width:100%;margin-top:5px;" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td width="300">
+                    <div dojoAttachPoint="_mediaTitle" name="_mediaTitle" dojotype="dijit.form.TextBox" style="width:315px;padding:4px;"></div>
+                    </td>
+                    <td>
+                    <button dojoAttachPoint="_mediaTitleButton" class="calcite light tiny"></button>
+                    </td>
+                </tr>
+            </table>
+            <br/>
+            <label for="_mediaCaption" style="margin:3px 0px 3px 0px;">${i18n.caption}</label>
+            <table style="width:100%;margin-top:5px;" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td width="300">
+                    <div dojoAttachPoint="_mediaCaption" name="_mediaCaption" dojotype="dijit.form.SimpleTextarea" style="width:315px;padding:4px;"></div>
+                    </td>
+                    <td style="vertical-align:top;">
+                    <button dojoAttachPoint="_mediaCaptionButton" class="calcite light tiny"></button>
+                    </td>
+                </tr>
+            </table>
+            <br/>
+            <div dojoAttachPoint="_imageConfigDiv">
+            <label for="_imageUrl" style="margin:3px 0px 3px 0px;">${i18n.URL}</label>
+            <table style="width:100%;margin-top:5px;" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td width="300">
+                    <div dojoAttachPoint="_imageUrl" name="_imageUrl"  invalidMessage="Invalid URL." dojotype="dijit.form.TextBox" style="width:315px;padding:4px;"></div>
+                    </td>
+                    <td>
+                    <button dojoAttachPoint="_imageUrlButton" class="calcite light tiny"></button>
+                    </td>
+                </tr>
+            </table>
+            <br/>
+            <label for="_imageLink" style="margin:3px 0px 3px 0px;">${i18n.link}</label>
+            <table style="width:100%;margin-top:5px;" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td width="300">
+                    <div dojoAttachPoint="_imageLink" name="_imageLink" dojotype="dijit.form.TextBox" style="width:315px;padding:4px;"></div>
+                    </td>
+                    <td>
+                    <button dojoAttachPoint="_imageLinkButton" class="calcite light tiny"></button>
+                    </td>
+                </tr>
+            </table>
+            </div>
+            <div data-dojo-attach-point="_mediaFieldSelectDiv" style="padding:2px 0px 5px 0px">
+              <label>${i18n.chartSelectLabel}</label>
+              <div class="esriLeadingMargin2" style="width:100%;padding-top:5px;padding-bottom:5px;">
+                <label class="esriSelectLabel">
+                  <input type="radio" data-dojo-type="dijit/form/RadioButton" data-dojo-attach-point="_sameFieldsBtn" data-dojo-attach-event="onChange:_handleSameFieldBtnChange" data-dojo-props="'class':'esriSelectLabel',checked:true" name="chartFields"/>
+                  ${i18n.thisLayer}
+                </label>
+                <div style="padding:2px;"></div>
+                <label class="esriSelectLabel">
+                  <input type="radio" data-dojo-type="dijit/form/RadioButton" data-dojo-attach-point="_relatedFieldsBtn" data-dojo-props="'class':'esriSelectLabel'" name="chartFields"/> 
+                  ${i18n.relLayer}
+                </label>
+              </div>
+            </div>
+            <div dojoAttachPoint="_mediaFieldsDiv">
+            <div dojoAttachPoint="_mediaFieldsDivTitle" style="margin-top:5px;">${i18n.chartFields}</div>
+            <table dojoType="dojox.grid.DataGrid" class='popupGrid' singleClickEdit='true' selectionMode="none" sortInfo='1' style="margin-top:5px;border:1px solid #CCCCCC;height:175px;" dojoAttachPoint="_mediaFieldsGrid">
+            <thead>
+                <tr>
+                    <th editable="false" hidden='true' field="_pos" width='0px'></th>
+                    <th editable="false" width="22px" field="_item" formatter="_getInChartCheckbox"><input id='_mediaFieldsGrid_checkAll' type="checkbox" /></th>
+                    <th editable="true" field="label" width='185px'>${i18n.fieldAlias}</th>
+                    <th editable="false" field="fieldName" width='120px' formatter="_formatToken">${i18n.fieldName}</th>
+                </tr>
+            </thead>
+            </table>
+            
+            <span>${i18n.normalizeByLabel}&nbsp;</span><select dojoAttachPoint="_mediaNormalizeSelect" dojoType="dijit.form.Select" minSize='150'  maxSize='180'  maxHeight='150'  style="margin:10px 0px 10px 0px;width: 150px;"></select>
+            <div>
+            </div>
+            </div>
+            <div data-dojo-attach-point="_mediaRelatedFieldsDiv">
+              <table class="esriFormTable"> 
+                <tbody>
+                  <tr>
+                    <td class="esriLeadingMargin1">
+                      <label>${i18n.layerTable}</label>
+                    </td>
+                    <td>
+                      <input class="longInput" dojoAttachPoint="_relatedLayerInput" data-dojo-type="dijit/form/Select" data-dojo-attach-event="onChange:_handleRelatedLayerInputChange" minSize='150'  maxSize='180'  maxHeight='150'  style="margin:10px 0px 10px 0px;width: 150px;"></input>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="esriLeadingMargin1">
+                      <label>${i18n.chartField}</label>
+                    </td>
+                    <td>
+                      <input class="longInput" dojoAttachPoint="_relatedChartFieldInput" data-dojo-type="dijit/form/Select" minSize='150'  maxSize='180'  maxHeight='150'  style="margin:10px 0px 10px 0px;width: 150px;"></input>
+                    </td>               
+                  </tr>
+                  <tr>
+                    <td class="esriLeadingMargin1">
+                      <label>${i18n.labelField}</label>
+                    </td>
+                    <td>
+                      <input dojoAttachPoint="_mediaTooltipSelect" data-dojo-type="dijit/form/Select" minSize='150'  maxSize='180'  maxHeight='150'  style="margin:10px 0px 10px 0px;width: 150px;"></input>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div style="float:right;margin:10px 0px 10px 0px">
+            <button dojoType="dijit.form.Button" type="submit" class="calcite blue">
+                ${i18n.ok}
+            </button>
+            <button dojoType="dijit.form.Button" type="button" class="calcite transparent" onClick="dijit.byId('_mediaConfigDlg').hide();">
+                ${i18n.cancel}
+            </button>
+        </div>
+    </div>
+    <div id="_sortOptionsDlg" dojoAttachPoint="_sortOptionsDlg" title="${i18n.sortOptions}" dojoType="dijit.Dialog" style="height:auto;width:575px;overflow-y:hidden;">
+        <div style="margin-bottom:10px;">
+            ${i18n.sortOptionsMsg}
+        </div>
+        <div class="_sortOptionsGrid" id="_sortOptionsGridDiv" dojoAttachPoint="_sortOptionsGridDiv"></div>
+        <div style="float:right;margin:10px 0px 10px 0px">
+            <button dojoType="dijit.form.Button" type="submit" class="calcite blue" onClick="dijit.byId('_sortOptionsDlg').hide('ok');">
+                ${i18n.ok}
+            </button>
+            <button dojoType="dijit.form.Button" type="button" class="calcite transparent" onClick="dijit.byId('_sortOptionsDlg').hide('cancel');">
+                ${i18n.cancel}
+            </button>
+        </div>
+    </div>
+</div>

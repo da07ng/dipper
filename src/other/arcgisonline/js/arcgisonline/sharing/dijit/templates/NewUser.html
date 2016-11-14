@@ -1,0 +1,33 @@
+<div dojoType="dijit.layout.ContentPane" dojoAttachPoint="containerNode" style="min-height:300px;">
+  <div dojoAttachPoint="newUserNode" style="display:none;">
+    <h1 dojoAttachPoint="_welcomeHeader"></h1>
+    <div class="userInfo" dojoAttachPoint="_userInfo">
+        <label>${i18n.usernameLabel}</label><span dojoAttachPoint="_username"></span>
+        <br />
+        <label>${i18n.emailLabel}</label><span dojoAttachPoint="_email"></span>
+        <br />
+        <label>${i18n.firstNameLabel}</label><span dojoAttachPoint="_firstName"></span>
+        <br />
+        <label>${i18n.lastNameLabel}</label><span dojoAttachPoint="_lastName"></span>
+    </div>
+    <span class="indent section">${i18n.formInstructions}</span>
+    <br />
+    <div class="formNode" dojoAttachPoint="_formNode">
+        <!--<div dojoAttachPoint="_passwordHintText" class="indent prompt hidden">${i18n.passwordHintText}</div>-->
+        <label>${i18n.setPasswordLabel}</label><input dojoAttachPoint="_password" name="password" class="required" dojoType="dijit.form.TextBox" type="password" trim="true">
+        <br />
+        <label>${i18n.verifyPasswordLabel}</label><input dojoAttachPoint="_verify" name="verify" class="required" dojoType="dijit.form.TextBox" type="password" trim="true">
+        <br />
+        <label>${i18n.questionLabel}</label><input name="question" class="required" style="width:300px;" dojoAttachPoint="_select" class="select required" dojoType="dijit.form.Select">
+        <br />
+        <label>${i18n.answerLabel}</label><input dojoAttachPoint="_answer" name="answer" class="required" dojoType="dijit.form.TextBox" trim="true">
+        <br />
+        <div dojoAttachPoint="_terms"><label>${i18n.termsOfUseLabel}</label><button dojoAttachEvent="onClick:onTermsClick" class="calcite transparent" dojoType="dijit.form.Button" type="button">${i18n.reviewTermsOfUse}</button></div>
+    </div>
+    <div class="buttons indent" dojoAttachPoint="_buttons">
+        <button dojoAttachPoint="_signInBtn" class="calcite blue" dojoAttachEvent="onClick:onSignInClick" dojoType="dijit.form.Button" type="button" disabled="true">${i18n.signIn}</button>
+        <button dojoType="dijit.form.Button" class="calcite transparent" dojoAttachEvent="onClick:onCancelClick" type="button">${i18n.cancel}</button>
+    </div>
+  </div>
+</div>
+

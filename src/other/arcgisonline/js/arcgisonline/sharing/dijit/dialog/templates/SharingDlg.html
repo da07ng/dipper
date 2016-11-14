@@ -1,0 +1,29 @@
+<div class="widgetContent">
+  <div dojotype="dijit.Dialog" dojoAttachPoint="_shareDialog" id="share-dialog" title="${i18n.sharingDlgTitle}" execute="">
+    <label>${i18n.shareItemsLabel}</label>
+    <br/>
+    <div style="padding-left:15px; padding-top:5px;" dojotype="arcgisonline.sharing.dijit.ShareOptions" dojoAttachPoint="_shareOptions">
+    </div>
+    <div style="line-height:25px; padding-left:15px;">
+      <div>
+        <label>${i18n.settingsMsg}</label>
+      </div>
+      <div dojoAttachPoint="_shareNoGroupsDiv" style="display:none;">
+        <label>${i18n.notAMemberMsg}</label>
+      </div>
+      <div dojoAttachPoint="_shareOwnerNoneDiv" style="display:none;">
+        <label>${i18n.notOwnerMsg}</label>
+      </div>
+    </div>
+    <div class="esriFloatTrailing" style="padding-bottom:1.0em;">
+    <br />
+    <span class="disabled" style="display:none;">${i18n.sharingItems}</span>
+    <button class="jevent primary" dojotype="dijit.form.Button"  dojoAttachEvent="onClick:_handleOkResponse">
+      ${i18n.ok}
+    </button>
+    <button id="button_share-cancel" class="jevent cancel" type="cancel" dojotype="dijit.form.Button" dojoAttachEvent="onClick:_handleCancelClick">
+      ${i18n.cancel}
+    </button>
+    </div>
+  </div>
+</div>

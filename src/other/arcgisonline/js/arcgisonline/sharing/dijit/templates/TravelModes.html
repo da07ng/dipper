@@ -1,0 +1,82 @@
+<div class="${baseClass} widgetContent travelModesWidgetHiddenByDefault">
+    <div>
+        <table style="width:100%"><tbody><tr><td>
+            <span data-dojo-attach-point="_header" id="travel-mode-header">${i18n.headerAdd}</span>
+            <a id="travel-modes-helpLink" target="_blank"><span id="travel-modes-helpLink">&nbsp;</span></a>
+        </td><td style="text-align: right;">
+            <button data-dojo-type="dijit/form/Button" data-dojo-attach-event="onClick:_saveTravelMode" class="calcite blue small">${i18n.saveTravelMode}</button>
+            <button data-dojo-type="dijit/form/Button" data-dojo-attach-event="onClick:_discardChanges" class="calcite transparent small">${i18n.discardChanges}</button>
+        </td></tr></tbody></table>
+    </div>
+    <br/><br/>
+    <div>
+        <label for="travel-mode-name">${i18n.nameLabel}</label>
+        <div id="travel-mode-name" data-dojo-type="dijit/form/ValidationTextBox"
+             data-dojo-props="maxLength:50, placeHolder:'${i18n.namePlaceholder}', required:true"
+             data-dojo-attach-event="onChange:_nameChange">
+        </div>
+        <br/><br/>
+        <label for="travel-mode-description">${i18n.descriptionLabel}</label>
+        <br/>
+        <textarea id="travel-mode-description" data-dojo-type="dijit/form/Textarea"
+            data-dojo-props="placeholder:'${i18n.descriptionPlaceholder}', maxLength:1024"
+            data-dojo-attach-event="onKeyUp:_descChange"></textarea>
+        <div class="example"><span data-dojo-attach-point="_descRevLength"></span>${i18n.descriptionCharCount}</div>
+        <br/>
+        <label for="travel-mode-type">${i18n.type}</label>
+        <div id="travel-mode-type"
+             data-dojo-type="arcgisonline/sharing/dijit/ComboBox"
+             data-dojo-attach-event="onChange:_typeChange"
+             class="gallerySelect" style="display:inline-block;"></div>
+        <div id="travel-mode-type-icon" class="tmTypeIcon tmTypeOther"></div>
+        <br/><br/>
+        <label for="travel-mode-impedance">${i18n.impedance}</label>
+        <div id="travel-mode-impedance"
+             data-dojo-type="arcgisonline/sharing/dijit/ComboBox"
+             class="gallerySelect" style="display:inline-block;"
+             data-dojo-attach-event="onChange:_impedanceChange"></div>
+        <br/><br/>
+        <label for="travel-mode-timeImpedance">${i18n.timeImpedance}</label>
+        <div id="travel-mode-timeImpedance"
+             data-dojo-type="arcgisonline/sharing/dijit/ComboBox"
+            class="gallerySelect" style="display:inline-block;"
+            data-dojo-attach-event="onChange:_timeDistanceAttrChange"></div>
+        <br/><br/>
+        <label for="travel-mode-distanceImpedance">${i18n.distanceImpedance}</label>
+        <div id="travel-mode-distanceImpedance"
+             data-dojo-type="arcgisonline/sharing/dijit/ComboBox"
+            class="gallerySelect" style="display:inline-block;"
+            data-dojo-attach-event="onChange:_timeDistanceAttrChange"></div>
+        <br/><br/>
+        <label for="travel-mode-uturn">${i18n.uTurnPolicy}</label>
+        <div id="travel-mode-uturn"
+             data-dojo-type="arcgisonline/sharing/dijit/ComboBox"
+             data-dojo-attach-event="onChange:_uTurnChange"
+            class="gallerySelect" style="display:inline-block;"></div>
+        <br/><br/>
+        <label for="travel-mode-simplification">${i18n.simplification}</label>
+        <div id="travel-mode-simplification" data-dojo-type="dijit/form/ValidationTextBox"
+             data-dojo-attach-event="onChange:_simplificationChange"
+             data-dojo-props="required:true, maxLength:10, placeHolder:'${i18n.simplificationPlaceholder}'">
+        </div>
+        <div id="travel-mode-simplification-units"
+             data-dojo-type="arcgisonline/sharing/dijit/ComboBox"
+             data-dojo-attach-event="onChange:_simplificationChange"
+             class="gallerySelect" style="display:inline-block;"></div>
+        <br/><br/>
+        <div id="travel-mode-hierarchy" data-dojo-type="dijit/form/CheckBox"
+             data-dojo-attach-event="onChange:_hierarchyChange"
+             class="vertAlignTextTop"></div>
+        <label for="travel-mode-hierarchy">${i18n.useHierarchy}</label>
+    </div>
+    <br/><br/>
+    <label>${i18n.attributesAndParameters}</label>
+    <br/><br/>
+    <div id="travel-mode-attributes-container"></div>
+    <div>
+        <table style="width:100%" id="footer"><tbody><tr><td style="text-align: right;">
+            <button data-dojo-type="dijit/form/Button" data-dojo-attach-event="onClick:_saveTravelMode" class="calcite blue small">${i18n.saveTravelMode}</button>
+            <button data-dojo-type="dijit/form/Button" data-dojo-attach-event="onClick:_discardChanges" class="calcite transparent small">${i18n.discardChanges}</button>
+        </td></tr></tbody></table>
+    </div>
+</div>

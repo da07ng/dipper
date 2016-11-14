@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["dojo/_base/array","../../core/declare","dojo/_base/lang","../../core/JSONSupport","./GPMessage"],function(b,a,c,d,e){a=a(d,{declaredClass:"esri.tasks.JobInfo",jobId:"",jobStatus:"",messages:[],_messagesReader:function(a){return b.map(a,function(a){return e.fromJSON(a)})}});c.mixin(a,{STATUS_CANCELLED:"esriJobCancelled",STATUS_CANCELLING:"esriJobCancelling",STATUS_DELETED:"esriJobDeleted",STATUS_DELETING:"esriJobDeleting",STATUS_EXECUTING:"esriJobExecuting",STATUS_FAILED:"esriJobFailed",STATUS_NEW:"esriJobNew",
+STATUS_SUBMITTED:"esriJobSubmitted",STATUS_SUCCEEDED:"esriJobSucceeded",STATUS_TIMED_OUT:"esriJobTimedOut",STATUS_WAITING:"esriJobWaiting"});return a});

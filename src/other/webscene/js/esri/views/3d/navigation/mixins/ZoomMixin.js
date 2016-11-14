@@ -1,0 +1,6 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../../../../core/declare","../../lib/glMatrix"],function(g,d){var f=d.vec2d,e=d.vec3d,b=e.create(),h=1/120;return g([],{declaredClass:"esri.views.3d.navigation.mixins.ZoomMixin",type:"zoom",constructor:function(){this.normalizedAnchorPoint=f.create()},begin:function(a){this.navigation.begin(this);f.set(a,this._dragBeginPoint);this.normalizeCoordinate(a,this.normalizedAnchorPoint);a=this._toYDownCoord(this._dragBeginPoint);this.active=!0;this.emit("begin",a[0],a[1])},update:function(a){},
+end:function(a){this.active=!1;a=this._toYDownCoord(this._dragBeginPoint);this.emit("end",a[0],a[1]);this.navigation.end(this)},stepScreen:function(a,c){this.active||(e.set(this.currentCamera.center,b),0<a&&!this.pickPointInScreen(c,b)&&"planar"===this.navigation.view.globeMode&&this.pickFreePointInScreen(c,b),this.step(a*h,b,c))},step:function(a,c,b){if(!this.active){this.navigation.begin(this);this.targetCamera.copyFrom(this.currentCamera);var d=1E-6<e.dist(c,this.targetCamera.center);this.stepAtPoint(0.4*
+a,c,b,d);this.navigation.end(this)}},stepAtPoint:function(a,c,b,d){},_toYDownCoord:function(a){return[a[0],this.currentCamera.height-a[1]]}})});

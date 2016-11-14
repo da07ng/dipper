@@ -1,0 +1,440 @@
+<div dojoType="dijit.layout.BorderContainer" region="top" style="height:100%;">
+  <div id="renderer-main" class="panel panel_left" dojoType="dijit.layout.ContentPane" region="center" style="padding:7px;margin-bottom:-5px;">
+    <div id="rendererHeader" dojotype="dijit.layout.ContentPane" region="top">
+      <div class="esriFloatTrailing" style="display:inline;">
+        <a href="JavaScript:void(0);" dojoAttachPoint="_closeBtn" title="${i18n.close}" class="panel panel_close panel_collapse"></a>
+      </div>
+      <div id="rendererTitle" class="esriFloatLeading panel_title">
+        ${i18n.rendererPanelTitle}
+      </div>
+      <div style="clear:both; height:1px;"></div><!--border-bottom: #333 thin solid;-->
+    </div>
+    <div dojotype="dijit.layout.ContentPane" region="center" id="rendererPane" style="padding-top:10px;overflow-y:auto;">
+      <div id="renderer_type">
+        <table style="width:100%">
+          <tbody>
+            <tr>
+              <td valign="top" colspan="2">
+    						<div class="esriFloatLeading">${i18n.specifySymbols}</div>
+                <div class="esriFloatTrailing" style="padding-bottom:5px;" class="esriItemLinks">
+                  <a id="renderer-help" href="" target="_blank">${i18n.help}</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top" nowrap>
+                <div id="rendererTypeLabel" class="firstColumnDiv" style="position:relative;height:25px;top:8px;width:57px;">
+                  <label class="firstColumnLabel">
+                    ${i18n.useLabel}
+                  </label>
+                </div>
+              </td>
+              <td> 
+                <select class="rendererInput" class="calcite light" dojoAttachPoint="_rendererType" dojoAttachEvent="onChange:_onChangeRendererType" dojoType="dijit.form.Select">
+                  <option value="simple" selected="selected">${i18n.singleSymbol}</option>
+                  <option value="unique">${i18n.uniqueSymbol}</option>
+                  <option value="color">${i18n.color}</option>
+                  <option value="size">${i18n.size}</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="renderer_simple">
+        <table>
+          <tbody>
+            <tr>
+              <td nowrap>
+                <div class="firstColumnDiv">
+                  <label class="firstColumnLabel">
+                    ${i18n.symbolLabel}
+                  </label>
+								</div>
+              </td>
+              <td>
+                <div id="panelSymbolImage" style="vertical-align:middle;">
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="padding-bottom:3px;">
+          <div class="esriFloatLeading">
+	          <button dojoAttachPoint="_rendererSimpleChangeSymbolButton" class="calcite light tiny" dojotype="dijit.form.Button" type="button" dojoAttachEvent="onClick:_onSimpleChangeSymbolClick">
+	            <span>${i18n.changeSymbolBtn}</span>
+	          </button>
+            <button dojoAttachPoint="_rendererSimpleSymbolsButton" dojotype="dijit.form.DropDownButton" type="button" class="calcite transparent tiny" style="display:none; padding-left:0; padding-right:0;">
+              <span>${i18n.options}</span>
+              <div id="rendererSimpleMenu" dojotype="dijit.Menu">
+                <div dojotype="dijit.MenuItem" dojoAttachEvent="onClick:_onSimpleChangeSymbolClick">
+                    ${i18n.changeSymbolBtn}
+                </div>
+                <div dojotype="dijit.MenuItem" dojoAttachPoint="_rendererSimpleRotationOption" dojoAttachEvent="onClick:_onClickRendererSimpleRotation">
+                    ${i18n.setRotationAngle}
+                </div>
+              </div>
+            </button>
+          </div>
+          <div id="rendererSimpleApply" class="esriFloatTrailing">
+            <button dojotype="dijit.form.Button" class="calcite green tiny" type="button" dojoAttachEvent="onClick:_onSaveRenderer">
+              <span>${i18n.apply}</span>
+            </button>
+          </div>
+          <div style="clear:both;"></div>
+        </div>
+        <div id="renderer_stream" style="padding-top:15px;">
+          <table>
+            <tbody>
+              <tr>
+                <td colspan="2">
+                  <span>
+                    ${i18n.streamMsg}
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table style="padding-top:10px;">
+            <tbody>
+              <tr>
+                <td style="padding-top:2px;">
+                  <input dojoAttachPoint="rendererStreamPreviousCheck" dojoAttachEvent="onChange:_onChangeStreamPrevious" dojotype="dijit.form.CheckBox" checked="false" type="checkbox" />
+                </td>
+                <td nowrap>
+                  <span id="renderer_stream_msg_part1" class="esriLeadingMargin05">
+                  </span>
+                </td>
+                <td>
+                  <input class="rendererInput" dojoAttachPoint="rendererStreamMaxTrackPts" dojoAttachEvent="onChange:_onChangeStreamMaxTrackPts" intermediateChanges="true" dojoType="dijit.form.NumberSpinner" value="5" smallDelta="1" constraints="{min:2,max:100,places:0}" style="width:40px; margin: 0 5px;"/>
+                </td>
+                <td nowrap>
+                  <span id="renderer_stream_msg_part2">
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="esriLeadingMargin108">
+            <table>
+              <tbody>
+                <tr>
+                  <td nowrap>
+                    <div>
+                      <label>
+                        ${i18n.symbolLabel}
+                      </label>
+                    </div>
+                  </td>
+                  <td>
+                    <div id="panelStreamSymbolImage" style="vertical-align:middle;">
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table>
+              <tbody>
+                <tr>
+                  <td style="padding-top:2px;">
+                    <input dojoAttachPoint="rendererStreamConnectCheck" dojoAttachEvent="onChange:_onChangeStreamConnect" dojotype="dijit.form.CheckBox" checked="false" type="checkbox" />
+                  </td>
+                  <td>
+                    <span class="esriLeadingMargin05">
+                      ${i18n.connectObservations}
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="esriLeadingMargin108">
+              <table>
+                <tbody>
+                  <tr>
+                    <td nowrap>
+                      <div>
+                        <label>
+                          ${i18n.symbolLabel}
+                        </label>
+                      </div>
+                    </td>
+                    <td width="10">
+                    </td>
+                    <td>
+                      <div id="panelStreamLineSymbolImage" style="vertical-align:middle;">
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="renderer_unique" style="display:none;">
+        <table>
+          <tbody>
+            <tr>
+              <td nowrap>
+                <div class="firstColumnDiv">
+                  <label class="firstColumnLabel">
+                    ${i18n.toShowLabel}
+                  </label>
+								</div>
+              </td>
+              <td>
+                <select class="rendererInput" dojoAttachPoint="_rendererUniqueAttribute" dojoAttachEvent="onChange:_onChangeRendererUniqueAttribute" dojoType="dijit.form.Select" maxHeight="150" sortByLabel="false">
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td nowrap>
+                <div class="firstColumnDiv">
+                  <label class="firstColumnLabel">
+                    ${i18n.colorsLabel}
+                  </label>
+                </div>
+              </td>
+              <td>
+                <select dojoAttachPoint="_rendererUniqueColor" dojoAttachEvent="onChange:_onChangeRendererUniqueColor" dojoType="dijit.form.Select" maxHeight="150" sortByLabel="false" class="rendererUniqueColor">
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="rendererCenterButtons">
+          <div class="esriFloatLeading">
+			      <button dojoAttachPoint="_rendererUniqueSymbolsButton" dojotype="dijit.form.DropDownButton" type="button" class="calcite transparent tiny">
+			        <span>${i18n.options}</span>
+							<div id="rendererUniqueMenu" dojotype="dijit.Menu">
+							  <div dojotype="dijit.MenuItem" dojoAttachEvent="onClick:_onClickRendererUniqueSymbolsChange">
+							      ${i18n.changeAllSymbols}
+							  </div>
+							  <div dojotype="dijit.MenuItem" dojoAttachEvent="onClick:_onClickRendererUniqueFlipColors">
+							      ${i18n.flipColors}
+							  </div>
+                <div dojotype="dijit.MenuItem" dojoAttachPoint="_rendererUniqueOtherOption" dojoAttachEvent="onClick:_onClickRendererUniqueOther">
+                    ${i18n.showOtherValues}
+                </div>
+                <div dojotype="dijit.MenuItem" dojoAttachPoint="_rendererUniqueRotationOption" dojoAttachEvent="onClick:_onClickRendererUniqueRotation">
+                    ${i18n.setRotationAngle}
+                </div>
+							</div>
+			      </button>
+          </div>
+          <div class="esriFloatTrailing">
+	          <button dojoAttachPoint="_rendererUniqueApplyButton" dojotype="dijit.form.Button" class="calcite green tiny" type="button" dojoAttachEvent="onClick:_onSaveRenderer">
+	            <span>${i18n.apply}</span>
+	          </button>
+          </div>
+        </div>
+        <div id="rendererUniqueRendererGridDiv" class="rendererList" style="clear:both;">
+          <div id="rendererUniqueRendererGrid">
+          </div>
+        </div>
+      </div>
+      <div id="renderer_classBreaks" style="display:none;">
+        <table>
+          <tbody>
+            <tr>
+              <td nowrap>
+                <div class="firstColumnDiv">
+                  <label class="firstColumnLabel">
+                    ${i18n.toShowLabel}
+                  </label>
+								</div>
+              </td>
+              <td colspan="2">
+                <select class="rendererInput" dojoAttachPoint="_rendererClassBreaksAttribute" dojoAttachEvent="onChange:_onChangeRendererClassBreaksAttribute" dojoType="dijit.form.Select" maxHeight="150" sortByLabel="false">
+                </select>
+              </td>
+            </tr>
+            <tr id="renderer_classBreaks_normalizedBy" style="display:none;">
+              <td nowrap>
+                <div class="firstColumnDiv">
+                  &nbsp;
+                </div>
+              </td>
+              <td style="padding-top: 3px;" nowrap>
+                <div class="secondColumnDiv" style="width:100px;">
+                  <label class="secondColumnLabel" title="${i18n.normalizedHelp}">
+                    ${i18n.normalizedBy}&nbsp;
+                  </label>
+                </div>
+              </td>
+              <td style="padding-top: 3px;">
+                <div>
+                  <select class="rendererInput" dojoAttachPoint="_rendererClassBreaksNormalizedBy" dojoAttachEvent="onChange:_onChangeRendererClassBreaksNormalizedBy" dojoType="dijit.form.Select" maxHeight="150" sortByLabel="false">
+                  </select>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td valign="top" nowrap>
+                <div class="firstColumnDiv" style="position:relative;height:30px;top:8px">
+                  <label class="firstColumnLabel">
+                    ${i18n.byLabel}
+                  </label>
+                </div>
+              </td>
+              <td colspan="2">
+                <select class="rendererInput" dojoAttachPoint="_rendererClassBreaksMethod" dojoAttachEvent="onChange:_onChangeRendererClassBreaksMethod" dojoType="dijit.form.Select">
+                  <option value="natural" selected="selected">${i18n.naturalBreaks}</option>
+                  <option value="equal">${i18n.equalInterval}</option>
+                  <option value="stdDev">${i18n.standardDeviation}</option>
+                  <option value="quantile">${i18n.quantile}</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="renderer_color" style="display:none;">
+        <table>
+          <tbody>
+            <tr>
+              <td nowrap>
+                <div class="firstColumnDiv">
+                  <label class="firstColumnLabel">
+                    ${i18n.withLabel}
+                  </label>
+								</div>
+              </td>
+              <td>
+                <div id="rendererColorBreaksClassesDiv">
+	                <input class="rendererInput" dojoAttachPoint="_rendererColorBreaks" dojoAttachEvent="onChange:_onChangeRendererColorBreaks" intermediateChanges="true" dojoType="dijit.form.NumberSpinner" value="5" smallDelta="1" constraints="{min:1,max:10,places:0}" style="width:40px;"/>
+	                <label>${i18n.classes}</label>
+                </div>
+                <div id="rendererColorBreaksIntervalDiv" style="display:none;">
+                  <select class="rendererInput" dojoAttachPoint="_rendererColorInterval" dojoAttachEvent="onChange:_onChangeRendererColorInterval" dojoType="dijit.form.Select" style="width:50px;">
+                    <option value="0.33">0.33</option>
+                    <option value="0.25">0.25</option>
+                    <option value="0.5">0.5</option>
+                    <option value="1" selected="selected">1</option>
+                  </select>
+                  <label>${i18n.intervals}</label>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td nowrap>
+                <div class="firstColumnDiv">
+                  <label class="firstColumnLabel">
+                    ${i18n.colorsLabel}
+                  </label>
+                </div>
+              </td>
+              <td>
+                <select dojoAttachPoint="_rendererColorColor" dojoAttachEvent="onChange:_onChangeRendererColorColor" dojoType="dijit.form.Select" maxHeight="150" sortByLabel="false" class="rendererColorColor">
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="rendererCenterButtons">
+          <div class="esriFloatLeading">
+            <button dojoAttachPoint="_rendererColorSymbolsButton" dojotype="dijit.form.DropDownButton" type="button" class="calcite transparent tiny">
+              <span>${i18n.options}</span>
+              <div id="rendererColorMenu" dojotype="dijit.Menu">
+                <div dojotype="dijit.MenuItem" dojoAttachEvent="onClick:_onClickRendererColorSymbolsChange">
+                    ${i18n.changeAllSymbols}
+                </div>
+                <div dojotype="dijit.MenuItem" dojoAttachEvent="onClick:_onClickRendererColorFlipColors">
+                    ${i18n.flipColors}
+                </div>
+                <div dojotype="dijit.MenuItem" dojoAttachPoint="_rendererColorOtherOption" dojoAttachEvent="onClick:_onClickRendererColorOther">
+                    ${i18n.showOtherValues}
+                </div>
+                <div dojotype="dijit.MenuItem" dojoAttachPoint="_rendererColorRotationOption" dojoAttachEvent="onClick:_onClickRendererColorRotation">
+                    ${i18n.setRotationAngle}
+                </div>
+              </div>
+            </button>
+          </div>
+          <div class="esriFloatTrailing">
+            <button dojoAttachPoint="_rendererColorApplyButton" dojotype="dijit.form.Button" class="calcite green tiny" type="button" dojoAttachEvent="onClick:_onSaveRenderer">
+              <span>${i18n.apply}</span>
+            </button>
+          </div>
+        </div>
+        <div id="rendererColorRendererGridDiv" class="rendererList" style="clear:both;">
+          <div id="rendererColorRendererGrid">
+          </div>
+        </div>
+      </div>
+      <div id="renderer_size" style="display:none;">
+        <table>
+          <tbody>
+            <tr>
+              <td nowrap>
+                <div class="firstColumnDiv">
+                  <label class="firstColumnLabel">
+                    ${i18n.withLabel}
+                  </label>
+								</div>
+              </td>
+              <td>
+              	<div id="rendererSizeBreaksClassesDiv">
+	                <input class="rendererInput" dojoAttachPoint="_rendererSizeBreaks" dojoAttachEvent="onChange:_onChangeRendererSizeBreaks" intermediateChanges="true" dojoType="dijit.form.NumberSpinner" value="5" smallDelta="1" constraints="{min:1,max:10,places:0}" style="width:40px;"/>
+	  							<label>${i18n.classes}</label>
+								</div>
+								<div id="rendererSizeBreaksIntervalDiv" style="display:none;">
+	                <select class="rendererInput" dojoAttachPoint="_rendererSizeInterval" dojoAttachEvent="onChange:_onChangeRendererSizeInterval" dojoType="dijit.form.Select" style="width:50px;">
+	                  <option value="0.33">0.33</option>
+	                  <option value="0.25">0.25</option>
+	                  <option value="0.5">0.5</option>
+	                  <option value="1" selected="selected">1</option>
+	                </select>
+									<label>${i18n.intervals}</label>
+								</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="rendererCenterButtons">
+          <div class="esriFloatLeading">
+            <button dojoAttachPoint="_rendererSizeSymbolsButton" dojotype="dijit.form.DropDownButton" type="button" class="calcite transparent tiny">
+              <span>${i18n.options}</span>
+              <div id="rendererSizeMenu" dojotype="dijit.Menu">
+                <div dojotype="dijit.MenuItem" dojoAttachEvent="onClick:_onClickRendererSizeSymbolsChange">
+                    ${i18n.changeAllSymbols}
+                </div>
+                <div dojotype="dijit.MenuItem" dojoAttachPoint="_rendererSizeOtherOption" dojoAttachEvent="onClick:_onClickRendererSizeOther">
+                    ${i18n.showOtherValues}
+                </div>
+                <div dojotype="dijit.MenuItem" dojoAttachPoint="_rendererSizeBackgroundOption" dojoAttachEvent="onClick:_onClickRendererSizeBackground">
+                    ${i18n.showBackground}
+                </div>
+                <div dojotype="dijit.MenuItem" dojoAttachPoint="_rendererSizeRotationOption" dojoAttachEvent="onClick:_onClickRendererSizeRotation">
+                    ${i18n.setRotationAngle}
+                </div>
+              </div>
+            </button>
+          </div>
+          <div class="esriFloatTrailing">
+            <button dojoAttachPoint="_rendererSizeApplyButton"  class="calcite green tiny" dojotype="dijit.form.Button" type="button" dojoAttachEvent="onClick:_onSaveRenderer">
+              <span>${i18n.apply}</span>
+            </button>
+          </div>
+        </div>
+        <div id="rendererSizeRendererGridDiv" class="rendererList" style="clear:both;">
+          <div id="rendererSizeRendererGrid">
+          </div>
+        </div>
+      </div>
+	    <div id="rendererListLoading" style="display:none;position:absolute;background-color:white;">
+	      <span style="line-height:40px">&nbsp;&nbsp;&nbsp;${i18n.loadingMsg}&nbsp;&nbsp;&nbsp;</span>
+	    </div>
+      <div id="rendererListError" style="display:none;position:absolute;background-color:white;">
+        <span style="line-height:40px">&nbsp;&nbsp;&nbsp;${i18n.errors.genericError.message}&nbsp;&nbsp;&nbsp;</span>
+      </div>
+    </div>
+  </div>
+  <div id="rendererContentClose">
+      <button dojotype="dijit.form.Button" type="button" class="calcite blue" id="rendererContent-close" dojoAttachPoint="_doneChangingButton" dojoAttachEvent="onClick:_onDoneChangingSymbols"><span>${i18n.doneChangingSymbolsBtn}</span></button>
+  </div>
+  <div id="rendererContentFooter" dojoType="dijit.layout.ContentPane" region="bottom" style="height:40px; padding: 0 5px 0 5px;">
+    <div class="footer" id="rendererFooter" dojotype="arcgisonline.sharing.dijit.SiteFooterMap" style="white-space:normal;">
+    </div>
+  </div>
+</div>

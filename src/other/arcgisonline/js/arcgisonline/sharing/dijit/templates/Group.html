@@ -1,0 +1,259 @@
+<div data-dojo-type="dijit.layout.ContentPane" data-dojo-attach-point="containerNode" class="groupDijit">
+
+  <form data-dojo-attach-point="_form" enctype="multipart/form-data" action="" method="post" onSubmit="return false;">
+    <input data-dojo-attach-point="_form_groupId" name="id" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+    <input data-dojo-attach-point="_form_groupTitle" name="title" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+    <input data-dojo-attach-point="_form_groupTags" name="tags" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+    <input data-dojo-attach-point="_form_groupDescription" name="description" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+    <input data-dojo-attach-point="_form_groupSummary" name="snippet" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+    <input data-dojo-attach-point="_form_groupPhone" name="phone" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+    <input data-dojo-attach-point="_form_groupAccess" name="access" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+    <input data-dojo-attach-point="_form_groupIsInvitationOnly" name="isInvitationOnly" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+    <input data-dojo-attach-point="_form_groupIsViewOnly" name="isViewOnly" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+    <input data-dojo-attach-point="_form_groupIsOpenData" name="isOpenData" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+    <input data-dojo-attach-point="_form_groupCapabilities" name="capabilities" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+    <input data-dojo-attach-point="_form_groupSortField" name="sortField" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+    <input data-dojo-attach-point="_form_groupSortOrder" name="sortOrder" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+    <input data-dojo-attach-point="_form_groupProvider" name="provider" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+    <input data-dojo-attach-point="_form_groupProviderGroupName" name="providerGroupName" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+    <input id="clearEmptyFields" name="clearEmptyFields" data-dojo-type="dijit.form.TextBox" type="hidden" value="true"/>
+
+    <div style="width: 100%; margin:2em 0; display:none;" data-dojo-attach-point="_menuButtons">
+      <span id="editButtonSpan" class="ownerOnly"><button data-dojo-type="dijit.form.Button" type="button" data-dojo-props="iconClass:'esriEditGroupIcon'" data-dojo-attach-event="onClick:startEdit" data-dojo-attach-point="_editButton" class="readOnly calcite narrow transparent">${i18n.edit}</button></span>
+      <button id="_upperSave" data-dojo-type="dijit.form.Button" type="button" data-dojo-attach-event="onClick:saveEdit" class="editOnly calcite blue">${i18n.save}</button>
+      <button data-dojo-type="dijit.form.Button" type="button" data-dojo-attach-event="onClick:cancelEdit" class="editOnly calcite transparent">${i18n.cancel}</button>
+      <span id="inviteButtonSpan" class="ownerOnly"><button data-dojo-type="dijit.form.Button" type="button" data-dojo-props="iconClass:'esriJoinGroupIcon'" data-dojo-attach-point="_inviteButton" data-dojo-attach-event="onClick:_handleInviteGroupButtonClick" class="readOnly calcite narrow transparent">${i18n.inviteUsers}</button></span>
+      <span id="membershipRequestSpan" class="ownerOnly"><button data-dojo-type="dijit.form.Button" type="button" data-dojo-props="iconClass:'esriMembershipRequestIcon'" data-dojo-attach-event="onClick:_handleMemberRequestsButtonClick" class="readOnly calcite narrow transparent" data-dojo-attach-point="_membershipRequestButton" style="display:none;">${i18n.membershipRequests}</button></span>
+      <span id="reassignButtonSpan" class="ownerOnly"><button data-dojo-type="dijit.form.Button" type="button" data-dojo-props="iconClass:'esriReassignIcon'" data-dojo-attach-event="onClick:reassignGroup" class="readOnly calcite narrow transparent" data-dojo-attach-point="_changeOwnerButton">${i18n.changeOwner}</button></span>
+      <span id="deleteButtonSpan" class="ownerOnly"><button data-dojo-type="dijit.form.Button" type="button" data-dojo-props="iconClass:'esriDeleteGroupIcon'" data-dojo-attach-point="_deleteButton" data-dojo-attach-event="onClick:deleteGroup" class="readOnly calcite narrow transparent">${i18n.deleteGroup}</button></span>
+      <span id="shareByOwnerSpan" class="ownerOnly"><button data-dojo-type="dijit.form.Button" type="button" data-dojo-props="iconClass:'esriGroupLinkIcon'" data-dojo-attach-event="onClick:shareGroup" data-dojo-attach-point="_shareByOwnerButton" class="readOnly calcite narrow transparent">${i18n.share}</button></span>
+      <button data-dojo-type="dijit.form.Button" type="button" style="display:none;" class="group_buttons calcite narrow transparent" data-dojo-attach-event="onClick:joinGroup" data-dojo-attach-point="_joinGroupButton" data-dojo-props="iconClass:'esriJoinGroupIcon'">${i18n.joinThisGroup}</button>
+      <button data-dojo-type="dijit.form.Button" type="button" style="display:none;" class="group_buttons calcite narrow transparent" data-dojo-attach-event="onClick:confirmLeaveGroup" data-dojo-attach-point="_leaveGroupButton" data-dojo-props="iconClass:'esriLeaveGroupIcon'">${i18n.leaveThisGroup}</button>
+      <button data-dojo-type="dijit.form.Button" type="button" style="display:none;" class="group_buttons calcite narrow transparent" data-dojo-attach-event="onClick:shareGroup" data-dojo-attach-point="_shareByOtherButton" data-dojo-props="iconClass:'esriGroupLinkIcon'">${i18n.share}</button>
+    </div>
+
+
+    <div>
+     <div style="clear:both;margin-top: 2em; padding-left: 10px;" class="alpha">
+
+      <div class="alpha" data-dojo-attach-point="_thumbnailDiv" style="display:none;">
+        <img src="" data-dojo-attach-point="_thumbnailEdit" align="center" class="groupThumbnail esriFloatLeading" style="display:none;" /><br/>
+        <span class="editOnly esriFloatLeading group-change-thumb" data-dojo-attach-point="_changeThumbLabel">${i18n.clickChangeThumbnail}</span>
+      </div>
+
+      <span class="editOnly esriFloatLeading">
+        <span style="display:block;">${i18n.nameLabel}</span>
+        <input data-dojo-type="dijit.form.TextBox" maxlength="250" data-dojo-attach-point="_edit_title"  class="alpha groupTextBox"/>
+      </span>
+
+      <p class="readOnly" style="width:80%; margin: 0px 0px 10px 0px;">
+        <span data-dojo-attach-point="_summary"></span>
+        <span class="esriItemLinks">
+          <a href="#" data-dojo-attach-point="_toggleDescriptionLabel" data-dojo-attach-event="onclick:toggleDescription">
+            <img alt="${i18n.showMoreLabel}" title="${i18n.showMoreLabel}" data-dojo-attach-point="_toggleDown" />
+            <img style="display:none;" alt="${i18n.showLessLabel}" title="${i18n.showLessLabel}" data-dojo-attach-point="_toggleUp" />
+          </a>
+        </span>
+      </p>
+
+      <p class="readOnly" style="width:80%;">
+        <span data-dojo-attach-point="_description" style="display:none;width:80%;" class="esriItemLinks"></span>
+      </p>
+      <div data-dojo-attach-point="_connectContainer" class="readOnly socialNetworkBadges esriFloatTrailing esriTrailingMargin3"></div>
+
+    </div>
+
+    </div>
+    <div class="esriFloatLeading" style="clear:both; width: 80%;">
+      <span class="readOnly section">${i18n.groupContent}</span>
+      <div class="readOnly" data-dojo-attach-point="_groupContentPane" data-dojo-type="dijit.layout.ContentPane">
+        <div>
+          <span data-dojo-attach-point="_searchQueryLabel" ></span>
+        </div>
+        <div data-dojo-attach-point="filtersWidget" style="width:20%;" data-dojo-type="arcgisonline.sharing.dijit.SearchFilters" class="grid_3 alpha esriFloatLeading"></div>
+        <div class="grid_9 omega" style="float: right; width: 75%;">
+          <div data-dojo-attach-point="_sorter" data-dojo-type="arcgisonline.sharing.dijit.Sorter"></div>
+          <div data-dojo-type="arcgisonline.sharing.dijit.SearchResultsSimple" jsId="searchResults" doAjax="false" data-dojo-attach-point="_searchResults" defaultSortField="'modified'" style="margin-top: 10px;"></div>
+        </div>
+      </div>
+
+      <p class=" alpha editOnly">
+        <span style="display:block;">${i18n.summaryLabel}</span>
+        <textarea style="max-height:3em;min-height:3em;height:3em;min-width:100%;max-width:100%;width:100%;resize:none;" class="groupTextBox" data-dojo-attach-point="_edit_summary"></textarea>
+      </p>
+
+      <div class="alpha editOnly">
+        <span style="display:block;">${i18n.descriptionLabel}</span>
+        <div data-dojo-type="dijit.Editor" data-dojo-attach-point="_edit_description" style="width:100%; min-height:300px; border:1px solid #bbb;"
+          plugins="['bold', 'italic', 'underline', 'foreColor', 'hiliteColor',
+          '|', 'justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull',
+          '|', 'insertOrderedList', 'insertUnorderedList', 'indent', 'outdent',
+          '|', 'createEsriLink', 'unlink', 'insertImage',
+          '|', 'undo', 'redo', '|', 'viewsource', {
+           name: 'dijit._editor.plugins.FontChoice',
+            command: 'fontName',
+            custom: ['Arial', 'Courier New', 'Garamond', 'Tahoma', 'Times New Roman', 'Verdana']
+           },
+           {
+            name: 'dijit._editor.plugins.FontChoice',
+            command: 'fontSize',
+            custom: ['2', '3', '4', '5', '6']
+           }
+          ]"
+        ></div>
+      </div>
+
+      <div class="alpha editOnly">
+        <br/>
+        <span style="display:block;">${i18n.tagsLabel}</span>
+        <div data-dojo-attach-point="_edit_tags" data-dojo-type="esri/dijit/Tags" data-dojo-props="minWidth:'700px',maxWidth:'100%'"></div>
+      </div>
+
+      <div style="clear:both;"></div>
+    </div>
+
+    <div class="grid_4 esriFloatTrailing readOnly" style="width: 16%;">
+      <span class="section">${i18n.groupDetails}</span>
+      <table cellspacing="5">
+        <tbody>
+          <tr>
+            <!-- the ownerLabel must wrap into next line if it's long -->
+            <td valign="top">${i18n.ownerLabel}
+              <span class="esriItemLinks" data-dojo-attach-point="_ownerLabel"></span>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">${i18n.statusLabel}
+              <span data-dojo-attach-point="_statusLabel"></span>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">${i18n.contributorsLabel}
+              <span class="esriItemLinks" data-dojo-attach-point="_contributorLabel"></span>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">${i18n.tagsLabel}
+              <span class="dim" data-dojo-attach-point="_tags"></span>
+            </td>
+          </tr>
+          <!--<tr>-->
+            <!--<td>-->
+              <!--<span style="margin-left: 0.8em; display:block;" class="dim" data-dojo-attach-point="_tags"></span>-->
+            <!--</td>-->
+          <!--</tr>-->
+        </tbody>
+      </table>
+
+      <span class="section" data-dojo-attach-point="_membersLabel"></span>
+      <div data-dojo-attach-point="_userList" class="esriItemLinks" style="padding: 0.5em; line-height: 1.5em; overflow: auto; height: 200px;">
+      </div>
+
+    </div>
+
+    <div class="grid_4 esriFloatLeading editOnly group-status">
+      <span style="display:block;">${i18n.statusLabel}</span>
+      <div id="edit-private_div" style="margin-top: 1em;">
+        <input data-dojo-type="dijit.form.RadioButton" data-dojo-attach-point="_edit_private" id="_edit_private" name="_edit_privacy" data-dojo-attach-event="onClick:onPrivateSelected"/>
+        <label for="_edit_private">${i18n.privatemsg} <span class="dim">${i18n.privateInfo}</span></label>
+      </div>
+      <div id="edit-account_div" style="margin-top: 1em;">
+        <input data-dojo-type="dijit.form.RadioButton" data-dojo-attach-point="_edit_account" id="_edit_account" name="_edit_privacy" data-dojo-attach-event="onClick:onNotPublicSelected"/>
+        <label for="_edit_account">${i18n.organization} <span class="dim">${i18n.orgGrpMsg}</span></label>
+      </div>
+      <div id="edit-public_div" style="margin-top: 1em;">
+        <input data-dojo-type="dijit.form.RadioButton" data-dojo-attach-point="_edit_public" id="_edit_public" name="_edit_privacy" data-dojo-attach-event="onClick:onPublicSelected"/>
+        <label for="_edit_public">${i18n.publicLabel} <span class="dim">${i18n.publicGrpInfo}</span></label>
+      </div>
+      <div style="margin-top: 1em;display:none;" id="allowSharedOwnershipDiv">
+        <input data-dojo-type="dijit.form.CheckBox" data-dojo-attach-point="_edit_allowSharedOwnership" id="_edit_allowSharedOwnership"/>
+        <label for="_edit_allowSharedOwnership">${i18n.sharedOwnershipLabel}&nbsp;<span class="orgSettingTooltip" id="_edit_allowSharedOwnershipTip">${i18n.sharedOwnershipUpdateLabel}</span>&nbsp;${i18n.sharedOwnershipLabel2}</label>
+      </div>
+      <div style="margin-top: 1em;" id="allowOpenDataDiv">
+        <input data-dojo-type="dijit.form.CheckBox" data-dojo-attach-point="_edit_allowOpenData" id="_edit_allowOpenData"/>
+        <label for="_edit_allowOpenData">${i18n.openDataLabel}</label>
+      </div>
+      <div style="margin-top: 1em;" id="allowApplyDiv">
+        <input data-dojo-type="dijit.form.CheckBox" data-dojo-attach-point="_edit_allowApply" id="_edit_allowApply"/>
+        <label for="_edit_allowApply">${i18n.usersApply}</label>
+      </div>
+      <div style="margin-top:1em;display:none;" id="enterpriseGroupDiv">
+        <label>${i18n.enterpriseGroups.usersLabel}</label><br/>
+        <div style="margin-top: 1em;">
+          <input data-dojo-type="dijit.form.RadioButton" data-dojo-attach-point="_enterprise_invite" id="_enterprise_invite"data-dojo-attach-event="onClick:onEnterpriseInviteSelected"/>
+          <label for="_enterprise_invite">${i18n.enterpriseGroups.inviteOnlyLabel}</label>
+        </div>
+        <div id="enterpriseApplyDiv" style="margin-top: 1em;">
+          <input data-dojo-type="dijit.form.RadioButton" data-dojo-attach-point="_enterprise_apply" id="_enterprise_apply" data-dojo-attach-event="onClick:onEnterpriseApplySelected"/>
+          <label for="_enterprise_apply">${i18n.enterpriseGroups.applyLabel}</label>
+        </div>
+        <div style="margin-top: 1em;">
+          <input data-dojo-type="dijit.form.RadioButton" data-dojo-attach-point="_enterprise_group" id="_enterprise_group" data-dojo-attach-event="onClick:onEnterpriseGroupSelected"/>
+          <label for="_enterprise_group">${i18n.enterpriseGroups.enterpriseLabel}</label>
+          <span data-dojo-attach-point="_enterprise_group_name" class="readOnly">${i18n.enterpriseGroups.noneSelected}</span><br/>
+          <span data-dojo-attach-point="_enterprise_group_select" class="editOnly esriLeadingMargin2">
+            <input data-dojo-attach-point="_enterprise_group_input" data-dojo-type="dijit.form.TextBox" type="text"/>
+            <button data-dojo-attach-point="_enterpriseGroupSelectBtn" data-dojo-type="dijit.form.Button" data-dojo-attach-event="onClick:onSelectEnterpriseGroup" class="calcite light small">${i18n.enterpriseGroups.selectLabel}</button>
+          </span>
+        </div>
+      </div>
+
+      <br/><br/>
+      <div id="edit-view-only">
+        <span style="display:block;">${i18n.contributorsLabel}</span>
+        <div id="edit-all-members_div" style="margin-top:1em;">
+          <input data-dojo-type="dijit.form.RadioButton" data-dojo-attach-point="_edit_all_members" id="_edit_all_members" name="_edit_contributors"/>
+          <label for="_edit_all_members">${i18n.allMembersContribute}</label>
+        </div>
+        <div id="edit-admins-only_div" style="margin-top:1em;">
+          <input data-dojo-type="dijit.form.RadioButton" data-dojo-attach-point="_edit_only_admins" id="_edit_only_admins" name="_edit_contributors"/>
+          <label for="_edit_only_admins">${i18n.onlyAdminContribute}</label>
+        </div>
+      </div>
+
+      <br/><br/>
+      <div style="margin-bottom:1em;">${i18n.sortBy}</div>
+      <div style="display:inline-block; margin:0;" data-dojo-type="arcgisonline.sharing.dijit.ComboBox" data-dojo-attach-point="_edit_sortField" id="_edit_sortField"></div>
+      <div id="sortOrderContainer" style="display:inline-block; margin:0;">
+        <input data-dojo-type="dijit.form.CheckBox" data-dojo-attach-point="_edit_sortOrder" id="_edit_sortOrder"/>
+        <label for="_edit_sortOrder">${i18n.ascending}</label>
+      </div>
+      <br />
+      <div style="margin-top: 10px;">
+        <button id="_lowerSave" data-dojo-type="dijit.form.Button" type="button" data-dojo-attach-event="onClick:saveEdit" class="editOnly calcite blue">${i18n.save}</button>
+        <button data-dojo-type="dijit.form.Button" type="button" data-dojo-attach-event="onClick:cancelEdit" class="editOnly calcite transparent">${i18n.cancel}</button>
+      </div>
+
+    </div>
+
+    <div data-dojo-type="arcgisonline.sharing.dijit.SearchResultsPaging" class="readOnly" searchResults="searchResults" style="float: none; clear:both; width: 100%; text-align:center;"></div>
+
+    <div style="clear: both;"></div>
+
+    <!--<div data-dojo-attach-point="thumbnailDialogNode" title="Upload Thumbnail" style="width: 450px;"> can't do -->
+    <div id="group-thumbnail-dialog" class="dijitDialog thumbnailDialog">
+       <div id="group-thumbnail-header">
+        <div style="background:none;padding-top:2px;" class="dijitDialogTitle dijitDialogTitleBar">${i18n.uploadThumbnail}</div>
+        <div id="group-thumbnail-close" title="${i18n.close}" class="dijitDialogCloseIcon"></div>
+      </div>
+      <div id="group-thumbnail-content">
+        <p><span><label>${i18n.specifyImage}</label></span></p>
+        <div>
+         <span style="margin-top:6px;"><label for="group-thumbnail-file">${i18n.imageLabel}</label></span>
+         <input type="hidden" name="MAX_FILE_SIZE" value="1024000">
+         <input type="file" id="group-thumbnail-file" name="thumbnail" size="44" data-dojo-attach-point="thumbnailPath">
+        </div>
+        <p style="margin-top: 1.5em;"><span>${i18n.forBestImageMsg}</span></p>
+        <div style="margin-top: 1.5em;">
+          <button id="group-thumbnail-cancel" class="esriFloatTrailing jevent calcite transparent" data-dojo-type="dijit.form.Button">${i18n.cancel}</button>
+          <button id="group-thumbnail-ok" class="esriFloatTrailing jevent calcite blue" data-dojo-type="dijit.form.Button">${i18n.ok}</button>
+        </div>
+      </div>
+
+      <div style="clear:both; width:100%;"></div>
+
+    </div>
+
+  </form>
+  <input data-dojo-attach-point="_groupIdTextBox" data-dojo-type="dijit.form.TextBox" type="hidden" value=""/>
+</div>

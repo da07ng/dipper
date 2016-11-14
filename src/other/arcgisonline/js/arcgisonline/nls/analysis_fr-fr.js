@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/3.15/esri/copyright.txt for details.
+//>>built
+define("arcgisonline/nls/analysis_fr-fr",{"dojox/form/nls/CheckedMultiSelect":{multiSelectLabelText:"{num} \u00e9l\u00e9ment(s) s\u00e9lectionn\u00e9(s)",invalidMessage:"Au moins un des \u00e9l\u00e9ments doit \u00eatre s\u00e9lectionn\u00e9.",_localized:{}},"dgrid/extensions/nls/pagination":{gotoLast:"Aller \u00e0 la derni\u00e8re page",gotoFirst:"Aller \u00e0 la premi\u00e8re page",gotoPage:"Aller \u00e0 la page",gotoNext:"Aller \u00e0 la page suivante",_localized:{},gotoPrev:"Aller \u00e0 la page pr\u00e9c\u00e9dente",
+status:"${start} - ${end} de ${total} r\u00e9sultats",rowsPerPage:"Number of rows per page",jumpPage:"Aller \u00e0 la page"}});

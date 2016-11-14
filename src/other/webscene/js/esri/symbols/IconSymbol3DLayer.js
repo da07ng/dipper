@@ -1,0 +1,6 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define("../core/declare dojo/_base/lang ../core/lang ../core/screenUtils ./Symbol3DLayer ../core/JSONSupport ../Color".split(" "),function(f,c,d,b,g,h,k){var e=h.createSubclass({classMetadata:{properties:{color:{type:k}},reader:{exclude:["transparency"]}},color:void 0,toJSON:function(){return{color:this.color?[this.color.r,this.color.g,this.color.b]:void 0,transparency:this.color?100*(1-this.color.a):void 0,size:null!=this.size?b.px2pt(this.size):void 0}},_colorReader:function(a,b){var c=null!=b.transparency?
+1-0.01*b.transparency:1;if(a&&d.isDefined(a[0]))return[a[0],a[1],a[2],c]},_sizeReader:b.pt2px});return f(g,{classMetadata:{properties:{outline:{type:e}}},type:"Icon",material:void 0,resource:void 0,size:void 0,_sizeReader:b.pt2px,anchor:void 0,outline:void 0,_outlineReader:function(a){return e.fromJSON(a)},toJSON:function(){var a={resource:c.clone(this.resource),size:null!=this.size?b.px2pt(this.size):void 0,anchor:this.anchor,outline:this.outline?this.outline.toJSON():void 0};c.mixin(a,this.inherited(arguments));
+return d.fixJson(a,!0)}})});

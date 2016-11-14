@@ -1,0 +1,4 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../../core/Accessor","dojo/dom","dojo/dom-class"],function(d,e,c){return d.createSubclass({declaredClass:"esri.views.ui.Component",css:{component:"esri-component"},destroy:function(){this._widget?this._widget.destroy():this.node=null},_widget:null,node:null,_nodeSetter:function(a,b){if(a===b)return a;this._widget=null;a&&(this._widget=a.domNode?a:null,a=a.domNode||e.byId(a),c.add(a,this.css.component));b&&c.remove(b,this.css.component);return a}})});

@@ -1,0 +1,101 @@
+<div data-dojo-type="dijit.layout.BorderContainer" region="top" style="height:100%; padding:5px;">
+  <div data-dojo-type="dijit.layout.ContentPane" id="AttributeTransparencyContent" region="center" style="overflow-y:auto;padding:2px;">
+    <div style="padding-bottom:10px;">${i18n.attributeTransparencyMsg}</div>
+    <table style="width:100%;">
+      <tbody>
+        <tr>
+          <td nowrap>
+            <div>
+              <label class="firstColumnLabel">
+              ${i18n.field}&nbsp;
+              </label>
+            </div>
+          </td>
+          <td>
+            <select data-dojo-attach-point="_rendererAttributeTransparencyAttribute" data-dojo-attach-event="onChange:_onChangeAttribute" data-dojo-type="dijit.form.Select" maxHeight="150" sortByLabel="false">
+            </select>
+          </td>
+        </tr>
+        <tr class="AttributeTransparencyToggle">
+          <td nowrap>
+            <div>
+              <label class="firstColumnLabel">
+              ${i18n.dividedBy}&nbsp;
+              </label>
+            </div>
+          </td>
+          <td>
+            <select data-dojo-attach-point="_rendererAttributeTransparencyDividedByAttribute" data-dojo-attach-event="onChange:_onChangeDividedByAttribute" data-dojo-type="dijit.form.Select" maxHeight="150" sortByLabel="false">
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table style="width:100%;" class="AttributeTransparencyToggle">
+      <tbody>
+        <tr>
+          <td height="221" width="100%">
+            <div id="rendererAttributeTransparencySliderDiv">
+              <div id="rendererAttributeTransparencySlider">
+              </div>
+            </div>
+          </td>
+          <td nowrap class="toolsColumnTD" style="text-align:center; vertical-align:top; padding-top:20px;">
+            <div data-dojo-attach-point="_rendererAttributeTransparencyZoomTitle" data-dojo-attach-event="onClick:_onClickZoom" class="rightIcons" style="padding-top: 15px;">
+              <div data-dojo-attach-point="_rendererAttributeTransparencyZoomIcon" class="zoomIcon">
+              </div>
+              <div>
+                <span data-dojo-attach-point="_rendererAttributeTransparencyZoomLabel" class="toolsLabel">${i18n.zoomIn}</span>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-dojo-attach-point="_estimatedValuesMsg" class="small estimateMsg" style="display: none;">
+      ${i18n.estimatedValuesMsg}
+    </div>
+    <div data-dojo-attach-point="_zeroFeaturesMsg" class="small zeroFeaturesMsg" style="display: none;">
+      ${i18n.zeroFeaturesMsg}
+    </div>
+    <div data-dojo-attach-point="_rendererAttributeTransparencyTransparency" style="clear:both;margin-top:10px;" class="AttributeTransparencyToggle">
+      <div data-dojo-attach-point="_rendererAttributeTransparencyTransparencyTitle" class="sectionTitle" >
+        ${i18n.transparencyRange}
+      </div>
+      <div style="clear:both; padding: 10px 10px 0 10px;">
+        <table>
+          <tbody>
+            <tr>
+              <td nowrap>
+                <span>${i18n.highValues}</span>
+              </td>
+              <td>
+                <input data-dojo-attach-point="_rendererAttributeTransparencyMin" data-dojo-attach-event="onChange:_onChangeMin" intermediateChanges="true" data-dojo-type="dijit.form.NumberSpinner" value="30" smallDelta="5" constraints="{min:0,max:100,places:0}" style="width:40px; margin: 0 2px;" />
+              </td>
+              <td>
+                <span>%</span>
+              </td>
+            </tr>
+            <tr>
+              <td nowrap>
+                <span>${i18n.lowValues}</span>
+              </td>
+              <td>
+                <input data-dojo-attach-point="_rendererAttributeTransparencyMax" data-dojo-attach-event="onChange:_onChangeMax" intermediateChanges="true" data-dojo-type="dijit.form.NumberSpinner" value="70" smallDelta="5" constraints="{min:0,max:100,places:0}" style="width:40px; margin: 0 2px;" />
+              </td>
+              <td>
+                <span>%</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div data-dojo-type="dijit.layout.ContentPane" region="bottom" style="padding-top:10px;">
+    <div class="esriFloatTrailing">
+      <button data-dojo-type="dijit.form.Button" type="button" class="calcite blue" data-dojo-attach-point="_doneChangingButton" data-dojo-attach-event="onClick:_onOK"><span>${i18n.ok}</span></button>
+      <button data-dojo-type="dijit.form.Button" type="button" class="calcite transparent" data-dojo-attach-point="_cancelButton" data-dojo-attach-event="onClick:_onCancel"><span>${i18n.cancel}</span></button>
+    </div>
+  </div>
+</div>

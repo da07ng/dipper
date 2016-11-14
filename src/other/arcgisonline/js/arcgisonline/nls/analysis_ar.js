@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/3.15/esri/copyright.txt for details.
+//>>built
+define("arcgisonline/nls/analysis_ar",{"dojox/form/nls/CheckedMultiSelect":{multiSelectLabelText:"\u062a\u0645 \u062a\u062d\u062f\u064a\u062f {num} \u0628\u0646\u062f/\u0628\u0646\u0648\u062f",invalidMessage:"\u064a\u062c\u0628 \u062a\u062d\u062f\u064a\u062f \u0628\u0646\u062f \u0648\u0627\u062d\u062f \u0639\u0644\u0649 \u0627\u0644\u0623\u0642\u0644. ",_localized:{}},"dgrid/extensions/nls/pagination":{gotoLast:"\u0627\u0644\u0635\u0641\u062d\u0629 \u0627\u0644\u0623\u062e\u064a\u0631\u0629",gotoFirst:"\u0627\u0644\u0635\u0641\u062d\u0629 \u0627\u0644\u0623\u0648\u0644\u0649",
+gotoPage:"\u0635\u0641\u062d\u0629",gotoNext:"\u0627\u0644\u062a\u0627\u0644\u064a",_localized:{},gotoPrev:"\u0627\u0644\u0633\u0627\u0628\u0642",status:"${start} - ${end} \u0645\u0646 ${total} \u0646\u062a\u0627\u0626\u062c",rowsPerPage:"Number of rows per page",jumpPage:"\u0625\u0630\u0647\u0628 \u0644\u0635\u0641\u062d\u0629 "}});

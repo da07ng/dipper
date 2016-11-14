@@ -1,0 +1,14 @@
+<div class="${baseClass}">
+  <div id="resendInvite-dialog" data-dojo-type="dijit/Dialog" data-dojo-attach-point="_dialog" title="${i18n.resendInviteTitle}">
+    <p>${i18n.resendInviteDesc}</p>
+    <p data-dojo-attach-point="_messageTitle">${i18n.messageTitle}</p>
+    <div data-dojo-attach-point="_messageContainer" style="margin-bottom:1.0em;">
+      <textarea data-dojo-type="dijit/form/Textarea" data-dojo-attach-point="_message"></textarea>
+    </div>
+    <div class="esriFloatTrailing" data-dojo-attach-point="_buttons" style="margin-bottom:1.0em;">
+      <span data-dojo-attach-point="_sendingLabel" style="display:none;">${i18n.sendingLabel}</span>
+      <button type="button" data-dojo-type="dijit/form/Button" data-dojo-attach-point="_okBtn" data-dojo-attach-event="onClick:onOk" class="calcite primary">${i18n.resendLabel}</button>
+      <button type="button" data-dojo-type="dijit/form/Button" data-dojo-attach-point="_cancelBtn" data-dojo-attach-event="onClick:onCancel" class="calcite cancel">${i18n.cancel}</button>
+    </div>
+  </div>
+</div>

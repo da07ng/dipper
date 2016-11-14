@@ -1,0 +1,65 @@
+<div class="widgetContent siteHeader top-nav" id="header" dojoAttachPoint="containerNode">
+  <div class="grid-container container clearfix">
+
+    <!-- Logo -->
+    <a id="site-logo" class="js-top-nav-link top-nav-title anon pubUser site_logo" href="../features/">${!i18n.arcGIS}</a>
+
+    <!-- Top Navigation -->
+    <div dojoAttachPoint="_tabs" class="top-nav-list">
+      <a id="siteHeader-home" class="js-top-nav-link top-nav-link organization first" href="./index.html">${i18n.home_link}</a>
+      <a id="siteHeader-features" class="js-top-nav-link top-nav-link anon pubUser" href="../features/features.html">${i18n.features}</a>
+      <a id="siteHeader-plans" class="js-top-nav-link top-nav-link anon pubUser" href="../features/plans/pricing.html">${i18n.plans}</a>
+      <a id="siteHeader-gallery" class="js-top-nav-link top-nav-link anon pubUser organization orgUser" href="./gallery.html">${i18n.gallery}</a>
+      <a id="siteHeader-map" class="js-top-nav-link top-nav-link anon pubUser organization orgUser" href="./webmap/viewer.html?useExisting=1">${i18n.map}</a>
+      <a id="sceneViewer" class="js-top-nav-link top-nav-link" href="webscene/viewer.html">${i18n.scene}</a>
+      <a id="siteHeader-groups" class="js-top-nav-link top-nav-link pubUser organization orgUser" href="./groups.html">${i18n.groups}</a>
+      <a id="siteHeader-help" class="js-top-nav-link top-nav-link help anon" href="./support.html">${i18n.help}</a>
+      <a id="siteHeader-myContent" class="js-top-nav-link top-nav-link pubUser orgUser" href="./content.html">${i18n.myContent}</a>
+      <a id="siteHeader-myOrganization" class="js-top-nav-link top-nav-link orgUser" href="./organization.html">${i18n.myAccount}</a>
+    </div>
+
+    <!-- Search -->
+    <div id="header-search" dojoAttachPoint="_searchWidgetNode" class="right column-4 gutter-left-1 gutter-right-0 inline-block top-nav-search"></div>
+
+    <!-- Sign In -->
+    <div id="logged-out-navigation" class="inline-block right gutter-right-2 gutter-left-0 hide">
+      <a id="login-link" class="top-nav-link icon-ui-user link-gray" href="signin.html">${i18n.signIn}</a>
+    </div>
+
+    <!-- User Menu -->
+    <div class="dropdown js-logged-in-navigation logged-in-navigation right hide" id="logged-in-navigation">
+      <a href="#" class="top-nav-link dropdown-btn top-nav-username text-ellipsis" tabindex="0" dojoAttachEvent="onclick:_handleUserDropdown">
+        <img id="profileImgSmall" width="16" height="16" alt="">
+        <span id="username"></span>
+      </a>
+      <div class="dropdown-menu dropdown-right">
+        <a id="profileLink" class="dropdown-link" dojoAttachEvent="onclick:_handleLinkClick, ontouchstart:_handleLinkClick" href="./user.html">
+          <img id="dropdown-image" width="32" height="32" class="gutter-right-half gutter-left-0 left">
+          ${i18n.myProfile}<br/>
+          <span dojoAttachPoint="_userProfileLink" class="text-ellipsis dropdown-username"></span>
+        </a>
+        <a class="dropdown-link dropdown-link-external hide" id="esri-community" dojoAttachEvent="onclick:goEsriCommunity, ontouchstart:goEsriCommunity">
+          <span class="icon-ui-link-external dropdown-link-external-icon"></span> ${i18n.esriCommunity}
+        </a>
+        <a class="dropdown-link dropdown-link-external hide" id="my-esri" dojoAttachEvent="onclick:goMyEsri, ontouchstart:goMyEsri">
+          <span class="icon-ui-link-external dropdown-link-external-icon"></span> ${i18n.myEsri}
+        </a>
+        <a class="dropdown-link hide dropdown-link-external" id="training" dojoAttachEvent="onclick:goTraining, ontouchstart:goTraining">
+          <span class="icon-ui-link-external dropdown-link-external-icon"></span> ${i18n.training}
+        </a>
+        <a class="dropdown-link hide" id="trial-download" dojoAttachEvent="onclick:goTrialDownload, ontouchstart:goTrialDownload">${i18n.trialDownload}</a>
+        <a class="dropdown-link" target="_blank" id="help-link" href="./support.html">${i18n.support}</a>
+        <a class="dropdown-link hide" id="admin-guide" dojoAttachEvent="onclick:_handleLinkClick, ontouchstart:_handleLinkClick" href="./adminguide.html">${i18n.adminGuide}</a>
+        <a class="dropdown-link" id="logout-link" dojoAttachEvent="onclick:logOut, ontouchstart:logOut">${i18n.signOut}</a>
+      </div>
+    </div>
+
+    <!-- Notifications -->
+    <div id="header_notifications" class="header-notifications user organization right gutter-right-1 gutter-left-0 hide">
+      <div id="notifications_box" class="hide">
+        <span id="notifications" class="label label-red link-white">0</span>
+      </div>
+    </div>
+
+  </div>
+</div>

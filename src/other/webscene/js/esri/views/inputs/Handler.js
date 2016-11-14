@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../../core/Accessor","../../core/declare","../2d/viewpointUtils"],function(b,c,d){return c([b],{declaredClass:"esri.views.Handler",classMetadata:{computed:{surface:["view.surface"]}},constructor:function(b){this.viewpoint=d.create()},destroy:function(){this.view=null},next:null,customGestures:null,viewpoint:null,_surfaceGetter:function(){return this.get("view.surface")},_phaseDict:{1:"start",2:"move",4:"end",8:"cancel",START:1,MOVE:2,END:4,CANCEL:8},_eventsGetter:function(){var c=Object.keys(this.constructor.prototype),
+d=Object.keys(b.prototype);return c.filter(function(a){return a&&"_"!==a[0]&&"events"!==a&&"function"==typeof this[a]&&0>d.indexOf(a)},this)}})});

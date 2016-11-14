@@ -1,0 +1,6 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../../core/declare","dojo/_base/lang","dojo/_base/array","../../core/Accessor","../../geometry/support/jsonUtils"],function(a,c,d,e,f){a=a(e,{declaredClass:"esri.tasks.OffsetParameters",bevelRatio:null,geometries:null,offsetDistance:null,offsetHow:null,offsetUnit:null,toJson:function(){try{throw Error("toJson is deprecated, use toJSON instead");}catch(a){console.warn(a.stack)}return this.toJSON()},toJSON:function(){var a=d.map(this.geometries,function(a){return a.toJSON()}),b={};this.geometries&&
+0<this.geometries.length&&(b.geometries=JSON.stringify({geometryType:f.getJsonType(this.geometries[0]),geometries:a}),b.sr=JSON.stringify(this.geometries[0].spatialReference.toJSON()));this.bevelRatio&&(b.bevelRatio=this.bevelRatio);this.offsetDistance&&(b.offsetDistance=this.offsetDistance);this.offsetHow&&(b.offsetHow=this.offsetHow);this.offsetUnit&&(b.offsetUnit=this.offsetUnit);return b}});c.mixin(a,{OFFSET_BEVELLED:"esriGeometryOffsetBevelled",OFFSET_MITERED:"esriGeometryOffsetMitered",OFFSET_ROUNDED:"esriGeometryOffsetRounded"});
+return a});

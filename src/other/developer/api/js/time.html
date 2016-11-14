@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Time</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="css/js.css">
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+  </head>
+
+  <body>
+    <div class="container-fluid layoutContainer">
+      <article id="page_content" class="md-body">
+        <h1>时态展示服务</h1>
+        <h2>简介</h2>
+        <p>而ArcGIS API for Javascript 提供了时间滑块控件，用于在Web端对时态感知图层提供支持。在使用时间滑块的时候，需要了解一些名词，如时间范围，以及时间停靠点等。时态功能可以用在：2D动态服务图层，影像服务图层和要素图层中。</p>
+        <p>此示例展示了如何在快照模式下使用时间滑部件可视化time-aware要素图层。此示例中使用的time-aware要素图层包含了1976年至2007年间飓风数据。要使用该应用程序，从下拉列表中选择一个日期并点击“播放”按钮，结果将以动画形式呈现飓风轨迹路径。该onTimeExtentChanged事件将在每次时间滑块滑动时触发。queryFeatures用来检索当前时间滑块中对应时间内的飓风数据。由于创建的要素图层为快照模式，所有的要素都将在图层加载的时候从服务器端检索。由于所有的要素都可用， onTimeExtentChange的查询将在客户端进行。</p>
+        <h2>示例</h2>
+        <div id="map"></div>
+        <div class="center">
+          <div id="timeSliderDiv"></div>
+        </div>
+        <h2>代码</h2>
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;
+    &lt;meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/&gt;
+    &lt;title&gt;Simple Map&lt;/title&gt;
+    &lt;link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css"&gt;
+    &lt;style&gt;
+      html, body, #map {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #FFF;
+        overflow: hidden;
+        font-family: "Trebuchet MS";
+      }
+    &lt;/style&gt;
+    &lt;script src="http://js.arcgis.com/3.13/"&gt;&lt;/script&gt;
+    &lt;script&gt;
+      dojo.require("esri.map");
+      dojo.require("esri.layers.FeatureLayer");
+      dojo.require("esri.dijit.TimeSlider");
+      dojo.require("dojo.date.locale");
+      dojo.require("dijit.layout.ContentPane");
+      dojo.require("dijit.layout.BorderContainer");
+      dojo.require("esri.dijit.Legend");
+
+      var flUpdateEndHandle;
+      var hurricaneTracks;
+      var map;
+      var timeSlider;
+      var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+      function init() {
+        map = new esri.Map("map", {
+          basemap: "topo",
+          center: [-81.299, 39.3],
+          slider: false,
+          zoom: 2
+        });
+        map.on("load", function() {
+          map.disableScrollWheelZoom();
+        });
+
+        dojo.connect(map, "onLayersAddResult", function(results) {
+          var layerInfo = dojo.map(results, function(layer) {
+            return {layer: layer.layer, title: layer.layer.name};
+          });
+          if (layerInfo.length > 0) {
+            var legendDijit = new esri.dijit.Legend({
+              map: map,
+              layerInfos: layerInfo
+            }, "legendDiv");
+            legendDijit.startup();
+          }
+        });
+        var content = "<b>Category: </b>${CAT} <br> <b>Wind Speed: </b>${WIND_KTS}<br><b>Pressure: </b>${PRESSURE}<br>";
+        var infoTemplate = new esri.InfoTemplate("${NAME}", content);
+
+        hurricaneTracks = new esri.layers.FeatureLayer("http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Hurricanes/NOAA_Tracks_1851_2007/MapServer/0", {
+          mode: esri.layers.FeatureLayer.MODE_SNAPSHOT,
+          outFields: ["*"],
+          infoTemplate: infoTemplate
+        });
+
+        map.infoWindow.resize(125, 105);
+
+        flUpdateEndHandle = dojo.connect(hurricaneTracks, "onUpdateEnd", updateSlider);
+
+        
+        var timeExtent = new esri.TimeExtent();
+        timeExtent.startTime = new Date("1/1/1976 UTC");
+        timeExtent.endTime = new Date("12/31/1976 UTC");
+        hurricaneTracks.setTimeDefinition(timeExtent);
+
+        map.addLayers([hurricaneTracks]);
+      }
+
+      function yearChange() {
+        if (timeSlider.playing) {
+          timeSlider.pause();
+        }
+        var year = dojo.byId('year').value;
+        var timeExtent = new esri.TimeExtent();
+        timeExtent.startTime = new Date("1/1/" + year + " UTC");
+        timeExtent.endTime = new Date("12/31/" + year + " UTC");
+        flUpdateEndHandle = dojo.connect(hurricaneTracks, "onUpdateEnd", updateSlider);
+        hurricaneTracks.setTimeDefinition(timeExtent);
+      }
+
+      function updateSlider() {
+        dojo.disconnect(flUpdateEndHandle);
+
+        var featureLayer = this; 
+        var dateField = featureLayer.timeInfo.startTimeField;
+        var minDate = new Date(featureLayer.graphics[0].attributes[dateField]);
+        var maxDate = new Date(featureLayer.graphics[0].attributes[dateField]);
+
+        dojo.forEach(featureLayer.graphics, function(graphic) {
+          var currentDate = new Date(graphic.attributes[dateField]);
+          if (currentDate.getTime() <= minDate.getTime()) {
+            minDate = currentDate;
+          }
+
+          if (currentDate.getTime() > maxDate.getTime()) {
+            maxDate = currentDate;
+          }
+        });
+
+        var currentYearTimeExtent = new esri.TimeExtent();
+        currentYearTimeExtent.startTime = minDate;
+        currentYearTimeExtent.endTime = maxDate;
+        updateTimeString(currentYearTimeExtent);
+
+
+        if (dijit.byId('timeSlider')) {
+          dijit.byId('timeSlider').destroy();
+        }
+        var tsDiv = dojo.create("div", null, dojo.byId('timeSliderDiv'));
+
+        timeSlider = new esri.dijit.TimeSlider({
+          style: "width: 1000px;",
+          id: 'timeSlider',
+          options: {
+            excludeDataAtLeadingThumb: true
+          }
+        }, tsDiv);
+
+
+        var query = new esri.tasks.Query();
+        dojo.connect(timeSlider, "onTimeExtentChange", function(timeExtent) {
+          updateTimeString(timeExtent);
+          query.timeExtent = timeExtent;
+          featureLayer.queryFeatures(query, function(featureSet) {
+            var uniqueHurricaneNames = {};
+            dojo.forEach(featureSet.features, function(feature) {
+              var hurricaneName = feature.attributes.NAME;
+              uniqueHurricaneNames[hurricaneName] = uniqueHurricaneNames[hurricaneName] + 1 || 1;
+            });
+            var content = "<br><i>";
+            for (var hurricane in uniqueHurricaneNames) {
+              content = content + hurricane + "<br>";
+            }
+          });
+        });
+
+        map.setTimeSlider(timeSlider);
+        timeSlider.setThumbCount(2);
+
+        timeSlider.createTimeStopsByTimeInterval(currentYearTimeExtent, 1, 'esriTimeUnitsMonths', {
+          resetStartTime: true
+        });
+
+        timeSlider.setThumbIndexes([0, 1]);
+        timeSlider.setThumbMovingRate(500);
+        timeSlider.setLoop(true);
+        timeSlider.startup();
+
+        var labels = dojo.map(timeSlider.timeStops, function(timeStop) {
+          return monthNames[timeStop.getUTCMonth()];
+        });
+        timeSlider.setLabels(labels);
+      }
+
+      function updateTimeString(timeExtent) {
+        var startTime = monthNames[timeExtent.startTime.getUTCMonth()] + " " + timeExtent.startTime.getUTCDate();
+        var endTime = monthNames[timeExtent.endTime.getUTCMonth()] + " " + timeExtent.endTime.getUTCDate();
+      }
+
+      function startSlider() {
+        timeSlider.play();
+      }
+
+      dojo.ready(init);
+    &lt;/script&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;div id="map"&gt;&lt;/div&gt;
+    &lt;div id="timeSliderDiv"&gt;&lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+          </textarea>
+        </p>
+      </article>
+    </div>
+    <script src="http://js.arcgis.com/3.13/"></script>
+    <script>
+      dojo.require("esri.map");
+      dojo.require("esri.layers.FeatureLayer");
+      dojo.require("esri.dijit.TimeSlider");
+      dojo.require("dojo.date.locale");
+      dojo.require("dijit.layout.ContentPane");
+      dojo.require("dijit.layout.BorderContainer");
+      dojo.require("esri.dijit.Legend");
+
+      var flUpdateEndHandle;
+      var hurricaneTracks;
+      var map;
+      var timeSlider;
+      var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+      function init() {
+        map = new esri.Map("map", {
+          basemap: "topo",
+          center: [-81.299, 39.3],
+          slider: true,
+          zoom: 2
+        });
+        map.on("load", function() {
+          map.disableScrollWheelZoom();
+        });
+
+        var content = "<b>Category: </b>${CAT} <br> <b>Wind Speed: </b>${WIND_KTS}<br><b>Pressure: </b>${PRESSURE}<br>";
+        var infoTemplate = new esri.InfoTemplate("${NAME}", content);
+
+        hurricaneTracks = new esri.layers.FeatureLayer("http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Hurricanes/NOAA_Tracks_1851_2007/MapServer/0", {
+          mode: esri.layers.FeatureLayer.MODE_SNAPSHOT,
+          outFields: ["*"],
+          infoTemplate: infoTemplate
+        });
+
+        map.infoWindow.resize(125, 105);
+
+        flUpdateEndHandle = dojo.connect(hurricaneTracks, "onUpdateEnd", updateSlider);
+
+        
+        var timeExtent = new esri.TimeExtent();
+        timeExtent.startTime = new Date("1/1/1976 UTC");
+        timeExtent.endTime = new Date("12/31/1976 UTC");
+        hurricaneTracks.setTimeDefinition(timeExtent);
+
+        map.addLayers([hurricaneTracks]);
+      }
+
+      function yearChange() {
+        if (timeSlider.playing) {
+          timeSlider.pause();
+        }
+        var year = dojo.byId('year').value;
+        var timeExtent = new esri.TimeExtent();
+        timeExtent.startTime = new Date("1/1/" + year + " UTC");
+        timeExtent.endTime = new Date("12/31/" + year + " UTC");
+        flUpdateEndHandle = dojo.connect(hurricaneTracks, "onUpdateEnd", updateSlider);
+        hurricaneTracks.setTimeDefinition(timeExtent);
+      }
+
+      function updateSlider() {
+        dojo.disconnect(flUpdateEndHandle);
+
+        var featureLayer = this; 
+        var dateField = featureLayer.timeInfo.startTimeField;
+        var minDate = new Date(featureLayer.graphics[0].attributes[dateField]);
+        var maxDate = new Date(featureLayer.graphics[0].attributes[dateField]);
+
+        dojo.forEach(featureLayer.graphics, function(graphic) {
+          var currentDate = new Date(graphic.attributes[dateField]);
+          if (currentDate.getTime() <= minDate.getTime()) {
+            minDate = currentDate;
+          }
+
+          if (currentDate.getTime() > maxDate.getTime()) {
+            maxDate = currentDate;
+          }
+        });
+
+        var currentYearTimeExtent = new esri.TimeExtent();
+        currentYearTimeExtent.startTime = minDate;
+        currentYearTimeExtent.endTime = maxDate;
+        updateTimeString(currentYearTimeExtent);
+
+
+        if (dijit.byId('timeSlider')) {
+          dijit.byId('timeSlider').destroy();
+        }
+        var tsDiv = dojo.create("div", null, dojo.byId('timeSliderDiv'));
+
+        timeSlider = new esri.dijit.TimeSlider({
+          style: "margin-top: 10px;",
+          id: 'timeSlider',
+          options: {
+            excludeDataAtLeadingThumb: true
+          }
+        }, tsDiv);
+
+
+        var query = new esri.tasks.Query();
+        dojo.connect(timeSlider, "onTimeExtentChange", function(timeExtent) {
+          updateTimeString(timeExtent);
+          query.timeExtent = timeExtent;
+          featureLayer.queryFeatures(query, function(featureSet) {
+            var uniqueHurricaneNames = {};
+            dojo.forEach(featureSet.features, function(feature) {
+              var hurricaneName = feature.attributes.NAME;
+              uniqueHurricaneNames[hurricaneName] = uniqueHurricaneNames[hurricaneName] + 1 || 1;
+            });
+          });
+        });
+
+        map.setTimeSlider(timeSlider);
+        timeSlider.setThumbCount(2);
+
+        timeSlider.createTimeStopsByTimeInterval(currentYearTimeExtent, 1, 'esriTimeUnitsMonths', {
+          resetStartTime: true
+        });
+
+        timeSlider.setThumbIndexes([0, 1]);
+        timeSlider.setThumbMovingRate(500);
+        timeSlider.setLoop(true);
+        timeSlider.startup();
+
+        var labels = dojo.map(timeSlider.timeStops, function(timeStop) {
+          return monthNames[timeStop.getUTCMonth()];
+        });
+        timeSlider.setLabels(labels);
+      }
+
+      function updateTimeString(timeExtent) {
+      }
+
+      function startSlider() {
+        timeSlider.play();
+      }
+
+      dojo.ready(init);
+    </script>
+  </body>
+</html>

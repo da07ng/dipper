@@ -1,0 +1,85 @@
+<div dojoAttachPoint="containerNode" class="esriItemLinks troubleshoot">
+        <div class="sub-nav">
+          <div class="container">
+            <h1 class="sub-nav-title">${i18n.troubleshootTitle}</h1>
+          </div>
+        </div>
+        <div class="respond">
+        <p id="instructions">${i18n.instructions}</p>
+         <div data-dojo-attach-point="_stackContainer" class="newStyles">
+          <div data-dojo-attach-point="forgotUsername" class="contentPane">
+              <h2>${i18n.forgotUsername}</h2>
+              <p>${!i18n.forgotUsernameInstructions}</p>
+              <label class="esriFloatLeading" for="email">${i18n.emailLabel}&nbsp;</label>
+              <input id="email" data-dojo-attach-point="_email" name="email" data-dojo-type="dijit/form/ValidationTextBox" trim="true"/>
+              <br />
+              <button data-dojo-type="dijit/form/Button" data-dojo-attach-event="onClick:_submitEmail" class="esriFloatLeading calcite blue">${i18n.send}</button>
+              <br/>
+          </div>
+          <div data-dojo-attach-point="forgotPassword" class="contentPane">
+              <h2>${i18n.forgotPassword}</h2>
+              <p>${!i18n.forgotPasswordInstructions}</p>
+              <label class="esriFloatLeading" for="username">${i18n.usernameLabel}&nbsp;</label>
+              <input id="username" name="userName" data-dojo-attach-point="_userName" data-dojo-type="dijit/form/ValidationTextBox" trim="true"/>
+              <br />
+              <button data-dojo-attach-event="onClick:_submitUsername" data-dojo-type="dijit/form/Button" class="esriFloatLeading calcite blue">${i18n.customRoles.continueLabel}</button>
+              <br />
+          </div>
+         <div class="contentPane newStyles" dojoAttachPoint="changePassword" style="display:none;">
+             <h2>${i18n.resetPassword}</h2>
+             <p class="securityQuestion">${i18n.securityQuestionInstructions}</p>
+             <label class="securityQuestion esriFloatLeading" dojoAttachPoint="_securityQuestion"></label>
+             <input dojoAttachPoint="_securityAnswer" name="answer" dojoType="dijit.form.ValidationTextBox" trim="true" class="ieFix securityQuestion" />
+             <div class="prompt securityQuestion">${i18n.securityQuestionPrompt}</div>
+             <div class="portal-only" style="display:none;">
+                 <br/>
+                 <p>${i18n.enterNewPassword}</p>
+                 <div class="password-1">
+                     <label>${i18n.newPasswordLabel}</label>
+                     <input name="password" dojoAttachPoint="_newPassword" type="password" dojotype="dijit.form.ValidationTextBox" trim="true" class="ieFix" />
+                 </div>
+                 <div class="password-2">
+                     <label>${i18n.reenterPasswordLabel}</label>
+                     <input name="verify" dojoAttachPoint="_verifyPassword" type="password" dojotype="dijit.form.ValidationTextBox" trim="true"/>
+                     <div class="prompt">${i18n.passwordHintText}</div>
+                 </div>
+             </div>
+             <button dojoAttachEvent="onClick:_submitReset" dojoType="dijit.form.Button" class="calcite blue esriFloatLeading indentBtn" style="margin-left: 205px;">${i18n.mosaicRulePanel.resetLabel}</button>
+         </div>
+          <div data-dojo-attach-point="mfaHelp" class="contentPane">
+             <br />
+             <h2>${i18n.mfaHelpMsg}</h2>
+             <p>${!i18n.mfaHelpInstructions}</p>
+             <label class="esriFloatLeading" for="username">${i18n.usernameLabel}&nbsp;</label>
+             <input id="mfa_username" name="userName" data-dojo-attach-point="_mfaUserName" data-dojo-type="dijit/form/ValidationTextBox" trim="true"/>
+             <br />
+             <button data-dojo-attach-event="onClick:_submitMfaUsername" data-dojo-type="dijit/form/Button" class="esriFloatLeading calcite blue">${i18n.customRoles.continueLabel}</button>
+             <br />
+          </div>
+         <div class="contentPane newStyles" dojoAttachPoint="disableMfa" style="display:none;clear:both;">
+             <br />
+             <h2>${i18n.mfaSecurityQuestionTitle}</h2>
+             <p class="securityQuestion">${i18n.mfaSecurityQuestionMsg}</p>
+             <label class="mfaSecurityQuestion esriFloatLeading" dojoAttachPoint="_mfaSecurityQuestion"></label>
+             <input dojoAttachPoint="_mfaSecurityAnswer" name="answer" dojoType="dijit.form.ValidationTextBox" trim="true" class="ieFix securityQuestion" />
+             <div class="prompt mfaSecurityQuestion">${i18n.securityQuestionPrompt}</div>
+             <button dojoAttachEvent="onClick:_submitMfaReset" dojoType="dijit.form.Button" class="calcite blue esriFloatLeading indentBtn" style="margin-left: 205px;">${i18n.send}</button>
+         </div>
+          <div data-dojo-attach-point="register" title="${i18n.links.register}" style="display:none;">
+            <p class="marginless"><b>${i18n.signInWidget.agsTrial}</b></p>
+            <p>${i18n.signInWidget.agsSubscriptionInfo}</p>
+            <a class="calcite btn small blue" href="/about/free-trial.html?origin=arcgis">${i18n.signInWidget.ags30DayTrial}</a><br/>
+            <p><b>${i18n.signInWidget.agsNoTrial}</b></p>
+            <p>${i18n.signInWidget.agsCreatePersonalMsg}.</p>
+            <p>${i18n.signInWidget.agsHavePersonal}</p>
+            <a id="registerBtn" class="calcite btn small light">${i18n.signInWidget.agsRegisterPersonalBtn}</a><br/>
+            <p>${i18n.signInWidget.agsCreatePersonal}</p>
+            <a id="createBtn" class="calcite btn small light">${i18n.signInWidget.agsCreatePersonalBtn}</a>
+          </div>
+          <br />
+          <p data-dojo-attach-point="gotoStart" class="indent notstart" style="display:none;">${i18n.otherQuestions}&nbsp;&nbsp;<a target="_blank" data-dojo-attach-event="onclick:_troubleshoot">${i18n.seeTroubleshooting}</a></p>
+      </div>
+      </div>
+      <br />
+      <br />
+</div>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Label</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="../css/apiNative.css">
+    <style>
+
+        #info {
+            margin: 10px;
+        }
+        #info button {
+            margin-right: 5px;
+        }
+        #map {
+            height: 700px;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background: url(../images/androidTime.png) no-repeat center center;
+            background-size: contain;
+        }
+    </style>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+</head>
+
+<body>
+<div class="container-fluid layoutContainer">
+    <article id="page_content" class="md-body">
+        <h1>时态展示服务</h1>
+
+        <h2>简介</h2>
+
+        <p>ArcGIS Server 提供的服务可以发布时态服务，时态服务包括两种类型，一种是动态的时态服务，一种是要素的时态服务。</p>
+        <p>开发者可以使用ArcGISDynamicMapServiceLayer和ArcGISFeatureLayer来个图层来接入服务，通过TimeExtent来控制时间上的数据显示。</p>
+        <p>使用featureLayer的setTimeInterval来获取该时间段的数据。</p>
+
+        <h2>示例</h2>
+
+        <div id="map"></div>
+        <h2>代码</h2>
+
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+featureLayer = new ArcGISFeatureLayer("http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Hurricanes/NOAA_Tracks_1851_2007/MapServer/0", ArcGISFeatureLayer.MODE.SNAPSHOT);
+
+Calendar startDate = Calendar.getInstance();
+startDate.set(year, Calendar.JANUARY, 1);
+Calendar endDate = Calendar.getInstance();
+endDate.set(year+20, Calendar.DECEMBER, 31);
+
+TimeExtent timeExtent = new TimeExtent(startDate, endDate);
+featureLayer.setTimeInterval(timeExtent);
+
+          </textarea>
+        </p>
+    </article>
+</div>
+</body>
+</html>

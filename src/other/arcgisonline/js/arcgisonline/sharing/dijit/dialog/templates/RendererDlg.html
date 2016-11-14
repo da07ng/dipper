@@ -1,0 +1,33 @@
+<div class="widgetContainer">
+  <div dojotype="dijit.Dialog" id="renderer-dialog" title="${i18n.rendererDlgTitle}" execute="">
+  	
+    <div>
+      <table cellspacing="10" width="100%"><tbody>
+			<tr><td>
+        <label>${i18n.labelLabel}</label>
+      </td><td>
+        <div dojoAttachPoint="rendererLabel" dojotype="dijit.form.TextBox" trim="true" required="true" style="width:100%; padding:2px;"></div>
+      </td></tr>
+      <tr><td>
+        <label>${i18n.valueLabel}</label>
+      </td><td>
+        <label id="renderer-value"></label>
+      </td></tr>
+			</tbody></table>
+      <div>
+        <button dojotype="dijit.form.Button" type="button" dojoAttachPoint="_rendererSymbolUpdateButton" class="default esriFloatLeading" dojoAttachEvent="onClick:_onRendererSymbolUpdateButtonClick">
+          <span>${i18n.changeSymbolBtn}</span>
+        </button>
+        <button dojoAttachEvent="onClick:_onCancelClick" dojoAttachPoint="rendererCancelBtn" class="jevent cancel esriFloatTrailing" type="cancel" dojotype="dijit.form.Button">
+          ${i18n.cancel}
+        </button>
+        <button dojoAttachEvent="onClick:_onOkClick" dojoAttachPoint="rendererOkBtn" class="jevent primary esriFloatTrailing" dojotype="dijit.form.Button">
+          ${i18n.ok}
+        </button>
+			</div>
+      <div style="clear:both;">
+      </div>
+    </div>
+		
+  </div>
+</div>

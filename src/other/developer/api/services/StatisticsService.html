@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Statistics</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="../css/serviceStyle.css">
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+</head>
+
+<body>
+<div class="container-fluid layoutContainer">
+    <article id="page_content" class="md-body">
+        <h1>空间统计服务</h1>
+
+        <h2>简介</h2>
+
+        <p>空间数据统计服务着重于空间物体和现象的非空间特性的统计分析，描述和模拟空间现象和过程。直接从空间物体的空间位置、联系等方面出发，研究具有随机性又具有结构性，或具有空间相关性和依赖性的自然现象。</p>
+
+        <p>本实例通过分类间隔渲染来描述Kansas州的人口密度分布。代码中定义每个类别的区间并为其赋予渲染颜色。</p>
+
+        <p>本示例用ClassBreaksRenderer.addBreak()方法，其中包括定义参数的最大值和最小值，渲染符号。分级渲染器ClassBreaksRenderer
+            ()允许为特定属性值范围内的一组图形指定符号，因此在使用的时候，必须为分级渲染器设置一个数值型字段，为属性值不同的范围，分别设置渲染符号渲染器会根据该字段所在的范围的值进行分级渲染。 </p>
+
+        <h2>示例</h2>
+
+        <div id="map"></div>
+
+        <h2>API示例</h2>
+
+        <div class="biaoge">
+            <table>
+
+
+                <tr>
+                    <td>
+                        <div class="apilink1">
+                            <a href="../api.html?type=js&title=Statistics" target="view_window1"><img
+                                    src="images/imac-full.png" alt=""></a>
+                            <a href="../api.html?type=js&title=Statistics" target="view_window1"><h3
+                                    class="leader-1 trailer-half">JavaScript开发</h3></a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="apilink2">
+                            <a href=""><img src="images/apple-full.png" alt=""></a>
+                            <a href=""><h3 class="leader-1 trailer-half">IOS开发</h3></a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="apilink3">
+                            <a href="../androidApi.html?type=android&title=Statistics" target="view_window3"><img
+                                    src="images/android-full.png" alt=""></a>
+                            <a href="../androidApi.html?type=android&title=Statistics" target="view_window3"><h3
+                                    class="leader-1 trailer-half">Android开发</h3></a>
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+
+
+</div>
+
+<script src="http://js.arcgis.com/3.13/"></script>
+<script>
+    var map;
+    require([
+        "esri/map", "esri/layers/FeatureLayer",
+        "esri/InfoTemplate", "esri/symbols/SimpleFillSymbol",
+        "esri/renderers/ClassBreaksRenderer",
+        "esri/Color", "dojo/dom-style", "dojo/domReady!"
+    ], function (Map, FeatureLayer,
+                 InfoTemplate, SimpleFillSymbol,
+                 ClassBreaksRenderer,
+                 Color, domStyle) {
+        map = new Map("map", {
+            basemap: "streets",
+            center: [-98.215, 38.382],
+            zoom: 7,
+            slider: false
+        });
+        map.on("load", function () {
+            map.disableScrollWheelZoom();
+        });
+
+        var symbol = new SimpleFillSymbol();
+        symbol.setColor(new Color([150, 150, 150, 0.5]));
+
+
+        var renderer = new ClassBreaksRenderer(symbol, "POP07_SQMI");
+        renderer.addBreak(0, 25, new SimpleFillSymbol().setColor(new Color([56, 168, 0, 0.5])));
+        renderer.addBreak(25, 75, new SimpleFillSymbol().setColor(new Color([139, 209, 0, 0.5])));
+        renderer.addBreak(75, 175, new SimpleFillSymbol().setColor(new Color([255, 255, 0, 0.5])));
+        renderer.addBreak(175, 400, new SimpleFillSymbol().setColor(new Color([255, 128, 0, 0.5])));
+        renderer.addBreak(400, Infinity, new SimpleFillSymbol().setColor(new Color([255, 0, 0, 0.5])));
+
+        var infoTemplate = new InfoTemplate("${NAME}", "${*}");
+        var featureLayer = new FeatureLayer("http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Demographics/ESRI_Census_USA/MapServer/3", {
+            mode: FeatureLayer.MODE_SNAPSHOT,
+            outFields: ["*"],
+            infoTemplate: infoTemplate
+        });
+
+        featureLayer.setDefinitionExpression("STATE_NAME = 'Kansas'");
+        featureLayer.setRenderer(renderer);
+        map.addLayer(featureLayer);
+    });
+</script>
+</body>
+</html>

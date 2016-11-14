@@ -1,0 +1,582 @@
+@import 'DefaultColors';
+////////////////////////////////////////
+// Variables
+@import 'CommonVariables';
+// Variables
+////////////////////////////////////////
+////////////////////////////////////////
+// Mixins
+@import 'CommonMixins';
+// Mixins
+////////////////////////////////////////
+.esri-clearfix:after {
+  clear: both;
+  content: "";
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+
+
+/*
+////////////////////////////////////////
+//  POPUP
+*/
+
+.esri-popup {
+  color: $text_color;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0.5em 0 0.5em 0;
+    letter-spacing: 0;
+    font-weight: $font_weight_header;
+    line-height: 1.3em;
+  }
+  p {
+    font-size: $body_font_size;
+    line-height: 1.3em;
+    margin: 0 0 1.2em;
+  }
+  a {
+    color: $anchor_color;
+    text-decoration: underline;
+  }
+  .esri-container {
+    position: absolute;
+    z-index: 40;
+    top: -999em;
+    left: -999em;
+    visibility: hidden;
+  }
+  .esri-visible {
+    visibility: visible;
+  }
+  .esri-visible .esri-pointer {
+    visibility: visible;
+  }
+  ////////////////////
+  // HEADER
+  .esri-header {
+    font-size: $body_font_size;
+    color: $btn_color;
+    @include borderRadius(4px 4px 0 0);
+    .esri-title {
+      font-size: $title_font_size;
+      font-weight: $font_weight_title;
+      color: $title_color;
+      padding: 10px 0 10px 15px;
+      margin: 0;
+      width: 70%;
+      float: left;
+      display: none;
+    }
+    .esri-header-buttons {
+      float: right;
+      margin: 0 10px 0 0;
+      .esri-btn {
+        padding: 10px 8px;
+        float: left;
+      }
+    }
+  }
+  // HEADER
+  ////////////////////
+  // BODY
+  ////////////////////
+  /////////////////////////
+  //  PAGE MENU
+  .esri-page-menu {
+    font-size: $body_font_size;
+    font-weight: $font_weight_normal;
+    color: $btn_color;
+    position: absolute;
+    width: 100%;
+    // height:0px;
+    background-color: $page_menu_bg_color;
+    color: $page_menu_color;
+    z-index: 50;
+    bottom: 40px;
+    opacity: 0;
+    @include transition('opacity', '125ms', 'ease-out', '0ms');
+    @include boxShadow("0 -2px 4px rgba(0, 0, 0, .3)");
+    table {
+      padding: 0;
+      margin: 0;
+      border-collapse: collapse;
+      border: 0;
+      width: 100%;
+      tr {
+        padding: 0;
+        margin: 0;
+        border-bottom: solid 1px $page_menu_item_border;
+        &.esri-selected {
+          background-color: $page_menu_bg_color_selected;
+        }
+        &:hover {
+          cursor: pointer;
+          background-color: $page_menu_item_hover;
+        }
+        td {
+          padding: 1em 0;
+          line-height: 1.2em;
+        }
+      }
+    }
+    .esri-page-menu-num {
+      width: 10%;
+      text-align: center;
+    }
+    .esri-page-menu-check-mark {
+      margin: 0 4%;
+    }
+    .esri-page-menu-title {
+      width: 90%;
+      min-height: 1em;
+      margin: 0;
+      padding: 1em 4%;
+      border-left: solid 1px $page_menu_item_border;
+    }
+  }
+  .esri-page-menu-viewport {
+    max-height: 0px;
+    opacity: 0;
+    overflow: auto;
+    // overflow-x: hidden;
+    // overflow-y: scroll;
+    position: relative;
+    z-index: 10;
+    @include transition('max-height', '250ms', 'ease-out', '62ms');
+    @include scrollbar('rgba(255,255,255,0.25)', 'rgba(0,0,0,0.5)')
+  }
+  .esri-page-menu-header {
+    background-color: $page_menu_header_bg;
+    color: $page_menu_header_color;
+    border-bottom: solid 1px $page_menu_header_border;
+    padding: 0;
+    line-height: 40px;
+    width: 100%;
+    overflow: hidden;
+    height: 0px;
+    opacity: 0;
+    @include transition('all', '250ms', 'ease-out', '0ms');
+    .esri-page-menu-info {
+      font-size: $h2_font_size;
+      margin: 0 0 0 15px;
+      width: 70%;
+      height: 40px;
+      line-height: 40px;
+      float: left;
+    }
+    .esri-page-menu-note {
+      font-size: $caption_font_size;
+      margin: 0 10px 0 15px;
+    }
+    .esri-page-menu-actions {
+      float: right;
+      .esri-icon {
+        padding: 12px 15px;
+      }
+    }
+  }
+  .esri-icon {
+    &:hover {
+      cursor: pointer;
+      //color: $page_menu_btn_hover;
+    }
+  }
+  .esri-page-menu-pointer {
+    @include pointerStyle();
+    @include pointerTransform("1, 0");
+    bottom: -6px;
+    right: 16px;
+    z-index: 0;
+    background-color: $page_menu_bg_color;
+    @include transition('all', '250ms', 'ease-in', '0ms');
+  }
+  //  PAGE MENU
+  /////////////////////////
+  ////////////////////
+  // FOOTER
+  .esri-footer {
+    font-size: $body_font_size;
+    font-weight: $font_weight_normal;
+    color: $btn_color;
+    @include borderRadius(0 0 4px 4px);
+    position: relative;
+    .esri-pagination {
+      float: right;
+      margin: 0 8px 0 0;
+      display: none;
+      .esri-page-text {
+        line-height: 16px;
+        height: 16px;
+        padding: 12px 3px;
+      }
+      div {
+        float: left;
+      }
+    }
+    p {
+      float: left;
+      clear: left;
+      margin: 0;
+      padding: 10px 0;
+      margin: 0 10px;
+      width: 75%;
+    }
+  }
+  // FOOTER
+  ////////////////////
+  .esri-menu-open {
+    .esri-page-menu {
+      opacity: 1;
+    }
+    .esri-page-menu-header {
+      height: 40px;
+      // line-height:40px;
+      opacity: 1;
+    }
+    .esri-page-menu-viewport {
+      max-height: 115px;
+      opacity: 1;
+    }
+    .esri-page-menu-pointer {
+      @include pointerTransform('1, 1');
+    }
+  }
+  ////////////////////
+  // GENERAL
+  .esri-show-title .esri-title {
+    display: block;
+  }
+  .esri-show-content .esri-popup-content {
+    display: block;
+  }
+  .esri-show-pagination .esri-pagination {
+    display: block;
+  }
+  .esri-main {
+    position: relative;
+    z-index: 2;
+    width: 380px;
+    height: auto;
+  }
+  .esri-background {
+    background-color: $background_color;
+    @include borderRadius(4px);
+  }
+  .esri-shadow {
+    @include boxShadow("0 1px 4px rgba(0,0,0, 0.3)");
+    background-color: $background_color;
+    @include borderRadius(4px);
+    // overflow: hidden;
+  }
+  .esri-actions {
+    float: left;
+    margin: 0 0 0 7px;
+  }
+  .esri-action {
+    float: left;
+  }
+  .esri-btn {
+    padding: 12px 7px;
+    line-height: 16px;
+    height: 16px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: $btn_color;
+    &:hover {
+      color: $btn_hover_color;
+    }
+  }
+  .esri-loading-container {
+    display: none;
+    padding: 12px 0;
+    line-height: 16px;
+    height: 16px;
+    width: 16px;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .esri-loading .esri-loading-container {
+    display: block;
+  }
+  .esri-icon-text {
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+    position: absolute;
+    height: 1px;
+    width: 1px;
+  }
+  .esri-loading-icon {
+    display: inline-block;
+    -webkit-animation: esri-rotate-spinner .75s infinite linear;
+    -moz-animation: esri-rotate-spinner .75s infinite linear;
+    -o-animation: esri-rotate-spinner .75s infinite linear;
+    animation: esri-rotate-spinner .75s infinite linear;
+  }
+  .esri-pointer {
+    visibility: hidden;
+    @include pointerStyle();
+    @include pointerTransform("0.75, 2");
+    @include borderRadius(0);
+  }
+  .esri-undock-icon,
+  .esri-undock-text {
+    display: none;
+  }
+  .esri-dock-icon,
+  .esri-dock-text {
+    display: inline-block;
+  }
+  ///////////////
+  // POINTER
+  .esri-top .esri-pointer,
+  .esri-bottom .esri-pointer,
+  .esri-left .esri-pointer,
+  .esri-right .esri-pointer {
+    @include pointerStyle();
+  }
+  .esri-top .esri-pointer {
+    bottom: 0;
+    left: 50%;
+    margin: 0 0 -6px -6px;
+  }
+  .esri-bottom .esri-pointer {
+    top: 0;
+    left: 50%;
+    margin: -6px 0 0 -6px;
+  }
+  .esri-left .esri-pointer {
+    top: 50%;
+    right: 0;
+    margin: -6px -6px 0 0;
+  }
+  .esri-right .esri-pointer {
+    top: 50%;
+    left: 0;
+    margin: -6px 0 0 -6px;
+  }
+  .esri-top,
+  .esri-bottom {
+    .esri-pointer {
+      @include pointerTransform("0.75, 2");
+    }
+  }
+  .esri-left,
+  .esri-right {
+    .esri-pointer {
+      @include pointerTransform("2, 0.75")
+    }
+  }
+  // GENERAL
+  ////////////////////
+  ///////////////////
+  // DOCKED
+  .esri-docked {
+    left: auto;
+    bottom: auto;
+    right: auto;
+    top: auto;
+    // .esri-popup-renderer-main {
+    //     @include transition('max-height',
+    //     '250ms',
+    //     'ease-out',
+    //     '350ms');
+    // }
+    .esri-popup-body {
+      min-height: 120px;
+    }
+    .esri-pointer {
+      visibility: hidden;
+    }
+    .esri-undock-icon,
+    .esri-undock-text {
+      display: inline-block;
+    }
+    .esri-dock-icon,
+    .esri-dock-text {
+      display: none;
+    }
+  }
+  //  DOCKED
+  ////////////////////
+  /////////
+  // RIGHT
+  .esri-docked-right {
+    right: 0;
+    top: 0;
+    -webkit-animation: esri-dock-right-anim 375ms ease;
+    -moz-animation: esri-dock-right-anim 375ms ease;
+    -o-animation: esri-dock-right-anim 375ms ease;
+    animation: esri-dock-right-anim 375ms ease;
+    .esri-shadow {
+      @include borderRadius(4px 0 0 4px);
+    }
+  }
+  // RIGHT
+  /////////
+  /////////
+  // LEFT
+  .esri-docked-left {
+    left: 0;
+    top: 0;
+    -webkit-animation: esri-dock-left-anim 375ms ease;
+    -moz-animation: esri-dock-left-anim 375ms ease;
+    -o-animation: esri-dock-left-anim 375ms ease;
+    animation: esri-dock-left-anim 375ms ease;
+    .esri-shadow {
+      @include borderRadius(0 4px 4px 0);
+    }
+  }
+  //  LEFT
+  /////////
+  /////////
+  //  TOP / BOTTOM
+  .esri-docked-top,
+  .esri-docked-bottom {
+    width: auto;
+    .esri-main {
+      width: 100%;
+    }
+  }
+  .esri-docked-top {
+    left: 0;
+    top: 0;
+    -webkit-animation: esri-dock-top-anim 375ms ease;
+    -moz-animation: esri-dock-top-anim 375ms ease;
+    -o-animation: esri-dock-top-anim 375ms ease;
+    animation: esri-dock-top-anim 375ms ease;
+    .esri-shadow {
+      @include borderRadius(0);
+    }
+  }
+  .esri-docked-bottom {
+    left: 0;
+    bottom: 0;
+    -webkit-animation: esri-dock-bottom-anim 375ms ease;
+    -moz-animation: esri-dock-bottom-anim 375ms ease;
+    -o-animation: esri-dock-bottom-anim 375ms ease;
+    animation: esri-dock-bottom-anim 375ms ease;
+    .esri-shadow {
+      @include borderRadius(0);
+    }
+  }
+  //  TOP / BOTTOM
+  /////////
+  .esri-top {
+    // opacity: 0;
+    -webkit-animation: esri-undock-anim 250ms ease-out;
+    -moz-animation: esri-undock-anim 250ms ease-out;
+    -o-animation: esri-undock-anim 250ms ease-out;
+    animation: esri-undock-anim 250ms ease-out;
+    -webkit-transform-origin: 50% 100%;
+    -moz-transform-origin: 50% 100%;
+    -ms-transform-origin: 50% 100%;
+    -o-transform-origin: 50% 100%;
+    transform-origin: 50% 100%;
+  }
+}
+
+////////////////////
+// BODY
+.esri-popup-body {
+  font-size: $body_font_size;
+  font-weight: $font_weight_normal;
+  .esri-popup-content {
+    display: none;
+    padding: 0 15px;
+  }
+}
+
+////////////////////////////////////////
+//  ANIMATIONS
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+@include keyframes(esri-rotate-spinner) {
+  0% {
+    -webkit-transform: rotate(0);
+    -moz-transform: rotate(0);
+    -ms-transform: rotate(0);
+    -o-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@mixin dockingAnimation($side, $cap, $startX, $startY, $targetX, $targetY) {
+  0% {
+    #{$side}: #{($startX)}px;
+    #{$cap}: #{($startY)}px;
+    opacity: 0;
+  }
+  100% {
+    #{$side}: #{($targetX)}px;
+    #{$cap}: #{($targetX)}px;
+    opacity: 1;
+  }
+}
+
+@include keyframes(esri-dock-right-anim) {
+  @include dockingAnimation('right', 'top', 50, 50, 0, 20);
+}
+
+@include keyframes(esri-dock-left-anim) {
+  @include dockingAnimation('left', 'top', 50, 50, 0, 20);
+}
+
+@include keyframes(esri-dock-top-anim) {
+  @include dockingAnimation('left', 'top', 0, 5, 0, 0);
+}
+
+@include keyframes(esri-dock-bottom-anim) {
+  @include dockingAnimation('left', 'bottom', 0, 5, 0, 0);
+}
+
+@include keyframes(esri-undock-anim) {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.5);
+    -moz-transform: scale(0.5);
+    -ms-transform: scale(0.5);
+    -o-transform: scale(0.5);
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+}

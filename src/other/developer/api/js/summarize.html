@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>summarize</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <style>
+      html, body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #FFF;
+        font-family: "Microsoft Yahei","微软雅黑", "Pinghei";
+      }
+      article{
+        display: block;
+      }
+      img {
+        border: none;
+        max-width: 745px;
+      }
+      a {
+        text-decoration: none;
+        blr: expression(this.onFocus=this.blur());
+      }
+      a:-webkit-any-link {
+        text-decoration: none;
+        cursor: auto;
+      }
+      #page_content {
+        background: #fff;
+        padding: 10px 30px;
+        clear: right;
+        overflow: hidden;
+        font-size: 14px;
+        border: 1px solid #ccc;
+      }
+      #page_content p {
+        margin: 10px 0;
+        overflow: hidden;
+      }
+      .md-body {
+        font-size: 12px;
+        line-height: 2;
+        color: #808080;
+        padding: 0 20px 20px;
+        margin: 0 auto;
+      }
+      .md-body > h1:first-child {
+        margin-top: -10px;
+      }
+      .md-body h1 {
+        line-height: 60px;
+        font-size: 20px;
+        color: #333;
+        text-indent: 30px;
+        font-weight: normal;
+        margin: 16px -30px 16px;
+        border-bottom: 1px solid #e5e5e5;
+      }
+      .md-body h2 {
+        color: #0075c2;
+        font-size: 18px;
+        font-weight: normal;
+        margin: 16px -30px;
+        clear: left;
+        border-top: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5;
+        line-height: 58px;
+        text-indent: 20px;
+        position: relative;
+        padding: 0 30px;
+        background: url(../images/h2.png) no-repeat 30px center;
+      }
+      .md-body h2::before, .md-body h2::after {
+        content: '';
+        width: 30px;
+        height: 1px;
+        bottom: 0px;
+        margin: 0 0 -1px -50px;
+        background: #fff;
+        position: absolute;
+        box-sizing: border-box;
+      }
+      .md-body h2::after {
+        right: 0;
+      }
+      .md-body h1 + h2 {
+        margin-top: -17px;
+      }
+      .mw-content-ltr {
+        direction: ltr;
+      }
+      .clearfix:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+      }
+      .bluepoint {
+        display: inline-block;
+        width: 0px;
+        height: 0px;
+        border: solid 3px #626262;
+        border-radius: 4px;
+        padding: 0px;
+        line-height: 0px;
+        margin-right: 15px;
+        position: relative;
+        top: -2px;
+      }
+      .picBox {
+      }
+      .picBox .item{
+        width:230px;
+        float:left;
+        display: inline;
+        margin-right: 5px;
+        margin-bottom: 5px;
+      }
+      .picBox .item .pic p {
+        padding: 0 !important;
+      }
+      .picBox1 .item{
+        width:50%;
+      }
+      .picBox .item .pic img{
+        padding:4px;
+        border:1px solid #e0e0e0;
+        width: 216px;
+        height: 140px;
+        box-shadow:1px 2px 1px 0 #f0f0f0;
+      }
+
+      .picBox1 .item .pic img{
+        width: 340px;
+        height: 179px;
+      }
+
+      .picBox .item .pic a:hover img{
+        border-color:#0088CC;
+      }
+      .picBox .item dl {
+        padding: 0;
+        margin: 0;
+      }
+      .picBox .item dt{
+        font-weight:bold;
+        color:#0088cc;
+        height:20px;
+        padding-top:5px;
+        line-height:20px;
+      }
+      .picBox .item dd{
+        line-height: 16px;
+        height:51px;
+        color:#707070;
+      }
+      .picBox .item dd a{
+        color:#707070;
+      }
+      .picBox .item dd a:hover{
+        color:#0088cc;
+        text-decoration:none;
+      }
+      @media only screen and (min-width: 1280px) and (max-width: 2048px) {
+        .picBox .item{
+            width:230px !important;
+            float:left;
+            display: inline;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        .picBox .item .pic img{
+            padding:4px;
+            border:1px solid #e0e0e0;
+            width: 216px !important;
+            height: 140px !important;
+            box-shadow:1px 2px 1px 0 #f0f0f0;
+        }
+      }
+      @media only screen and (max-width: 1280px) {
+        .picBox .item{
+            width:220px !important;
+            float:left;
+            display: inline;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        .picBox .item .pic img{
+            padding:4px;
+            border:1px solid #e0e0e0;
+            width: 210px !important;
+            height: 130px !important;
+            box-shadow:1px 2px 1px 0 #f0f0f0;
+        }
+      }
+    </style>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/respond.min.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+  </head>
+
+  <body>
+    <div class="container-fluid layoutContainer">
+      <article id="page_content" class="md-body mw-content-ltr">
+        <h1>概述-JavaScript API</h1>
+        <h2>简介</h2>
+        <p>ArcGIS API for JavaScript是由美国Esri公司推出，随ArcGIS 9.3版本发布，是Esri基于dojo框架和REST风格实现的一套编程接口。通过ArcGIS API for JavaScript可以对ArcGIS for Server进行访问，并且将ArcGIS for Server提供的地图资源和其它资源嵌入到WEB应用中。</p>
+        <h2>功能介绍</h2>
+        <div class="picBox clearfix" style="padding-top:10px;">
+          <div class="item">
+            <div class="pic">
+              <p>
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=maps">
+                  <img src="../images/maps.png" title="基础地图服务"></a>
+              </p>
+            </div>
+            <dl>
+              <dt>基础地图服务</dt>
+              <dd style="margin-left:0;">
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=maps">基于Map对象实现地图加载。Map对象是ArcGIS API for JavaScript的核心对象。</a>
+              </dd>
+            </dl>
+          </div>
+          <div class="item">
+            <div class="pic">
+              <p>
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=Query">
+                  <img src="../images/Query.png" title="空间查询服务"></a>
+              </p>
+            </div>
+            <dl>
+              <dt>空间查询服务</dt>
+              <dd style="margin-left:0;">
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=Query">利用QueryTask功能类，可以在某个地图服务的子图层内实现空间的属性查询。</a>
+              </dd>
+            </dl>
+          </div>
+          <div class="item">
+            <div class="pic">
+              <p>
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=Statistics">
+                  <img src="../images/Statics.png" title="空间统计服务"></a>
+              </p>
+            </div>
+            <dl>
+              <dt>空间统计服务</dt>
+              <dd style="margin-left:0;">
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=Statistics">主要用来对查询的结果进行统计，目前支持求和，最小值，平均值，标准差，查询记录个数5种统计。</a>
+              </dd>
+            </dl>
+          </div>
+          <div class="item">
+            <div class="pic">
+              <p>
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=location">
+                  <img src="../images/location.png" title="定位服务"></a>
+              </p>
+            </div>
+            <dl>
+              <dt>定位服务</dt>
+              <dd style="margin-left:0;">
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=location">用于提供从地址到经纬度坐标或者从经纬度坐标到地址的转换服务。</a>
+              </dd>
+            </dl>
+          </div>
+          <div class="item">
+            <div class="pic">
+              <p>
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=renderer_dot_density">
+                  <img src="../images/density.png" title="密度图"></a>
+              </p>
+            </div>
+            <dl>
+              <dt>专题展示服务-密度图</dt>
+              <dd style="margin-left:0;">
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=renderer_dot_density">使用随机分布的点的密度来表现要素某个属性值得大小。也可以对图层的多个属性值着色，通过指定不同的点符号来区分。</a>
+              </dd>
+            </dl>
+          </div>
+          <div class="item">
+            <div class="pic">
+              <p>
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=renderer_heatmap">
+                  <img src="../images/heatmap.png" title="热点图"></a>
+              </p>
+            </div>
+            <dl>
+              <dt>专题展示服务-热点图</dt>
+              <dd style="margin-left:0;">
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=renderer_heatmap">通过HeatmapRenderer更新FeatureLayer的热点渲染。渲染过程使用标准着色方案，也可以自定义着色方案</a>
+              </dd>
+            </dl>
+          </div>
+          <div class="item">
+            <div class="pic">
+              <p>
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=label">
+                  <img src="../images/label.png" title="地图标注"></a>
+              </p>
+            </div>
+            <dl>
+              <dt>标注服务</dt>
+              <dd style="margin-left:0;">
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=label">通过每类符号对应的特定类型（点、线，面和文本）实现地图标注。</a>
+              </dd>
+            </dl>
+          </div>
+          <div class="item">
+            <div class="pic">
+              <p>
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=render_point">
+                  <img src="../images/renderpoint.png" title="分级渲染-点"></a>
+              </p>
+            </div>
+            <dl>
+              <dt>分级渲染服务-点</dt>
+              <dd style="margin-left:0;">
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=render_point">通过点的渲染方式进行分级结果展示。</a>
+              </dd>
+            </dl>
+          </div>
+          <div class="item">
+            <div class="pic">
+              <p>
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=render_polygon">
+                  <img src="../images/renderpolygon.png" title="分级渲染-面"></a>
+              </p>
+            </div>
+            <dl>
+              <dt>分级渲染服务-面</dt>
+              <dd style="margin-left:0;">
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=render_polygon">通过面的渲染方式进行分级结果展示。</a>
+              </dd>
+            </dl>
+          </div>
+          <div class="item">
+            <div class="pic">
+              <p>
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=chart">
+                  <img src="../images/chart.png" title="统计信息展示"></a>
+              </p>
+            </div>
+            <dl>
+              <dt>统计信息展示服务</dt>
+              <dd style="margin-left:0;">
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=chart">利用统计功能实现信息查询，通过统计信息展示服务在图表中呈现统计值。</a>
+              </dd>
+            </dl>
+          </div>
+          <div class="item">
+            <div class="pic">
+              <p>
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=time">
+                  <img src="../images/time.png" title="时态展示"></a>
+              </p>
+            </div>
+            <dl>
+              <dt>时态展示服务</dt>
+              <dd style="margin-left:0;">
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=time">时间滑块控件用于在Web端对时态感知图层提供支持。</a>
+              </dd>
+            </dl>
+          </div>
+          <div class="item">
+            <div class="pic">
+              <p>
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=grid">
+                  <img src="../images/grid.png" title="格网图-网格"></a>
+              </p>
+            </div>
+            <dl>
+              <dt>格网统计展示服务-网格</dt>
+              <dd style="margin-left:0;">
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=grid">网格图是基础的格网图展现形式，利用规则格网样式进行特征展示。</a>
+              </dd>
+            </dl>
+          </div>
+          <div class="item">
+            <div class="pic">
+              <p>
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=hex">
+                  <img src="../images/hex.png" alt="格网图-蜂窝"></a>
+              </p>
+            </div>
+            <dl>
+              <dt>格网统计展示服务-蜂窝</dt>
+              <dd style="margin-left:0;">
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=hex">蜂窝图新型格网图展现形式，利用六边形组成的类似蜂窝的网格进行底图展现。</a>
+              </dd>
+            </dl>
+          </div>
+          <div class="item">
+            <div class="pic">
+              <p>
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=pointClustering">
+                  <img src="../images/cluster.png" title="HTML5动态聚合"></a>
+              </p>
+            </div>
+            <dl>
+              <dt>新型聚合图服务</dt>
+              <dd style="margin-left:0;">
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=pointClustering">JavaScript与HTML5的技术融合，动态实现要素聚合。</a>
+              </dd>
+            </dl>
+          </div>
+          <div class="item">
+            <div class="pic">
+              <p>
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=bigDataRender">
+                  <img src="../images/bigdata.png" title="大数据渲染"></a>
+              </p>
+            </div>
+            <dl>
+              <dt>大数据渲染服务</dt>
+              <dd style="margin-left:0;">
+                <a rel="nofollow" target="_top" class="external text" href="../api.html?type=js&title=bigDataRender">利用丰富的渲染接口，得到大数据分级渲染专题图。</a>
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </article>
+    </div>
+  </body>
+</html>

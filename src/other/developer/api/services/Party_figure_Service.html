@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>hex</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="../css/serviceStyle.css">
+
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+</head>
+
+<body>
+<div class="container-fluid layoutContainer">
+    <article id="page_content" class="md-body">
+        <h1>新型聚合图服务</h1>
+
+        <h2>简介</h2>
+
+        <p>具有鲜活展现能力的聚合图，如蜂窝图。所谓蜂窝状网格，也就是由多个六边形组成的类似蜂窝的网格。</p>
+
+        <p>本实例通过addLayer添加蜂窝网。</p>
+
+        <h2>示例</h2>
+
+        <div id="map"></div>
+
+
+        <h2>API示例</h2>
+
+        <div class="biaoge">
+            <table>
+
+
+                <tr>
+                    <td>
+                        <div class="apilink1">
+                            <a href="../api.html?type=js&title=pointClustering" target="view_window11"><img
+                                    src="images/imac-full.png" alt=""></a>
+                            <a href="../api.html?type=js&title=pointClustering" target="view_window11"><h3
+                                    class="leader-1 trailer-half">JavaScript开发</h3></a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="apilink2">
+                            <a href=""><img src="images/apple-full.png" alt=""></a>
+                            <a href=""><h3 class="leader-1 trailer-half">IOS开发</h3></a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="apilink3">
+                            <a href=""><img src="images/android-full.png" alt=""></a>
+                            <a href=""><h3 class="leader-1 trailer-half">Android开发</h3></a>
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+
+
+</div>
+<script>
+    var baseUrl = location.pathname.replace(/\/[^\/]+$/, '');
+    var jsurl = baseUrl.substr(0, baseUrl.lastIndexOf('/')) + '/';
+    var dojoConfig = {
+        _debug: false,
+        parseOnLoad: true,
+        locale: 'zh',
+        packages: [{
+            "name": "modules",
+            "location": jsurl + "lib"
+        }]
+    };
+</script>
+<script src="http://js.arcgis.com/3.13/"></script>
+<script type="text/javascript" src="../lib/d3.v3.min.js"></script>
+<script>
+    require(["esri/map", "modules/d3Layer", "dojo/domReady!"], function (Map, d3Layer) {
+        var map = new Map("map", {
+            center: [116.37617980956833, 39.914747986720364],
+            zoom: 11,
+            basemap: "topo"
+        });
+        map.on("load", function () {
+            map.disableScrollWheelZoom();
+            setTimeout(function () {
+                var url = "data/bj_med_hex.json";
+                var option = {
+                    geojson: true,
+                    key: 'OBJECTID',
+                    styles: [{
+                        key: 'fill',
+                        value: 'rgb(125,125,125)'
+                    }, {
+                        key: 'stroke',
+                        value: '#DDD'
+                    }, {
+                        key: 'stroke-width',
+                        value: 1
+                    }, {
+                        key: 'opacity',
+                        value: 0.35
+                    }],
+                    attrs: [{
+                        key: "value",
+                        value: function () {
+                            var randomvalue;
+                            randomvalue = Math.floor(Math.random() * 10);
+                            return randomvalue;
+                        }
+                    }, {
+                        key: "id",
+                        value: function (d) {
+                            return 'path' + d.properties["OBJECTID"];
+                        }
+                    }]
+                };
+
+                var d3L = new d3Layer(url, option);
+
+                dojo.connect(d3L, "onLoad", function (lyr) {
+                    d3.selectAll('path')
+                            .on('mouseover', function (e) {
+                                d3.select('path#' + this.getAttribute('id'))
+                                        .style('opacity', 0.5)
+                                        .style('stroke-width', 2);
+                            })
+                            .on('mouseout', function (e) {
+                                d3.select('path#' + this.getAttribute('id'))
+                                        .style('opacity', 0.35)
+                                        .style('stroke-width', 1);
+                            });
+                    lyr._paths()
+                            .style('fill', function (d) {
+                                var value = parseInt(this.getAttribute('value'));
+                                if (value <= 2)
+                                    return '#007502';
+                                else if (value > 2 && value <= 4)
+                                    return '#92C601';
+                                else if (value > 4 && value <= 6)
+                                    return '#FFFF01';
+                                else if (value > 6 && value <= 8)
+                                    return '#FF9C01';
+                                else if (value > 8)
+                                    return '#FE0000';
+                                return 'rgb(125,125,125)';
+                            });
+                });
+                map.addLayer(d3L);
+            }, 1000);
+
+        });
+        window.map = map;
+    });
+
+
+</script>
+</body>
+</html>

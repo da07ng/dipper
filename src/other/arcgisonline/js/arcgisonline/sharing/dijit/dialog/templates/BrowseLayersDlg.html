@@ -1,0 +1,50 @@
+<div class="widgetContent" >
+  <div dojotype="dijit.Dialog" id="browse-layers-dialog" title="${i18n.title}" execute="">
+    <div dojoAttachPoint="formNode" class="esriItemLinks dijitDialogPaneContentArea">
+      <div class="esriFloatTrailing" style="margin: 0 5px 5px 5px; clear:both;">
+        <table cellpadding="0" cellspacing="0">
+          <tbody>
+            <tr>
+              <td>
+                <input id="browse-layers-esri" dojoAttachPoint="_onlyEsriCheck" data-dojo-attach-event="onChange:onEsriCheckChanged" data-dojo-type="dijit.form.CheckBox" checked="false" type="checkbox" />
+              </td><td>
+                &nbsp;
+              </td><td>
+                <label for="browse-layers-esri">${i18n.showEsriLayersOnly}</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input id="browse-layers-extent" dojoAttachPoint="_mapExtentCheck" data-dojo-attach-event="onChange:onExtentCheckChanged" dojotype="dijit.form.CheckBox" checked="true" type="checkbox" />
+              </td><td>
+                &nbsp;
+              </td><td>
+                <label for="addContent-within-map">${i18n.withinMapArea}</label>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="browse-layers-extent" style="border:#333 1px solid; width:565px; min-height:330px; padding:0; overflow:hidden; clear:both;">
+        
+        <div class="esriFloatLeading esriLeadingMargin1" style="width:250px; margin-top:10px;">
+          <select id="browse-layers-category-select" dojoAttachPoint="_categorySelect" dojoType="dijit.form.Select" sortByLabel="false" maxHeight='350' style="width:240px;">
+          </select>
+        </div>
+        
+        <div class="search esriFloatTrailing esriTrailingMargin1" style="width:250px;">
+          <div id="search-form" style="position:relative;">
+            <input class="esriSearchBox" type="text" dojoType="dijit.form.TextBox" trim="true" id="browse-layers-search-box" dojoAttachPoint="searchText" dojoAttachEvent="onKeyPress:_onSearchKeyPress,onFocus:_onSearchBoxFocus,onBlur:_onSearchBoxBlur" alt="${i18n.searchFor}" title="${i18n.searchFor}" />
+            <button class="esriLeadingMargin13 esriSearchButton" id="search-box_submit" alt="${i18n.searchTitle}" title="${i18n.searchTitle}" dojoAttachPoint="searchButton" dojoAttachEvent="onclick:_onSearchClick" >&nbsp;&nbsp;</button>
+          </div>
+        </div>
+  
+        <div style="position:relative; width:565px;clear:both;" dojoAttachPoint="esriMapLayersGallery" id="esriMapLayersGallery" dojoType="arcgisonline.sharing.dijit.LayersGrid" galleryNodes="8">
+        </div>
+      </div>
+    </div>
+    <div class="submitButtons dijitDialogPaneActionBar esriPositionRight0">
+      <input id="browse-layers-close" dojoType="dijit.form.Button" name="cancel" class="cancel esriFloatTrailing" type="button" dojoAttachEvent="onClick:onClose" label="${i18n.close}">
+    </div>
+  </div>
+</div>

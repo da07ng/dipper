@@ -1,0 +1,37 @@
+<div>
+  <table>
+    <tr>
+      <td data-dojo-attach-point="sizeText" class="paneSectionTitle symbolLayerText "></td>
+      <td>
+        <div>
+          <div class="numberText">
+            <input data-dojo-attach-point="sizeInput" data-dojo-type="dijit/form/NumberTextBox" type="text" data-dojo-props="minimum: 0.001, maximum:999999999, className:'sizeInputTextBox'" data-dojo-attach-event="keypress:_onSizeInputKeypressHandler,change:_updateSizeInputSelectedValue"></input>
+          </div>
+
+        </div>
+      </td>
+      <td>
+        <div class="colorButton" data-dojo-attach-point="selectedColorDropdown" data-dojo-type="dijit/form/DropDownButton">
+          <span >
+            <div class="colorSwatchContainer">
+              <div class="colorSwatch">&nbsp;&nbsp;</div>
+            </div>
+          </span>
+          <div data-dojo-type="dijit/TooltipDialog" data-dojo-attach-point="colorPalette">
+            <div data-dojo-type="dijit/ColorPalette" data-dojo-attach-point="colorPaletteWidget" data-dojo-attach-event="change:_onColorPaletteWidgetChange"></div>
+            <table class="transparencyTable">
+              <tr>
+                <td data-dojo-attach-point="transparencyText"></td>
+                <td class="transparencyInputColumn">
+                  <div>
+                    <input class="transparencyInput" data-dojo-attach-point="transparencyInput" data-dojo-type="dijit/form/NumberTextBox" type="text" data-dojo-props="minimum: 0, maximum:100, className:'transparencyInput'" data-dojo-attach-event="keypress:_onTransparencyInputKeypressHandler,change:_updateTransparencyInputSelectedValue"></input>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>

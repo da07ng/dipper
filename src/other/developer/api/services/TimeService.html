@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Time</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="../css/serviceStyle.css">
+
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+</head>
+
+<body>
+<div class="container-fluid layoutContainer">
+    <article id="page_content" class="md-body">
+        <h1>时态展示服务</h1>
+
+        <h2>简介</h2>
+
+        <p>从ArcGIS
+            10开始，Esri提供了对time-aware要素图层的支持，该图层中存储了数据集随着时间变化的状态，可用于显示一段时间内数据中的模式和变化趋势，比如美国人口随时间的迁移，以及土地利用的变化情况等。而ArcGIS
+            API for Javascript 提供了时间滑块控件，用于在Web端对时态感知图层提供支持。在使用时间滑块的时候，需要了解一些名词，如时间范围，以及时间停靠点等。 </p>
+
+        <p>
+            时间范围（TimeExtent）是一个时间跨度，表示一个时间周期，在时态GIS中表示数据的起始时间到数据的最终时间之间的时间间隔。TimeExtent有连个常用的熟悉就是starttime和endtime用来获取时间范围的起始和终止时间。时间停靠点就相当于一个直尺的上刻度，在时间滑块上表现为一条一条的竖线，这些相邻竖线间的间隔就是滑块移动的一个单位时间。 </p>
+
+        <p>
+            此示例展示了如何在快照模式下使用时间滑部件可视化time-aware要素图层。此示例中使用的time-aware要素图层包含了1976年至2007年间飓风数据。要使用该应用程序，从下拉列表中选择一个日期并点击“播放”按钮，结果将以动画形式呈现飓风轨迹路径。该onTimeExtentChanged事件将在每次时间滑块滑动时触发。queryFeatures用来检索当前时间滑块中对应时间内的飓风数据。由于创建的要素图层为快照模式，所有的要素都将在图层加载的时候从服务器端检索。由于所有的要素都可用，
+            onTimeExtentChange的查询将在客户端进行。</p>
+
+        <h2>示例</h2>
+
+        <div id="map"></div>
+        <div class="center">
+            <div id="timeSliderDiv"></div>
+        </div>
+
+
+        <h2>API示例</h2>
+
+        <div class="biaoge">
+            <table>
+
+
+                <tr>
+                    <td>
+                        <div class="apilink1">
+                            <a href="../api.html?type=js&title=time" target="view_window1"><img
+                                    src="images/imac-full.png" alt=""></a>
+                            <a href="../api.html?type=js&title=time" target="view_window1"><h3 class="leader-1 trailer-half">JavaScript开发</h3>
+                            </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="apilink2">
+                            <a href="../iosApi.html?type=ios&title=iostime" target="view_window2"><img
+                                    src="images/apple-full.png" alt=""></a>
+                            <a href="../iosApi.html?type=ios&title=iostime" target="view_window2"><h3 class="leader-1 trailer-half">IOS开发</h3>
+                            </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="apilink3">
+                            <a href="#"><img src="images/android-full.png" alt=""></a>
+                            <a href="#"><h3 class="leader-1 trailer-half">Android开发</h3></a>
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+</div>
+
+
+<script src="http://js.arcgis.com/3.13/"></script>
+<script>
+    dojo.require("esri.map");
+    dojo.require("esri.layers.FeatureLayer");
+    dojo.require("esri.dijit.TimeSlider");
+    dojo.require("dojo.date.locale");
+    dojo.require("dijit.layout.ContentPane");
+    dojo.require("dijit.layout.BorderContainer");
+    dojo.require("esri.dijit.Legend");
+
+    var flUpdateEndHandle;
+    var hurricaneTracks;
+    var map;
+    var timeSlider;
+    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    function init() {
+        map = new esri.Map("map", {
+            basemap: "topo",
+            center: [-81.299, 39.3],
+            slider: true,
+            zoom: 2
+        });
+        map.on("load", function () {
+            map.disableScrollWheelZoom();
+        });
+
+        var content = "<b>Category: </b>${CAT} <br> <b>Wind Speed: </b>${WIND_KTS}<br><b>Pressure: </b>${PRESSURE}<br>";
+        var infoTemplate = new esri.InfoTemplate("${NAME}", content);
+
+        hurricaneTracks = new esri.layers.FeatureLayer("http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/Hurricanes/NOAA_Tracks_1851_2007/MapServer/0", {
+            mode: esri.layers.FeatureLayer.MODE_SNAPSHOT,
+            outFields: ["*"],
+            infoTemplate: infoTemplate
+        });
+
+        map.infoWindow.resize(125, 105);
+
+        flUpdateEndHandle = dojo.connect(hurricaneTracks, "onUpdateEnd", updateSlider);
+
+
+        var timeExtent = new esri.TimeExtent();
+        timeExtent.startTime = new Date("1/1/1976 UTC");
+        timeExtent.endTime = new Date("12/31/1976 UTC");
+        hurricaneTracks.setTimeDefinition(timeExtent);
+
+        map.addLayers([hurricaneTracks]);
+    }
+
+    function yearChange() {
+        if (timeSlider.playing) {
+            timeSlider.pause();
+        }
+        var year = dojo.byId('year').value;
+        var timeExtent = new esri.TimeExtent();
+        timeExtent.startTime = new Date("1/1/" + year + " UTC");
+        timeExtent.endTime = new Date("12/31/" + year + " UTC");
+        flUpdateEndHandle = dojo.connect(hurricaneTracks, "onUpdateEnd", updateSlider);
+        hurricaneTracks.setTimeDefinition(timeExtent);
+    }
+
+    function updateSlider() {
+        dojo.disconnect(flUpdateEndHandle);
+
+        var featureLayer = this;
+        var dateField = featureLayer.timeInfo.startTimeField;
+        var minDate = new Date(featureLayer.graphics[0].attributes[dateField]);
+        var maxDate = new Date(featureLayer.graphics[0].attributes[dateField]);
+
+        dojo.forEach(featureLayer.graphics, function (graphic) {
+            var currentDate = new Date(graphic.attributes[dateField]);
+            if (currentDate.getTime() <= minDate.getTime()) {
+                minDate = currentDate;
+            }
+
+            if (currentDate.getTime() > maxDate.getTime()) {
+                maxDate = currentDate;
+            }
+        });
+
+        var currentYearTimeExtent = new esri.TimeExtent();
+        currentYearTimeExtent.startTime = minDate;
+        currentYearTimeExtent.endTime = maxDate;
+        updateTimeString(currentYearTimeExtent);
+
+
+        if (dijit.byId('timeSlider')) {
+            dijit.byId('timeSlider').destroy();
+        }
+        var tsDiv = dojo.create("div", null, dojo.byId('timeSliderDiv'));
+
+        timeSlider = new esri.dijit.TimeSlider({
+            style: "margin-top: 10px;",
+            id: 'timeSlider',
+            options: {
+                excludeDataAtLeadingThumb: true
+            }
+        }, tsDiv);
+
+
+        var query = new esri.tasks.Query();
+        dojo.connect(timeSlider, "onTimeExtentChange", function (timeExtent) {
+            updateTimeString(timeExtent);
+            query.timeExtent = timeExtent;
+            featureLayer.queryFeatures(query, function (featureSet) {
+                var uniqueHurricaneNames = {};
+                dojo.forEach(featureSet.features, function (feature) {
+                    var hurricaneName = feature.attributes.NAME;
+                    uniqueHurricaneNames[hurricaneName] = uniqueHurricaneNames[hurricaneName] + 1 || 1;
+                });
+            });
+        });
+
+        map.setTimeSlider(timeSlider);
+        timeSlider.setThumbCount(2);
+
+        timeSlider.createTimeStopsByTimeInterval(currentYearTimeExtent, 1, 'esriTimeUnitsMonths', {
+            resetStartTime: true
+        });
+
+        timeSlider.setThumbIndexes([0, 1]);
+        timeSlider.setThumbMovingRate(500);
+        timeSlider.setLoop(true);
+        timeSlider.startup();
+
+        var labels = dojo.map(timeSlider.timeStops, function (timeStop) {
+            return monthNames[timeStop.getUTCMonth()];
+        });
+        timeSlider.setLabels(labels);
+    }
+
+    function updateTimeString(timeExtent) {
+    }
+
+    function startSlider() {
+        timeSlider.play();
+    }
+
+    dojo.ready(init);
+</script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define("dijit/form/HorizontalRuleLabels dijit/form/HorizontalSlider ../core/declare dojo/_base/lang dojo/has esri/kernel".split(" "),function(b,c,d,e,f,g){return d("esri.widgets.HorizontalSlider",c,{baseClass:"esriHorizontalSlider",showButtons:!1,labels:null,constructor:function(a){a=a||{};a.labels&&(this.labels=a.labels)},buildRendering:function(){this.inherited(arguments);this.labels&&(new b({labels:this.labels})).placeAt(this.bottomDecoration)}})});

@@ -1,0 +1,39 @@
+<div style="line-height:25px; padding-left:15px; padding-top:5px;">
+  <div id="share-loading">
+    <label>
+      ${i18n.loadinglabel}
+    </label>
+  </div>
+  <div id="img_share-everyone-check_div" style="display:none;">
+    <img id="img_share-everyone-check" dojoAttachPoint="_imgShareEveryoneCheck" border="0" style="vertical-align:middle"/>${i18n.everyone}
+  </div>
+  <div id="share-everyone-check_div" style="display:none;">
+    <input id="share-everyone-check" dojotype="dijit.form.CheckBox" type="checkbox" />
+    <label id="share-everyone-check-label" for="share-everyone-check">
+      ${i18n.everyone}
+    </label>
+  </div>
+  <div id="img_share-account-check_div" style="display:none;">
+    <img id="img_share-account-check" dojoAttachPoint="_imgShareAccountCheck" border="0" style="vertical-align:middle"/>&nbsp;
+    <label id="img_share-account-check-label" for="img_share-account-check">
+    </label>
+  </div>
+  <div id="share-account-check_div" style="display:none;">
+    <input id="share-account-check" dojotype="dijit.form.CheckBox" type="checkbox" />
+    <label id="share-account-check-label" for="share-account-check">
+    </label>
+  </div>
+  <div id="share-groups-div" style="display:none;">
+    <input id="share-groups-check" dojotype="dijit.form.CheckBox" type="checkbox" />
+    <label id="share-groups-check-label" for="share-groups-check">
+      ${i18n.theseGroups}
+    </label>
+    <br/>
+    <div style="padding-left:20px; padding-top:5px;">
+      <div dojotype="dijit.layout.BorderContainer" gutters="false" design="headline" style="width:95%; height:115px;">
+        <div id="share-groups-list" dojotype="dijit.layout.ContentPane" region="middle" splitter="false">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

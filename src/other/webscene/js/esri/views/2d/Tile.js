@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define([],function(){var d=function(a,b){this.coords=a=a.concat();this.id=d.getId(a);this.lodInfo=b};d.prototype={clone:function(){return new d(this.coords,this.lodInfo)},intersects:function(a){var b=this.coords,c=a.coords,d=this.lodInfo;if(b[2]===c[2])return b[3]===c[3]&&b[1]===c[1];c=b[2]<c[2]?b:c;d=(c===b?this:a).lodInfo;a=d.getIntersectingTile(c===b?a:this).coords;return c[2]===a[2]&&c[1]===a[1]&&c[3]===a[3]}};Object.defineProperties(d.prototype,{level:{get:function(){return this.coords[2]}},
+row:{get:function(){return this.coords[1]}},col:{get:function(){return this.coords[0]}},world:{get:function(){return this.coords[3]},set:function(a){var b=this.coords;b[3]=a;b[0]=this.lodInfo.getXForWorld(b[0],a);this.id=d.getId(b)}}});d.getId=function(a,b,c,d){return(Array.isArray(a)?a:null!=d?[a,b,c,d]:[a,b,c]).join("/")};return d});

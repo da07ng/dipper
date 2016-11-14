@@ -1,0 +1,229 @@
+<form dojoAttachPoint="containerNode" enctype="multipart/form-data" action="" method="POST"  dojoAttachEvent="onsubmit:onSubmit">
+<div dojoAttachPoint="formNode" class="esriItemLinks dijitDialogPaneContentArea">
+    <div dojoAttachPoint="_instructions" class="addNew">${i18n.instructions}</div>
+    <div class="publishOld" style="display:none;">${i18n.publishInstructions}</div>
+    <br />
+    <fieldset class="addNew">
+        <label dojoAttachPoint="addItemLbl" for="itemType">${i18n.itemType}</label>
+        <select dojoAttachPoint="itemType" class="wideselect"  dojoType="dijit.form.Select" name='itemType' observer="changeType, changePlaceholder, deleteGrid">
+           <option value="file" selected>${i18n.itemTypeCpu}</option>
+           <option value="url">${i18n.itemTypeWeb}</option>
+           <option value="app">${i18n.itemTypeApp}</option>
+        </select>
+        <div class="type app" style="display:none;">
+            <label>${i18n.type}${i18n.colon}</label>
+            <div class="indent">
+                <input id="apimap" dojoType="dijit.form.RadioButton" class="radio" name="app" value="apimap" checked observer="changeApiType, changePlaceholder" />
+                <label for="apimap">${i18n.appMap}</label>
+                <input id="apimobile" dojoType="dijit.form.RadioButton" class="radio" name="app" value="apimobile" observer="changeApiType, changePlaceholder" />
+                <label for="apimobile">${i18n.appMobile}</label>
+                <input id="app" dojoType="dijit.form.RadioButton" style="display:none;" class="radio orgOnly" name="app" value="desktopapplication" observer="changeApiType"/>
+                <label class="orgOnly" style="display:none;" for="app">${i18n.desktop}</label>
+                <input id="apiapp" dojoType="dijit.form.RadioButton" style="display:none;" class="radio orgOnly" name="app" value="apiapp" observer="changeApiType" />
+                <label class="orgOnly" style="display:none;" for="apiapp">${i18n.appApplication}</label>
+            </div>
+            <div class="indent esriLeadingMargin73 orgOnly adminOnly" style="display:none;">
+                <input id="opext" dojoType="dijit.form.RadioButton" style="display:none;" class="radio orgOnly adminOnly" name="app" value="opext" observer="changeApiType" />
+                <label class="orgOnly adminOnly" style="display:none;" for="opext">${i18n.opExtension}</label>
+            </div>
+        </div>
+        <fieldset class="type app api" style="display:none;">
+        <span class="indent esriLeadingMargin73">
+           <label for="purpose">${i18n.itemPurpose}${i18n.colon}</label>
+            <select dojoType="dijit.form.Select" name="purpose">
+                <option value="Ready To Use" selected>${i18n.itemReady}</option>
+                <option value="Configurable">${i18n.itemConfigurable}</option>
+                <option value="selfConfigured">${i18n.itemSelfConfigurable}</option>
+                <option value="Code Sample">${i18n.itemCode}</option>
+            </select>
+        </span>
+         <span class="indent esriLeadingMargin73 esriLeadingMargin2 apiType apimap">
+           <label for="api">${i18n.itemAPI}${i18n.colon}</label>
+            <select dojoType="dijit.form.Select" name="desktopapi">
+                <option value="JavaScript" selected>${i18n.itemJS}</option>
+                <option value="Flex">${i18n.itemFlex}</option>
+                <option value="Silverlight">${i18n.itemSL}</option>
+                <option value="Web ADF">${i18n.itemADF}</option>
+                <option value="Other">${i18n.itemOther}</option>
+            </select>
+        </span>
+        <span class="indent esriLeadingMargin73 esriLeadingMargin2 apiType apimobile" style="display:none;">
+           <label for="api">${i18n.itemSDK}${i18n.colon}</label>
+            <select dojoType="dijit.form.Select" name="mobileapi">
+                <option value="ArcGIS for Android">${i18n.itemAndroid}</option>
+                <option value="ArcGIS for iPhone">${i18n.itemIOS}</option>
+                <option value="JavaScript" selected>${i18n.itemJS}</option>
+                <option value="Flex">${i18n.itemFlex}</option>
+                <option value="Windows Mobile">${i18n.itemMobile}</option>
+                <option value="ArcGIS for Windows Phone">${i18n.itemWindows}</option>
+            </select>
+        </span>
+        <span class="indent esriLeadingMargin73 esriLeadingMargin05 apiType desktopapplication" style="display:none;">
+           <label for="apidesktopapp">${i18n.itemPlatform}${i18n.colon}</label>
+            <select dojoType="dijit.form.Select" name="apidesktopapp">
+                <option value="Java">Java</option>
+                <option value=".NET–Windows Desktop">.NET–Windows Desktop</option>
+                <option value="OS X" selected>OS X</option>
+                <option value="Qt">Qt</option>
+                <option value="WPF">WPF</option>
+            </select>
+        </span>
+        </fieldset>
+        <div class="type file desktopapplication">
+            <label for="file">${i18n.itemFile}${i18n.colon}</label>
+            <span dojoAttachPoint="fileDiv">
+              <input id="file" class="required" size="41" type="file" name="file">
+            </span>
+        </div>
+
+        <div class="type url" style="display:none;">
+            <label>${i18n.type}${i18n.colon}</label>
+            <div class="webTypes">
+                <input dojoType="dijit.form.RadioButton" checked value="ags" class="radio" name="web" observer="changeServiceType, changePlaceholder, deleteGrid" />
+                <label for="ags">${i18n.webService}</label>
+                <input dojoType="dijit.form.RadioButton" value="kml" name="web" class="radio" observer="changeServiceType, changePlaceholder, deleteGrid" />
+                <label for="kml">${i18n.webKML}</label>
+            </div>
+            <div class="indent esriLeadingMargin73 webTypes">
+                <input dojoType="dijit.form.RadioButton" value="ogc" name="web" class="radio" observer="changeServiceType, changePlaceholder, deleteGrid" />
+                <label for="ogc">${i18n.webOGC}</label>
+                <input dojoType="dijit.form.RadioButton" style="display:none;" value="document" name="web" class="orgOnly radio" observer="changeServiceType, changePlaceholder, deleteGrid" />
+                <label class="orgOnly" style="display:none;" for="document">${i18n.webDocument}</label>
+            </div>
+        </div>
+        <div class="type url app api opext" style="display:none;">
+          <label id="urlLbl" for="url">${i18n.itemURL}</label>
+          <input id="url" dojoType="dijit.form.TextBox" trim="true" name="url" observer="_getUrlAndType" placeHolder="${i18n.urlRulesSvc}">
+        </div>
+        <!--<a dojoAttachPoint="supportedItems" class="indent esriLeadingMargin73 nosvcauth all" target="_blank" href="">${i18n.itemSupportedItems}</a>-->
+        <!--<br />-->
+        <fieldset class="type svcauth indent esriLeadingMargin73" style="display:none;">
+          <div>${i18n.secureservice}</div>
+          <div class="credentials"></div>
+          <div class="storecredentials">
+          <input dojoType="dijit.form.RadioButton" class="radio" checked value="nostore" name="storeauth" observer="changeStoreCredentials" />
+          <label class="wide" for="storeauth">${!i18n.nostoreauth}</label>
+          <br />
+          <input dojoattachpoint="_storeAuth" dojoType="dijit.form.RadioButton" class="radio" value="store" name="storeauth" observer="changeStoreCredentials"/>
+          <label class="wide" for="storeauth">${!i18n.storeauth}</label>
+          <br />
+          <a dojoAttachPoint="learnMore" target="_blank" href="">${i18n.learnMore}</a>
+          <br />
+          </div>
+        </fieldset>
+        <span class="indent type zip esriLeadingMargin73" style="display:none;">
+           <label for="archiveSelect">${i18n.itemContents}</label>
+            <select dojoType="dijit.form.Select" id="archiveSelect" name="archiveSelect" observer="changeArchive">
+              <option value="shapefile" selected>${i18n.typeShapefile}</option>
+              <option value="filegeodatabase">${i18n.itemFileGeodatabase}</option>
+	            <option value="dtemp">${i18n.typeDesktopTemplate}</option>
+	            <option value="mtemp">${i18n.typeMapTemplate}</option>
+              <option value="gpsample">${i18n.typeGPSample}</option>
+              <option value="codesample">${i18n.itemCode}</option>
+              <option value="arcpadpackage">${i18n.itemArcPadPackage}</option>
+              <option value="caddrawing">${i18n.itemCadDrawing}</option>
+              <option value="csvcollection">${i18n.itemCsvCollection}</option>
+              <option value="kmlcollection">${i18n.itemKmlCollection}</option>
+	        </select>
+        </span>
+        <span class="indent right type codesample esriLeadingMargin73" style="display:none;">
+           <label for="codesample">${i18n.itemLanguage}${i18n.colon}</label>
+            <select dojoType="dijit.form.Select" name="codesample" style="width:120px;">
+              <option value="C">C</option>
+              <option value="C#">C#</option>
+              <option value="C++">C++</option>
+              <option value="Java" selected>Java</option>
+	            <option value="Perl">Perl</option>
+	            <option value="PHP">PHP</option>
+	            <option value="Python">Python</option>
+              <option value="Ruby">Ruby</option>
+              <option value="SQL">SQL</option>
+              <option value="VB">VB</option>
+              <option value="VB">WPF</option>
+              <option value="Other">Other</option>
+	        </select>
+        </span>
+        <span class="indent right type arcpadpackage esriLeadingMargin73" style="display:none;">
+           <label for="arcpadpackage">${i18n.type}${i18n.colon}</label>
+            <select dojoType="dijit.form.Select" name="arcpadpackage">
+              <option value="ArcPad Project">${i18n.itemArcPadProject}</option>
+              <option value="ArcPad Template">${i18n.itemArcPadTemplate}</option>
+	        </select>
+        </span>
+        <span class="indent type stylx esriLeadingMargin73" style="display:none;">
+           <label for="stylx">${i18n.type}${i18n.colon}</label>
+            <select dojoType="dijit.form.Select" id="stylx" name="stylx">
+              <option value="2d">${i18n.2d}</option>
+              <option value="3d">${i18n.3d}</option>
+            </select>
+        </span>
+    </fieldset>
+
+    <div dojoAttachPoint="_publishServiceDiv" class="indent publish type esriLeadingMargin73" style="display:none;">
+      <fieldset dojoAttachPoint="_publishNode" class="type publish">
+        <input dojoAttachPoint="_enablePublishing" name="enablePublishing" dojoType="dijit.form.CheckBox" checked observer="onPublishCheck">
+        <label dojoAttachPoint="_enablePublishingLabel" for="enablePublishing">${i18n.publishService}</label>
+      </fieldset>
+    </div>
+    <fieldset>
+        <div class="title">
+          <label for="title">${i18n.itemTitle}${i18n.colon}</label>
+          <input id="title" dojoType="dijit.form.TextBox" trim="true" class="required" name="title" placeHolder="${i18n.titleRules}">
+          <br />
+        </div>
+        <table width="100%">
+          <tbody>
+            <tr>
+              <td class="tagLbl"><label data-dojo-attach-point="_tagsLbl" for="tags">${i18n.itemTags}${i18n.colon}</label></td>
+              <td><input data-dojo-attach-point="_tags" data-dojo-type="esri/dijit/Tags" class="required" name="tags" data-dojo-props="minWidth:'450px',maxWidth:'450px'"></td>
+            </tr>
+          </tbody>
+        </table>
+        <!--<label for="tags">${i18n.itemTags}${i18n.colon}</label>-->
+        <!--<div data-dojo-attach-point="_tags" data-dojo-type="arcgisonline/sharing/dijit/Tags" class="required esriFloatTrailing esriTrailingMargin02px" name="tags" data-dojo-props="minWidth:'450px',maxWidth:'450px'"></div>-->
+
+        <!--<input dojoType="dijit.form.TextBox" trim="true" class="required" name="tags" placeHolder="${i18n.tagRules}">-->
+        <!--<br />-->
+        <!--<a class="indent esriLeadingMargin73" target="_blank" dojoAttachEvent="onclick:showUserTags">${i18n.itemChooseTags}</a>-->
+    </fieldset>
+    <div class='subtable opextwarning opextwarningmsg esriLeadingMargin73' style="display:none;">
+      <div>${i18n.opExtensionMsg}</div>
+      <ul>
+        <li class="useDataFromView opextwarningmsg" style="display:none;">${i18n.manifestWarnings.useDataFromView}</li>
+        <li class="usePortalServices opextwarningmsg" style="display:none;">${i18n.manifestWarnings.usePortalServices}</li>
+        <li class="useExternalAGSServices opextwarningmsg" style="display:none;">${i18n.manifestWarnings.useExternalAGSServices}</li>
+      </ul>
+    </div>
+    <div class='subtable hosted' style="display:none;">
+      <div dojoAttachPoint="_publishCSVDiv" class="publish type" style="display:none;"></div>
+      <div class='csv' style="display:none;">
+          <p>${i18n.locateUsing}${i18n.colon}
+            <input dojoType="dijit.form.RadioButton" class="radio csv portal noGeocode" name="geocode" value="locationTypes" checked observer="onChangeGeocode" />
+            <label class="csv portal noGeocode">${i18n.latLong}</label>
+            <input dojoType="dijit.form.RadioButton" class="radio csv portal" name="geocode" value="addressTypes" observer="onChangeGeocode"/>
+            <label class="csv portal">${i18n.address}</label>
+            <input dojoType="dijit.form.RadioButton" class="radio csv portal noGeocode tableOnly" name="geocode" value="none" observer="onChangeGeocode"/>
+            <label class="noGeocode csv portal tableOnly">${i18n.table}</label>
+          </p>
+
+          <div class='multigeocode'>
+            <span>
+              <label for="geocoderSelect">${i18n.selectGeocoder}</label>
+              <select dojoattachpoint="_geocoderSelect" dojoType="dijit.form.Select" style="width:175px;" maxHeight="200" name="geocodeAddress"></select><!-- observer="onChangeGeocoder"-->
+            </span>
+          </div>
+          <span class='csv geocode'>
+            <label for="geocodeAddress">${i18n.country}${i18n.colon}</label>
+            <select dojoattachpoint="_countryCodes" dojoType="dijit.form.Select" style="width:175px;" maxHeight="200" name="geocodeAddress" data-dojo-attach-event="onChange:onChangeCountry"></select><!-- observer="onChangeCountry"-->
+          </span>
+      </div>
+      <span dojoAttachPoint="geocodeReviewMsg" class='csv' style="display:none;">${i18n.review}</span>
+      <div dojoAttachPoint='gridNode' class="grid"></div>
+    </div>
+</div>
+<div class="submitButtons dijitDialogPaneActionBar">
+    <span dojoAttachPoint="spinnerNode" style="display:none">${i18n.pleaseWait}</span>
+    <input dojoType="dijit.form.Button" class="primary" id="addItem-btn" name="addItem" type="submit" label="${i18n.addItem}">
+    <input dojoType="dijit.form.Button" class="cancel" name="cancel" type="button" observer="onCancel" label="${i18n.cancel}">
+</div>
+</form>

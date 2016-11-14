@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Label</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="../css/apiNative.css">
+    <style>
+
+        #info {
+            margin: 10px;
+        }
+        #info button {
+            margin-right: 5px;
+        }
+        #map {
+            height: 700px;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background: url(../images/androidMark.png) no-repeat center center;
+            background-size: contain;
+        }
+    </style>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+</head>
+
+<body>
+<div class="container-fluid layoutContainer">
+    <article id="page_content" class="md-body">
+        <h1>标注服务</h1>
+
+        <h2>简介</h2>
+
+        <p>通过Symbol接口实现地图标注。可以对图片，点，线，面，文字等多类要素进行样式设置，以实现地图标注。</p>
+
+        <h2>示例</h2>
+
+        <div id="map"></div>
+        <div id="info" class="center">
+            <button id="textPoint">添加文本</button>
+            <button id="picPoint">添加图片</button>
+        </div>
+        <h2>代码</h2>
+
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+public class LabelActivity extends Activity {
+
+    private GraphicsLayer graphicsLayer = new GraphicsLayer();
+    private int index=-1;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.label_layout);
+        final MapView mapView = (MapView) findViewById(R.id.mapView);
+        ArcGISTiledMapServiceLayer tiledMapServiceLayer = new ArcGISTiledMapServiceLayer(getString(R.string.default_baseLayer));
+        mapView.addLayer(tiledMapServiceLayer);
+        mapView.addLayer(graphicsLayer);
+
+        mapView.setOnSingleTapListener(new OnSingleTapListener() {
+            @Override
+            public void onSingleTap(float v, float v1) {
+                Point point = mapView.toMapPoint(v, v1);
+                switch (index) {
+                    case 0:
+                        Graphic graphic = new Graphic(point, new TextSymbol(15, "aaa", Color.RED));
+                        graphicsLayer.addGraphic(graphic);
+                        break;
+                    case 1:
+                        Graphic graphic1 = new Graphic(point, new PictureMarkerSymbol(getResources().getDrawable(R.drawable.i_pin)));
+                        graphicsLayer.addGraphic(graphic1);
+                        break;
+                    case -1:
+                        break;
+                }
+            }
+        });
+    }
+
+    public void onLabel(View view){
+        index = 0;
+    }
+    public void onImage(View view){
+        index = 1;
+    }
+    public void onClear(View view) {
+        index = -1;
+        graphicsLayer.removeAll();
+    }
+
+}
+          </textarea>
+        </p>
+    </article>
+</div>
+</body>
+</html>

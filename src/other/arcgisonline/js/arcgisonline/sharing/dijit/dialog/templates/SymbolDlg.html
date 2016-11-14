@@ -1,0 +1,12 @@
+<div class="widgetContent" >
+  <div dojotype="dijit.Dialog" id="symbol-dialog" title="${i18n.symbolDlgTitle}" execute="">
+	  <div id="symbol-dialog-symboloptions" dojotype="arcgisonline.sharing.dijit.SymbolOptions" dojoAttachPoint="symbolOptions"></div>
+    <div>
+      <button dojoAttachPoint="cancelButton" dojoAttachEvent="onClick:onCancelClick" class="jevent cancel esriFloatTrailing" dojoType="dijit.form.Button">${i18n.cancel}</button>
+      <button id="symbol-dialog-apply" dojoAttachPoint="applyButton" dojoAttachEvent="onClick:onApplyClick" class="jevent cancel esriFloatTrailing" dojoType="dijit.form.Button">${i18n.apply}</button>
+  	  <button id="symbol-dialog-done" dojoAttachEvent="onClick:onDoneClick" class="jevent primary esriFloatTrailing" dojoType="dijit.form.Button">${i18n.done}</button>
+    </div>
+    <div style="clear:both;">
+    </div>
+	</div>
+</div>

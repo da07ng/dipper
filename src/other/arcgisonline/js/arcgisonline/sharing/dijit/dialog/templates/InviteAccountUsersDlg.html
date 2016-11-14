@@ -1,0 +1,35 @@
+<div class="widgetContent" >
+    <div dojotype="dijit.Dialog" id="invite-account-users-dialog" title="Invite Users" execute="">
+      <div id="invite-account-users-search">
+        <span id="invite-account-users-search-label"></span>
+      </div>
+      <br />
+      <table cellpadding="0" cellspacing="0">
+        <tr>
+          <td valign="top"><label>To:</label></td>
+          <td valign="top">
+            <div id="invite-account-users-email" dojoType="dijit.form.TextBox" type="textbox" dojoAttachPoint="_email" dojoAttachEvent="onFocus:onEmailFocus,onBlur:onEmailBlur" style="width:400px;"></div>
+          </td>
+        </tr>
+        <tr><td valign="top"><br/></td></tr>
+        <tr>
+          <td valign="top"><label>Message:</label></td>
+          <td valign="top">
+            <div id="invite-account-users-message" dojoType="dijit.form.SimpleTextarea" type="textarea" dojoAttachPoint="_message" style="width:400px; min-height:150px; resize:none;"></div>
+          </td>
+        </tr>
+        <tr><td valign="top"><br/></td></tr>
+        <tr>
+          <td valign="top" colspan="2">
+            <div id="invite-account-users-must-approve" dojoType="dijit.form.CheckBox" dojoAttachPoint="_mustApprove" type="checkbox"></div>
+            <span id="invite-account-users-must-approve-label"></span>
+          </td>
+        </tr>
+      </table>
+      <br />
+      <div style="float: right; padding-top:0px; padding-bottom:5px;">
+        <button id="button_send-invite" class="jevent primary" dojoType="dijit.form.Button" type="button">Send</button>
+        <button id="button_invite-account-users-close" class="jevent cancel" dojoType="dijit.form.Button" type="button">Cancel</button>
+      </div>
+    </div>
+</div>

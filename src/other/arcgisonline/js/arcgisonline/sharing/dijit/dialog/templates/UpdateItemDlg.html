@@ -1,0 +1,58 @@
+<div class="widgetContainer">
+  <div dojotype="dijit.Dialog" dojoAttachPoint="_updateItemDialog" title="${i18n.updateItem}" dojoAttachEvent="hide:clear" execute="" style="width:520px;">
+    <div dojoAttachPoint="_errorDiv"></div>
+    <form dojoAttachPoint="_updateItemForm" dojoAttachEvent="onsubmit:uploadItem" enctype="multipart/form-data" action="" method="post">
+      <div dojotype="dijit.form.TextBox" dojoAttachPoint="_updateItemFolderInput" type="hidden" value="0"></div>
+      <div name="id" dojotype="dijit.form.TextBox" dojoAttachPoint="_updateItemIdInput" type="hidden" value=""></div>
+      <div name="name" dojotype="dijit.form.TextBox" dojoAttachPoint="_updateItemNameInput" type="hidden" value=""></div>
+      <div name="title" dojotype="dijit.form.TextBox" dojoAttachPoint="_updateItemTitleInput" type="hidden" value=""></div>
+      <div name="tags" dojotype="dijit.form.TextBox" dojoAttachPoint="_updateItemTagsInput" type="hidden" value=""></div>
+      <div name="type" dojotype="dijit.form.TextBox" dojoAttachPoint="_updateItemTypeInput" type="hidden" value=""></div>
+      <div name="typeKeywords" dojotype="dijit.form.TextBox" dojoAttachPoint="_updateItemKeywordsInput" type="hidden" value=""></div>
+      <div name="description" dojotype="dijit.form.TextBox" dojoAttachPoint="_updateDescriptionInput" type="hidden" value=""></div>
+      <div name="snippet" dojotype="dijit.form.TextBox" dojoAttachPoint="_updateSnippetInput" type="hidden" value=""></div>
+      <div name="accessInformation" dojotype="dijit.form.TextBox" dojoAttachPoint="_updateAccessInput" type="hidden" value=""></div>
+      <div name="licenseInfo" dojotype="dijit.form.TextBox" dojoAttachPoint="_updateLicenseInfoInput" type="hidden" value=""></div>
+      <div name="extent" dojotype="dijit.form.TextBox" dojoAttachPoint="_updateExtentInput" type="hidden" value=""></div>
+      <div name="overwrite" dojotype="dijit.form.TextBox" dojoAttachPoint="_updateOverwriteInput" type="hidden" value="true"></div>
+      <div name="async" dojotype="dijit.form.TextBox" type="hidden" dojoAttachPoint="_updateAsyncInput" value="true"></div>
+
+      <div><label dojoAttachPoint="_replaceUpdateVerLabel">${i18n.replaceUpdatedVersionMsg}</label></div>
+      <br/>
+      <div style="padding-top:4px;margin-bottom:1.0em;">
+        <label class="esriFloatLeading esriTrailingMargin2" style="margin-top:6px;" for="update-item-file">${i18n.itemLabel}</label>
+        <input type="file" dojoAttachPoint="_updateItemFile" id="update-item-file" name="file" size="40" class="esriFileInput">
+      </div>
+      <br/>
+
+      <div id="overwrite_section" class="hide" style="padding-top:4px;margin-bottom:1.0em;">
+        <input id="overwriteService" type="checkbox" name="overwriteService" dojotype="dijit.form.CheckBox" checked="checked" dojoAttachPoint="_overwriteService"/>
+        <label id="overwriteServiceLbl" for="overwriteService">${i18n.overwriteService} ${i18n.keepFieldsSame}</label>
+        <br />
+      </div>
+
+      <div id="update-item-keepdescription" style="width:100%;display:none;">
+        <div style="padding-bottom:5px; padding-top:2px;">
+          <label>${i18n.updateItemDescription}</label>
+        </div>
+        <div style="line-height:23px">
+          <input type="radio" name="useDescription" dojotype="dijit.form.RadioButton" checked="checked" dojoAttachPoint="_useDescKeepRadio" id="useDescription:keep"/>
+          <label for="useDescription:keep">${i18n.keepExistingProperties}</label>
+          <br/>
+          <input type="radio" name="useDescription" dojotype="dijit.form.RadioButton" dojoAttachPoint="_useDescUpdateRadio" id="useDescription:update"/>
+          <label for="useDescription:update">${i18n.useUploadedProperties}</label>
+        </div>
+      </div>
+      <br/>
+
+      <div class="esriFloatTrailing" style="padding-bottom:20px;">
+        <span dojoAttachPoint="_waitingSpan" style="display:none;">${i18n.uploadingItemMsg}</span>
+        <button id="button_update-item" type="submit" dojotype="dijit.form.Button" class="jevent primary" dojoAttachPoint="_updateItemBtn">${i18n.updateItem}</button>
+        <button dojotype="dijit.form.Button" dojoAttachEvent="onClick:_handleCancel" dojoAttachPoint="_cancelBtn" id="button_update-item-cancel" class="jevent cancel" type="cancel">${i18n.cancel}</button>
+      </div>
+
+      <br/>
+      <br/>
+    </form>
+  </div>
+</div>

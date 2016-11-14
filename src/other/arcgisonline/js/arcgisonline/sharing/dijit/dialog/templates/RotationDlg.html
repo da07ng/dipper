@@ -1,0 +1,47 @@
+<div class="widgetContainer">
+  <div dojotype="dijit.Dialog" id="rotation-dialog" title="${i18n.title}" execute="">
+    <div>
+      <table cellspacing="5" width="100%"><tbody>
+			<tr><td>
+        <label>${i18n.titleMsg}</label>
+      </td></tr>
+      <tr><td>
+        <select class="rendererInput" dojoAttachPoint="_rotationAttribute" dojoAttachEvent="onChange:_onChangeRotationAttribute" dojoType="dijit.form.Select" maxHeight="150" sortByLabel="false" style="width:100%">
+        </select>
+      </td></tr>
+      <tr><td>
+        <div style="height:5px"></div>
+      </td></tr>
+      <tr><td >
+        <label>${i18n.angleMsg}</label>
+      </td></tr>
+      <tr><td>
+          <div class="esriFloatLeading" style="width:20px;">
+            <input type="radio" name="rotationType" dojotype="dijit.form.RadioButton" id="rotationType:geographic" />
+          </div>
+          <div class="esriFloatLeading">
+            <label for="linkType:geographic">
+              ${i18n.geographic}
+            </label>
+          </div>
+          <div style="clear:both;"></div>
+          <div class="esriFloatLeading" style="width:20px;">
+            <input type="radio" name="rotationType" dojotype="dijit.form.RadioButton" id="rotationType:arithmetic" />
+          </div>
+          <div class="esriFloatLeading">
+            <label for="linkType:arithmetic">
+              ${i18n.arithmetic}
+            </label>
+          </div>
+      </td></tr>
+			</tbody></table>
+      <div style="margin-top:10px;">
+        <button dojoAttachPoint="cancelButton" dojoAttachEvent="onClick:onCancelClick" class="jevent cancel esriFloatTrailing" dojoType="dijit.form.Button">${i18n.cancel}</button>
+        <button dojoAttachPoint="applyButton" dojoAttachEvent="onClick:onApplyClick" class="jevent cancel esriFloatTrailing" dojoType="dijit.form.Button">${i18n.apply}</button>
+        <button dojoAttachPoint="okButton" dojoAttachEvent="onClick:onDoneClick" class="jevent primary esriFloatTrailing" dojoType="dijit.form.Button">${i18n.done}</button>
+			</div>
+      <div style="clear:both;">
+      </div>
+    </div>
+  </div>
+</div>

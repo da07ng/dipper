@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Query</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="../css/apiNative.css">
+    <style>
+      #map {
+        height: 400px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: url(../images/iosLabel.png) no-repeat center ;
+        background-size: contain;
+      }
+    </style>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+  </head>
+
+  <body>
+    <div class="container-fluid layoutContainer">
+      <article id="page_content" class="md-body">
+        <h1>标注服务</h1>
+        <h2>简介</h2>
+        <p>地图覆盖物包括所有叠加到地图的内容，如标注、矢量图形元素(包括折线和多边形和圆)、信息窗体等。覆盖物具有地理坐标，当地图拖动或缩放时，它们会对应的移动。</p>
+        <p>地图API提供了如下几种覆盖物样式：</p>
+        <p>点状符号（MarkerSymbol）： 表示地图上的点，可以是单点和多点，其中AGSSimpleMarkerSymbol，将点显示为一个简单的形状，例如圆形、方块和十字；而AGSPictureMarkerSymbol，将点显示为一个图片。</p>
+        <p> 线状符号（LineSymbol）：表示地图上的折线，可以设置颜色和宽度等参数。 </p>
+        <p>面状符号（FillSymbol）：表示地图上的多边形，包括：PictureFillSymbol，用一张图像重复图案填充多边形； SimpleFillSymbol，可以是固体的，透明的，或几种交叉影线图案中的一个。另外，还可以设置一个可选的线符号轮廓。</p>
+        <p>文字符号（TextSymbol）：在地图上展示文字信息，支持点、线和面状要素，可以设置字体样式。
+        <p>组合符号（CompositeSymbol）：前几种符号的组合应用。</p>
+        <h2>示例</h2>
+        <div id="map"></div>
+        <h2>代码</h2>
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+//Create the AGSSimpleMarker Symbol and set some properties
+AGSSimpleMarkerSymbol* myMarkerSymbol = [AGSSimpleMarkerSymbol simpleMarkerSymbol];
+myMarkerSymbol.color = [UIColor blueColor];
+myMarkerSymbol.style = AGSSimpleMarkerSymbolStyleDiamond;
+myMarkerSymbol.outline.color = [UIColor whiteColor];
+myMarkerSymbol.outline.width = 3;
+
+//Create the AGSSimpleFillSymbol and set it’s color
+AGSSimpleFillSymbol* myFillSymbol = [AGSSimpleFillSymbol simpleFillSymbol];
+myFillSymbol.color = [UIColor colorWithRed:0.7 green:0.1 blue:0.1 alpha:0.5];
+
+//Create the AGSSimpleLineSymbol used for the outline
+AGSSimpleLineSymbol* myOutlineSymbol = [AGSSimpleLineSymbol simpleLineSymbol];
+myOutlineSymbol.color = [UIColor redColor];
+myOutlineSymbol.width = 2;
+
+//set the outline property to myOutlineSymbol
+myFillSymbol.outline = myOutlineSymbol;
+}
+          </textarea>
+        </p>
+      </article>
+    </div>
+    
+  </body>
+</html>

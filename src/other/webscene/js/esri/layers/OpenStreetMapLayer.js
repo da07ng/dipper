@@ -1,0 +1,4 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["dojo/_base/lang","../core/declare","../config","./WebTiledLayer"],function(a,b,c,d){c.request.corsEnabledServers.push("a.tile.openstreetmap.org","b.tile.openstreetmap.org","c.tile.openstreetmap.org");return b(d,{declaredClass:"esri.layers.OpenStreetMapLayer",getDefaults:function(){return a.mixin(this.inherited(arguments),{urlTemplate:"//${subDomain}.tile.openstreetmap.org/${level}/${col}/${row}.png",subDomains:["a","b","c"],copyright:"Map data \x26copy; OpenStreetMap contributors, CC-BY-SA"})}})});

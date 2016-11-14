@@ -1,0 +1,25 @@
+<div class="widgetContent" >
+  <div data-dojo-type="dijit.Dialog" data-dojo-attach-point="exportDialog" id="export-dialog" title="${i18n.exportDialogTitle}" execute="">
+    <div data-dojo-attach-point="saveItemForm" data-dojo-type="arcgisonline.sharing.dijit.SaveItem"></div>
+    <div data-dojo-attach-point="_featureCollectionDiv" class="featureCollectionOnly hide" style="margin-top:10px;">
+        <input type="radio" style="margin:5px;" data-dojo-attach-point="generalizeChk" data-dojo-type="dijit.form.RadioButton" data-dojo-props="checked:false" name="generalize"/><label style="vertical-align:middle;">${i18n.generalize}</label>
+        <br />
+        <input type="radio" style="margin:5px;" data-dojo-type="dijit.form.RadioButton"  name="generalize"/><label style="vertical-align:middle;">${i18n.keepOrig}</label>
+    </div>
+    <table width="100%">
+      <tbody>
+        <tr>
+          <td class="esriAlignLeading">
+            <span dojoAttachPoint="exportingLabel" style="visibility:hidden;">${i18n.exportingLabel}</span>
+          </td>
+          <td class="esriAlignTrailing">
+            <div class="primary" data-dojo-attach-point="exportBtn" data-dojo-attach-event="onClick:onExport"
+                 data-dojo-type="dijit.form.Button" data-dojo-props="type:'button'">${i18n.exportLabel}</div>
+            <div class="cancel" data-dojo-attach-point="cancelBtn" data-dojo-attach-event="onClick:onCancel"
+                 data-dojo-type="dijit.form.Button" data-dojo-props="type:'button'">${i18n.cancel}</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

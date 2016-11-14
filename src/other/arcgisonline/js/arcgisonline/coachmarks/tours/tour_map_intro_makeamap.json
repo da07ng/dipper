@@ -1,0 +1,289 @@
+{
+    "tour_coachmarks": {
+        "tour_type": "guidedtour",
+        "tour_steps": [{
+            "id": 1,
+            "elementID": "geocoder_input",
+            "top": 8,
+            "h_offset": -10,
+            "contentId": "prompt1",
+            "size": "default",
+            "arrowPosition": "leading",
+            "showClose": true,
+            "showNext": false,
+            "showPrevious": false,
+            "showNextID": 2,
+            "workflow": {
+                "dojoWidgetInstance": "arcgisonline.map.geocode.geocoder",
+                "dojoWidgetEvent": "select",
+                "dojoWidgetEventType": "after"
+            }
+        },
+        {
+            "id": 2,
+            "elementID": "webmap-add",
+            "top": 30,
+            "h_offset": 35,
+            "contentId": "prompt2",
+            "size": "default",
+            "arrowPosition": "bottom",
+            "showClose": true,
+            "showNext": false,
+            "showPrevious": false,
+            "showNextID": 3,
+            "workflow": {
+                "dojoWidgetInstance": "dojo.byId('webmap-add')",
+                "dojoWidgetEvent": "click",
+                "dojoWidgetEventType": "on"
+            }
+        },
+        {
+            "id": 3,
+            "elementID": "webmap-add-mapnotes",
+            "top": 15,
+            "h_offset": 0,
+            "contentId": "prompt3",
+            "size": "default",
+            "arrowPosition": "trailing",
+            "showClose": true,
+            "showNext": false,
+            "showPrevious": false,
+            "showNextID": 4,
+            "workflow": {
+                "dojoWidgetInstance": "arcgisonline.sharing.dijit.dialog.MapNotesDlg.prototype.statics.getInstance()",
+                "dojoWidgetEvent": "show",
+                "dojoWidgetEventType": "after"
+            }
+        },
+        {
+            "id": 4,
+            "elementID": "mapnotes-create",
+            "top": 17,
+            "h_offset": 5,
+            "contentId": "prompt4",
+            "size": "default",
+            "arrowPosition": "trailing",
+            "showClose": true,
+            "showNext": false,
+            "showPrevious": false,
+            "showNextID": 5,
+            "workflow": {
+                "dojoWidgetInstance": "arcgisonline.sharing.dijit.dialog.MapNotesDlg.prototype.statics.getInstance()",
+                "dojoWidgetEvent": "show",
+                "dojoWidgetEventType": "after",
+                "then": {
+                  "dojoWidgetInstance": "dijit.byId('mapnotes-create')",
+                  "dojoWidgetEvent": "click",
+                  "dojoWidgetEventType": "on"
+                }
+            }
+        },
+        {
+            "id": 5,
+            "elementID": "webmap-details",
+            "top": 117,
+            "h_offset": -30,
+            "contentId": "prompt5",
+            "size": "default",
+            "arrowPosition": "trailing",
+            "showClose": true,
+            "showNext": false,
+            "showPrevious": false,
+            "showNextID": 6,
+            "workflow": {
+                "dojoWidgetInstance": "arcgisonline.map.dijit.Edit.prototype",
+                "dojoWidgetEvent": "loadEditor",
+                "dojoWidgetEventType": "after",
+                "then": {
+                  "dojoWidgetInstance": "dojo.byId('templatePickerPane')",
+                  "dojoWidgetEvent": "click",
+                  "dojoWidgetEventType": "on"
+                }
+            }
+        },
+        {
+            "id": 6,
+            "elementID": "rightDiv",
+            "top": 150,
+            "h_offset": -230,
+            "contentId": "prompt6",
+            "size": "default",
+            "arrowPosition": "no_arrow",
+            "showClose": true,
+            "showNext": false,
+            "showPrevious": false,
+            "showNextID": 7,
+            "workflow": {
+                "dojoWidgetInstance": "arcgisonline.map.dijit.Edit.prototype",
+                "dojoWidgetEvent": "loadEditor",
+                "dojoWidgetEventType": "after",
+                "then": {
+                  "dojoWidgetInstance": "arcgisonline.map.main.map.infoWindow",
+                  "dojoWidgetEvent": "show",
+                  "dojoWidgetEventType": "on"
+                }
+            }
+        },
+        {
+            "id": 7,
+            "elementID": "rightDiv",
+            "top": 150,
+            "h_offset": -230,
+            "contentId": "prompt7",
+            "size": "default",
+            "arrowPosition": "no_arrow",
+            "showClose": true,
+            "showNext": false,
+            "showPrevious": false,
+            "showNextID": 8,
+            "workflow": {
+                "dojoWidgetInstance": "arcgisonline.map.dijit.Edit.prototype",
+                "dojoWidgetEvent": "loadEditor",
+                "dojoWidgetEventType": "after",
+                "then": {
+                  "dojoWidgetInstance": "arcgisonline.map.main.map.infoWindow",
+                  "dojoWidgetEvent": "hide",
+                  "dojoWidgetEventType": "on"
+                }
+            }
+        },
+        {
+            "id": 8,
+            "elementID": "webmap-save",
+            "top": 14,
+            "h_offset": -10,
+            "contentId": "prompt8",
+            "size": "default",
+            "arrowPosition": "leading",
+            "showClose": true,
+            "showNext": false,
+            "showPrevious": false,
+            "showNextID": 9,
+            "workflow": {
+                "dojoWidgetInstance": "arcgisonline.sharing.dijit.dialog.SaveWebMapDlg.prototype.statics.getInstance()",
+                "dojoWidgetEvent": "addWebMapItem",
+                "dojoWidgetEventType": "after"
+            }
+        },
+        {
+            "id": 9,
+            "elementID": "webmap-save",
+            "top": 20,
+            "h_offset": 200,
+            "contentId": "prompt9",
+            "size": "default",
+            "arrowPosition": "no_arrow",
+            "showClose": true,
+            "showNext": false,
+            "showPrevious": false,
+            "showNextID": 10,
+            "workflow": {
+                "dojoWidgetInstance": "arcgisonline.sharing.dijit.dialog.SaveWebMapDlg.prototype.statics.getInstance();",
+                "dojoWidgetEvent": "onHide",
+                "dojoWidgetEventType": "after"
+            }
+        },
+        {
+            "id": 10,
+            "elementID": "webmap-share",
+            "top": 30,
+            "h_offset": 35,
+            "contentId": "prompt10",
+            "size": "default",
+            "arrowPosition": "bottom",
+            "showClose": true,
+            "showNext": false,
+            "showPrevious": false,
+            "showNextID": 11,
+            "workflow": {
+                "dojoWidgetInstance": "arcgisonline.sharing.dijit.dialog.ShareMapDlg.prototype.statics.getInstance()",
+                "dojoWidgetEvent": "show",
+                "dojoWidgetEventType": "after"
+            }
+        },
+        {
+            "id": 11,
+            "elementID": "share-map-dialog",
+            "top": 140,
+            "h_offset": -100,
+            "contentId": "prompt11",
+            "size": "default",
+            "arrowPosition": "trailing",
+            "showClose": true,
+            "showNext": false,
+            "showPrevious": false,
+            "showNextID": 12,
+            "workflow": {
+                "dojoWidgetInstance": "arcgisonline.sharing.dijit.dialog.ShareMapDlg.prototype.statics.getInstance()",
+                "dojoWidgetEvent": "show",
+                "dojoWidgetEventType": "after",
+                "then": {
+                  "dojoWidgetInstance": "dojo.byId('share-map-make-public');",
+                  "dojoWidgetEvent": "click",
+                  "dojoWidgetEventType": "on"
+                }
+            }
+        },
+        {
+            "id": 12,
+            "elementID": "share-map-url",
+            "top": 7,
+            "h_offset": 10,
+            "contentId": "prompt12",
+            "size": "default",
+            "arrowPosition": "trailing",
+            "showClose": true,
+            "showNext": false,
+            "showPrevious": false,
+            "showNextID": 13,
+            "workflow": {
+                "dojoWidgetInstance": "arcgisonline.sharing.dijit.dialog.ShareMapDlg.prototype.statics.getInstance()",
+                "dojoWidgetEvent": "show",
+                "dojoWidgetEventType": "after",
+                "then": {
+                  "dojoWidgetInstance": "dijit.byId('share-map-url')",
+                  "dojoWidgetEvent": "mousedown",
+                  "dojoWidgetEventType": "on"
+                }
+            }
+        },
+        {
+            "id": 13,
+            "elementID": "share-map-dialog-close",
+            "top": 20,
+            "h_offset": -30,
+            "contentId": "prompt13",
+            "size": "default",
+            "arrowPosition": "leading",
+            "showClose": true,
+            "showNext": false,
+            "showPrevious": false,
+            "showNextID": 14,
+            "workflow": {
+                "dojoWidgetInstance": "arcgisonline.sharing.dijit.dialog.ShareMapDlg.prototype.statics.getInstance()",
+                "dojoWidgetEvent": "show",
+                "dojoWidgetEventType": "after",
+                "then": {
+                  "dojoWidgetInstance": "dijit.byId('share-map-dialog-close')",
+                  "dojoWidgetEvent": "click",
+                  "dojoWidgetEventType": "on"
+                }
+            }
+        },
+        {
+            "id": 14,
+            "elementID": "rightDiv",
+            "top": 10,
+            "h_offset": 10,
+            "contentId": "prompt14",
+            "size": "default",
+            "arrowPosition": "no_arrow",
+            "showClose": true,
+            "showNext": false,
+            "showPrevious": false,
+            "showNextID": 0,
+            "workflow": {
+            }
+        }]
+    }
+}

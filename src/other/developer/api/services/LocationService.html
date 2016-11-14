@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>DotRender</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="../css/serviceStyle.css">
+    <style>
+        #search {
+            display: block;
+            position: absolute;
+            z-index: 2;
+            right: 70px;
+            margin: 10px 0;
+        }
+    </style>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+</head>
+
+<body>
+<div class="container-fluid layoutContainer">
+    <article id="page_content" class="md-body">
+        <h1>定位服务</h1>
+
+        <h2>简介</h2>
+
+        <p>定位服务是一类简单的HTTP接口，用于提供从地址到经纬度坐标或者从经纬度坐标到地址的转换服务，用户可以使用C# 、C++、Java等开发语言发送HTTP请求且接收JSON、XML的返回数据。</p>
+
+        <h2>示例</h2>
+
+        <div id="map">
+            <div id="search"></div>
+        </div>
+
+        <h2>API示例</h2>
+
+        <div class="biaoge">
+            <table>
+
+                <tr>
+                    <td>
+                        <div class="apilink1">
+                            <a href="../api.html?type=js&title=location" target="view_window11"><img
+                                    src="images/imac-full.png" alt=""></a>
+                            <a href="../api.html?type=js&title=location" target="view_window11"><h3
+                                    class="leader-1 trailer-half">JavaScript开发</h3></a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="apilink2">
+                            <a href=""><img src="images/apple-full.png" alt=""></a>
+                            <a href=""><h3 class="leader-1 trailer-half">IOS开发</h3></a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="apilink3">
+                            <a href=""><img src="images/android-full.png" alt=""></a>
+                            <a href=""><h3 class="leader-1 trailer-half">Android开发</h3></a>
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+
+</div>
+
+<script src="http://js.arcgis.com/3.13/"></script>
+<script>
+    require([
+
+        "esri/map",
+        "esri/dijit/Search",
+        "dojo/domReady!"
+
+    ], function (Map, Search) {
+        var map = new Map("map", {
+            basemap: "gray",
+            center: [-120.435, 46.159], // lon, lat
+            zoom: 7
+        });
+
+        var s = new Search({
+            map: map
+        }, "search");
+        s.startup();
+
+    });
+</script>
+
+</body>
+</html>

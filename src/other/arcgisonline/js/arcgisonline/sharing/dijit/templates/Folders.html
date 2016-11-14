@@ -1,0 +1,17 @@
+<div id="esriWidgetFolders" class="esriFloatLeading">
+  <ul dojoType="dijit.Menu" id="tree_menu" style="display: none;">
+    <li dojoType="dijit.MenuItem" class="new-folder-button" class="calcite transparent" iconClass="esriNewFolderIcon" dojoAttachEvent="onClick: createFolder">${i18n.newFolder}</li>
+    <!--<li dojoType="dijit.MenuItem" class="upload-item-button" class="calcite transparent" iconClass="esriUploadIcon" dojoAttachEvent="onClick: addItem">${i18n.addItem}</li>-->
+    <li dojotype="dijit.MenuItem" id="delete-folder-mnu-btn" class="calcite transparent delete-folder-button" iconClass="esriFolderDeleteIcon" dojoAttachEvent="onClick: confirmDelete">${i18n.deleteFolder}</li>
+  </ul>
+  <div class="folderHeader">${i18n.folders}</div>
+  <div dojotype="dijit.Toolbar" class="esriToolbar" style="overflow:hidden; white-space:nowrap;">
+    <button dojotype="dijit.form.Button" class="calcite transparent" type="button" id="new-folder-btn" iconClass="esriNewFolderIcon" dojoAttachEvent="onClick: createFolder">${i18n.newLabel}</button>
+    <button dojoType="dijit.form.Button" class="calcite transparent" type="button" disabled="true"  class="delete-folder-button" id="delete-folder-btn" iconClass="esriFolderDeleteIcon" dojoAttachEvent="onClick: confirmDelete">${i18n.deleteLabel}</button>
+  </div>
+  <div id="_folderTree"></div>
+  <div class="folderHeader" style="clear:both;">${i18n.show}</div>
+  <div id="_filters" style="overflow:hidden;" class="esriFloatLeading"></div>
+  <div id="_subFilters" style="overflow:hidden;"></div>
+</div> 
+

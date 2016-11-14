@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../../core/declare","dojo/_base/lang","dojo/_base/array","../../core/Accessor"],function(c,d,e,f){return c(f,{declaredClass:"esri.tasks.AreasAndLengthsParameters",areaUnit:null,calculationType:null,lengthUnit:null,polygons:null,toJson:function(){try{throw Error("toJson is deprecated, use toJSON instead");}catch(a){console.warn(a.stack)}return this.toJSON()},toJSON:function(){var a=e.map(this.polygons,function(a){return a.toJSON()}),b={};b.polygons=JSON.stringify(a);a=this.polygons[0].spatialReference;
+b.sr=a.wkid?a.wkid:JSON.stringify(a.toJSON());this.lengthUnit&&(b.lengthUnit=this.lengthUnit);this.areaUnit&&(d.isString(this.areaUnit)?b.areaUnit=JSON.stringify({areaUnit:this.areaUnit}):b.areaUnit=this.areaUnit);this.calculationType&&(b.calculationType=this.calculationType);return b}})});

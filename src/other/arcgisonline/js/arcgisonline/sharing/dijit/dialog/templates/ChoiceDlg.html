@@ -1,0 +1,16 @@
+<div class="widgetContent">
+  <div dojoType="dijit.Dialog" id="choice-dialog" title="${i18n.choiceDlgTitle}" execute="" style="width:400px;">
+    <div style="margin-top:1em;" id="choice-dialog-content">
+    </div>
+    <div style="clear: both; margin-top: 2em;" class="esriFloatTrailing">
+      <button dojoAttachPoint="choiceOneButton" dojoAttachEvent="onClick:onChoiceOneClick" class="jevent primary" type="button" dojoType="dijit.form.Button">
+        ${i18n.ok}
+      </button>
+      <button dojoAttachPoint="choiceTwoButton" dojoAttachEvent="onClick:onChoiceTwoClick" class="jevent cancel" type="button" dojoType="dijit.form.Button">
+        ${i18n.cancel}
+      </button>
+    </div>
+    <div style="clear:both; float:none; height: 0;">
+    </div>
+  </div>
+</div>

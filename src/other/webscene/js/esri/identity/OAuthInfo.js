@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../core/lang","../core/declare","dojo/_base/lang"],function(b,c,d){return c(null,{declaredClass:"esri.arcgis.OAuthInfo",constructor:function(a){d.mixin(this,{expiration:20160,minTimeUntilExpiration:30,portalUrl:"https://www.arcgis.com",authNamespace:"/",forceLogin:!1,popup:!1,popupCallbackUrl:"oauth-callback.html",popupWindowFeatures:"height\x3d480,width\x3d800,location,resizable,scrollbars,status"},a)},_oAuthCred:null,toJson:function(){try{throw Error("toJson is deprecated, use toJSON instead");
+}catch(a){console.warn(a.stack)}return this.toJSON()},toJSON:function(){return b.fixJson({appId:this.appId,expiration:this.expiration,locale:this.locale,minTimeUntilExpiration:this.minTimeUntilExpiration,portalUrl:this.portalUrl,authNamespace:this.authNamespace,forceLogin:this.forceLogin,popup:this.popup,popupCallbackUrl:this.popupCallbackUrl,popupWindowFeatures:this.popupWindowFeatures})}})});

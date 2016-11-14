@@ -1,0 +1,52 @@
+@mixin topBottomBorder($color) {
+  border-bottom: solid 1px $color;
+  border-top: solid 1px $color;
+}
+
+@mixin boxShadow($arguments) {
+  -webkit-box-shadow: #{$arguments};
+  box-shadow: #{$arguments};
+}
+
+@mixin borderRadius($arguments) {
+  -webkit-border-radius: $arguments;
+  border-radius: $arguments;
+}
+
+@mixin pointerStyle() {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  z-index: 1;
+}
+
+
+@mixin scrollbar($barColor, $thumbColor) {
+  
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 4px;
+    background-color:#{$barColor};
+  }
+  &::-webkit-scrollbar-thumb {
+      border-radius: 0px;
+      background-color: #{$thumbColor};
+      // -webkit-box-shadow: 0 0 1px rgba(255,255,255, 0.5);
+  }
+}
+
+@mixin pointerTransform($arguments) {
+  transform: scale(#{$arguments}) rotate(45deg);
+  -moz-transform: scale(#{$arguments}) rotate(45deg);
+  -ms-transform: scale(#{$arguments}) rotate(45deg);
+  -o-transform: scale(#{$arguments}) rotate(45deg);
+  -webkit-transform: scale(#{$arguments}) rotate(45deg);
+}
+
+@mixin transition($properties, $time, $ease, $delay) {
+  -webkit-transition: #{$properties} #{$time} #{$ease} #{$delay};
+  -moz-transition: #{$properties} #{$time} #{$ease} #{$delay};
+  -ms-transition: #{$properties} #{$time} #{$ease} #{$delay};
+  -o-transition: #{$properties} #{$time} #{$ease} #{$delay};
+  transition: #{$properties} #{$time} #{$ease} #{$delay};
+}

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Query</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="css/js.css">
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+</head>
+
+<body>
+<div class="container-fluid layoutContainer">
+    <article id="page_content" class="md-body">
+        <h1>空间查询服务</h1>
+
+        <h2>简介</h2>
+
+        <p>ArcGIS API for Javascript为我们提供了丰富的查询功能，主要包括QueryTask，FindTask，IdentifyTask，ImageIdentifyTask，以及关联查询实现。</p>
+
+        <p>QueryTask是一个进行空间和属性查询的功能类,可以在某个地图服务的某个子图层内进行查询。</p>
+
+        <p>FindTask是在某个地图服务中进行属性查询的功能类。</p>
+
+        <p>IdentifyTask跟桌面软件中的Identify类似，是在某个地图服务中进行空间查询。</p>
+
+        <P>关联查询是ArcGIS 10.1的一个新功能，用于从和当前FeatureLayer关联的另外的图层和表中进行查询，仅用于FeatureLayer。</P>
+
+        <P>ImageServiceIdentifyTask与 IdentifyTask 类似，但只能用于识别影像服务数据。</P>
+
+        <P>本实例中。当鼠标悬停在图像上时，通过监听onMouseOver事件来显示信息窗口。</P>
+
+        <h2>示例</h2>
+
+        <div id="map"></div>
+        <h2>代码</h2>
+
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;
+    &lt;meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/&gt;
+    &lt;title&gt;Simple Map&lt;/title&gt;
+    &lt;link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css"&gt;
+    &lt;style&gt;
+      html, body, #map {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #FFF;
+        overflow: hidden;
+        font-family: "Trebuchet MS";
+      }
+    &lt;/style&gt;
+    &lt;script src="http://js.arcgis.com/3.13/"&gt;&lt;/script&gt;
+    &lt;script&gt;
+      var map, dialog;
+      require([
+        "esri/map", "esri/layers/FeatureLayer",
+        "esri/symbols/SimpleFillSymbol", "esri/symbols/SimpleLineSymbol", 
+        "esri/renderers/SimpleRenderer", "esri/graphic", "esri/lang",
+        "esri/Color", "dojo/number", "dojo/dom-style", 
+        "dijit/TooltipDialog", "dijit/popup", "dojo/domReady!"
+      ], function(
+        Map, FeatureLayer,
+        SimpleFillSymbol, SimpleLineSymbol,
+        SimpleRenderer, Graphic, esriLang,
+        Color, number, domStyle, 
+        TooltipDialog, dijitPopup
+      ) {
+        map = new Map("map", {
+          basemap: "streets",
+          center: [-80.94, 33.646],
+          zoom: 8,
+          slider: false
+        });
+        map.on("load", function() {
+          map.disableScrollWheelZoom();
+        });
+        var southCarolinaCounties = new FeatureLayer("http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Demographics/ESRI_Census_USA/MapServer/3", {
+          mode: FeatureLayer.MODE_SNAPSHOT,
+          outFields: ["NAME", "POP2000", "POP2007", "POP00_SQMI", "POP07_SQMI"]
+        });
+        southCarolinaCounties.setDefinitionExpression("STATE_NAME = 'South Carolina'");
+
+        var symbol = new SimpleFillSymbol(
+          SimpleFillSymbol.STYLE_SOLID, 
+          new SimpleLineSymbol(
+            SimpleLineSymbol.STYLE_SOLID, 
+            new Color([255,255,255,0.35]), 
+            1
+          ),
+          new Color([125,125,125,0.35])
+        );
+        southCarolinaCounties.setRenderer(new SimpleRenderer(symbol));
+        map.addLayer(southCarolinaCounties);
+
+        map.infoWindow.resize(245,125);
+        
+        dialog = new TooltipDialog({
+          id: "tooltipDialog",
+          style: "position: absolute; width: 250px; font: normal normal normal 10pt Helvetica;z-index:100"
+        });
+        dialog.startup();
+        
+        var highlightSymbol = new SimpleFillSymbol(
+          SimpleFillSymbol.STYLE_SOLID, 
+          new SimpleLineSymbol(
+            SimpleLineSymbol.STYLE_SOLID, 
+            new Color([255,0,0]), 3
+          ), 
+          new Color([125,125,125,0.35])
+        );
+        map.on("load", function(){
+          map.graphics.enableMouseEvents();
+          map.graphics.on("mouse-out", closeDialog);
+          
+        });
+        southCarolinaCounties.on("mouse-over", function(evt){
+          var t = "<b>${NAME}</b><hr><b>2000 Population: </b>${POP2000:NumberFormat}<br>"
+            + "<b>2000 Population per Sq. Mi.: </b>${POP00_SQMI:NumberFormat}<br>"
+            + "<b>2007 Population: </b>${POP2007:NumberFormat}<br>"
+            + "<b>2007 Population per Sq. Mi.: </b>${POP07_SQMI:NumberFormat}";
+  
+          var content = esriLang.substitute(evt.graphic.attributes,t);
+          var highlightGraphic = new Graphic(evt.graphic.geometry,highlightSymbol);
+          map.graphics.add(highlightGraphic);
+          
+          dialog.setContent(content);
+
+          domStyle.set(dialog.domNode, "opacity", 0.85);
+          dijitPopup.open({
+            popup: dialog, 
+            x: evt.pageX,
+            y: evt.pageY
+          });
+        });
+    
+        function closeDialog() {
+          map.graphics.clear();
+          dijitPopup.close(dialog);
+        }
+
+      });
+    &lt;/script&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;div id="map"&gt;&lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+          </textarea>
+        </p>
+    </article>
+</div>
+<script src="http://js.arcgis.com/3.13/"></script>
+<script>
+    var map, dialog;
+    require([
+        "esri/map", "esri/layers/FeatureLayer",
+        "esri/symbols/SimpleFillSymbol", "esri/symbols/SimpleLineSymbol",
+        "esri/renderers/SimpleRenderer", "esri/graphic", "esri/lang",
+        "esri/Color", "dojo/number", "dojo/dom-style",
+        "dijit/TooltipDialog", "dijit/popup", "dojo/domReady!"
+    ], function (Map, FeatureLayer,
+                 SimpleFillSymbol, SimpleLineSymbol,
+                 SimpleRenderer, Graphic, esriLang,
+                 Color, number, domStyle,
+                 TooltipDialog, dijitPopup) {
+        map = new Map("map", {
+            basemap: "streets",
+            center: [-80.94, 33.646],
+            zoom: 8,
+            slider: true
+        });
+        map.on("load", function () {
+            map.disableScrollWheelZoom();
+        });
+        var southCarolinaCounties = new FeatureLayer("http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Demographics/ESRI_Census_USA/MapServer/3", {
+            mode: FeatureLayer.MODE_SNAPSHOT,
+            outFields: ["NAME", "POP2000", "POP2007", "POP00_SQMI", "POP07_SQMI"]
+        });
+        southCarolinaCounties.setDefinitionExpression("STATE_NAME = 'South Carolina'");
+
+        var symbol = new SimpleFillSymbol(
+                SimpleFillSymbol.STYLE_SOLID,
+                new SimpleLineSymbol(
+                        SimpleLineSymbol.STYLE_SOLID,
+                        new Color([255, 255, 255, 0.35]),
+                        1
+                ),
+                new Color([125, 125, 125, 0.35])
+        );
+        southCarolinaCounties.setRenderer(new SimpleRenderer(symbol));
+        map.addLayer(southCarolinaCounties);
+
+        map.infoWindow.resize(245, 125);
+
+        dialog = new TooltipDialog({
+            id: "tooltipDialog",
+            style: "position: absolute; width: 250px; font: normal normal normal 10pt Helvetica;z-index:100"
+        });
+        dialog.startup();
+
+        var highlightSymbol = new SimpleFillSymbol(
+                SimpleFillSymbol.STYLE_SOLID,
+                new SimpleLineSymbol(
+                        SimpleLineSymbol.STYLE_SOLID,
+                        new Color([255, 0, 0]), 3
+                ),
+                new Color([125, 125, 125, 0.35])
+        );
+        map.on("load", function () {
+            map.graphics.enableMouseEvents();
+            map.graphics.on("mouse-out", closeDialog);
+
+        });
+        southCarolinaCounties.on("mouse-over", function (evt) {
+            var t = "<b>${NAME}</b><hr><b>2000 Population: </b>${POP2000:NumberFormat}<br>"
+                    + "<b>2000 Population per Sq. Mi.: </b>${POP00_SQMI:NumberFormat}<br>"
+                    + "<b>2007 Population: </b>${POP2007:NumberFormat}<br>"
+                    + "<b>2007 Population per Sq. Mi.: </b>${POP07_SQMI:NumberFormat}";
+
+            var content = esriLang.substitute(evt.graphic.attributes, t);
+            var highlightGraphic = new Graphic(evt.graphic.geometry, highlightSymbol);
+            map.graphics.add(highlightGraphic);
+
+            dialog.setContent(content);
+
+            domStyle.set(dialog.domNode, "opacity", 0.85);
+            dijitPopup.open({
+                popup: dialog,
+                x: evt.pageX,
+                y: evt.pageY
+            });
+        });
+
+        function closeDialog() {
+            map.graphics.clear();
+            dijitPopup.close(dialog);
+        }
+
+    });
+</script>
+</body>
+</html>

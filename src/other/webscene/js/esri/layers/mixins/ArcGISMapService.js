@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define("../../core/declare ../../core/JSONSupport ../../geometry/SpatialReference ../../geometry/Extent ../support/LayerInfo ../support/TimeInfo".split(" "),function(d,e,f,c,g,h){return d(e,{classMetadata:{reader:{exclude:["id","copyrightText","currentVersion","layers"],add:["copyright","version","layerInfos"]}},copyright:null,_copyrightReader:function(a,b){return b.copyrightText},fullExtent:null,_fullExtentReader:function(a){return a&&c.fromJSON(a)},initialExtent:null,_initialExtentReader:function(a){return a&&
+c.fromJSON(a)},layerInfos:null,_layerInfosReader:function(a,b){return b.layers&&b.layers.map(function(a){return new g(a)})},spatialReference:null,_spatialReferenceReader:function(a){return a&&new f(a)},timeInfo:null,_timeInfoReader:function(a){return a&&new h(a)},version:null,_versionReader:function(a,b){(a=b.currentVersion)||(a=b.hasOwnProperty("capabilities")||b.hasOwnProperty("tables")?10:b.hasOwnProperty("supportedImageFormatTypes")?9.31:9.3);return a}})});

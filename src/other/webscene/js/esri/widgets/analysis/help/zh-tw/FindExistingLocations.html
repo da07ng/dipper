@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link rel="Stylesheet" href="../css/analysis.css" />
+    <script type="text/javascript">
+        function init() {
+            if (window.location.hash) {
+                var parentDiv, nodes, i, helpId;
+                helpId = window.location.hash.substring(1);
+                parentDiv = document.getElementById("topics");
+                nodes = parentDiv.children;
+                for(i=0; i < nodes.length; i++) {
+                    if(nodes[i].id !== helpId) {
+                        nodes[i].style.display ="none";
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="init()">
+<div id="topics">
+    <div id="toolDescription" class="largesize">
+        <h2>尋找現有位置</h2><p/>
+        <h2><img src="../images/GUID-C5409FC7-EC93-45C5-8B00-3D6EA80A0A77-web.png" alt="尋找現有位置"></h2>
+        <hr/>
+    <p>此工具用於選擇研究區域內滿足一系列指定條件的現有圖徵。 這些標準可以根據屬性查詢（如閒置宗地）和空間查詢（如距離河流 1 英里以內）。
+
+    </p>
+    <p>如果勾選 <b>使用當前地圖範圍</b>，則僅分析當前地圖範圍中可見的分析圖層圖徵。 如果未勾選，則將對所有圖徵進行分析，包括超出當前地圖範圍的圖徵。
+    </p>
+    </div>
+    <!--Parameter divs for each param-->
+    <div id="Expression">
+        <div><h2>尋找符合以下表達式的圖徵</h2></div>
+        <hr/>
+        <div>
+            <p>按一下 <b>新增表達式</b>按鈕定義表達式。 您可以新增多個表達式。 輸入表達式以後，按一下 <b>執行分析</b>按鈕，分析圖層裡的圖徵會按照每個表達式進行篩選。 符合所有表達式的圖徵將寫入結果圖層。
+            </p>
+            <p>您可以建立兩種基本類型的表達式：屬性表達式和空間表達式。 屬性表達式用於查詢欄位值，例如  <code>where name is 'San Francisco'</code>。 空間表達式有四種類型：
+                <ul>
+                    <li> <b>某一距離範圍內</b>：圖徵必須在另一圖層中的圖徵的一定距離範圍內。 例如，尋找距離洛杉磯河 500 英里以內的宗地。
+                    </li>
+                    <li> <b>完全包含</b>：某圖徵必須包含另一圖層的所有圖徵。 例如，尋找完全包含工業用宗地的流域。 宗地不可以在流域之外。
+                    </li>
+                    <li> <b>完全在其他圖徵範圍內</b>：某圖徵必須完全被另一圖層的圖徵包圍。 例如，尋找完全在城市邊界以內的學區。 學區不可以在城市邊界以外。
+                    </li>
+                    <li> <b>相交</b>：該圖徵包含另一圖層的部分圖徵。 例如，尋找與河流相交的宗地。 河流某一部分流經宗地，或者與宗地的邊界相接，與宗地相交。
+                    </li>
+                </ul>
+                
+            </p>
+            <p>每個空間表達式都有相應的反表達式； <b>不在某一距離範圍之內</b>， <b>不完全包含</b>， <b>不完全在其他圖徵範圍內</b>，和 <b>不相交</b>。
+            </p> 
+        </div>
+    </div>
+    <div id="OuputName">
+        <div><h2>結果圖層名稱</h2></div>
+        <hr/>
+        <div>
+            <p>在 <b>我的內容</b>中建立並新增到地圖中的圖層的名稱。 預設名稱是根據分析類型以及分析圖層名稱。 如果該名稱的圖層已存在，則系統將要求您提供其他名稱。
+            </p>
+            <p>使用 <b>將結果儲存到</b>下拉式方塊，可以在 <b>我的內容</b>中指定文件夾的名稱，結果將儲存到該文件夾中。
+            </p>
+        </div>
+    </div>
+</div>
+</html>

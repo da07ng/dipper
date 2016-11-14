@@ -1,0 +1,112 @@
+<div data-dojo-type="dijit.layout.BorderContainer" region="top" style="height:100%; padding:5px;">
+  <div id="rendererPredominanceTop" data-dojo-type="dijit.layout.ContentPane" class="panel panel_left" region="top" style="padding:2px;">
+    <div id="rendererPredominanceHeader">
+      <div class="esriFloatTrailing" style="display:inline;">
+        <a href="JavaScript:void(0);" data-dojo-attach-point="_closeBtn" data-dojo-attach-event="onClick:_onCancel" title="${i18n.close}" class="panel panel_close panel_collapse"></a>
+      </div>
+      <div id="rendererPredominanceTitle" class="esriFloatLeading panel_title">
+        ${i18n.rendererPanelTitle}
+      </div>
+      <div data-dojo-attach-point="_rendererPredominanceLayer" class="panel_title" style="clear:both;">
+      </div>
+      <div style="clear:both; height:1px;"></div>
+    </div>
+    <div style="margin: 2px 0 20px 0; padding:10px 0;">
+      <div data-dojo-attach-point="_rendererPredominanceField" class="esriFloatLeading strong">
+      </div>
+      <!--
+      <div data-dojo-attach-point="_rendererPredominanceAttribute" class="esriFloatTrailing">
+        <button data-dojo-type="dijit.form.Button" type="button" data-dojo-attach-point="_rendererPredominanceChangeButton" class="calcite tiny" data-dojo-attach-event="onClick:_onChangeField"><span>${i18n.change}</span></button>
+      </div>
+      -->
+    </div>
+  </div>
+  <div id="renderer-predominance-content" data-dojo-type="dijit.layout.ContentPane" region="center" style="overflow-y:auto;padding:2px;">
+    <div style="clear:both;margin-top:5px;">
+      <div data-dojo-attach-point="_rendererPredominanceSymbolsTitle" data-dojo-attach-event="onClick:_onClickSymbols" class="rightIcons">
+        <div data-dojo-attach-point="_rendererPredominanceSymbols" class="styleIcon">
+        </div>
+        <div style="padding-top: 5px;">
+          <span class="toolsLabel">${i18n.symbols}</span>
+        </div>
+      </div>
+    </div>
+    <div style="clear:both;margin-top:5px;">
+      <div data-dojo-attach-point="_rendererPredominanceOtherCheckMsg" >
+        <table cellspacing="0"><tbody><tr><td valign="top">
+          <input data-dojo-attach-point="_rendererPredominanceOtherCheck" data-dojo-attach-event="onChange:_onChangeOther" data-dojo-type="dijit.form.CheckBox" checked="false" type="checkbox"/>
+        </td><td>
+          <span data-dojo-attach-point="_rendererPredominanceOtherTxt">
+            ${i18n.drawOthers}
+          </span>
+        </td></tr></tbody></table>
+      </div>
+      <div data-dojo-attach-point="_rendererPredominanceOther" class="esriLeadingMargin107" style="clear:both;">
+        <table><tbody><tr><td>
+          <div data-dojo-attach-point="_rendererPredominanceOtherSymbolText">
+            ${i18n.symbolLabel}
+          </div>
+        </td><td>
+          <div data-dojo-attach-point="_rendererPredominanceOtherSymbol" style="padding: 0 5px;"></div>
+        </td></tr></tbody></table>
+      </div>
+    </div>
+    <div data-dojo-attach-point="_rendererPredominanceRotation" style="clear:both;margin-top:5px;">
+      <div>
+        <table cellspacing="0"><tbody><tr><td valign="top">
+          <input data-dojo-attach-point="_rendererPredominanceRotationCheck" data-dojo-attach-event="onChange:_onChangeRotation" data-dojo-type="dijit.form.CheckBox" checked="false" type="checkbox"/>
+        </td><td>
+          <div data-dojo-attach-point="_rendererPredominanceRotationText">
+            ${i18n.rotationMsg}
+          </div>
+        </td></tr></tbody></table>
+      </div>
+      <div data-dojo-attach-point="_rendererPredominanceRotationContent" class="esriLeadingMargin107" style="clear:both;margin-top:3px;">
+        <div style="margin-top:3px;">
+          <select data-dojo-attach-point="_rendererPredominanceRotationAttribute" data-dojo-attach-event="onChange:_onChangeRotationAttribute" data-dojo-type="dijit.form.Select" maxHeight="150" sortByLabel="false">
+          </select>
+        </div>
+        <div style="margin-top:5px;">
+          <input type="radio" data-dojo-type="dijit.form.RadioButton" data-dojo-attach-point="_rendererPredominanceRotationClockwiseRadio" data-dojo-attach-event="onChange:_onChangeRotationDirection" data-dojo-props="checked:true" name="clockwise"/>
+          ${i18n.clockwise}
+        </div>
+        <div style="margin-top:3px;">
+          <input type="radio" data-dojo-type="dijit.form.RadioButton" data-dojo-attach-point="_rendererPredominanceRotationCounterclockwiseRadio" data-dojo-attach-event="onChange:_onChangeRotationDirection" data-dojo-props="checked:false" name="clockwise"/>
+          ${i18n.counterclockwise}
+        </div>
+      </div>
+    </div>
+    <div style="height:20px;"></div>
+    <div data-dojo-attach-point="_rendererPredominanceTransparency">
+      <div data-dojo-attach-point="_rendererPredominanceTransparencyTitle" class="esriFloatLeading sectionTitle" >
+        ${i18n.transparency}
+      </div>
+      <div class="esriFloatLeading" style="clear:both; padding: 16px 10px 30px 10px;">
+        <div id="rendererPredominanceTransparencySlider">
+        </div>
+      </div>
+    </div>
+    <div data-dojo-attach-point="_rendererPredominanceScale" style="clear:both;">
+      <div data-dojo-attach-point="_rendererPredominanceScaleTitle" class="esriFloatLeading sectionTitle">
+        ${i18n.visibleRange}
+      </div>
+      <div data-dojo-attach-point="_rendererPredominanceScaleSuggest" data-dojo-attach-event="onClick:_onClickScaleSuggest" class="esriFloatTrailing suggestLabel">
+        &nbsp;${i18n.suggest}&nbsp;
+      </div>
+      <div class="esriFloatLeading" style="clear:both;padding: 10px;">
+        <div id="rendererPredominanceScaleSlider">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-dojo-type="dijit.layout.ContentPane" region="bottom">
+		<div id="rendererPredominanceContentClose" data-dojo-type="dijit.layout.ContentPane" region="center" >
+      <button data-dojo-type="dijit.form.Button" type="button" class="calcite blue" data-dojo-attach-point="_doneChangingButton" data-dojo-attach-event="onClick:_onDone"><span>${i18n.ok}</span></button>
+      <button data-dojo-type="dijit.form.Button" type="button" class="calcite transparent" data-dojo-attach-point="_doneChangingButton" data-dojo-attach-event="onClick:_onCancel"><span>${i18n.cancel}</span></button>
+    </div>
+    <div id="rendererPredominanceFooterDiv" data-dojo-type="dijit.layout.ContentPane" region="bottom" style="height:40px; padding: 0;">
+      <div class="footer" id="rendererPredominanceFooter" data-dojo-type="arcgisonline.sharing.dijit.SiteFooterMap" style="white-space:normal;">
+      </div>
+    </div>
+  </div>
+</div>

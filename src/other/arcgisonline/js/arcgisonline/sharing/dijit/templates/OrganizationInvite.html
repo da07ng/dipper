@@ -1,0 +1,134 @@
+<div data-dojo-type="dijit.layout.ContentPane" data-dojo-attach-point="containerNode" class="orgInvite">
+
+  <div class="topButtonRow" data-dojo-attach-point="_topButtonRow">
+    <button data-dojo-attach-event="onClick:onCancel" data-dojo-type="dijit.form.Button" type="button" class="calcite transparent">${i18n.cancel}</button>
+  </div>
+
+  <div class="mainContent" data-dojo-attach-point="_mainContent">
+    <div data-dojo-attach-point="_step1">
+      <div class="stepHeader">
+        <div class="esriFloatLeading stepSprite step1">&nbsp;</div>&nbsp;&nbsp;
+        <div class="stepMessageContainer">
+          <div class="stepMessage"><strong>${i18n.step1.message}</strong></div>
+        </div>
+      </div>
+      <br style="clear:both;">
+      <input data-dojo-attach-point="_addUsersBtn" id="addUsers" name="inviteUsers" data-dojo-type="dijit.form.RadioButton"/><label data-dojo-attach-point="_addOptionLabel" for="addUsers"></label>
+      <br /><br />
+      <input data-dojo-attach-point="_createUsersBtn" id="createUsers" name="inviteUsers" checked data-dojo-type="dijit.form.RadioButton"/><label data-dojo-attach-point="_createOptionLabel" for="createUsers"></label>
+      <br /><br />
+      <input data-dojo-attach-point="_inviteUsersBtn" id="inviteUsers" name="inviteUsers"  data-dojo-type="dijit.form.RadioButton"/><label data-dojo-attach-point="_inviteOptionLabel" for="inviteUsers"></label>
+      <br /><br />
+      <div data-dojo-attach-point="_idpOptionDiv">
+        <input data-dojo-attach-point="_idpUsersBtn" id="idpUsers" name="inviteUsers" data-dojo-type="dijit.form.RadioButton"><label data-dojo-attach-point="_idpOptionLabel" for="idpUsers"></label>
+        <br/><br/>
+      </div>
+      <button class="calcite secondary small" data-dojo-type="dijit.form.Button" data-dojo-attach-event="onClick:onNext" type="button">${i18n.next}</button>
+    </div>
+    <div data-dojo-attach-point="_step1Create" style="display:none;">
+      <div class="stepHeader">
+        <div class="esriFloatLeading stepSprite step1">&nbsp;</div>&nbsp;&nbsp;
+        <div class="stepMessageContainer">
+          <div class="stepMessage"><strong>${i18n.step1Create.message}</strong></div>
+        </div>
+      </div>
+      <br style="clear:both;">
+      <div data-dojo-attach-point="_createTypeContainer">
+        <input type="radio" name="memberType" data-dojo-type="dijit.form.RadioButton" data-dojo-attach-point="_radioBuiltin" id="userTypeBuiltin" checked="checked" value="builtin"/>
+        <label for="userTypeBuiltin">${i18n.step1Create.addBuiltin}</label>
+        <br/><br/>
+        <input type="radio" name="memberType" data-dojo-type="dijit.form.RadioButton" data-dojo-attach-point="_radioSAML" id="userTypeSAML" value="saml"/>
+        <label for="userTypeSAML" data-dojo-attach-point="_radioSAMLLabel"></label>
+        <br/><br/>
+        <input type="radio" name="memberType" data-dojo-type="dijit.form.RadioButton" data-dojo-attach-point="_radioEnterprise" id="userTypeEnterprise"/>
+        <label for="userTypeEnterprise" data-dojo-attach-point="_radioEnterpriseLabel">${i18n.step1Create.addEnterprise}</label>
+      </div>
+    </div>
+    <div data-dojo-attach-point="_step2IDP" style="display:none;">
+      <div class="stepHeader">
+        <div class="esriFloatLeading stepSprite step2">&nbsp;</div>&nbsp;&nbsp;
+        <div class="stepMessageContainer">
+          <div class="stepMessage"><strong><label data-dojo-attach-point="_step2IDPMsgLabel"></label></strong></div>
+          <label>${i18n.selectNonAdmin}</label>
+        </div>
+      </div>
+      <br style="clear:both;">
+      <div style="display:none;" data-dojo-attach-point="_idpErrorContainer"></div>
+      <div data-dojo-attach-point="_idpTabContainer"></div>
+    </div>
+    <div data-dojo-attach-point="_step2Create" style="display:none;">
+      <div class="stepHeader">
+        <div class="esriFloatLeading stepSprite step2">&nbsp;</div>&nbsp;&nbsp;
+        <div class="stepMessageContainer">
+          <div class="stepMessage"><strong><label data-dojo-attach-point="_step2CreateMsgLabel"></label></strong></div>
+          <label data-dojo-attach-point="_step2CreateSubMsgLabel">${i18n.selectNonAdmin}</label>
+        </div>
+      </div>
+      <div style="display:none;" data-dojo-attach-point="_createErrorContainer"></div>
+      <div data-dojo-attach-point="_createTabContainer"></div>
+    </div>
+    <div data-dojo-attach-point="_fixErrors" style="display:none;">
+      <div class="stepHeader">
+        <div class="esriFloatLeading stepSprite step2">&nbsp;</div>&nbsp;&nbsp;
+        <div class="stepMessageContainer">
+          <div class="stepMessage"><strong><label data-dojo-attach-point="_fixErrorsMsgLabel"></label></strong></div>
+          <label>${i18n.selectNonAdmin}</label>
+        </div>
+      </div>
+      <div style="display:none;" data-dojo-attach-point="_fixErrorsErrorContainer"></div>
+      <div data-dojo-attach-point="_fixErrorsContainer"></div>
+    </div>
+    <div data-dojo-attach-point="_step2Invite" style="display:none;">
+      <div class="stepHeader">
+        <div class="esriFloatLeading stepSprite step2">&nbsp;</div>&nbsp;&nbsp;
+        <div class="stepMessageContainer">
+          <div class="stepMessage"><strong><label data-dojo-attach-point="_step2InviteLabel">${i18n.step3.message}</label></strong></div>
+          <label data-dojo-attach-point="_step2InviteSubLabel"></label>
+        </div>
+      </div>
+      <div style="display:none;" data-dojo-attach-point="_inviteErrorContainer"></div>
+      <div data-dojo-attach-point="_inviteTabContainer"></div>
+    </div>
+    <div data-dojo-attach-point="_step3" style="display:none; width:762px; height:350px;">
+      <div class="stepHeader">
+        <div class="esriFloatLeading stepSprite step3">&nbsp;</div>&nbsp;&nbsp;
+        <div class="stepMessageContainer">
+          <div class="stepMessage"><strong><label data-dojo-attach-point="_step3Message">${i18n.step3.message}</label></strong></div>
+          <label data-dojo-attach-point="_step3SubMessage"></label>
+        </div>
+      </div>
+      <div style="display:none;" data-dojo-attach-point="_ReviewErrorContainer"></div>
+      <div data-dojo-type="dijit.layout.BorderContainer" design="headline" gutters="false" preventcache="true" usecache="false" cachecontent="false" region="center" class="borderedContent" style="width:100%; height:242px;">
+        <div id="userGridContainer" data-dojo-type="dijit.layout.ContentPane" region="center" style="width:100%; height:100%;"></div>
+      </div>
+      <div id="step3ButtonRow" class="esriAlignTrailing">
+        <div data-dojo-attach-point="_backInvitations" data-dojo-attach-event="onClick:onBackInvitations" class="calcite default small" data-dojo-type="dijit.form.Button" type="button">${i18n.backLabel}</div>
+        <div style="display:none;" data-dojo-attach-point="_groupSelection" data-dojo-attach-event="onClick:onGroupSelection" class="calcite tertiary small" data-dojo-type="dijit.form.Button" type="button">${i18n.step3.specifyGroups}</div>
+        <div data-dojo-attach-point="_sendInvitations" data-dojo-attach-event="onClick:onSendInvitations" class="calcite secondary small" data-dojo-type="dijit.form.Button" type="button">${i18n.step3.sendInvitations}</div>
+      </div>
+    </div>
+    <div data-dojo-attach-point="_step4" style="display:none;" class="specifyGroups">
+      <div class="stepHeader">
+        <div class="esriFloatLeading stepSprite step4">&nbsp;</div>&nbsp;&nbsp;
+        <div class="stepMessageContainer">
+          <div class="stepMessage"><strong><label data-dojo-attach-point="_step4Message">${i18n.step4.message}</label></strong></div>
+        </div>
+      </div>
+      <div data-dojo-attach-point="_groupSelector" data-dojo-type="arcgisonline.sharing.dijit.GroupSelector"
+           data-dojo-props="autoLoad: true, excludeEnterpriseGroups: true" class="marginBottom15"></div>
+      <div id="step4ButtonRow" class="esriAlignTrailing">
+        <div data-dojo-attach-point="_backGroups" data-dojo-attach-event="onClick:onBackGroups" class="calcite default small" data-dojo-type="dijit.form.Button" type="button">${i18n.backLabel}</div>
+        <div data-dojo-attach-point="_sendGroupInvitations" data-dojo-attach-event="onClick:onSendInvitations" class="calcite secondary small" data-dojo-type="dijit.form.Button" type="button">${i18n.step3.sendInvitations}</div>
+      </div>
+    </div>
+    <div data-dojo-attach-point="_completed" style="display:none;">
+      <p><strong>${i18n.completed.title}</strong></p>
+      <span data-dojo-attach-point="_completedMessageSpan"><img alt="success" data-dojo-attach-point="_completeCheckIcon" class="completeSuccess"/> <span data-dojo-attach-point="_completedMessage"></span></span><br/><br/>
+      <div data-dojo-attach-point="_uninvitedMessageSpan" style="display:none;"><div data-dojo-attach-point="_uninvitedMessage" style="color:red;"></div><br/><br/></div>
+      <div data-dojo-attach-point="_existedUserMessageSpan" style="display:none;"><div data-dojo-attach-point="_existedUserMessage" style="color:red;"></div><br/><br/></div>
+      <div data-dojo-attach-point="_inviteMoreBtn" data-dojo-attach-event="onClick:onInviteMoreClicked" class="calcite tertiary small" data-dojo-type="dijit.form.Button" type="button">${i18n.completed.inviteAnother}</div>
+      <div data-dojo-attach-point="_returnToOrgBtn" data-dojo-attach-event="onClick:onReturnToOrgClicked" class="calcite blue small" data-dojo-type="dijit.form.Button" type="button">${i18n.completed.returnToOrg}</div>
+    </div>
+  </div>
+
+</div>

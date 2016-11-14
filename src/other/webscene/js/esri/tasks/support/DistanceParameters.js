@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../../core/declare","../../core/Accessor","../../geometry/support/jsonUtils"],function(d,e,c){return d(e,{declaredClass:"esri.tasks.DistanceParameters",geometry1:null,geometry2:null,distanceUnit:null,geodesic:null,toJson:function(){try{throw Error("toJson is deprecated, use toJSON instead");}catch(a){console.warn(a.stack)}return this.toJSON()},toJSON:function(){var a={},b=this.geometry1;b&&(a.geometry1=JSON.stringify({geometryType:c.getJsonType(b),geometry:b}));if(b=this.geometry2)a.geometry2=
+JSON.stringify({geometryType:c.getJsonType(b),geometry:b});a.sr=JSON.stringify(this.geometry1.spatialReference.toJSON());this.distanceUnit&&(a.distanceUnit=this.distanceUnit);this.geodesic&&(a.geodesic=this.geodesic);return a}})});

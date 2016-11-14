@@ -1,0 +1,38 @@
+<div class="widgetContainer">
+  <div dojotype="dijit.Dialog" id="mapnotes-title-dialog" dojoAttachPoint="_mapNotesDialog" dojoAttachEvent="onkeydown:_handleKeyDown"title="${i18n.addMapNotes}" execute="">
+    <div>
+      <table>
+        <tbody>
+          <tr>
+            <td height="30">
+              <label class="long" for="mapnotes-title">${i18n.nameLabel}</label>
+        	</td>
+			<td>
+			  <div id="mapnotes-title" dojoAttachPoint="_mapNotesTitle" name="mapnotes-title" dojotype="dijit.form.TextBox" maxLength="100" trim="true" required="true" style="padding:2px 0 2px 0;"></div>
+			 </td>
+           </tr>
+           <tr>
+             <td height="30">
+               <label class="long" for="mapnotes-title">${i18n.templateLabel}</label>
+             </td>
+             <td>
+			   <select dojoType="arcgisonline.sharing.dijit.ComboBox" class="arrowSpaceMedium" dojoAttachEvent="onChange:newTemplate" dojoAttachPoint="_mapTemplatesCombo" id="mapnotes-templates" ></select>
+             </td>
+           </tr>
+           <tr>
+             <td>&nbsp;</td>
+             <td>
+               <div dojoAttachPoint="_mapNoteDescInput" id="mapnotes-template-description" style="width:290px;"></div>
+             </td>
+           </tr>
+         </tbody>
+       </table>
+     <div style="clear:both;margin-top:5px;">
+     </div>
+     <button type="cancel" dojotype="dijit.form.Button" class="cancel" dojoAttachEvent="onClick:_handleCancelBtnClick" style="float:right;">${i18n.cancel}</button>
+     <button id="mapnotes-create" dojotype="dijit.form.Button" dojoAttachEvent="onClick:createMapNotesLayer" class="primary"  style="float:right;">${i18n.create}</button>
+     <div style="clear:both;">
+     </div>
+    </div>
+  </div>
+</div>

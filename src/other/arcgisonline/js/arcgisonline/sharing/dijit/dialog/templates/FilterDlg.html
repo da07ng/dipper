@@ -1,0 +1,79 @@
+<div dojoAttachPoint="containerNode" dojoType="dijit.layout.BorderContainer" class="esriItemLinks" gutters="false" design="headline" region="center">
+  <div dojoType="dijit.layout.TabContainer" dojoAttachPoint="_tabContainer" region="center" style="width:100%;height:100%;overflow:hidden;">
+    <div dojoType="dijit.layout.ContentPane" id="ViewChangeTab" title="${i18n.view}" dojoAttachPoint="_tabView" class="tabContainerContent">
+      <div dojoAttachPoint="interactiveDiv" class="interactiveSection" style="display:none;">
+        <div dojoAttachPoint="allInteractiveExpr">
+        </div>
+        <div class="esriFloatLeading" style="margin-top:5px; margin-bottom:15px;">
+          <div dojoType="dijit.form.Button" type="button" id="applyInteractiveFilterButton" dojoAttachEvent="onClick:onApplyInteractiveFilter" label="${i18n.applyFilterBtn}">
+          </div>
+          <div dojoType="dijit.form.Button" type="button" id="applyInteractiveFilterAndZoomButton" dojoAttachEvent="onClick:onApplyInteractiveFilterAndZoom" label="${i18n.applyFilterAndZoomBtn}" style="display:none;">
+          </div>
+        </div>
+      </div>
+      <div dojoAttachPoint="friendlyText" class="friendlyText">
+      </div>
+      <div dojoAttachPoint="friendlyTextButton" class="esriFloatLeading" style="margin-top:5px;padding:0 10px;">
+        <div dojoType="dijit.form.Button" type="button" dojoAttachEvent="onClick:onRemoveFilter" label="${i18n.removeFilterBtn}">
+        </div>
+        <div dojoType="dijit.form.Button" class="primary" type="button" dojoAttachEvent="onClick:onClose" label="${i18n.close}">
+        </div>
+      </div>
+    </div>
+    <div dojoType="dijit.layout.ContentPane" id="CreateEditTab" title="${i18n.edit}" dojoAttachPoint="_tabEdit" class="tabContainerContent">
+      <div class="esriFloatTrailing">
+        <a href="JavaScript:void(0);" dojoAttachPoint="addExpressionLink">
+        	<span class="esriAGOFilterAddExpIcon" title="${i18n.addAnotherExpression}"></span>
+					<span>${i18n.addAnotherExpression}</span>
+				</a>
+				<a class="esriLeadingMargin1" href="JavaScript:void(0);" dojoAttachPoint="addSetLink">
+					<span class="esriAGOFilterAddSetIcon" title="${i18n.addSetTooltip}"></span>
+					<span>${i18n.addSet}</span>
+				</a>
+      </div>
+      <div style="clear:both;">
+        <div id="match1Msg" class="matchMsg">
+          ${i18n.match1Msg}
+        </div>
+        <div id="matchMsg" class="matchMsg" style="display:none;">
+        </div>
+        <div class="allExpsBox" style="background-color:rgb(247, 247, 243);">
+          <div dojoAttachPoint="allExps" class="allExps">
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:20px; display:none;">
+        <div class="title">
+          ${i18n.applyFilter}
+        </div>
+        <table cellspacing="0" cellpadding="10">
+          <tbody>
+            <tr>
+              <td>
+                <input type="radio" name="action" value="thislayer" id="thislayer" checked="checked" dojoAttachEvent="onChange:toggleNewLayerNameTextBox" />
+                <label for="this">
+                  ${i18n.toThisLayer}
+                </label>
+              </td>
+              <td>
+                <input type="radio" name="action" value="new" id="new" dojoAttachEvent="onChange:toggleNewLayerNameTextBox" disabled="true"/>
+                <label for="new">
+                  ${i18n.toNewLayer}
+                </label>
+                <input style="margin-left:10px; width:350px;display:none;" id="newLayerName" placeholder="${i18n.newLayerName}" type="text"/>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="submitButtons dijitDialogPaneActionBar esriFloatTrailing" style="margin-top:5px;">
+        <div dojoType="dijit.form.Button" type="button" class="primary" id="applyFilterButton" dojoAttachEvent="onClick:onApplyFilter" label="${i18n.applyFilterBtn}">
+        </div>
+        <div dojoType="dijit.form.Button" type="button" class="primary" id="applyFilterAndZoomButton" dojoAttachEvent="onClick:onApplyFilterAndZoom" label="${i18n.applyFilterAndZoomBtn}" style="display:none;">
+        </div>
+        <div dojoType="dijit.form.Button" type="button" class="cancel" dojoAttachEvent="onClick:onClose" label="${i18n.close}">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

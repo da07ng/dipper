@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link rel="Stylesheet" href="../css/analysis.css" />
+    <script type="text/javascript">
+        function init() {
+            if (window.location.hash) {
+                var parentDiv, nodes, i, helpId;
+                helpId = window.location.hash.substring(1);
+                parentDiv = document.getElementById("topics");
+                nodes = parentDiv.children;
+                for(i=0; i < nodes.length; i++) {
+                    if(nodes[i].id !== helpId) {
+                        nodes[i].style.display ="none";
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="init()">
+<div id="topics">
+    <div id="toolDescription" class="largesize">
+        <h2>建立分水嶺</h2><p/>
+        <h2><img src="../images/GUID-D0CDF046-A296-4A66-B0D8-F1F4A8EEA0FC-web.png" alt="建立分水嶺"></h2>
+        <hr/>
+    <p>此工具針對分析圖層中的每個點確定流域或上游匯流區域。 
+    </p>
+    <p>例如，假設您有代表水致性污染位置的點圖徵，且想要找出可能的污染源。 由於污染源一定位於該點之流域上游的某處，您要使用此工具定義包含污染源的流域。
+    </p>
+    <p>分析點的位置非常重要。 如果分析點並沒有準確位於排水線上，那麼得到的流域可能會非常小，且對分析沒有用。  <b>搜尋到最近水系的距離</b>可用於調整分析點的位置，使其準確落在排水線上，以便找到流入排水線上點的流域。 用於尋找流域的調整後位置寫入輸出圖層，您的輸入分析點並未修改。
+    </p>
+    <p>結果為包含兩個圖層的群組圖層：流域和用於計算流域的調整點。 
+    </p>
+    <p>得到的流域將具有輸入點的所有屬性和以下其他屬性：
+        <ul>
+            <li> <i>PourPtID</i> - 包含輸入點的 ID 值。
+            </li>
+            <li> <i>Area Square Kilometers</i>- 包含上游流域的面積（單位為平方公里）
+            </li>
+            <li> <i>Description</i>  和 <i>DataResolution</i> - 包含用於計算結果之水文數據的相關資訊。
+            </li>
+        </ul>
+        
+    </p>
+    <p>如果勾選 <b>使用當前地圖範圍</b>，則僅使用當前地圖範圍內的圖徵計算流域。 如果未勾選，則將對分析圖層中的所有圖徵進行分析，包括超出當前地圖範圍的圖徵。
+    </p>
+    </div>
+    <!--Parameter divs for each param-->
+    <div id="SearchDistance">
+        <div><h2>搜尋到最近水系的距離</h2></div>
+        <hr/>
+        <div>
+            <p>如果您的分析點位於排水線之外，則得到的流域很可能會非常小，且對於確定上游污染源也沒多大用處。 在大部分的情況下，您希望將分析點捕捉到最近排水線，以便找出流入排水線上的點的流域。 要尋找最近排水線，請指定搜尋距離。 如果不指定搜尋距離，該工具將計算並使用保守的搜尋距離。 
+            </p>
+            <p>若要使用輸入點的準確位置，請將搜尋距離指定為 0。 
+            </p>
+            <p>基於分析目的，Esri 已使用標準水文模型預先計算了排水線。 如果搜尋距離範圍內不存在排水線，則使用搜尋距離範圍內含有最高累積流量的位置。
+            </p> 
+        </div>
+    </div>
+    <div id="OutputLayer">
+        <div><h2>結果圖層名稱</h2></div>
+        <hr/>
+        <div>
+            <p>在 <b>我的內容</b>中建立並新增到地圖中的圖層的名稱。 預設名稱是根據分析類型以及分析圖層名稱。 如果該名稱的圖層已存在，則系統將要求您提供其他名稱。
+            </p>
+            <p>使用 <b>將結果儲存到</b>下拉式方塊，可以在 <b>我的內容</b>中指定文件夾的名稱，結果將儲存到該文件夾中。
+            </p>
+        </div>
+    </div>
+</div>
+</html>

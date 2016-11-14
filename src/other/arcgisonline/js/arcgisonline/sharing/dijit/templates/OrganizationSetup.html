@@ -1,0 +1,119 @@
+<div data-dojo-type="dijit.layout.ContentPane" dojoAttachPoint="containerNode">
+  <div  class="esriFloatLeading" style="width:780px; clear:both; padding-left:10px;">${i18n.thankYou}</div>
+
+  <div style="width:780px; clear:both; margin-top:2em; padding-left:10px;" class="esriFloatLeading">
+
+    <table>
+      <tbody>
+        <tr>
+          <td colspan="2" class="valignTop"><strong>${i18n.orgName}</strong><br/><br/></td>
+        </tr>
+        <tr>
+          <td class="titleColumn">
+            <img data-dojo-attach-point="_orgNameImg" alt="${i18n.orgName}">
+          </td>
+          <td class="valignTop">
+            ${i18n.orgNameDesc}
+            <br/><br/>
+            <input data-dojo-attach-point="_nameTextBox" data-dojo-type="dijit.form.TextBox" type="text" data-dojo-props="trim:true">
+          </td>
+        </tr>
+        <tr><td colspan="2"><div class="spacerRow">&nbsp;</div></td></tr>
+        <tr>
+            <td colspan="2" class="valignTop"><strong>${i18n.orgAbbr}</strong><br/><br/></td>
+        </tr>
+        <tr>
+          <td class="titleColumn">
+            <img data-dojo-attach-point="_orgAbbrImg" alt="${i18n.orgAbbr}">
+          </td>
+          <td class="valignTop">
+            ${!i18n.orgAbbrDesc}
+            <br/><br/>
+            <input data-dojo-attach-point="_urlKeyTextBox" data-dojo-type="dijit.form.TextBox" type="text" data-dojo-props="trim:true" data-dojo-attach-event="onChange:checkUrlKey,onKeyUp:checkUrlKey">
+            <label data-dojo-attach-point="_urlKeyStatusLabel" style="vertical-align:middle; width:125px;"></label>
+            <br/><br/>
+            ${i18n.sampleOrgUrl}
+            <br/>
+            <div data-dojo-attach-point="_sampleUrlTextBox"></div>
+          </td>
+        </tr>
+        <tr><td colspan="2"><div class="spacerRow">&nbsp;</div></td></tr>
+        <tr>
+          <td colspan="2" class="valignTop"><strong>${i18n.languageSetting}</strong><br/><br/></td>
+        </tr>
+        <tr>
+          <td class="titleColumn">
+            <img data-dojo-attach-point="_languageImg" alt="${i18n.languageSetting}">
+          </td>
+          <td class="valignTop">
+            ${i18n.languageDesc} ${i18n.browserDefaultAGOL}
+            <br/><br/>
+            <label for="languageSelect">${i18n.languageLabel}</label> <div id="languageSelect" name="languageSelect" data-dojo-attach-point="_languageSelect" data-dojo-type="dijit.form.FilteringSelect" data-dojo-props="type:'select'"></div>
+          </td>
+        </tr>
+        <tr><td colspan="2"><div class="spacerRow">&nbsp;</div></td></tr>
+        <tr>
+          <td colspan="2" class="valignTop"><strong>${i18n.regionSetting}</strong><br/><br/></td>
+        </tr>
+        <tr>
+          <td class="titleColumn">
+            <img data-dojo-attach-point="_regionImg" alt="${i18n.regionSetting}">
+          </td>
+          <td class="valignTop">
+            ${!i18n.regionDesc}
+            <br/><br/>
+            <label for="regionSelect">${i18n.regionLabel}</label> <div id="regionSelect" name="regionSelect" data-dojo-attach-point="_regionSelect" data-dojo-type="dijit.form.FilteringSelect" data-dojo-props="type:'select'"></div>
+          </td>
+        </tr>
+        <tr><td colspan="2"><div class="spacerRow">&nbsp;</div></td></tr>
+        <tr>
+          <td colspan="2" class="valignTop"><strong>${i18n.security}</strong><br/><br/></td>
+        </tr>
+        <tr>
+          <td class="titleColumn">
+            <img data-dojo-attach-point="_securityImg" alt="${i18n.security}">
+          </td>
+          <td class="valignTop">
+            <input id="sslCheckBox" name="sslCheckBox" data-dojo-attach-point="_sslCheckBox" data-dojo-type="dijit.form.CheckBox" type="checkBox" data-dojo-attach-event="onClick:onSSLCheck">
+            <label for="sslCheckBox" data-dojo-attach-point="_sslCheckBoxLabel"></label>
+          </td>
+        </tr>
+        <tr><td colspan="2"><div class="spacerRow">&nbsp;</div></td></tr>
+        <tr>
+            <td colspan="2" class="valignTop"><strong>${i18n.link}</strong><br/><br/></td>
+        </tr>
+        <tr>
+            <td class="titleColumn">
+                <img data-dojo-attach-point="_linkImg" alt="${i18n.link}">
+            </td>
+            <td class="valignTop">
+              <label>${i18n.linkDesc}</label><br/><br/>
+              <table>
+                <tbody>
+                  <tr>
+                    <td class="valignTop" style="width:15em;">
+                      <input data-dojo-attach-point="_linkCheckBox" id="linkCheckBox" data-dojo-type="dijit.form.CheckBox" type="checkbox">
+                      <label data-dojo-attach-point="_linkTooltip" id="linkTooltip" for="linkCheckBox"></label>
+                    </td>
+                    <td class="valignTop">
+                      <div data-dojo-attach-point="_link" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true" style="width:25em;"></div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+        </tr>
+        <tr><td colspan="2"><div class="spacerRow">&nbsp;</div></td></tr>
+        <tr>
+          <td colspan="2">
+            <div class="esriFloatLeading">
+              <button data-dojo-attach-point="_saveButton" data-dojo-type="dijit.form.Button" data-dojo-attach-event="onClick:onSave" type="button" class="calcite blue" iconClass="esriSaveIcon">${i18n.saveContinue}</button>
+              <button data-dojo-attach-point="_signOutButton" data-dojo-type="dijit.form.Button" data-dojo-attach-event="onClick:onSignOut" type="button" class="calcite transparent" iconClass="esriOpenIcon">${i18n.signOut}</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

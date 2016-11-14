@@ -1,0 +1,1763 @@
+{
+    "renderer": {
+        "type": "uniqueValue",
+        "field1": "sym",
+        "field2": null,
+        "field3": null,
+        "fieldDelimiter": ", ",
+        "defaultSymbol": {
+            "type": "esriPMS",
+            "width": 12,
+            "height": 12,
+            "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Basic/BlackWaypoint.png",
+            "imageData": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAGXRFWHRTb2Z0d2FyZQBQYWludC5ORVQgdjMuNS4xTuc4+QAABV5JREFUeF7tmUlPm1cYhaNKWTRtVUNDQqAZCAHSkqhRAWOMmTE2xiPYGOMJG7AxowecBDA4IQi16q75I/1TXVVqu+j+9LzXULXbD7mypYt0d3yf/T73vNPxrVv6TxPQBDQBTUAT0AQ0AU1AE9AENAFNQBPQBDQBTUAT0ARuQKCLz4bqfNx8/6c3+I51e7Sbb/6NB//D+YWf8UndIjH44rAEbrVaEY/FEQwGsbi4CL/fD6/XC7fbDZfLBYfDAbvdjunpGUxOTGJ8bByj1lFYLBaYB80Y+H4Ar757hZcvXqL/m2/xvK8PPc960N31VJ3P7twRwH/xmAx+z7o9tiwAYvEYPv78EZeXl/hw/gHVahWVSgVv3x6hfFhGoVDA3t4+crkcMpsZpFMpBSyyEkEoGILf54d7wQ3nnAMzhDQhgEassJiH1WkxmQTAHzwtdYvE4Isl9xEKhVTwx8fHODo6wps3b1AqHSKfz2N3d08Fvrm5ycDTSCQSWI2sYjm0jMXAIrweL1zzLszZ5zA9OYVx2xisDH54yIxBKmNoYBCmLxWA3xsWgEj/4uJCAcht5ZBMJJGIJxCNxhBhsOHlMNMjxPRYUrftcXuw4FqA0+FUgcutT12lho2pMWIZwTBvXoI3Dw7BVFNA4wKQvD8/P8cRJS837PP6GWgAPo+PwXqxQHnLLc875+GgzCXo2Rl7LXDeutQFkf0Yb19qgyjAYpb6MKSUcJUCjQsgEAjg/bv3SvprayksLQURXKrdeMBPEATiodQlz13zvPlrELMCYhbTU9NUwBQmxicUBJvVplRgZvCihBZTS2MrQKp+tfoO5fJrpNbSrAlhnuUbQVB14LoItjQ4AB/z+uz0TBW+FAtdOLzCvF8xDGGSSpBUUACGLWhpdABer49t7xTFYgnp9Drb2ypWeAxDYF2wjdpU8CPDI80AwIuTkwr7fRHr6xuIrsawuho1DEGKo9QCBYC1oOEVIAXu+PgEhXwBGxubiMUSPPEbQLA3J4A8AWxuZNgK1xCPJ41DYJuUcblpFOD2eDgBnuDgII9MJstWmEYyyXHXIAQZkKQlNg8ATnbXALLZLVUIpR0ahTDPoWlifLLZABwrBWxxFF5f59yf3jAMYcHlVtNhUyogl9vh4pNlMeTWZxCC7AoCYLhZuoCbXeCIXeDgoIDt7V1ks7L9GYcgc8UkZwE1CDVPG6woADtcf7dy2zeC4Of+IADMzTIJqjng5JT7fxG7ND5EBbkbQFgMLKktUS1DzTIKn3AUzhdK2N8XE4QQdoxDkE1SAAxyHRYVNPw26OW6W6mcoVA8ZBoUsfcPBHGDdtgZtjkfbLEuZGodIrWuZoVEsjYwRaO1qVF2CFmkVsIRtSIPiiFCFTS8ISLb4OnZOxRL5f+oYIvBZzgXbDDoFIOWCVGCFZdomS7REm/a76ctxqInpokYJnM0TGZn7TRaRxWAoWZwhHwsWmfV9ygdvuZCVEuD7Z09ZDkTSDtcY/By05FI9CrwIASam+3O6XTRMaYfODWDcVmDr7ZAkb4AkNPInqCyxeU2f/jxJ1ROq2oiLJffqnS4BpFhWxTpJ+kWyaIkq7IYJgEWOw9tMxf9QcecEzN0hybY/23cBEdoiIj8/5UCf/KzWg2at3V7zCMAOjs70d//An19z9HbS0+/pxfdz57h6dNudNHXf/KkC48fP8GjR4/w8OFD/v/X6OjoxIMHHWhvb8f9+/dx7949tLW14e7du2ht/YorcKsqfiae27dviyUmAD6vWyQGX/wFn5NfbMSwrOf5le8vGfyO+jFNQBPQBDQBTUAT0AQ0AU1AE9AENAFNQBPQBDSBvwEACieGYV2+XAAAAABJRU5ErkJggg==",
+            "contentType": "image/png",
+            "angle": 0,
+            "xoffset": 0,
+            "yoffset": 0
+        },
+        "defaultLabel": "Waypoint",
+        "uniqueValueInfos": [
+            {
+                "value": "Airport",
+                "label": "Airport",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/AirStrip.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+                }
+            }, 
+			{
+			    "value": "Ultralight Area",
+                "label": "Ultralight Area",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/Ultralight.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+                }
+			}, 
+			{
+			    "value": "Heliport",
+                "label": "Heliport",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/HelicopterYellow.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+                }
+			}, 
+			{
+			    "value": "Soft Field",
+                "label": "Soft Field",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/Landingpad.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Car Rental",
+                "label": "Car Rental",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/CarRental.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Car Repair",
+                "label": "Car Repair",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/CarRepair.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Truck Stop",
+                "label": "Truck Stop",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/YellowSemiTractor.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Tunnel",
+                "label": "Tunnel",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/Tunnel.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Toll Booth",
+                "label": "Toll Booth",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/Toll.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Scales",
+                "label": "Scales",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/Scales.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Marina",
+                "label": "Marina",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/Sailing.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Private Field",
+                "label": "Private Field",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/PrivateField.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Parking Area",
+                "label": "Parking Area",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/Parking.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Bridge",
+                "label": "Bridge",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/Overpass.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Scenic Area",
+                "label": "Scenic Area",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/MountainPass.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Mile Marker",
+                "label": "Mile Marker",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/MileMarker.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Lodging",
+                "label": "Lodging",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/Lodging.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Gas Station",
+                "label": "Gas Station",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/Fuel.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Crossing",
+                "label": "Crossing",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/Crossing.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Convenience Store",
+                "label": "Convenience Store",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/ConvenienceStore.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Military",
+                "label": "Military",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/Tank.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Navaid, Amber",
+                "label": "Navaid, Amber",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/AmberBeacon.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Navaid, Black",
+                "label": "Navaid, Black",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/BlackBeacon.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Navaid, Blue",
+                "label": "Navaid, Blue",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/BlueBeacon.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Navaid, Green",
+                "label": "Navaid, Green",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/GreenBeacon.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Navaid, Orange",
+                "label": "Navaid, Orange",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/OrangeBeacon.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Navaid, Red",
+                "label": "Navaid, Red",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/RedBeacon.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Navaid, Violet",
+                "label": "Navaid, Violet",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/VioletBeacon.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Navaid, White",
+                "label": "Navaid, White",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/WhiteBeacon.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Navaid, Green/Red",
+                "label": "Navaid, Green/Red",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/GreenRedBeacon.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Navaid, Red/Green",
+                "label": "Navaid, Red/Green",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/RedGreenBeacon.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Navaid, Green/White",
+                "label": "Navaid, Green/White",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/GreenWhiteBeacon.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Navaid, Red/White",
+                "label": "Navaid, Red/White",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/RedWhiteBeacon.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Navaid, White/Green",
+                "label": "Navaid, White/Green",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/WhiteGreenBeacon.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Navaid, White/Red",
+                "label": "Navaid, White/Red",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/WhiteRedBeacon.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "White Buoy",
+                "label": "White Buoy",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/WhiteDiamondDaymark.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Red Square",
+                "label": "Red Square",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/RedSquareDaymark.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Green Square",
+                "label": "Green Square",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/GreenSquareDaymark.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Red Diamond",
+                "label": "Red Diamond",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/RedDiamondDaymark.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Green Diamond",
+                "label": "Green Diamond",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/GreenDiamondDaymark.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Diver Down Flag 2",
+                "label": "Diver Down Flag 2",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/UnderwaterOperations.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Man Overboard",
+                "label": "Man Overboard",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/PersonOverboard.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Diver Down Flag 1",
+                "label": "Diver Down Flag 1",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/DiverDown.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Radio Beacon",
+                "label": "Radio Beacon",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/RadioBeacon.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Shipwreck",
+                "label": "Shipwreck",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/Wreck.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Skull and Crossbones",
+                "label": "Skull and Crossbones",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/SkullandCrossbones.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Danger Area",
+                "label": "Danger Area",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/Danger.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Controlled Area",
+                "label": "Controlled Area",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/ControlledArea.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Restricted Area",
+                "label": "Restricted Area",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Transportation/BoatsKeepOut.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Bank",
+                "label": "Bank",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/Bank.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Bell",
+                "label": "Bell",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/Bell.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Building",
+                "label": "Building",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/City.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Cemetery",
+                "label": "Cemetery",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/Cemetery.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Church",
+                "label": "Church",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/Museum.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Ghost Town",
+                "label": "Ghost Town",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/GhostTown.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Horn",
+                "label": "Horn",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/Horn.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Residence",
+                "label": "Residence",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/Housing.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Post Office",
+                "label": "Post Office",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/MailPost.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "School",
+                "label": "School",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/School.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Zoo",
+                "label": "Zoo",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/Zoo.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Tall Tower",
+                "label": "Tall Tower",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/TowerTall.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Short Tower",
+                "label": "Short Tower",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/TowerShort.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Stadium",
+                "label": "Stadium",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/Stadium.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Shower",
+                "label": "Shower",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/Shower.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Shopping Center",
+                "label": "Shopping Center",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/Shopping.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Restroom",
+                "label": "Restroom",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/Restroom.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Levee",
+                "label": "Levee",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/Reservoir.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Pizza",
+                "label": "Pizza",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/Pizza.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Oil Field",
+                "label": "Oil Field",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/OilWell.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Museum",
+                "label": "Museum",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/Museum.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Movie Theater",
+                "label": "Movie Theater",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/MovieTheater.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Mine",
+                "label": "Mine",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/Mine.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Live Theater",
+                "label": "Live Theater",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/LiveShow.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Light",
+                "label": "Light",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/Light.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Telephone",
+                "label": "Telephone",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/LandLine.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Information",
+                "label": "Information",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/Information.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Forest",
+                "label": "Forest",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/Forest.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Fitness Center",
+                "label": "Fitness Center",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/FitnessCenter.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Fast Food",
+                "label": "Fast Food",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/FastFood.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Drinking Water",
+                "label": "Drinking Water",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/DrinkingWater.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Restaurant",
+                "label": "Restaurant",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/Dining.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Department Store",
+                "label": "Department Store",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/DepartmentStore.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Dam",
+                "label": "Dam",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/Dam.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Bar",
+                "label": "Bar",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/Bar.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Amusement Park",
+                "label": "Amusement Park",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/PeoplePlaces/AmusementPark.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Beach",
+                "label": "Beach",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/OutdoorRecreation/Beach.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Boat Ramp",
+                "label": "Boat Ramp",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/OutdoorRecreation/BoatLaunch.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Bowling",
+                "label": "Bowling",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/OutdoorRecreation/Bowling.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Campground",
+                "label": "Campground",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/OutdoorRecreation/Camping.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Hunting Area",
+                "label": "Hunting Area",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/OutdoorRecreation/Deer.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Fishing Area",
+                "label": "Fishing Area",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/OutdoorRecreation/Fishing.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Geocache",
+                "label": "Geocache",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/OutdoorRecreation/Geocache.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Geocache Found",
+                "label": "Geocache Found",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/OutdoorRecreation/GeocacheFound.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Glider Area",
+                "label": "Glider Area",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/OutdoorRecreation/Gliding.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Golf Course",
+                "label": "Golf Course",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/OutdoorRecreation/Golf.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Trail Head",
+                "label": "Trail Head",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/OutdoorRecreation/Hiking.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Summit",
+                "label": "Summit",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/OutdoorRecreation/Mountain.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Park",
+                "label": "Park",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/OutdoorRecreation/Park.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Picnic Area",
+                "label": "Picnic Area",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/OutdoorRecreation/RestArea.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "RV Park",
+                "label": "RV Park",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/OutdoorRecreation/RVPark.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Parachute Area",
+                "label": "Parachute Area",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/OutdoorRecreation/SkyDiving.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Ball Park",
+                "label": "Ball Park",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/OutdoorRecreation/Sports.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Swimming Area",
+                "label": "Swimming Area",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/OutdoorRecreation/Swimming.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "TracBack Point",
+                "label": "TracBack Point",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/OutdoorRecreation/TrackBack.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Skiing Area",
+                "label": "Skiing Area",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/OutdoorRecreation/WaterSkiing.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Circle with X",
+                "label": "Circle with X",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Basic/CircleX.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "White Dot",
+                "label": "White Dot",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Basic/WhiteWaypoint.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Exit",
+                "label": "Exit",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Basic/BlueWaypoint.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Waypoint",
+                "label": "Waypoint",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Basic/BlackWaypoint.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "City (Small)",
+                "label": "City (Small)",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Basic/Populated2.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "City (Medium)",
+                "label": "City (Medium)",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Basic/Populated4.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "City (Large)",
+                "label": "City (Large)",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Basic/Populated6.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Capital 1",
+                "label": "Capital 1",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Basic/Capital1.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Flag",
+                "label": "Flag",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/Basic/YellowFlag.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Medical Facility",
+                "label": "Medical Facility",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/SafetyHealth/Hospital.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			},
+			{
+			    "value": "Pharmacy",
+                "label": "Pharmacy",
+                "description": "",
+                "symbol": {
+                    "type": "esriPMS",
+                    "width": 24,
+                    "height": 24,
+                    "url": "http://apollo.gisportal.com/arcgis/portalimages/Symbols/SafetyHealth/Pharmacy.png",
+                    "contentType": "image/png",
+                    "angle": 0,
+                    "xoffset": 0,
+                    "yoffset": 0
+				}
+			}
+        ]
+    }
+}

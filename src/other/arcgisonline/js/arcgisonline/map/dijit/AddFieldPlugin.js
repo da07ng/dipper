@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/3.15/esri/copyright.txt for details.
+//>>built
+define("arcgisonline/map/dijit/AddFieldPlugin",["dijit","dojo","dojox","dojo/require!dijit/_editor/_Plugin,arcgisonline/map/dijit/DropDownButton"],function(b,a,c){a.provide("arcgisonline.map.dijit.AddFieldPlugin");a.require("dijit._editor._Plugin");a.require("arcgisonline.map.dijit.DropDownButton");a.declare("arcgisonline.map.dijit.AddFieldPlugin",b._editor._Plugin,{_initButton:function(){this.dropDown=this.select;this.button=new arcgisonline.map.dijit.DropDownButton({showLabel:!1,dropDown:this.dropDown,
+tabIndex:-1});this.connect(this.dropDown,"onChange",function(a){this.button.closeDropDown();this.editor.focus();this.editor.execCommand("inserthtml","{"+a[0]+"}")})},setEditor:function(a){this.editor=a;this._initButton()},updateState:function(){this.button.set("disabled",this.get("disabled"))}})});

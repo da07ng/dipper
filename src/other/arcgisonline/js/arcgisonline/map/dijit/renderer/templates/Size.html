@@ -1,0 +1,299 @@
+<div data-dojo-type="dijit.layout.BorderContainer" region="top" style="height:100%; padding:5px;">
+  <div id="rendererSizeTop" data-dojo-type="dijit.layout.ContentPane" class="panel panel_left" region="top" style="padding:2px;">
+    <div id="rendererSizeHeader">
+      <div class="esriFloatTrailing" style="display:inline;">
+        <a href="JavaScript:void(0);" data-dojo-attach-point="_closeBtn" data-dojo-attach-event="onClick:_onCancel" title="${i18n.close}" class="panel panel_close panel_collapse"></a>
+      </div>
+      <div id="rendererSizeTitle" class="esriFloatLeading panel_title">
+        ${i18n.rendererPanelTitle}
+      </div>
+      <div data-dojo-attach-point="_rendererSizeLayer" class="panel_title" style="clear:both;">
+      </div>
+      <div style="height:1px;"></div>
+    </div>
+    <div style="margin: 2px 0 20px 0; padding:10px 0;">
+      <div data-dojo-attach-point="_rendererSizeField" class="esriFloatLeading strong">
+      </div>
+      <!--
+      <div data-dojo-attach-point="_rendererSizeAttribute" class="esriFloatTrailing">
+        <button data-dojo-type="dijit.form.Button" type="button" data-dojo-attach-point="_rendererSizeChangeButton" class="calcite tiny" data-dojo-attach-event="onClick:_onChangeField"><span>${i18n.change}</span></button>
+      </div>
+      -->
+    </div>
+  </div>
+  <div id="renderer-size-content" data-dojo-type="dijit.layout.ContentPane" region="center" style="overflow-y:auto;padding:2px;">
+    <table>
+      <tbody>
+        <tr id="rendererSizeDividedBy">
+          <td nowrap>
+            <div class="firstColumnDiv">
+              <label class="firstColumnLabel">
+              ${i18n.dividedBy}&nbsp;
+              </label>
+            </div>
+          </td>
+          <td>
+            <select data-dojo-attach-point="_rendererSizeDividedByAttribute" data-dojo-attach-event="onChange:_onChangeDividedByAttribute" data-dojo-type="dijit.form.Select" maxHeight="150" sortByLabel="false">
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table style="width:100%;">
+      <tbody>
+        <tr>
+          <td height="271">
+            <div data-dojo-attach-point="_rendererSizeSliderDiv">
+              <div id="rendererSizeSlider">
+              </div>
+            </div>
+            <div data-dojo-attach-point="_rendererSizeGridDiv" style="padding-top: 10px;">
+              <div style="margin-bottom: 3px;">
+                <span class="small clickToEditMsg">${i18n.clickToEdit}</span>
+              </div>
+              <div data-dojo-attach-point="_rendererSizeGridContainer" class="rendererSizeGridContainer" style="overflow-y: auto;overflow-x: none;">
+                <div id="rendererSizeGrid">
+                </div>
+              </div>
+            </div>
+          </td>
+          <td nowrap class="toolsColumnTD" style="text-align:center; vertical-align:top; padding-top:20px;">
+            <div data-dojo-attach-point="_rendererSizeSymbolsTitle" data-dojo-attach-event="onClick:_onClickSymbols" class="rightIcons">
+              <div>
+                <div data-dojo-attach-point="_rendererSizeSymbol" style="padding:5px 0;"></div>
+              </div>
+              <div>
+                <span class="toolsLabel">${i18n.symbols}</span>
+              </div>
+            </div>
+            <div data-dojo-attach-point="_rendererSizeZoomTitle" data-dojo-attach-event="onClick:_onClickZoom" class="rightIcons" style="padding-top: 20px;">
+              <div data-dojo-attach-point="_rendererSizeZoomIcon" class="zoomIcon">
+              </div>
+              <div style="padding-top: 5px;">
+                <span data-dojo-attach-point="_rendererSizeZoomLabel" class="toolsLabel">${i18n.zoomIn}</span>
+              </div>
+            </div>
+            <div data-dojo-attach-point="_rendererSizeLegendClassesTitle" data-dojo-attach-event="onClick:_onClickLegendClasses" class="rightIcons" style="padding-top: 20px;">
+              <div data-dojo-attach-point="_rendererSizeLegendClassesIcon" class="legendClassesIcon">
+              </div>
+              <div style="padding-top: 5px;">
+                <span data-dojo-attach-point="_rendererSizeLegendClassesText" class="toolsLabel">${i18n.legend}</span>
+              </div>
+            </div>
+            <div data-dojo-attach-point="_rendererSizePolygonsTitle" data-dojo-attach-event="onClick:_onClickPolygons" class="rightIcons" style="padding-top: 15px;">
+              <div>
+                <div data-dojo-attach-point="_rendererSizePolygonSymbol" style="padding:5px 0;"></div>
+              </div>
+              <div>
+                <span class="toolsLabel">${i18n.polygons}</span>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-dojo-attach-point="_estimatedValuesMsg" class="small estimateMsg">
+      ${i18n.estimatedValuesMsg}
+    </div>
+    <div data-dojo-attach-point="_zeroFeaturesMsg" class="small zeroFeaturesMsg">
+      ${i18n.zeroFeaturesMsg}
+    </div>
+    <div data-dojo-attach-point="_rendererSizeSymbolSize" class="rendererSizeSymbolSize" style="margin-top:20px;">
+      <div data-dojo-attach-point="_rendererSizeSymbolSizeTitle" class="esriFloatLeading sectionTitle" >
+        ${i18n.size}
+      </div>
+      <!--
+      <div data-dojo-attach-point="_rendererSizeSuggest" data-dojo-attach-event="onClick:_onClickSizeSuggest" class="esriFloatTrailing suggestLabel">
+        &nbsp;${i18n.suggest}&nbsp;
+      </div>
+      -->
+      <div class="esriFloatLeading" style="clear:both; padding: 5px 10px 17px 10px;">
+        <div class="esriFloatLeading sizingTypes" style="clear:both;margin-top:5px;">
+          <input type="radio" data-dojo-type="dijit.form.RadioButton" data-dojo-attach-point="_rendererSizeAutomaticRadio" data-dojo-attach-event="onChange:_onChangeSizing" name="sizing"/>
+          ${i18n.automaticSizing}
+        </div>
+        <div class="esriFloatLeading sizingTypes" style="clear:both; margin:7px 0 3px 0;">
+          <input type="radio" data-dojo-type="dijit.form.RadioButton" data-dojo-attach-point="_rendererSizeManualRadio" data-dojo-attach-event="onChange:_onChangeSizing" name="sizing"/>
+          ${i18n.manualSizing}
+        </div>
+        <div style="clear:both;padding-top:5px" class="esriItemLinks sizingTypes2">
+          <div class="esriFloatLeading esriTrailingMargin1" style="white-space: nowrap;">
+            <table cellpadding="0" cellspacing="0" style="padding-bottom:3px;">
+              <tbody>
+                <tr>
+                  <td nowrap>
+                    <span data-dojo-attach-point="_rendererSizeMinPart1"></span>
+                  </td>
+                  <td>
+                    <input data-dojo-attach-point="_rendererSizeMin" data-dojo-attach-event="onChange:_onChangeMin" intermediateChanges="true" data-dojo-type="dijit.form.NumberSpinner" value="4" smallDelta="1" constraints="{min:1,max:120,places:0}" style="width:40px; margin: 0 2px;" />
+                  </td>
+                  <td nowrap>
+                    <span data-dojo-attach-point="_rendererSizeMinPart2"></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="esriFloatLeading" style="white-space: nowrap;">
+            <table cellpadding="0" cellspacing="0">
+              <tbody>
+                <tr>
+                  <td nowrap>
+                    <span data-dojo-attach-point="_rendererSizeMaxPart1"></span>
+                  </td>
+                  <td>
+                    <input data-dojo-attach-point="_rendererSizeMax" data-dojo-attach-event="onChange:_onChangeMax" intermediateChanges="true" data-dojo-type="dijit.form.NumberSpinner" value="4" smallDelta="1" constraints="{min:1,max:120,places:0}" style="width:40px; margin: 0 2px;" />
+                  </td>
+                  <td nowrap>
+                    <span data-dojo-attach-point="_rendererSizeMaxPart2"></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div data-dojo-attach-point="_rendererSizeClassify" class="rendererSizeClassify" style="padding-top:3px; clear:both;">
+      <div>
+        <table cellspacing="0"><tbody><tr><td valign="top">
+          <div data-dojo-attach-point="_rendererSizeClassifyCheckDiv">
+            <input data-dojo-attach-point="_rendererSizeClassifyCheck" data-dojo-attach-event="onChange:_onChangeClassify" data-dojo-type="dijit.form.CheckBox" checked="false" type="checkbox" />
+          </div>
+        </td><td>
+          <div data-dojo-attach-point="_rendererSizeClassifyText">
+            ${i18n.classifyData}
+          </div>
+        </td></tr></tbody></table>
+      </div>
+      <div data-dojo-attach-point="_rendererSizeClassifyContent" class="esriLeadingMargin107" style="margin-top:3px;">
+        <div style="margin-top:3px;">
+          <span data-dojo-attach-point="_rendererSizeClassifyMethodPart1"></span>
+          <div data-dojo-attach-point="_rendererSizeClassifyMethods" data-dojo-type="dijit.form.FilteringSelect" id="rendererSizeClassifyMethodDropdown" data-dojo-attach-event="onChange:_onChangeClassifyMethod" class="dijitComboBoxNonEditable" sortByLabel="false">
+          </div>
+          <span data-dojo-attach-point="_rendererSizeClassifyMethodPart2"></span>
+        </div>
+        <div data-dojo-attach-point="_rendererSizeClassifyClassesTitle" style="margin-top:3px;">
+          <span data-dojo-attach-point="_rendererSizeClassifyClassesPart1"></span>
+          <input data-dojo-attach-point="_rendererSizeClassifyClasses" data-dojo-attach-event="onChange:_onChangeClassifyClasses" intermediateChanges="true" data-dojo-type="dijit.form.NumberSpinner" value="4" smallDelta="1" constraints="{min:1,max:10,places:0}" style="width:40px; margin: 0 5px;" />
+          <span data-dojo-attach-point="_rendererSizeClassifyClassesPart2"></span>
+        </div>
+        <div data-dojo-attach-point="_rendererSizeClassifyStdDevIntervalTitle" style="margin-top:3px;">
+          <span data-dojo-attach-point="_rendererSizeClassifyStdDevIntervalPart1"></span>
+          <select data-dojo-attach-point="_rendererSizeClassifyStdDevInterval" data-dojo-attach-event="onChange:_onChangeClassifyStdDevInterval" data-dojo-type="dijit.form.Select" style="width:50px;">
+          </select>
+          <span data-dojo-attach-point="_rendererSizeClassifyStdDevIntervalPart2"></span>
+        </div>
+        <div data-dojo-attach-point="rendererSizePrecision" style="margin-top: 3px;">
+          <table>
+            <tbody>
+              <tr>
+                <td nowrap>
+                  <span data-dojo-attach-point="_rendererSizePrecisionLabel">${i18n.roundClasses}</span>
+                </td>
+                <td>
+                  <select data-dojo-attach-point="_rendererSizePrecision" data-dojo-attach-event="onChange:_onChangeSizePrecision" data-dojo-type="dijit.form.Select" maxHeight="150" sortByLabel="false" style="margin: 0 10px;">
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:5px;clear:both;">
+      <div data-dojo-attach-point="_rendererSizeOtherCheckMsg" >
+        <table cellspacing="0"><tbody><tr><td valign="top">
+          <input data-dojo-attach-point="_rendererSizeOtherCheck" data-dojo-attach-event="onChange:_onChangeOther" data-dojo-type="dijit.form.CheckBox" checked="false" type="checkbox" />
+        </td><td>
+          <span data-dojo-attach-point="_rendererSizeOtherTxt">
+            ${i18n.drawOthers}
+          </span>
+        </td></tr></tbody></table>
+      </div>
+      <div data-dojo-attach-point="_rendererSizeOther" class="esriLeadingMargin107">
+        <table><tbody><tr><td>
+          <div data-dojo-attach-point="_rendererSizeOtherSymbolText">
+            ${i18n.symbolLabel}
+          </div>
+        </td><td>
+          <div data-dojo-attach-point="_rendererSizeOtherSymbol" style="padding: 0 5px;"></div>
+        </td></tr></tbody></table>
+      </div>
+    </div>
+    <div data-dojo-attach-point="_rendererSizeRotation" style="margin-top:5px;">
+      <div>
+        <table cellspacing="0"><tbody><tr><td valign="top">
+          <input data-dojo-attach-point="_rendererSizeRotationCheck" data-dojo-attach-event="onChange:_onChangeRotation" data-dojo-type="dijit.form.CheckBox" checked="false" type="checkbox" />
+        </td><td>
+          <div data-dojo-attach-point="_rendererSizeRotationText">
+            ${i18n.rotationMsg}
+          </div>
+        </td></tr></tbody></table>
+      </div>
+      <div data-dojo-attach-point="_rendererSizeRotationContent" class="esriLeadingMargin107" style="margin-top:3px;">
+        <div style="margin-top:3px;">
+          <select data-dojo-attach-point="_rendererSizeRotationAttribute" data-dojo-attach-event="onChange:_onChangeRotationAttribute" data-dojo-type="dijit.form.Select" maxHeight="150" sortByLabel="false">
+          </select>
+        </div>
+        <div style="margin-top:5px;">
+          <input type="radio" data-dojo-type="dijit.form.RadioButton" data-dojo-attach-point="_rendererSizeRotationClockwiseRadio" data-dojo-attach-event="onChange:_onChangeRotationDirection" data-dojo-props="checked:true" name="clockwise" />
+          ${i18n.clockwise}
+        </div>
+        <div style="margin-top:3px;">
+          <input type="radio" data-dojo-type="dijit.form.RadioButton" data-dojo-attach-point="_rendererSizeRotationCounterclockwiseRadio" data-dojo-attach-event="onChange:_onChangeRotationDirection" data-dojo-props="checked:false" name="clockwise" />
+          ${i18n.counterclockwise}
+        </div>
+      </div>
+    </div>
+    <div style="height:20px;"></div>
+    <div data-dojo-attach-point="_rendererSizeTransparency">
+      <div data-dojo-attach-point="_rendererSizeTransparencyTitle" class="esriFloatLeading sectionTitle" >
+        ${i18n.transparency}
+      </div>
+      <div class="esriFloatLeading" style="clear:both; padding: 5px 10px 20px 10px;">
+        <div data-dojo-attach-point="_rendererSizeTransparencyOverallTitle" class="esriFloatLeading sectionSubTitle rendererSizeHasAttributeTransparency" >
+          ${i18n.overallTransparency}
+        </div>
+        <div id="rendererSizeTransparencySliderDiv" class="esriLeadingPadding1" style="clear:both;">
+          <div id="rendererSizeTransparencySliderInnerDiv" class="esriFloatLeading" style="padding: 6px 0 20px;">
+            <div id="rendererSizeTransparencySlider">
+            </div>
+          </div>
+        </div>
+        <div data-dojo-attach-point="_rendererSizeTransparencyPerFeatureTitle" class="esriFloatLeading sectionSubTitle rendererSizeHasAttributeTransparency" style="clear:both;">
+          ${i18n.perFeaturesTransparency}
+        </div>
+        <div style="clear:both;margin-top:3px;" class="esriItemLinks rendererSizeHasAttributeTransparency esriLeadingPadding1">
+          <span data-dojo-attach-point="_rendererSizeAttributeTransparencyLabel_part1" class="esriLeadingMargin025"></span>
+          <A data-dojo-attach-point="_rendererSizeAttributeTransparencyLabel_part2" data-dojo-attach-event="onClick:_onClickAttributeTransparency" href="JavaScript:void(0);"></A>
+          <span data-dojo-attach-point="_rendererSizeAttributeTransparencyLabel_part3"></span>
+        </div>
+      </div>
+    </div>
+    <div data-dojo-attach-point="_rendererSizeScale" style="clear:both;">
+      <div data-dojo-attach-point="_rendererSizeScaleTitle" class="esriFloatLeading sectionTitle">
+        ${i18n.visibleRange}
+      </div>
+      <div data-dojo-attach-point="_rendererSizeScaleSuggest" data-dojo-attach-event="onClick:_onClickScaleSuggest" class="esriFloatTrailing suggestLabel">
+        &nbsp;${i18n.suggest}&nbsp;
+      </div>
+      <div class="esriFloatLeading" style="padding: 10px;">
+        <div id="rendererSizeScaleSlider">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-dojo-type="dijit.layout.ContentPane" region="bottom">
+		<div id="rendererSizeContentClose" data-dojo-type="dijit.layout.ContentPane" region="center" >
+      <button data-dojo-type="dijit.form.Button" type="button" class="calcite blue" data-dojo-attach-point="_doneChangingButton" data-dojo-attach-event="onClick:_onDone"><span>${i18n.ok}</span></button>
+      <button data-dojo-type="dijit.form.Button" type="button" class="calcite transparent" data-dojo-attach-point="_doneChangingButton" data-dojo-attach-event="onClick:_onCancel"><span>${i18n.cancel}</span></button>
+    </div>
+    <div id="rendererSizeFooterDiv" data-dojo-type="dijit.layout.ContentPane" region="bottom" style="height:40px; padding: 0;">
+      <div class="footer" id="rendererSizeFooter" data-dojo-type="arcgisonline.sharing.dijit.SiteFooterMap" style="white-space:normal;">
+      </div>
+    </div>
+  </div>
+</div>

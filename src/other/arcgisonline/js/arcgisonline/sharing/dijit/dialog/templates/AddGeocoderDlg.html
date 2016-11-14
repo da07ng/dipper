@@ -1,0 +1,65 @@
+<div class="${baseClass}">
+  <div id="addGeocoder-dialog" data-dojo-type="dijit/Dialog" data-dojo-attach-point="_dialog" title="${i18n.addGeocoderTitle}">
+    <table style="width:100%;">
+      <tbody>
+      <tr class="${baseClass} no-edit">
+        <td class="${baseClass} valign-top" colspan="2">
+          <input type="radio" id="esriGeocoderOption" name="geocoderOption" data-dojo-attach-point="_esriGeocoderOption" data-dojo-attach-event="onClick:onEsriSelected" data-dojo-type="dijit/form/RadioButton" checked="true"/>
+          <label data-dojo-attach-point="_esriGeocoderOptionLabel" for="esriGeocoderOption" class="${baseClass} optionTitle">&nbsp;${i18n.esriWorldGeocoder}</label>
+        </td>
+      </tr>
+      <tr class="no-edit"><td colspan="2">&nbsp;</td></tr>
+      <tr>
+        <td class="${baseClass} valign-top no-edit" colspan="2">
+          <input type="radio" id="newGeocoderOption" name="geocoderOption" data-dojo-attach-point="_newGeocoderOption" data-dojo-attach-event="onClick:onNewSelected" data-dojo-type="dijit/form/RadioButton"/>
+          <label for="newGeocoderOption" class="${baseClass} optionTitle no-edit">&nbsp;${i18n.newGeocoder}</label>
+        </td>
+      </tr>
+      <tr>
+        <td class="${baseClass} valign-top" style="width:16px;">&nbsp;</td>
+        <td class="${baseClass} valign-top" id="newGeocoderContainer" data-dojo-attach-point="_newGeocoderContainer">
+          <table style="width:100%;border-spacing:0;">
+            <tbody>
+            <tr><td colspan="2">&nbsp;</td></tr>
+            <tr>
+              <td class="esriAlignLeading"><label for="geocoderUrl">${i18n.urlLabel}</label></td>
+              <td><input type="text" id="geocoderUrl" data-dojo-attach-point="_geocoderUrl" data-dojo-attach-event="onChange:onGeocoderUrlChange,onKeyPress:onGeocoderUrlKeyPress" data-dojo-type="dijit/form/TextBox" data-dojo-props="trim:true,required:true"/></td>
+            </tr>
+            <tr>
+              <td colspan="2" class="esriAlignLeading"><label class="${baseClass} example" data-dojo-attach-point="_exampleUrl">${i18n.exampleLabel}<br>${i18n.exampleGeocoderUrl}</label></td>
+            </tr>
+            <tr><td colspan="2">&nbsp;</td></tr>
+            <tr>
+              <td class="esriAlignLeading"><label for="geocoderName">${i18n.nameLabel}</label></td>
+              <td><input type="text" id="geocoderName" data-dojo-attach-point="_geocoderName" data-dojo-attach-event="onChange:onGeocoderNameChange,onKeyPress:onGeocoderNameKeyPress" data-dojo-type="dijit/form/TextBox" data-dojo-props="trim:true,required:true"/></td>
+            </tr>
+            <tr><td colspan="2">&nbsp;</td></tr>
+            <tr>
+              <td class="esriAlignLeading"><label for="geocoderHint">${i18n.hintTextLabel}</label></td>
+              <td><input type="text" id="geocoderHint" data-dojo-attach-point="_geocoderHint" data-dojo-type="dijit/form/TextBox" data-dojo-props="trim:true"/></td>
+            </tr>
+            <tr><td colspan="2">&nbsp;</td></tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td><input type="checkbox" id="geocoderPlacefinder" data-dojo-attach-point="_geocoderPlacefinder" data-dojo-type="dijit/form/CheckBox"/> <label for="geocoderPlacefinder">${i18n.allowPlacefinding}</label></td>
+            </tr>
+            <tr><td colspan="2">&nbsp;</td></tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td><input type="checkbox" id="geocoderBatch" data-dojo-attach-point="_geocoderBatch" data-dojo-type="dijit/form/CheckBox"/> <label data-dojo-attach-point="_geocoderBatchLabel" class="esriAddGeocoderDlg" for="geocoderBatch">${i18n.allowBatchGeocode}</label></td>
+            </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      <tr><td colspan="2">&nbsp;</td></tr>
+      <tr>
+        <td colspan="2" data-dojo-attach-point="_dialogBtns" class="esriAlignTrailing">
+          <button type="button" data-dojo-attach-point="_okBtn" data-dojo-type="dijit/form/Button" data-dojo-attach-event="onClick:onOk" class="calcite primary">${i18n.ok}</button>
+          <button type="button" data-dojo-attach-point="_cancelBtn" data-dojo-type="dijit/form/Button" data-dojo-attach-event="onClick:onCancel" class="calcite cancel">${i18n.cancel}</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

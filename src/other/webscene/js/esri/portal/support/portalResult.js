@@ -1,0 +1,4 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../../core/lang","dojo/_base/array","dojo/_base/lang","dojo/when"],function(g,d,h,e){var f=function(a){function b(c){a[c]||(a[c]=function(){var b=arguments;return e(a,function(a){Array.prototype.unshift.call(b,a.results||a);return f(d[c].apply(d,b))})})}if(!a)return a;a.then&&(a=h.delegate(a));a.total||(a.total=e(a,function(a){return g.isDefined(a.total)?a.total:a.length||0}));b("forEach");b("filter");b("map");b("some");b("every");return a};return f});

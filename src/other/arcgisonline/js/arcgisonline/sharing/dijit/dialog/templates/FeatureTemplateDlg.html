@@ -1,0 +1,79 @@
+<div class="widgetContent">
+  <div dojotype="dijit.Dialog" id="template-dialog" title="${i18n.featureTemplateDlgTitle}" execute="">
+    <div style="padding:10px 10px;">
+      ${i18n.titleMsg}
+    </div>
+    <table cellspacing="10" width="100%">
+      <tbody>
+        <tr>
+          <td>
+            <label>
+              ${i18n.nameLabel}
+            </label>
+          </td>
+          <td width="270">
+            <div dojoAttachPoint="templateName" dojotype="dijit.form.TextBox" trim="true" required="true" style="width:270px; padding:2px;">
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">
+            <label>
+              ${i18n.descriptionLabel}
+            </label>
+          </td>
+          <td width="270">
+            <div dojoAttachPoint="templateDescription" dojotype="dijit.form.Textarea" style="width:100%; padding:2px;">
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">
+            <label style="line-height:32px;">
+              ${i18n.drawingToolLabel}
+            </label>
+          </td>
+          <td>
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <div style="background-color: #FFF; border: 1px solid #BBB; padding:4px;">
+                      <div dojoAttachPoint="templateDrawingTool">
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <a dojoAttachPoint="templateDrawingToolOptions" href="JavaScript:void(0);" style="text-decoration: none;">
+                      <div dojoAttachPoint="templateDrawingToolArrow" class="dijitReset dijitInline esriArrows" style="cursor: pointer;">
+                      </div>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="padding:10px;">
+      ${i18n.valuesMsg}
+    </div>
+    <!-- we need padding right for the vertical scrollbars -->
+    <div dojotype="dijit.layout.BorderContainer" design="headline" gutters="false" style="height:160px; margin:10px 5px 10px 20px; padding-right:18px; overflow-y:auto;overflow-x:auto;">
+      <div dojoType="dijit.layout.ContentPane" id="templateFieldsDiv" region="top">
+        <div id="attributeInspectorDiv">
+        </div>
+      </div>
+    </div>
+    <button dojoAttachEvent="onClick:onCancelClick" class="jevent cancel" style="float:right;" dojoType="dijit.form.Button">
+      ${i18n.cancel}
+    </button>
+    <button dojoAttachEvent="onClick:onDoneClick" class="jevent primary" style="float:right;" dojoType="dijit.form.Button">
+      ${i18n.done}
+    </button>
+    <br/>
+    &nbsp; 
+    <br/>
+  </div>
+</div>

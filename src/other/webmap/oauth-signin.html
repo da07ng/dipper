@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <iframe id="login-iframe" height="0" width="0" src="" frameborder="0"></iframe>
+    <script type="text/javascript">
+    var iframe;
+
+    window.onload = function() {
+        window.opener.postMessage('ready', document.location.origin.replace('https://', 'http://'));
+    };
+
+    function redirectToOpenAm() {
+        iframe.document.getElementById('idp_Name').click();
+        var subWeb = document.frames ? document.frames["login-iframe"].document : iframe.contentDocument;
+        if (subWeb) {
+            iframe.height = subWeb.body.scrollHeight;
+            iframe.width = subWeb.body.scrollWidth;
+        }
+    }
+
+    if (typeof window.addEventListener != 'undefined') {
+        window.addEventListener('message', messageHandler, false);
+    } else if (typeof window.attachEvent != 'undefined') {
+        window.attachEvent('onmessage', messageHandler);
+    }
+
+    function messageHandler(e) {
+        // if (e.source != window.parent) return;
+        var data = e.data;
+        if (data) {
+            iframe = document.getElementById('login-iframe');
+            if (iframe) {
+                iframe.src = data;
+                // 判断iframe内部是否加载完成
+                if (iframe.attachEvent) {
+                    iframe.attachEvent("onload", function() {
+                        // alert("Local iframe is now loaded.");
+                        redirectToOpenAm();
+                    });
+                } else {
+                    iframe.onload = function() {
+                        // alert("Local iframe is now loaded.");
+                        redirectToOpenAm();
+                    };
+                }
+
+            }
+        }
+    }
+    </script>
+</body>
+
+</html>

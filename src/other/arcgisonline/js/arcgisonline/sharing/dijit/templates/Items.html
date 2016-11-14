@@ -1,0 +1,95 @@
+<div dojoAttachPoint="_toolbarPane">
+  <div dojotype="dijit.Toolbar" class="esriToolbar" id='action-toolbar'>
+  <span>
+      <!--<button dojotype="dijit.form.Button" type="button" disabled="true" dojoAttachPoint="_addItemBtn"-->
+              <!--class="calcite transparent upload-item-button disable-on-loading" iconclass="esriUploadIcon"-->
+              <!--dojoAttachEvent="onClick: addItem">-->
+        <!--${i18n.addItem}-->
+      <!--</button>-->
+
+      <span dojoAttachPoint="_addContainer">
+          <button dojotype="dijit.form.DropDownButton" dojoAttachPoint="_addItemBtn" iconclass="esriUploadIcon"
+                  class="calcite transparent disable-on-loading upload-item-button">
+              <span>${i18n.addItem}</span>
+              <div class="createMenu" dojoType="dijit.Menu" dojoAttachPoint="_addMenu"></div>
+          </button>
+      </span>
+
+      <span  dojoAttachPoint="_createContainer">
+          <button  dojotype="dijit.form.DropDownButton" dojoAttachPoint="_createBtn" id="create-button"
+                iconclass="esriPublishIcon" class="calcite transparent disable-on-loading">
+          <span>${i18n.create}</span>
+          <div class="createMenu" dojoType="dijit.Menu" dojoAttachPoint="_createMenu"></div>
+          </button>
+      </span>
+
+      <!--<button dojotype="dijit.form.Button" type="button" disabled="true" dojoAttachPoint="_createNewMapBtn"-->
+              <!--class="calcite transparent create-new-map-button disable-on-loading" iconclass="esriWebMapIcon"-->
+              <!--dojoAttachEvent="onClick: createWebMap">-->
+        <!--${i18n.createMap}-->
+      <!--</button>-->
+      <!--<button dojotype="dijit.form.Button" type="button" dojoAttachPoint="_publishBtn" disabled="true"-->
+              <!--class="calcite transparent publish-item-button disable-on-loading" id="publish-button"-->
+              <!--iconclass="esriPublishIcon" style="display:none;" dojoAttachEvent="onClick: publishItem">-->
+        <!--<span>${i18n.publish}</span>-->
+      <!--</button>-->
+      <!--<button dojoType="dijit.form.Button" type="button" disabled="true" style="display:none;" class="calcite transparent disable-on-loading"-->
+              <!--dojoAttachPoint="_createAppBtn" iconClass="esriCreateAppIcon" dojoAttachEvent="onClick: createApp">-->
+        <!--<span>${i18n.createApp}</span>-->
+      <!--</button>-->
+    <!--<button dojoType="dijit.form.Button" type="button" disabled="true" style="display:none;" class="calcite transparent disable-on-loading"-->
+            <!--dojoAttachPoint="_createSceneBtn" iconClass="esriCreateSceneIcon" dojoAttachEvent="onClick: createScene">-->
+      <!--<span>${i18n.createScene}</span>-->
+    <!--</button>-->
+  </span>
+
+    <!-- just so that we get the line break if the button text is too long -->
+    <span dojoAttachPoint="_shareContainer">
+    <button dojotype="dijit.form.Button" type="button" disabled="true" dojoAttachPoint="_shareBtn"
+            class="calcite transparent share-button" iconclass="esriShareIcon" dojoAttachEvent="onClick: shareItem">
+      ${i18n.share}
+    </button>
+    </span>
+
+    <span dojoAttachPoint="_sharedOwnershipContainer" class="hide">
+    <button dojotype="dijit.form.DropDownButton" disabled="true" dojoAttachPoint="_shareOwnershipBtn"
+            class="calcite transparent share-button" iconclass="esriShareIcon">
+        <span>${i18n.share}</span>
+        <div dojoType="dijit.Menu" dojoAttachPoint="_shareOwnershipMenu"></div>
+    </button>
+    </span>
+
+    <!-- just so that we get the line break if the button text is too long -->
+    <span dojoAttachPoint="_deleteContainer">
+    <button dojotype="dijit.form.Button" type="button" disabled="true" dojoAttachPoint="_deleteBtn"
+            class="calcite transparent delete-item-button" iconclass="esriDeleteIcon"
+            dojoAttachEvent="onClick: deleteItem">
+      ${i18n.deleteLabel}
+    </button>
+    </span>
+
+    <!-- just so that we get the line break if the button text is too long -->
+    <span dojoAttachPoint="_moveContainer">
+    <button dojotype="dijit.form.DropDownButton" dojoAttachPoint="_moveBtn" id="move-button" disabled="true"
+            iconclass="esriMoveToIcon" class="calcite transparent">
+      <span>${i18n.moveTo}</span>
+
+      <div dojoType="dijit.Menu" dojoAttachPoint="_moveMenu"></div>
+    </button>
+    </span>
+
+
+    <!-- just so that we get the line break if the button text is too long -->
+    <span dojoAttachPoint="_changeOwnerContainer" style="display:none;">
+      <button dojoType="dijit.form.Button" type="button" disabled="true" class="calcite transparent"
+              dojoAttachPoint="_changeOwnerBtn" iconClass="esriReassignIcon" style="display:none;"
+              dojoAttachEvent="onClick: accountMoveTo">
+        <span>${i18n.changeOwner}</span>
+      </button>
+    </span>
+    <span dojoAttachPoint="_quotaDivHidden" style="line-height:16px;padding-top:6px;visibility:hidden;">&nbsp;</span>
+    <span dojoAttachPoint="_quotaDiv" class="quotaPosition" style="position:absolute;bottom:3px;">&nbsp;</span>
+  </div>
+
+</div>
+

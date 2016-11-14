@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>HeatMap</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <style>
+    
+      html, body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #FFF;
+        font-family: "Microsoft Yahei","微软雅黑", "Pinghei";
+      }
+      article{
+        display: block;
+      }
+      .radio, .checkbox {
+        min-height: 20px;
+        padding-left: 20px;
+      }
+      .center {
+        width: auto;
+        display: table;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+      #page_content {
+        background: #fff;
+        padding: 10px 30px;
+        clear: right;
+        overflow: hidden;
+        font-size: 14px;
+        border: 1px solid #ccc;
+      }
+      #page_content p {
+        margin: 10px 0;
+        overflow: hidden;
+      }
+      .md-body {
+        font-size: 12px;
+        line-height: 2;
+        color: #808080;
+        padding: 0 20px 20px;
+        margin: 0 auto;
+      }
+      .md-body > h1:first-child {
+        margin-top: -10px;
+      }
+      .md-body h1 {
+        line-height: 60px;
+        font-size: 20px;
+        color: #333;
+        text-indent: 30px;
+        font-weight: normal;
+        margin: 16px -30px 16px;
+        border-bottom: 1px solid #e5e5e5;
+      }
+      .md-body h2 {
+        color: #0075c2;
+        font-size: 18px;
+        font-weight: normal;
+        margin: 16px -30px;
+        clear: left;
+        border-top: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5;
+        line-height: 58px;
+        text-indent: 20px;
+        position: relative;
+        padding: 0 30px;
+        background: url(../images/h2.png) no-repeat 30px center;
+      }
+      .md-body h2::before, .md-body h2::after {
+        content: '';
+        width: 30px;
+        height: 1px;
+        bottom: 0px;
+        margin: 0 0 -1px -50px;
+        background: #fff;
+        position: absolute;
+        box-sizing: border-box;
+      }
+      .md-body h2::after {
+        right: 0;
+      }
+      .md-body h1 + h2 {
+        margin-top: -17px;
+      }
+      #map {
+        height: 420px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: url(../images/loading.gif) no-repeat center center;
+      }
+    </style>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+  </head>
+
+  <body>
+    <div class="container-fluid layoutContainer">
+      <article id="page_content" class="md-body">
+        <h1>数据展示服务</h1>
+        <h2>简介</h2>
+        <p>ArcGIS API for JavaScript （JavaScript API)提供多个着色对象用于产生专题图，可以使用标准着色方案，也可以自定义着色方案，heatmapRenderer是其中一种渲染方式，可以通过HeatmapRenderer更新FeatureLayer的热点渲染。</p>
+        <p>Feature Layer（要素图层）是在ArcGIS 10.0的时候增加的，是一种特殊的GraphicsLayer，它继承GraphicsLayer，用来对服务图层中的要素服务进行显示，同时还提供了支持表达式过滤，要素的关联查询以及在线编辑等功能。 在ArcGIS API for Javascript中提供了针对要素服务的图层（FeatureLayer），FeatureLayer有很多属性和方法，用于对要素服务实现查询，渲染，编辑等操作。通过设置FeatureLayer的setDefinitionExpression属性，还可以实现对数据的过滤。</p>
+        <p>本示例通过HeatmapRenderer对FeatureLayer进行渲染。</p>
+        <h2>示例</h2>
+        <div id="map"></div>
+        <h2>代码</h2>
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;
+    &lt;meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/&gt;
+    &lt;title&gt;Simple Map&lt;/title&gt;
+    &lt;link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css"&gt;
+    &lt;style&gt;
+      html, body, #map {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #FFF;
+        overflow: hidden;
+        font-family: "Trebuchet MS";
+      }
+    &lt;/style&gt;
+    &lt;script src="http://js.arcgis.com/3.13/"&gt;&lt;/script&gt;
+    &lt;script&gt;
+      var map;
+    require([
+        "esri/InfoTemplate",
+        "esri/layers/FeatureLayer",
+        "esri/map",
+        "esri/renderers/HeatmapRenderer",
+        "dojo/domReady!"
+      ],
+      function (InfoTemplate, FeatureLayer, Map, HeatmapRenderer){
+
+      
+        formatFatalities = function (value, key, data){
+          var result = value > 1 ? value + " people " : value + " person ";
+          return result;
+        }
+        formatGender = function (value, key, data){
+          var lookup = {1: "male", 2: "female", 8: "unknown", 9: "unknown"};
+          return lookup[value];
+        }
+        formatConditions = function (value, key, data){
+          var lookup = {0: "No Additional Atmospheric Conditions", 1: "Clear", 2: "Rain", 3: "Sleet, Hail (Freezing Rain or Drizzle)", 4: "Snow", 5: "Fog, Smog, Smoke", 6: "Severe Crosswinds", 7: "Blowing Sand, Soil, Dirt", 8: "Other", 10: "Cloudy", 11: "Blowing Snow", 98: "Not Reported", 99: "Unknown"};
+          if (value !== 1) {
+            return "Road conditions: " + lookup[value] + "<br>";
+          }
+        }
+        formatWorkZone = function (value, key, data){
+          var lookup = {0: "None", 1: "Construction", 2: "Maintenance", 3: "Utility", 4: "Work Zone, Type Unknown"};
+          if (value !== 0) {
+            return "Work Zone: " + lookup[value] + "<br>";
+          }
+        }
+        formatAlcoholTestResults = function (value, key, data){
+         
+         
+          var isMatch = value.match(/\b(?!9[5-9])[0-9][0-9]\b|\b[8-9]{1}\b/m);
+          if (isMatch) {
+            return "Driver was over the legal limit for alcohol";
+          }
+        }
+
+        map = new Map("map", {
+          basemap: "gray",
+          center: [-119.11, 36.65],
+          zoom: 7,
+          minZoom: 7,
+          maxZoom: 9
+        });
+        map.on("load", function() {
+          map.disableScrollWheelZoom();
+        });
+        var infoContentDesc = "<p>${numfatal:formatFatalities} died when a ${age} year old ${sex:formatGender} was involved in a fatal speeding accident.</p>";
+        var infoContentDetails = "${atmcond:formatConditions}${conszone:formatWorkZone}${alcres:formatAlcoholTestResults}";
+        var infoContent = infoContentDesc + infoContentDetails;
+        var infoTemplate = new InfoTemplate("Accident details", infoContent);
+
+        var serviceURL = "//services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/2012_CA_NHTSA/FeatureServer/0";
+        var heatmapFeatureLayerOptions = {
+          mode: FeatureLayer.MODE_SNAPSHOT,
+          infoTemplate: infoTemplate,
+          outFields: [
+            "atmcond",
+            "numfatal",
+            "conszone",
+            "age",
+            "alcres",
+            "sex"
+          ]
+        };
+        var heatmapFeatureLayer = new FeatureLayer(serviceURL, heatmapFeatureLayerOptions);
+        var heatmapRenderer = new HeatmapRenderer();
+        heatmapFeatureLayer.setRenderer(heatmapRenderer);
+        map.addLayer(heatmapFeatureLayer);
+      });
+    &lt;/script&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;div id="map"&gt;&lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+          </textarea>
+        </p>
+      </article>
+    </div>
+    <script src="http://js.arcgis.com/3.13/"></script>
+    <script>
+      var map;
+    require([
+        "esri/InfoTemplate",
+        "esri/layers/FeatureLayer",
+        "esri/map",
+        "esri/renderers/HeatmapRenderer",
+        "dojo/domReady!"
+      ],
+      function (InfoTemplate, FeatureLayer, Map, HeatmapRenderer){
+
+      
+        formatFatalities = function (value, key, data){
+          var result = value > 1 ? value + " people " : value + " person ";
+          return result;
+        }
+        formatGender = function (value, key, data){
+          var lookup = {1: "male", 2: "female", 8: "unknown", 9: "unknown"};
+          return lookup[value];
+        }
+        formatConditions = function (value, key, data){
+          var lookup = {0: "No Additional Atmospheric Conditions", 1: "Clear", 2: "Rain", 3: "Sleet, Hail (Freezing Rain or Drizzle)", 4: "Snow", 5: "Fog, Smog, Smoke", 6: "Severe Crosswinds", 7: "Blowing Sand, Soil, Dirt", 8: "Other", 10: "Cloudy", 11: "Blowing Snow", 98: "Not Reported", 99: "Unknown"};
+          if (value !== 1) {
+            return "Road conditions: " + lookup[value] + "<br>";
+          }
+        }
+        formatWorkZone = function (value, key, data){
+          var lookup = {0: "None", 1: "Construction", 2: "Maintenance", 3: "Utility", 4: "Work Zone, Type Unknown"};
+          if (value !== 0) {
+            return "Work Zone: " + lookup[value] + "<br>";
+          }
+        }
+        formatAlcoholTestResults = function (value, key, data){
+         
+
+          var isMatch = value.match(/\b(?!9[5-9])[0-9][0-9]\b|\b[8-9]{1}\b/m);
+          if (isMatch) {
+            return "Driver was over the legal limit for alcohol";
+          }
+        }
+
+        map = new Map("map", {
+          basemap: "gray",
+          center: [-119.11, 36.65],
+          zoom: 7,
+          minZoom: 7,
+          maxZoom: 9
+        });
+        map.on("load", function() {
+          map.disableScrollWheelZoom();
+        });
+        var infoContentDesc = "<p>${numfatal:formatFatalities} died when a ${age} year old ${sex:formatGender} was involved in a fatal speeding accident.</p>";
+        var infoContentDetails = "${atmcond:formatConditions}${conszone:formatWorkZone}${alcres:formatAlcoholTestResults}";
+        var infoContent = infoContentDesc + infoContentDetails;
+        var infoTemplate = new InfoTemplate("Accident details", infoContent);
+
+        var serviceURL = "//services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/2012_CA_NHTSA/FeatureServer/0";
+        var heatmapFeatureLayerOptions = {
+          mode: FeatureLayer.MODE_SNAPSHOT,
+          infoTemplate: infoTemplate,
+          outFields: [
+            "atmcond",
+            "numfatal",
+            "conszone",
+            "age",
+            "alcres",
+            "sex"
+          ]
+        };
+        var heatmapFeatureLayer = new FeatureLayer(serviceURL, heatmapFeatureLayerOptions);
+        var heatmapRenderer = new HeatmapRenderer();
+        heatmapFeatureLayer.setRenderer(heatmapRenderer);
+        map.addLayer(heatmapFeatureLayer);
+      });
+    </script>
+  </body>
+</html>

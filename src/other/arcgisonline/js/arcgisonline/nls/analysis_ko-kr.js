@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/3.15/esri/copyright.txt for details.
+//>>built
+define("arcgisonline/nls/analysis_ko-kr",{"dojox/form/nls/CheckedMultiSelect":{multiSelectLabelText:"{num} \ud56d\ubaa9\uc774 \uc120\ud0dd\ub418\uc5c8\uc2b5\ub2c8\ub2e4.",invalidMessage:"\ucd5c\uc18c\ud55c \ud55c \uac00\uc9c0 \ud56d\ubaa9\uc744 \uc120\ud0dd\ud574\uc57c \ud569\ub2c8\ub2e4.",_localized:{}},"dgrid/extensions/nls/pagination":{gotoLast:"\ub9c8\uc9c0\ub9c9 \ud398\uc774\uc9c0\ub85c \uc774\ub3d9",gotoFirst:"\uccab \ud398\uc774\uc9c0\ub85c \uc774\ub3d9",gotoPage:"\ud398\uc774\uc9c0\ub85c \uc774\ub3d9",
+gotoNext:"\ub2e4\uc74c \ud398\uc774\uc9c0\ub85c \uc774\ub3d9",_localized:{},gotoPrev:"\uc774\uc804 \ud398\uc774\uc9c0\ub85c \uc774\ub3d9",status:"${start} - ${end}(${total}\uac1c \uacb0\uacfc \uc911)",rowsPerPage:"Number of rows per page",jumpPage:"\ud398\uc774\uc9c0\ub85c \uac74\ub108\ub6f0\uae30"}});

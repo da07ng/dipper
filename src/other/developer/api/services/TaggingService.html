@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>pointRender</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="../css/serviceStyle.css">
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+</head>
+
+<body>
+<div class="container-fluid layoutContainer">
+    <article id="page_content" class="md-body">
+        <h1>专题展示服务</h1>
+
+        <h2>简介</h2>
+
+        <p>和普通的数据展示服务不同，ArcGIS提供的数据展示服务更加直观，用户可以根据自己的选择，例如通过渲染的方式，通过分级的方式，通过限制特征数据大小值的方式等等，以更加突出富有表现力的方式对数据进行展示。</p>
+
+        <p>本示例通过设定基于所述特征数据值的大小比例来创建符号。</p>
+
+        <h2>示例</h2>
+
+        <div id="map"></div>
+
+        <h2>API示例</h2>
+
+        <div class="biaoge">
+            <table>
+
+
+                <tr>
+                    <td>
+                        <div class="apilink1">
+                            <a href="../api.html?type=js&title=renderer_dot_density" target="view_window5"><img
+                                    src="images/imac-full.png" alt=""></a>
+                            <a href="../api.html?type=js&title=renderer_dot_density" target="view_window5"><h3
+                                    class="leader-1 trailer-half">JavaScript开发</h3></a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="apilink2">
+                            <a href=""><img src="images/apple-full.png" alt=""></a>
+                            <a href=""><h3 class="leader-1 trailer-half">IOS开发</h3></a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="apilink3">
+                            <a href=""><img src="images/android-full.png" alt=""></a>
+                            <a href=""><h3 class="leader-1 trailer-half">Android开发</h3></a>
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+
+
+</div>
+
+
+<script src="http://js.arcgis.com/3.13/"></script>
+<script>
+    var map;
+    require([
+        "esri/map", "esri/layers/FeatureLayer", "esri/InfoTemplate",
+        "dojo/domReady!"
+    ], function (Map, FeatureLayer, InfoTemplate) {
+
+        map = new Map("map", {
+            basemap: "streets",
+            center: [-82.441, 35.612],
+            zoom: 17
+        });
+        map.on("load", function () {
+            map.disableScrollWheelZoom();
+        });
+
+        var template = new InfoTemplate("${Cmn_Name}", "<i>${Sci_Name}</i><br><br>The ${Cmn_Name} is <b>${Height} feet</b> tall with a total ground area of <b>${GroundArea} square feet</b>.  This tree sequestors <b>${C_Seq} pounds</b> of carbon per year.");
+
+        var layer = new FeatureLayer("http://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/Warren_College_Trees/FeatureServer/0", {
+            mode: FeatureLayer.MODE_SNAPSHOT,
+            orderByFields: ["GroundArea DESC"],
+            outFields: ["Cmn_Name", "GroundArea", "Sci_Name", "Height", "C_Seq"],
+            infoTemplate: template
+        });
+
+        var sizeInfo = {
+            field: "GroundArea",
+            valueUnit: "feet",
+            valueRepresentation: "area"
+        };
+
+        layer.on("load", function () {
+            layer.renderer.setSizeInfo(sizeInfo);
+            layer.copyright = "Warren Wilson Center Campus Tree Study";
+        });
+
+        map.addLayers([layer]);
+    });
+</script>
+</body>
+</html>

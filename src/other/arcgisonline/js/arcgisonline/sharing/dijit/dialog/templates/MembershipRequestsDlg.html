@@ -1,0 +1,15 @@
+<div class="widgetContent" >
+  	<div dojotype="dijit.Dialog" id="membership-requests-dialog" title="${i18n.membershipRequests}" execute="">		
+		<div id="membership-requests-has_requests">
+			<label>${i18n.requestedMemberShip}</label>
+			<br /> <br /> 
+			<div dojoType="arcgisonline.sharing.dijit.GroupMembershipRequestsGrid" jsid="groupMembershipRequestsGrid" style="height: 150px;"></div>
+		</div>
+		<br /> 
+		<div style="float: right; padding-top:0px; padding-bottom:5px;">
+			<button id="button-membership-requests-close" class="jevent primary" dojoType="dijit.form.Button">${i18n.close}</button>
+		</div>
+	 	<br />&nbsp;<br /> 
+		<div id="membership-groupId" dojotype="dijit.form.TextBox" type="hidden" value=""></div>
+  	</div>
+</div>

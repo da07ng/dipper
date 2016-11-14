@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define({widgets:{popup:{NLS_moreInfo:"\ud55c_More info____\ube60",NLS_searching:"\ud55c_Searching____\ube60",NLS_prevFeature:"\ud55c_Previous feature______\ube60",NLS_nextFeature:"\ud55c_Next feature_____\ube60",NLS_close:"\ud55c_Close___\ube60",NLS_prevMedia:"\ud55c_Previous media_____\ube60",NLS_nextMedia:"\ud55c_Next media____\ube60",NLS_noInfo:"\ud55c_No information available________\ube60",NLS_noAttach:"\ud55c_No attachments found_______\ube60",NLS_maximize:"\ud55c_Maximize___\ube60",NLS_restore:"\ud55c_Restore___\ube60",
+NLS_zoomTo:"\ud55c_Zoom to___\ube60",NLS_pagingInfo:"\ud55c_(${index} of ${total})________\ube60",NLS_attach:"\ud55c_Attachments____\ube60"}}});

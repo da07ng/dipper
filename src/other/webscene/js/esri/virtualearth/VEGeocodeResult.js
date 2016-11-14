@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../core/JSONSupport","../geometry/Extent","../geometry/Point","./VEAddress"],function(d,e,f,g){return d.createSubclass({declaredClass:"esri.virtualearth.VEGeocodeResult",classMetadata:{reader:{exclude:["locationArray"],add:["location","calculationMethod"]}},address:null,_addressReader:function(a){return g.fromJSON(a)},bestView:null,_bestView:function(a){return e.fromJSON(a)},calculationMethod:null,_calculationMethodReader:function(a,c){var b=c.locationArray;if(b)return b[0].calculationMethod},
+confidence:null,displayName:null,entityType:null,location:null,_locationReader:function(a,c){var b=c.locationArray;if(b)return f.fromJSON(b[0])},matchCodes:null})});

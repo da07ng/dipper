@@ -1,0 +1,13 @@
+<div dojoAttachPoint="containerNode">
+  <div class="clearfix galleryBackground">
+    <div dojoAttachPoint="flowContainer" class="clearfix">
+    </div>
+    <div dojoAttachPoint="pageControls" class="esriFloatLeading" style="maxheight: 3em; width: 100%; clear: both;">
+      <p style="text-align: center;">
+        <span dojoType="dijit.form.Button" dojoAttachPoint="_prev" style="display:none;">${i18n.previous}</span>
+        <span dojoAttachPoint="_pages" dojoAttachEvent="onClick:goToPage" class="esriItemLinks esriPagingLinks"></span>
+        <span dojoType="dijit.form.Button" dojoAttachPoint="_next" style="display:none;">${i18n.next}</span>
+      </p>
+    </div>
+  </div>
+</div>

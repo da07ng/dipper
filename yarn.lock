@@ -1322,6 +1322,10 @@ gulp-nunjucks-render@^2.0.0:
     nunjucks "^2.0.0"
     through2 "~0.4.0"
 
+gulp-rename:
+  version "1.2.2"
+  resolved "http://registry.npm.taobao.org/gulp-rename/download/gulp-rename-1.2.2.tgz#3ad4428763f05e2764dec1c67d868db275687817"
+
 gulp-sass@^2.3.2:
   version "2.3.2"
   resolved "http://registry.npm.taobao.org/gulp-sass/download/gulp-sass-2.3.2.tgz#82b7ab90fe902cdc34c04f180d92f2c34902dd52"

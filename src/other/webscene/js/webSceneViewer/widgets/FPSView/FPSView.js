@@ -1,0 +1,4 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["esri/core/declare","dojo/dom-construct","dojo/on"],function(e,f,g){return e(null,{constructor:function(b){var a=f.create("div",{id:"fpsView",className:"fpsView",act:"false"},b.container);this._domNode=a;var d=function(c,b){a.textContent=c+" "+(b||"")};g(a,"click",function(){var c="false"===a.getAttribute("act")?!0:!1;a.setAttribute("act",c);c?(b._stage.addFPSListener(d),a.innerHTML="\x26#8734;"):(b._stage.removeFPSListener(d),a.innerHTML="")}.bind(this))}})});

@@ -1,0 +1,12 @@
+<div class="dijitTreeNode" role="presentation">
+    <div data-dojo-attach-point="rowNode" class="dijitTreeRow" role="presentation" style="cursor: pointer; padding-bottom: 0; padding-left: 10px;" data-dojo-attach-event="onclick: onExpandOrCollapse">
+        <span data-dojo-attach-point="expandoNode" class="dijitInline dijitTreeExpando" role="presentation" style="display: none;"></span>
+        <span data-dojo-attach-point="expandoNodeText" class="dijitExpandoText" role="presentation" style="display: none;"></span>
+        <span data-dojo-attach-point="contentNode" class="dijitTreeContent" role="presentation" style="padding: 10px 15px; display: block;">
+            <span role="presentation" class="dijitInline dijitIcon dijitTreeIcon" data-dojo-attach-point="iconNode" style="display: none;"></span>
+            <span data-dojo-attach-point="angle" class="fa fa-angle-right" style="color: #999; font-size: 14px;"></span>
+            <span data-dojo-attach-point="labelNode,focusNode" class="dijitTreeLabel" role="treeitem" tabindex="-1" aria-selected="false" id="${id}_label" style="font-size: 14px; color: #333;"></span>
+        </span>
+    </div>
+    <div data-dojo-attach-point="containerNode" class="dijitTreeNodeContainer" role="presentation" style="display: none;" aria-labelledby="${id}_label"></div>
+</div>

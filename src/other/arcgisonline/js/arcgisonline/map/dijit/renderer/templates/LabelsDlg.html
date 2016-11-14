@@ -1,0 +1,25 @@
+<div class="${baseClass}">
+  <div id="labels-dialog" data-dojo-type="dijit/Dialog" data-dojo-attach-point="_dialog" title="${i18n.labelLegend}">
+    <div data-dojo-attach-point="_labelsContent">
+    </div>
+    <div data-dojo-attach-point="_labelsPrecision" style="padding-top: 15px;">
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <span>${i18n.roundLabels}</span>
+            </td>
+            <td>
+              <select data-dojo-attach-point="_rendererLabelsPrecision" data-dojo-attach-event="onChange:_onChangeLabelsPrecision" data-dojo-type="dijit.form.Select" maxHeight="150" sortByLabel="false" style="margin: 0 10px;">
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="esriFloatTrailing" style="margin:10px 0;">
+      <button type="button" data-dojo-attach-point="_okBtn" data-dojo-type="dijit/form/Button" data-dojo-attach-event="onClick:onOk" class="calcite primary">${i18n.ok}</button>
+      <button type="button" data-dojo-attach-point="_cancelBtn" data-dojo-type="dijit/form/Button" data-dojo-attach-event="onClick:onCancel" class="calcite cancel">${i18n.cancel}</button>
+    </div>
+  </div>
+</div>

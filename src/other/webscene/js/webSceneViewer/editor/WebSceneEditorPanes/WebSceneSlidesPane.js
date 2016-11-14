@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define("esri/core/declare dojo/_base/lang dojo/dom-construct esri/core/watchUtils ./WebSceneEditorPaneBase webSceneViewer/widgets/SlideDeck/SlideDeckEditable dojo/i18n!../nls/editor".split(" "),function(d,e,a,f,g,h,b){return d(g,{constructor:function(){e.mixin(this,{id:"slideDeck",title:b.panes.slides,actionButton:{title:b.buttons.done,action:"_navBackBtnNodeClickHandler"}});this._updateContent()},destroy:function(){},_updateContent:function(){var c=a.create("div",{className:"webSceneSlidesPane"});
+if(null==this.editor.webScene)a.place("\x3cp\x3einitialization problem\x3c/p\x3e",c);else{a.create("h3",{className:"paneSectionTitle"},c);var b=a.create("div",{},c);f.whenOnce(this.editor.view,"ready",function(){new h({view:this.editor.view,webScene:this.editor.webScene,editor:this.editor},b)}.bind(this));this._addToContentNode(c)}}})});

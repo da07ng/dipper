@@ -1,0 +1,6 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../../core/declare","dojo/_base/array","../../core/Accessor","../../geometry/Polygon","../../geometry/support/jsonUtils"],function(e,h,f,k,l){return e(f,{declaredClass:"esri.tasks.BufferParameters",bufferSpatialReference:null,distances:null,geodesic:!1,geometries:null,outSpatialReference:null,unionResults:!1,unit:null,toJson:function(){try{throw Error("toJson is deprecated, use toJSON instead");}catch(a){console.warn(a.stack)}return this.toJSON()},toJSON:function(){var a={unit:this.unit,
+unionResults:this.unionResults,geodesic:this.geodesic},g=this.distances,c=this.outSpatialReference,d=this.bufferSpatialReference,e=h.map(this.geometries,function(a){a="extent"===a.type?k.fromExtent(a):a;return a.toJSON()},this),b=this.geometries;if(b&&0<b.length){var f="extent"===b[0].type?"esriGeometryPolygon":l.getJsonType(b[0]);a.geometries=JSON.stringify({geometryType:f,geometries:e});a.inSR=b[0].spatialReference.wkid?b[0].spatialReference.wkid:JSON.stringify(b[0].spatialReference.toJSON())}g&&
+(a.distances=g.join(","));c&&(a.outSR=c.wkid?c.wkid:JSON.stringify(c.toJSON()));d&&(a.bufferSR=d.wkid?d.wkid:JSON.stringify(d.toJSON()));return a}})});

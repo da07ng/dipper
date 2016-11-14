@@ -1,0 +1,35 @@
+<div data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="region: 'center', gutters:true, liveSplitters:false, isLayoutContainer: true" style="height: 100%; position: relative;">
+    <div data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="region: 'top'" style="height: 40px; z-index: 90;" data-dojo-attach-point="searchContainer">
+        <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="splitter: false, region: 'center'">
+            <input data-dojo-type="dijit/form/TextBox" style="width: auto; box-sizing: border-box; display: block; height: 30px; padding: 6px 0 6px 10px; border-radius: 6px 0 0 6px;" data-dojo-props="placeHolder: '请输入关键字', trim: true" data-dojo-attach-point="_filterInput" data-dojo-attach-event="onKeyUp: _filterInputKeyUp"></input>
+        </div>
+        <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="splitter: false, region: 'right'" style="width: 30px;">
+            <i class="fa fa-search" style="font-size: 20px; border-style: solid; border-color: #bbb; border-width: 1px 1px 1px 0; border-radius: 0 6px 6px 0; padding: 4px; cursor: pointer;" data-dojo-attach-event="onclick: _filterDataResource"></i>
+        </div>
+    </div>
+    <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'center',isLayoutContainer: true" style="height: 100%;" data-dojo-attach-point="contentPaneContainer">
+        <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'center'" style="margin-bottom: 40px;">
+            <div data-dojo-type="dijit/layout/StackContainer" data-dojo-attach-point="_rootStackContainer" data-dojo-props="region: 'center'" style="height: 100%;">
+                <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'center', isLayoutContainer: true" data-dojo-attach-point="_treeStack" id="data-resource-tree-stack" style="overflow-y: auto;">
+                    <div id="data-resource-cata" data-dojo-attach-point="_cataDiv"></div>
+                </div>
+                <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'center'" data-dojo-attach-point="_resultStack" id="data-resource-result-stack" style="overflow: scroll;">
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 12px; margin-left: 10px; margin-top: 6px; display: inline-block;" id="data-res-filter-title"></span>
+                        <a id="data-res-filter-more" style="margin-top: 6px; margin-right: 25px; color: #f5ab47; font-size: 14px;" class="esriFloatTrailing" href="JavaScript:void(0);">更多</a>
+                    </div>
+                    <div style="height: 400px; overflow-y: scroll;">
+                        <ul style="list-style-type: none; margin: 10px 0; border: none; padding: 0;" data-dojo-attach-point="_filterResultList">
+                        </ul>
+                    </div>
+                    <div style="height: 40px;">
+                        <center>
+                            <a style="height: 32px; border: none; background-color: #5daddd; color: #fff; cursor: pointer; padding: 0; display: inline-block; white-space: nowrap; text-shadow: 0 -1px 1px rgba(0,0,0,0.125); vertical-align: middle; font-size: 16px; border-radius: 4px; padding: .3em 1.25em .3em !important; line-height: 1.71429em; margin-top: 20px;" data-dojo-attach-event="onclick: _closeResultStack">返回</a>
+                            <!--    <a style="position: relative; top: 8px; left: 20px;" href="JavaScript: void(0);" data-dojo-attach-event="onclick: _closeResultStack">返回</a> -->
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

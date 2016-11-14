@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/3.15/esri/copyright.txt for details.
+//>>built
+define("arcgisonline/sharing/geow/Search",["dijit","dojo","dojox","dojo/require!arcgisonline/sharing/util"],function(h,b,k){b.provide("arcgisonline.sharing.geow.Search");b.require("arcgisonline.sharing.util");arcgisonline.sharing.geow.Search={util:arcgisonline.sharing.util,searchByItemId:function(a,c,d){this.util.getJson(esriGeowConfig.restBaseUrl+"search?q\x3did:"+a,b.hitch(this,c),b.hitch(this,d))},searchByItemType:function(a,c,d,e,f,g){a=esriGeowConfig.restBaseUrl+'search?q\x3dtype:"'+a+'"';0<
+c&&(a+="\x26num\x3d"+c);0<d&&(a+="\x26start\x3d"+d);e&&(a+="\x26sortField\x3d"+e);this.util.getJson(a,b.hitch(this,f),b.hitch(this,g))},searchByQuery:function(a,c,d,e,f,g){a=esriGeowConfig.restBaseUrl+"search?q\x3d"+a;0<c&&(a+="\x26num\x3d"+c);0<d&&(a+="\x26start\x3d"+d);e&&(a+="\x26sortField\x3d"+e);this.util.getJson(a,b.hitch(this,f),b.hitch(this,g))}}});

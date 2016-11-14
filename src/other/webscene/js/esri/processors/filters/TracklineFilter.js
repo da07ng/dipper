@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../../core/declare","esri/geometry/Polyline","esri/processors/filters/TrackFilter"],function(h,m,n){return h([n],{declaredClass:"esri.processors.TracklineFilter",normalizeCtorArgs:function(a){"string"===typeof a&&(a={trackIdField:a});return a},nextLineId:1,run:function(a){if(this.trackIdField&&a){var e,b,d,k,f;a=this._getTracksAffectedByChanges(a);for(var l=0,h=a.length;l<h;l++){var c,g;e=a[l];if(b=this._getItemsByParent(e,this.output)){c=0;for(g=b.length;c<g;c++)d=b.getItemAt(c),this.output.removeItem(d)}b=
+this._getItemsByParent(e,this.input);if(1<b.length){f={paths:[]};k=[];c=0;for(g=b.length;c<g;c++)d=b.getItemAt(c),0===c&&(f.spatialReference=d.geometry.spatialReference),k.push([d.geometry.x,d.geometry.y]);f.paths.push(k);b=m.fromJSON(f);this.output.addItem({id:this.nextLineId,parent:e,geometry:b});this.nextLineId+=1}}}}})});

@@ -1,0 +1,15 @@
+<div class="widgetContent">
+  <div dojotype="dijit.Dialog" id="feature-limit-reached-dialog" title="${i18n.title}" execute="">
+    <div style="margin-top:1em;" id="feature-limit-reached-content">
+		<span id="feature-limit-reached-message"></span>
+		<br/><br/>
+    <input id="feature-limit-reached-dontShowAgain" dojotype="dijit.form.CheckBox" checked="false" value="off" type="checkbox"/>
+    <label>${i18n.dontShowAgain}</label>    
+    <br/><br/>
+		<div class="esriFloatTrailing">
+      <button dojoAttachEvent="onClick:onOkClick" class="jevent primary" dojoType="dijit.form.Button">${i18n.ok}</button>
+		</div>
+    <div style="clear:both; float:none; height: 0;">
+    </div>
+  </div>
+</div>

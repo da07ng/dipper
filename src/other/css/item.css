@@ -1,0 +1,374 @@
+/*overview*/
+.item-content {
+    /*padding-top: 30px;*/
+    color: #666;
+}
+p {
+    font-size: 15px;
+    font-family: "Hiragino Sans GB","Microsoft Yahei","微软雅黑", "Pinghei",sans-serif;
+}
+
+.item-block {
+    padding: 20px 0;
+    border-bottom: solid #E0E0E0 1px;
+}
+
+.item-block:last-of-type {
+    border-bottom: none;
+}
+
+.item-overview {
+    padding: 30px 0;
+}
+
+.item-info {
+    padding-left: 20px;
+}
+
+.item-image {
+    padding: 0;
+}
+
+.item-thumbnail {
+    width: 100%;
+    margin-top: -8px;
+}
+
+h3, h4 {
+    margin-top: 0 !important;
+    color: #333333;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+h4 {
+    font-size: 18px;
+}
+
+h5 {
+    color: #333;
+    font-size: 15px;
+    margin-top: 0;
+}
+
+.item-credit span {
+    /*padding: 0 8px;*/
+    margin-right: 16px;
+}
+
+.item-type {
+    display: inline-block;
+    background-color: #E4EDF6;
+    padding: 4px 6px !important;
+}
+
+.item-author {
+    /*border-right: solid #666 1px;*/
+}
+
+.glyphicon {
+    color: #999;
+    cursor: pointer;
+}
+
+.glyphicon-star-gray {
+    color: #E6E7E9;
+}
+
+.login-btn {
+    margin-left: 8px;
+    font-size: 16px;
+    margin-right: 3px;
+}
+
+.btn-op {
+    padding: 6px 20px;
+}
+/*overview*/
+
+.item-attr-list:after {
+    content: ", ";
+}
+
+.item-attr-list:last-of-type:after {
+    content: "";
+}
+
+.item-layer a {
+    display: block;
+    word-wrap: break-word;/*支持IE，chrome，FF*/
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item-comments-num {
+    margin-left: 5px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #02AAF3;
+    padding: 1px 12px;
+    -moz-border-radius: 12px;      /* Gecko browsers */
+    -webkit-border-radius: 12px;   /* Webkit browsers */
+    border-radius: 12px;            /* W3C syntax */
+}
+
+.item-comment {
+    /*display: block !important;*/
+    overflow:hidden;
+    padding: 15px;
+    border-bottom: dashed #E0E0E0 1px;
+}
+
+/*.item-comment:last-of-type {
+    border-bottom: none;
+}*/
+
+.item-comment-image {
+    width: 50px;
+    float: left;
+    margin-right: 20px;
+}
+
+.item-comment-content {
+    /*float: right;*/
+}
+
+.item-comments-more{
+    margin-top: 5px;
+}
+
+.other-info {
+    text-align: center;
+    padding: 20px;
+}
+
+.item-ele {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.footer {
+    background-color: #F5F5F5;
+}
+/*media begin*/
+@media screen and (max-width: 992px) {
+    .item-image {
+        padding-left: 20px;
+    }
+
+    .item-thumbnail {
+        padding: 10px auto;
+    }
+
+    .item-operation {
+        margin-left: 20px;
+    }
+
+    .item-layer {
+        /*width: 100%;*/
+        overflow: hidden;
+    }
+}
+@media screen and (max-width: 650px) {
+    .item-image {
+        width: 100%;
+        text-align: center;
+    }
+
+    .item-thumbnail {
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    .item-operation {
+        margin-left: 20px;
+    }
+    
+    .item-info {
+        width: 100%;
+    }
+}
+/*media end*/
+
+
+li {list-style-type:none;}
+
+.anthor {
+    padding-top: 150px;
+    margin-top: -150px;
+}
+
+.item-block:not(:first-child) {
+    border-top: solid #E0E0E0 1px;
+}
+
+.item-detail {
+    display: block;
+    text-align: center;
+}
+.item-block {
+    /* text-align: center; */
+    position: relative;
+    padding: 30px 0;
+}
+.nav-circle {
+    position: absolute;
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    border-radius: 35px;
+    top: -18px;
+    background-color: #fff;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+    left: 50%;
+    margin-left: -18px;
+    text-align: center;
+}
+.list-content {
+    text-align: left;
+}
+.item-attr-info {
+    padding: 4px 15px;
+    font-size: 15px
+}
+.attr-key {
+    font-weight: 600;
+}
+.group {
+    padding: 4px;
+    text-align: center;
+}
+.group p {
+    margin-top: 5px;
+}
+.tabgallery .thumbnail {
+    border-radius: 0;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.tabgallery .thumbnail:hover {
+    /*border: 1px #FF5A69 solid;*/
+    box-shadow: 0 22px 43px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 0 22px 43px rgba(0, 0, 0, 0.15);
+    -webkit-transform: translateY(-4px);
+    transform: translateY(-4px);
+    -moz-transform: translateY(-4px);
+}
+
+.tabgallery .thumbnail img.img-responsive {
+    width: 100%;
+    -webkit-transition: opacity .2s;
+    -moz-transition: opacity .2s;
+    -o-transition: opacity .2s;
+    transition: opacity .2s;
+}
+
+.tabgallery .thumbnail:hover img.img-responsive {
+    -webkit-transition: opacity .2s;
+    -moz-transition: opacity .2s;
+    -o-transition: opacity .2s;
+    transition: opacity .2s;
+    opacity: .8;
+    filter: alpha(opacity=80);
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=(80));
+}
+
+.tabgallery .thumbnail .thumbnail-label {
+    font-size: 16px;
+    color: #555;
+    line-height: 26px;
+    width: 100%;
+    vertical-align: middle;
+}
+
+.tabgallery .thumbnail .thumbnail-label a {
+    color: #555;
+}
+
+.tabgallery .thumbnail:hover .thumbnail-label a {
+    color: #333;
+}
+
+.tabgallery .thumbnail .author-name {
+    color: #999;
+    font-size: 12px;
+    display: inline-block;
+    max-width: 53%;
+}
+
+.tabgallery .thumbnail .comment-count, .tabgallery .thumbnail .view-count {
+    color: #999;
+    font-size: 12px;
+    margin: 0 0 0 8px;
+}
+
+.tabgallery .thumbnail .author-info {
+    margin-bottom: 0;
+}
+
+.text-overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.btn {
+    border-radius: 0;
+}
+
+.no-info-p {
+    text-align: center;
+    font-size: 18px;
+    color: #999;
+}
+
+.list-content {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.layer-title {
+    font-size: 1.1em;
+    color: #000;
+}
+
+.layer-block {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.base-layer-con {
+    margin-bottom: 20px;
+}
+
+.item-attr-info {
+    padding: 4px 15px;
+}
+
+.attr-key {
+    font-weight: 600;
+}
+
+.comment-count {
+    color: #999;
+    font-size: 12px;
+    margin: 0 0 0 8px;
+}
+
+
+
+
+
+
+

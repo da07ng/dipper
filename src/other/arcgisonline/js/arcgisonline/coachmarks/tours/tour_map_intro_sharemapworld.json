@@ -1,0 +1,115 @@
+{
+	"tour_coachmarks":  {	
+		"tour_type": "guidedtour",
+		"tour_steps": [
+			{
+				"id": 1, 
+				"elementID": "webmap-share",
+				"top": "30",
+				"left": "-75", 
+				"right": "0",
+				"contentId": "prompt1",
+				"size": "default",
+				"arrowPosition": "bottom",
+				"arrowPositionRtL": "no_arrow",
+				"showClose": true,
+				"showNext": false,
+				"showPrevious": false,
+				"showNextID": 2,
+				"workflow": {
+					"elementID": "webmap-share",
+					"action": "click",
+					"delayListener": true,
+					"delayDojoWidget": true,
+					"dojoWidgetType": "onShowAfter_MapViewer_ShareMapDialog",
+					"dojoWidgetID": "share-map-dialog",
+					"dojoWidgetInstance": "arcgisonline.sharing.dijit.dialog.ShareMapDlg.prototype.statics.getInstance();"
+				},
+				"functionCall": null,
+				"helpDocURL": null,
+				"analyticsTracking": null
+			},
+			{
+				"id": 2,
+				"elementID": "share-map-dialog",
+				"top": "65",
+				"left": "-240", 
+				"right": "0",
+				"contentId": "prompt2",
+				"size": "default",
+				"arrowPosition": "left",
+				"arrowPositionRtL": "no_arrow",
+				"showClose": true,
+				"showNext": false,
+				"showPrevious": false,
+				"showNextID": 3,
+				"workflow": {
+					"elementID": "share-everyone-check_div",
+					"action": "click",
+					"delayListener": true,
+					"delayDojoWidget": true,
+					"dojoWidgetType": "onClick_MapViewer_ShareMapDialog_Everyone",
+					"dojoWidgetID": "share-everyone-check",
+					"dojoWidgetInstance": "dijit.byId('share-everyone-check');"
+				},
+				"functionCall": null,
+				"helpDocURL": null,
+				"analyticsTracking": null
+			},
+			{
+				"id": 3,
+				"elementID": "share-map-dialog",
+				"top": "275",
+				"left": "-240", 
+				"right": "0",
+				"contentId": "prompt3",
+				"size": "default",
+				"arrowPosition": "left",
+				"arrowPositionRtL": "no_arrow",
+				"showClose": true,
+				"showNext": false,
+				"showPrevious": false,
+				"showNextID": 4,
+				"workflow": {
+					"elementID": "share-map-url",
+					"action": "click",
+					"delayListener": true,
+					"delayDojoWidget": true,
+					"dojoWidgetType": "onClick_MapViewer_ShareMapDialog_Link",
+					"dojoWidgetID": "share-map-url",
+					"dojoWidgetInstance": "dijit.byId('share-map-url')"
+				},
+				"functionCall": null,
+				"helpDocURL": null,
+				"analyticsTracking": null
+			},
+			{
+				"id": 4,
+				"elementID": "rightDiv",
+				"top": "10",
+				"left": "10", 
+				"right": "0",
+				"contentId": "prompt4",
+				"size": "default",
+				"arrowPosition": "no_arrow",
+				"arrowPositionRtL": "no_arrow",
+				"showClose": true,
+				"showNext": false,
+				"showPrevious": false,
+				"showNextID": 0,
+				"workflow": {
+					"elementID": "coachmark-finish",
+					"action": "click",
+					"delayListener": true,
+					"delayDojoWidget": true,
+					"dojoWidgetType": "onClick_MapViewer_CoachMark_Finish",
+					"dojoWidgetID": "coachmark-finish",
+					"dojoWidgetInstance": null
+				},
+				"functionCall": "arcgisonline.coachmarks.tours.reloadViewerCoachMarksToursDlg();",
+				"helpDocURL": null,
+				"analyticsTracking": null
+			}
+		]
+	}
+}

@@ -1,0 +1,22 @@
+<div dojoAttachPoint="formNode" class="esriItemLinks">
+  <div class="selects">
+    <label for="selectCredit" class="">${i18n.showLbl}</label>
+    <span dojoAttachPoint='_selectCredit'></span>
+    <label class="customer" style="display:none;" for="selectCustomer" class="">&nbsp;${i18n.customerLbl}&nbsp;</label>
+    <span class="customer" dojoAttachPoint='_selectCustomer'></span>
+    <label style="text-transform: lowercase;" for="selectDateRange">&nbsp;${i18n.forLbl}&nbsp;</label>
+    <span dojoAttachPoint='_selectDate'></span>
+    <div class='customdate'>
+      <label for="customStart">${i18n.customStart}</label>
+      <span class="date" style="width:120px;" dojoType="dijit.form.DateTextBox" dojoAttachPoint='_customStart'></span>
+      <label for="customEnd">${i18n.customEnd}</label>
+      <span class="date" style="width:120px;" dojoType="dijit.form.DateTextBox" dojoAttachPoint='_customEnd'></span>
+      <button dojoAttachPoint='_customDate' class="primary" dojoType="dijit.form.Button" type="button">${i18n.showReport}</button>
+    </div>
+  </div>
+  <div class="lineChart">
+    <div dir="ltr" dojoAttachPoint="_lineChart"></div>
+    <div dojoAttachPoint="_lineLegend"></div>
+    <div dojoAttachPoint="_noData" class="nodata">${i18n.nodata}</div>
+  </div>
+</div>

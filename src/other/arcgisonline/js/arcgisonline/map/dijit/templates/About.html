@@ -1,0 +1,67 @@
+<div dojoType="dijit.layout.BorderContainer" region="top"> 
+
+    <div id="aboutContentHeader" class="panel panel_left" dojoType="dijit.layout.ContentPane" region="top">
+    	<div id="aboutContentButtons" class="viewerPanelButtons">
+        	<div class="esriFloatLeading">
+           	 	<button dojotype="dijit.form.ToggleButton" id="webmap-details-about" iconclass="esriDetailsAboutIcon" title="${i18n.about}"></button>
+            	<button dojotype="dijit.form.Button" type="button" id="webmap-details-about-content" iconclass="esriDetailsContentsIcon" title="${i18n.showContents}"></button>
+            	<button dojotype="dijit.form.Button" type="button" id="webmap-details-about-legend" iconclass="esriDetailsLegendIcon" title="${i18n.showLegend}"></button>
+            </div>
+	        <div class="esriFloatTrailing" style="display:inline; padding-top:5px;"><a href="JavaScript:void(0);" dojoAttachPoint="_closeBtn" title="${i18n.close}" class="panel panel_close panel_collapse"><img src="images/close.gif" border="0"/></A></div>
+        </div>
+        <div id="aboutContentTitle" class="panelSubHeader panel_title panel_subtitle"></div>
+        <!-- style="border-bottom: #333 thin solid;"-->
+    </div>
+
+    <div id="about-center" dojoType="dijit.layout.BorderContainer" region="center">
+
+        <div id="aboutContentPane" dojoType="dijit.layout.ContentPane" region="center" style="overflow-x:hidden;overflow-y:auto;">
+            <div id="about-main">
+            </div>
+            <div id="about-chooseTour" style="display:none;">
+              <div class="about-tour-header-msg"> 
+                <span>${i18n.coachMarksTours.message}</span>
+              </div>
+              <br/>
+              
+              <a class="about-tour startTour1" href="JavaScript:void(0)" dojoAttachEvent="onClick:startTour1">
+                <div class="icon-bg"><span class="tour-icon" id="map-icon"></span></div>
+                <div class="info-box">
+                  <div class="about-tour-title">${i18n.coachMarksTours.makeMap}</div>
+                  <div class="about-tour-start"><span class="arrow-left"></span>${i18n.coachMarksTours.start}<span class="arrow-right"></span></div>
+                </div>
+              </a>
+             
+              <a class="about-tour startTour2" href="JavaScript:void(0)" dojoAttachEvent="onClick:startTour2">
+                <div class="icon-bg"><span class="tour-icon" id="mark-icon"></span></div>
+                <div class="info-box">
+                  <div class="about-tour-title">${i18n.coachMarksTours.styleMap}</div>
+                  <div class="about-tour-start"><span class="arrow-left"></span>${i18n.coachMarksTours.start}<span class="arrow-right"></span></div>
+                </div>
+              </a>
+              
+              <a class="about-tour startTour4" href="JavaScript:void(0)" dojoAttachEvent="onClick:startTour4">
+                <div class="icon-bg"><span class="tour-icon" id="compass-icon"></span></div>
+                <div class="info-box">
+                  <div class="about-tour-title">${i18n.coachMarksTours.readyToUseLayers}</div>
+                  <div class="about-tour-start"><span class="arrow-left"></span>${i18n.coachMarksTours.start}<span class="arrow-right"></span></div>
+                </div>
+              </a>
+                 
+              <br/>
+            </div>
+        </div>
+
+        <div id="about-takeTour" dojoType="dijit.layout.ContentPane" region="bottom" style="display:none;padding-bottom:5px;">
+          <div align='center'>
+            <button dojotype="dijit.form.Button" type="button" class="calcite orange" dojoAttachEvent="onClick:showTakeATour"><span>${i18n.takeATourBtn}</span></button>
+          </div>        
+        </div>
+
+    </div>
+   
+    <div id="aboutContentFooter" dojoType="dijit.layout.ContentPane" region="bottom" style="height:40px; padding: 0 5px 0 5px; display:none;"> 
+      <div class="footer" id="aboutSiteFooter" dojotype="arcgisonline.sharing.dijit.SiteFooterMap" style="white-space:normal;"></div>
+    </div>
+
+</div>

@@ -1,0 +1,85 @@
+<div class="widgetContent">
+  <div id="save-webmap-dialog" dojotype="dijit.Dialog" dojoAttachPoint="_saveWebMapDialog" title="${i18n.saveMap}" dojoAttachEvent="onHide:onHide" execute="">
+    <div dojoAttachPoint="_errorDiv">
+    </div>
+    <form dojotype="dijit.form.Form" dojoAttachPoint="_saveWebMapForm" enctype="multipart/form-data" name="upload-webmap-form" action="" method="post" dojoAttachEvent="onSubmit:uploadItem"><!--,onKeyDown:onKeyDown-->
+      <div id="save-webmap-content">
+        <table cellspacing="6">
+        	<tbody>
+        		<tr>
+        			<td>
+                <label for="save-webmap-title">
+                  ${i18n.titleLabel}
+                </label>
+        			</td>
+              <td width="70%">
+			          <div dojoAttachPoint="_webMapTitleInput" id="save-webmap-title" dojotype="dijit.form.TextBox" dojoAttachEvent="onFocus:focusTitle" trim="true" maxlength="250" required="true" style="width:100%;padding:2px 0 2px 0;">
+			          </div>
+              </td>
+        		</tr>
+						<tr>
+							<td valign="top">
+		            <label for="save-webmap-tags">
+		              ${i18n.tagsLabel}
+		            </label>
+							</td>
+              <td>
+			          <div data-dojo-attach-point="_webMapTagsInput" id="save-webmap-tags" data-dojo-type="esri/dijit/Tags" data-dojo-props="minWidth:'377px', maxWidth:'377px'">
+			          </div>
+			          <!--<div dojoAttachPoint="_webMapTagsInput" id="save-webmap-tags" dojotype="dijit.form.TextBox" placeHolder="${defaultTextTags}" dojoAttachEvent="onFocus:focusTags" trim="true" required="true" style="width:100%;padding:2px 0 2px 0;">-->
+			          <!--</div>-->
+			          <!--<div class="esriItemLinks">-->
+			            <!--<a dojoAttachEvent="onclick:showUserTags" href="JavaScript:arcgisonline.sharing.util.doNothing();" style="line-height:20px;">${i18n.chooseTags}</a>-->
+			          <!--</div>-->
+              </td>
+						</tr>
+            <tr>
+              <td>
+		            <label for="save-webmap-summary">
+		              ${i18n.summaryLabel}
+		            </label>
+              </td>
+              <td>
+			          <div dojoAttachPoint="_webMapSummaryInput" id="save-webmap-summary" dojotype="dijit.form.TextBox" dojoAttachEvent="onFocus:focusSummary" trim="true" maxlength="250" required="true" style="width:100%;padding:2px 0 2px 0;">
+			          </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+		            <label for="save-webmap-folder">
+		              ${i18n.saveFolder}
+		            </label>
+              </td>
+              <td>
+		            <div class="arrowSpaceMedium" dojoAttachPoint="_webMapFolderSelect" id="save-webmap-folder" dojotype="arcgisonline.sharing.dijit.ComboBox" dojoAttachEvent="onChange:onChangeFolder" trim="true" style="width:100%;">
+                </div>
+              </td>
+            </tr>
+        	</tbody>
+				</table>
+        <div style="clear:both;">
+        </div>
+        <div class="esriFloatTrailing">
+          <button id="save-webmap-ok" dojotype="dijit.form.Button" class="primary" dojoAttachPoint="_saveMapBtn" dojoAttachEvent="onClick:uploadItem" type="submit">
+            ${i18n.saveMap}
+          </button>
+          <button dojotype="dijit.form.Button" class="cancel" dojoAttachPoint="_cancelBtn" dojoAttachEvent="onClick:_handleCancelBtn" type="button" tabindex="1">
+            ${i18n.cancel}
+          </button>
+        </div>
+        <br/>
+        <div dojoAttachPoint="_waitingDiv" style="clear:both;display:none;">
+          ${i18n.savingMapMsg}
+        </div>
+        <div dojoAttachPoint="_webMapDescriptionInput" dojotype="dijit.form.TextBox" type="hidden" value="">
+        </div>
+        <div dojoAttachPoint="_webMapAccessInput" dojotype="dijit.form.TextBox" type="hidden" value="">
+        </div>
+        <div dojoAttachPoint="_webMapLicenseInput" dojotype="dijit.form.TextBox" type="hidden" value="">
+        </div>
+        <div style="clear:both;">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

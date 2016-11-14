@@ -1,0 +1,4 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["./PortalListing","../core/declare","dojo/_base/lang"],function(c,d,b){return d([],{declaredClass:"esri.arcgis.PortalProvision",portal:null,constructor:function(a){b.mixin(this,a);this.created=this.created?new Date(this.created):null;this.startDate=this.startDate?new Date(this.startDate):null;this.endDate=this.endDate&&-1!==this.endDate?new Date(this.endDate):null;this.listing=a.listing?new c(b.mixin(a.listing,{portal:this.portal})):null}})});

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>maps</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="../css/apiNative.css">
+    <style>
+      #map {
+        height: 600px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: url(../images/iosmap.png) no-repeat center;
+        background-size: contain;
+      }
+    </style>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+  </head>
+
+  <body>
+    <div class="container-fluid layoutContainer">
+      <article id="page_content" class="md-body">
+        <h1>基础地图加载</h1>
+        <h2>简介</h2>
+        <p>图层（layer）在地图容器（MapView）中是按顺序加载的,默认第一个图层为基础底图，基础底图非常重要，它决定了地图应用需要的基本参数，包括投影类型、显示范围、比例尺等，而基础底图支持地图服务、要素服务等图层类型，这里列出了最为常用的几种基础底图数据： ArcGIS在线、谷歌地图和天地图的切片地图服务。</p>
+        <h2>示例</h2>
+        <div id="map"></div>
+        <div class="center">
+          <label class="radio"><input type="radio" name="optionsRadios" id="mapboxbutton" value="option1" checked>ArcGIS Server 底图加载</label>
+          <label class="radio"><input type="radio" name="optionsRadios" id="googlebutton" value="option1" >Google地图加载</label>
+          <label class="radio"><input type="radio" name="optionsRadios" id="boxbutton" value="option1" >天地图地图加载</label>
+
+          
+        </div>
+        <h2>代码</h2>
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+    //加载ArcGIS Server在线服务
+(void)viewDidLoad {
+   [super viewDidLoad];
+
+   NSURL* url = [NSURL URLWithString:@" http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer"];
+   AGSTiledMapServiceLayer *tiledLayer = [AGSTiledMapServiceLayer tiledMapServiceLayerWithURL:url];
+   [self.mapView addMapLayer:tiledLayer withName:@"Basemap Tiled Layer"];
+}
+
+
+    //加载谷歌在线服务
+(void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view, typically from a nib.
+    GooglemapLayer *googleMapLayer = [[GooglemapLayer alloc]initWithLayerType:GOOGLE_STREET error:nil];
+    [self.mapView addMapLayer:googleLayer withName:@"Google Tiled Layer"];
+    
+    [self.mapView zoomToScale:2311166.8 withCenterPoint:[AGSPoint pointWithX:120.0 y:39.0 spatialReference:[AGSSpatialReference spatialReferenceWithWKID:4326]] animated:YES];
+}
+
+
+          </textarea>
+        </p>
+      </article>
+    </div>
+    <script>
+      $('#googlebutton').on('click', function(e){
+            $("#map").css("background-image","url(../images/iosgooglemap.png)");
+        });
+       $('#mapboxbutton').on('click', function(e){
+            $("#map").css("background-image","url(../images/iosmap.png)");
+        });
+        $('#boxbutton').on('click', function(e){
+            $("#map").css("background-image","url(../images/iostianmap.png)");
+        });
+
+       
+    </script>
+  </body>
+</html>

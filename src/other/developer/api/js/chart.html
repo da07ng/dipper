@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Chart</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="css/js.css">
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+</head>
+
+<body>
+<div class="container-fluid layoutContainer">
+    <article id="page_content" class="md-body">
+        <h1>统计信息展示服务</h1>
+
+        <h2>简介</h2>
+
+        <p>利用统计功能实现信息查询，通过统计信息展示服务在图表中呈现统计值。</p>
+
+        <p>利用饼图、柱图、多柱图等丰富多样的统计图样式实现信息展示，并可结合GIS专题地图，做到地图、图表、表格多方位展现数据。</p>
+
+        <p>此示例演示如何在图表中显示查询结果。</p>
+
+        <p>
+            当运行该示例时，点击弹出窗口中的人口普查图表来查询年龄信息。本示例将查询结果按年龄"小于5", "5-17", "18-21", "22-29", "30-39", "40-49", "50-64",
+            "65以上"划分，并显示在弹出窗口的图表中。 Dojo提供几个图表的主题，本示例使用了“Julie”主题，但可以修改为使用另一个主题。</p>
+
+        <p>可以进入DojoX图表预览页面，查看更多图的主题。</p>
+
+        <h2>示例</h2>
+
+        <div id="map"></div>
+        <div id="infographics"></div>
+        <div id="progressbar"></div>
+        <h2>代码</h2>
+
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;
+    &lt;meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/&gt;
+    &lt;title&gt;Simple Map&lt;/title&gt;
+    &lt;link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css"&gt;
+    &lt;style&gt;
+      html, body, #map {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #FFF;
+        overflow: hidden;
+        font-family: "Trebuchet MS";
+      }
+    &lt;/style&gt;
+    &lt;script src="http://js.arcgis.com/3.13/"&gt;&lt;/script&gt;
+    &lt;script&gt;
+      dojo.require("esri.map");
+      dojo.require("esri.tasks.query");
+      dojo.require("esri.tasks.geometry");
+      dojo.require("dojox.charting.themes.Julie");
+
+      dojo.ready(pageReady);
+
+      var map, queryTask, query, template;
+
+      function pageReady() {
+        map = new esri.Map("map", {
+          basemap: "streets",
+          center: [-117.252, 34.067],
+          zoom: 12
+        });
+         map.on("load", function() {
+          map.disableScrollWheelZoom();
+        });
+
+        dojo.connect(map, "onLoad", mapReady);
+
+        var censusLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Demographics/ESRI_Census_USA/MapServer");
+        map.addLayer(censusLayer);
+      }
+
+      function mapReady(map) {
+        map.infoWindow.resize(270, 225);
+        dojo.connect(map, "onClick", executeQueryTask);
+
+        queryTask = new esri.tasks.QueryTask("http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Demographics/ESRI_Census_USA/MapServer/1");
+
+        query = new esri.tasks.Query();
+        query.returnGeometry = true;
+        query.outFields = ["*"];
+        query.outSpatialReference = map.spatialReference;
+        query.spatialRelationship = esri.tasks.Query.SPATIAL_REL_INTERSECTS;
+
+        
+        template = new esri.dijit.PopupTemplate({
+          title: "Age Distribution in {FIPS}",
+          mediaInfos: [
+            {
+              type: "piechart",
+              value: { 
+                fields: [ 
+                  "AGE_UNDER5", "AGE_5_17", "AGE_18_21", "AGE_22_29", 
+                  "AGE_30_39", "AGE_40_49", "AGE_50_64", "AGE_65_UP" 
+                ],
+                theme: "Julie"
+              }
+            }
+          ]
+        });
+         
+       
+        dojo.connect(dijit.byId('map'), 'resize', map,map.resize);
+      }
+
+      function executeQueryTask(evt) {
+        query.geometry = evt.mapPoint;
+       
+        var deferred = queryTask.execute(query);
+
+        deferred.addCallback(function(response) {
+         
+          return dojo.map(response.features, function(feature) {
+            feature.setInfoTemplate(template);
+            return feature;
+          });
+        });
+ 
+        map.infoWindow.setFeatures([ deferred ]);
+        map.infoWindow.show(evt.mapPoint);
+      }
+    &lt;/script&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;div id="map"&gt;&lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+          </textarea>
+        </p>
+    </article>
+</div>
+<script>var dojoConfig = {parseOnLoad: true};</script>
+<script src="http://js.arcgis.com/3.13/"></script>
+
+<script>
+    dojo.require("esri.map");
+    dojo.require("esri.tasks.query");
+    dojo.require("esri.tasks.geometry");
+    dojo.require("dojox.charting.themes.Julie");
+
+    dojo.ready(pageReady);
+
+    var map, queryTask, query, template;
+
+    function pageReady() {
+        map = new esri.Map("map", {
+            basemap: "streets",
+            center: [-117.252, 34.067],
+            zoom: 12
+        });
+        map.on("load", function () {
+            map.disableScrollWheelZoom();
+        });
+
+        dojo.connect(map, "onLoad", mapReady);
+
+        var censusLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Demographics/ESRI_Census_USA/MapServer");
+        map.addLayer(censusLayer);
+    }
+
+    function mapReady(map) {
+        map.infoWindow.resize(270, 225);
+        dojo.connect(map, "onClick", executeQueryTask);
+
+        queryTask = new esri.tasks.QueryTask("http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Demographics/ESRI_Census_USA/MapServer/1");
+
+        query = new esri.tasks.Query();
+        query.returnGeometry = true;
+        query.outFields = ["*"];
+        query.outSpatialReference = map.spatialReference;
+        query.spatialRelationship = esri.tasks.Query.SPATIAL_REL_INTERSECTS;
+
+
+        template = new esri.dijit.PopupTemplate({
+            title: "Age Distribution in {FIPS}",
+            mediaInfos: [
+                {
+                    type: "piechart",
+                    value: {
+                        fields: [
+                            "AGE_UNDER5", "AGE_5_17", "AGE_18_21", "AGE_22_29",
+                            "AGE_30_39", "AGE_40_49", "AGE_50_64", "AGE_65_UP"
+                        ],
+                        theme: "Julie"
+                    }
+                }
+            ]
+        });
+
+
+        dojo.connect(dijit.byId('map'), 'resize', map, map.resize);
+    }
+
+    function executeQueryTask(evt) {
+        query.geometry = evt.mapPoint;
+
+        var deferred = queryTask.execute(query);
+
+        deferred.addCallback(function (response) {
+
+            return dojo.map(response.features, function (feature) {
+                feature.setInfoTemplate(template);
+                return feature;
+            });
+        });
+
+        map.infoWindow.setFeatures([deferred]);
+        map.infoWindow.show(evt.mapPoint);
+    }
+</script>
+</body>
+</html>

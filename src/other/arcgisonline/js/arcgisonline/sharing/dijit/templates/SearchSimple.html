@@ -1,0 +1,18 @@
+<div dojoAttachPoint="containerNode" class="search leader-half" id="search-form-box" style="position: relative;">
+  <form id="search-form" autocomplete="off" class="dropdown">
+
+    <input name="q" type="search" dojoType="dijit.form.TextBox" trim="true" id="search-box" dojoAttachPoint="searchText" dojoAttachEvent="onKeyPress:_onSearchKeyPress,onFocus:_onSearchTextFocus,onBlur:_onSearchBoxBlur" alt="${i18n.searchFor}" title="${i18n.searchFor}"/>
+    <div dojoAttachPoint="_domainsContainer" class="js-domains hide dropdown-menu dropdown-right">
+      <a dojoAttachEvent="onclick:_onFilterClick" class="dropdown-link is-active" filter="">${i18n.searchAllContent}</a>
+      <a dojoAttachEvent="onclick:_onFilterClick" class="dropdown-link" filter="maps">${i18n.searchForMaps}</a>
+      <a dojoAttachEvent="onclick:_onFilterClick" class="dropdown-link" filter="layers">${i18n.searchForLayers}</a>
+      <a dojoAttachEvent="onclick:_onFilterClick" class="dropdown-link" filter="applications">${i18n.searchForApps}</a>
+      <a dojoAttachEvent="onclick:_onFilterClick" class="dropdown-link" filter="scenes">${i18n.searchForScenes}</a>
+      <a dojoAttachEvent="onclick:_onFilterClick" class="dropdown-link" filter="tools">${i18n.searchForTools}</a>
+      <a dojoAttachEvent="onclick:_onFilterClick" class="dropdown-link" filter="files">${i18n.searchForFiles}</a>
+      <a dojoAttachPoint="_groupSearchAnchor" dojoAttachEvent="onclick:_onFilterClick" class="dropdown-link" filter="group" style="display:none;">${i18n.searchForThisGroup}</a>
+      <a dojoAttachEvent="onclick:_onFilterClick" class="dropdown-link" filter="groups">${i18n.searchForGroups}</a>
+    </div>
+
+  </form>
+</div>

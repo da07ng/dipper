@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/3.15/esri/copyright.txt for details.
+//>>built
+define("arcgisonline/nls/analysis_cs",{"dojox/form/nls/CheckedMultiSelect":{multiSelectLabelText:"Po\u010det vybran\u00fdch polo\u017eek: {num}",invalidMessage:"Je t\u0159eba vybrat alespo\u0148 jednu polo\u017eku.",_localized:{}},"dgrid/extensions/nls/pagination":{gotoLast:"P\u0159ej\u00edt na posledn\u00ed str\u00e1nku",gotoFirst:"P\u0159ej\u00edt na prvn\u00ed str\u00e1nku",gotoPage:"P\u0159ej\u00edt na str\u00e1nku",gotoNext:"P\u0159ej\u00edt na dal\u0161\u00ed str\u00e1nku",_localized:{},gotoPrev:"P\u0159ej\u00edt na p\u0159edchoz\u00ed str\u00e1nku",
+status:"${start} \u2013 ${end} z ${total} v\u00fdsledk\u016f",rowsPerPage:"Number of rows per page",jumpPage:"P\u0159esko\u010dit na str\u00e1nku"}});

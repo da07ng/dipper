@@ -1,0 +1,397 @@
+ @header-height: 61px;
+ @color-transition-length: 0.15s;
+
+ html, body {
+   width: 100%;
+   height: 100%;
+   margin: 0;
+   padding: 0;
+   font-family: Verdana, Arial, Helvetica, sans-serif;
+ }
+ div:focus{
+  outline: 0;
+ }
+ #webscene-map {
+   height:100%;
+   position:relative;
+ }
+ #webscene-page {
+   height: 100%;
+   width: 100%;
+   position: relative;
+ }
+#webscene-header{
+  height: @header-height;
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 200;
+}
+
+ .esriRtl #webscene-main .fullScreenContainer{
+   right: auto;
+   left: 11px;
+ }
+
+#webscene-main{
+  top: @header-height;
+  bottom: 0px;
+  width: 100%;
+  position: absolute;
+
+  .fullScreenContainer{
+    position : absolute;
+    bottom: 10px;
+    right: 8px;
+    z-index:1;
+    background-color: rgba(0,0,0,0.5);
+    padding: 0 2px;
+    border: 1px solid black;
+
+    &.exit{
+      .fullscreen {
+        background-position: 0 -30px ;
+      }
+    }
+
+    .fullscreen{
+      width: 26px;
+      height: 30px;
+      background-image: url("../images/fullscreen.png");
+      background-size: 26px 60px;
+      cursor: pointer;
+      opacity: 0.9;
+      &:hover{
+        opacity:1;
+      }
+    }
+  }
+
+  .esriLogoContainer{
+    position:absolute;
+    bottom: -4px;
+    transition: bottom 0.15s;
+  }
+
+  .attrContainer{
+    position:absolute;
+    bottom: 2px;
+    left:66px;
+    transition: bottom 0.15s;
+    max-width: 200px !important;
+    &.esri-attribution{
+      font-size: 11px;
+      color:white;
+      line-height: 12px;
+      background: rgba(50,50,50,0.5);
+    }
+  }
+
+}
+
+ .esriRtl {
+   #viewerContainer {
+     left: 10px;
+     right: auto;
+   }
+   .MessageList {
+     right:auto;
+     left:0px;
+   }
+   #webscene-main{
+     .attrContainer {
+       right: 66px;
+       left: auto;
+     }
+   }
+ }
+
+ #viewerContainer {
+   position: absolute;
+   top: 10px;
+   right: 10px;
+   z-index:102;
+   pointer-events: none;
+   height:100%;
+ }
+
+ #slideDeckContainer {
+   position: absolute;
+   bottom: 0px;
+   width:100%;
+   text-align:center;
+   z-index:1;
+ }
+
+ .esri .hide {
+   display: none !important;
+ }
+
+
+ .simpleGeocoder {
+   margin: 8px 20px 0 10px;
+   padding: 5px;
+   .esriGeocoderContainer {
+     width:100%;
+   }
+ }
+
+
+ /* esri overrides */
+ html{
+   overflow-y: hidden;
+ }
+ body{
+   min-width: initial;
+   overflow-y: hidden;
+ }
+ /* esri overrides */
+ .dijitDialogTitle {
+   margin-right: 15px !important;
+ }
+
+ .colourButton{
+   height: 35px;
+   margin: 5px 0;
+   -moz-user-select: none;
+   border: medium none;
+   border-radius: 3px;
+   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.125);
+   box-sizing: border-box;
+   color: white;
+   cursor: pointer;
+   display: inline-block;
+   letter-spacing: 1px;
+   line-height: 1.71429em;
+   padding: 0.3em 1.25em;
+   position: relative;
+   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.125);
+   text-transform: uppercase;
+   transition: all 0.05s linear 0s;
+ }
+ .lt .colourButton, .vi .colourButton {
+   font-family: Verdana, Arial, Helvetica, sans-serif !important;
+ }
+
+ button.blueButton {
+   .colourButton;
+   font-family: "Avenir LT W01 65 Medium",Arial,Helvetica,sans-serif;
+   background: none repeat scroll 0 0 #5daddd;
+   transition: background @color-transition-length ease-out;
+ }
+
+ button.blueButton:hover {
+   transition: background @color-transition-length ease-out;
+   background: none repeat scroll 0 0 #4997d2;
+ }
+ button.blueButton:active {
+   background: none repeat scroll 0 0 #4997d2;
+   transition: background @color-transition-length ease-out;
+ }
+
+ button.orangeButton {
+   .colourButton;
+   font-family: "Avenir LT W01 65 Medium",Arial,Helvetica,sans-serif;
+   background: none repeat scroll 0 0 #e98d32;
+   transition: background @color-transition-length ease-out;
+ }
+
+ button.orangeButton:hover {
+   background: none repeat scroll 0 0 #e16b17;
+   transition: background @color-transition-length ease-out;
+ }
+ button.orangeButton:active {
+   background: none repeat scroll 0 0 #e16b17;
+   transition: background @color-transition-length ease-out;
+ }
+
+ button.greenButton {
+   .colourButton;
+   font-family: "Avenir LT W01 65 Medium",Arial,Helvetica,sans-serif;
+   background: none repeat scroll 0 0 #6aa23f;
+   transition: background @color-transition-length ease-out;
+ }
+
+ button.greenButton:hover {
+   background: none repeat scroll 0 0 #4b8d2c;
+   transition: background @color-transition-length ease-out;
+ }
+ button.greenButton:active {
+   background: none repeat scroll 0 0 #4b8d2c;
+   transition: background @color-transition-length ease-out;
+ }
+
+ button.greyButton {
+   .colourButton;
+   font-family: "Avenir LT W01 65 Medium",Arial,Helvetica,sans-serif;
+   background: none repeat scroll 0 0 #ededed;
+   transition: background @color-transition-length ease-out;
+   color: gray;
+ }
+
+ button.greyButton:hover {
+   background: none repeat scroll 0 0 #cccccc;
+   transition: background @color-transition-length ease-out;
+ }
+ button.greyButton:active {
+   background: none repeat scroll 0 0 #cccccc;
+   transition: background @color-transition-length ease-out;
+ }
+
+ .lt, .vi {
+   button.blueButton {
+     font-family: Verdana, Arial, Helvetica, sans-serif !important;
+   }
+
+   button.orangeButton {
+     font-family: Verdana, Arial, Helvetica, sans-serif !important;
+   }
+
+   button.greenButton {
+     font-family: Verdana, Arial, Helvetica, sans-serif !important;
+   }
+
+   button.greyButton {
+     font-family: Verdana, Arial, Helvetica, sans-serif !important;
+   }
+ }
+
+
+ .loading{
+   background-image: url("../images/loading-blue.gif");
+   background-position: center center;
+   background-repeat: no-repeat;
+   clear: none;
+   height: 32px;
+   margin-left: auto;
+   margin-right: auto;
+   width: 32px;
+ }
+
+ .MessageList {
+   position: absolute;
+   bottom: 50px;
+   right: 0px;
+ }
+
+ .slideDeck:not(:empty)+.MessageList{
+   bottom: 60px;
+ }
+
+ #webscene-map #shadowContainer{
+   box-shadow: inset 8px 6px 16px -10px rgba(100, 100, 100, 0.5);
+   -webkit-box-shadow: inset 8px 6px 16px -10px rgba(100, 100, 100, 0.5);
+   -moz-box-shadow: inset 8px 6px 16px -10px rgba(100, 100, 100, 0.5);
+   z-index: 100;
+   width: 100%;
+   height: 100%;
+   top: 0px;
+   position: absolute;
+   pointer-events: none;
+
+ }
+
+ #webscene-main .slideDeck:not(:empty)~.fullScreenContainer{
+   background-color: transparent;
+   border: 1px solid rgba(0,0,0,0);
+ }
+
+ #webscene-main .slideDeck:not(:empty)~.esriLogoContainer{
+   bottom: 52px;
+   transition: bottom 0.15s;
+ }
+
+ #webscene-main .slideDeck:not(:empty)~.attrContainer{
+   bottom: 57px;
+   transition: bottom 0.15s;
+ }
+
+ .minUI{
+   top:0px !important;
+   #editorContainer{
+     display: none;
+   }
+   #viewerContainer{
+     display:none;
+   }
+ }
+
+ .esri-popup {
+   .zoom-to {
+     display: none;
+   }
+   .title-button.maximize{
+     display: none;
+   }
+ }
+
+
+ .PopupLayerImage{
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: cover;
+   display: block;
+   width: 83px;
+   height: 56px;
+   margin-right:5px;
+ }
+
+
+
+ .navFadeIn{
+   -webkit-transition: opacity 0.2s;
+   -moz-transition: opacity 0.2s;
+   -o-transition: opacity 0.2s;
+   -ms-transition: opacity 0.2s;
+   transition: opacity 0.2s;
+ }
+ .navFadeOut{
+   opacity:0 !important;
+   -webkit-transition: opacity 0.2s ease-in;
+   -moz-transition:  opacity 0.2s ease-in;
+   -o-transition:  opacity 0.2s ease-in;
+   -ms-transition:  opacity 0.2s ease-in;
+   transition:  opacity 0.2s ease-in;
+ }
+
+ .esri-view .esri-view-root .esri-view-surface canvas {
+   outline-width: 0px;
+ }
+
+
+ input::-ms-clear {
+   display: none;
+ }
+
+
+ .dijitNumberTextBox.dijitRtl {
+   text-align: right;
+ }
+
+ .dijitNumberTextBox input{
+   border: 0;
+ }
+
+ .esriRtl{
+   .soria .dijitInputContainer input{
+     margin:0;
+   }
+ }
+
+ .esri .dijitDialogUnderlayWrapper {
+   .dijitDialogUnderlay{
+     transition: opacity 0.4s;
+     opacity: 0;
+     background-color: rgb(0,0,0);
+     &.on{
+       transition: opacity 0.4s;
+       opacity: 0.6;
+       background-color: rgb(0,0,0);
+     }
+
+   }
+ }
+
+ .dijitPlaceHolder {
+   pointer-events: none;
+ }

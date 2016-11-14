@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Statistics</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="../css/apiNative.css">
+    <style>
+        #map {
+            height: 700px;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background: url(../images/androidStatis.png) no-repeat center center;
+            background-size: contain;
+        }
+    </style>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+</head>
+
+<body>
+<div class="container-fluid layoutContainer">
+    <article id="page_content" class="md-body">
+        <h1>空间统计服务</h1>
+
+        <h2>简介</h2>
+
+        <p>基于空间查询的结果，进行信息的统计分析。</p>
+
+        <p>可以以和，最小值，平均值，标准差，查询记录等多种方式进行信息统计。在使用统计功能时，需要确保查询的结果中有一个数字型字段。</p>
+
+        <h2>示例</h2>
+
+        <div id="map"></div>
+        <h2>代码</h2>
+
+        <p>
+          <textarea readonly="" name="code" class="html" style="display: none; ">
+public class CustomStatisicActivity extends Activity {
+
+    private GraphicsLayer graphicsLayer = new GraphicsLayer();
+    private ArcGISFeatureLayer featureLayer;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        MapOptions mapOptions = new MapOptions(MapOptions.MapType.STREETS, 38.382,-98.215,7);
+        MapView mapView = new MapView(this,mapOptions);
+
+        setContentView(mapView);
+
+        ArcGISFeatureLayer.Options options = new ArcGISFeatureLayer.Options();
+        options.mode =  ArcGISFeatureLayer.MODE.SNAPSHOT;
+
+        featureLayer = new ArcGISFeatureLayer(getString(R.string.custom_statisic),options);
+
+        featureLayer.setDefinitionExpression("STATE_NAME = 'Kansas'");
+
+        onClassRender();
+
+        mapView.addLayer(featureLayer);
+
+    }
+
+    private void onClassRender(){
+
+        ClassBreaksRenderer classBreaksRenderer  = new ClassBreaksRenderer();
+        classBreaksRenderer.setDefaultSymbol(new SimpleFillSymbol(Color.LTGRAY));
+        classBreaksRenderer.setField("POP07_SQMI");
+
+        ClassBreak classBreak1 = new ClassBreak();
+        classBreak1.setClassMinValue(0);
+        classBreak1.setClassMaxValue(25);
+        classBreak1.setSymbol(new SimpleFillSymbol(Color.GREEN));
+
+        ClassBreak classBreak2 = new ClassBreak();
+        classBreak2.setClassMinValue(25);
+        classBreak2.setClassMaxValue(75);
+        classBreak2.setSymbol(new SimpleFillSymbol(Color.RED));
+
+        ClassBreak classBreak3 = new ClassBreak();
+        classBreak3.setClassMinValue(25);
+        classBreak3.setClassMaxValue(75);
+        classBreak3.setSymbol(new SimpleFillSymbol(Color.BLUE));
+
+        ClassBreak classBreak4 = new ClassBreak();
+        classBreak4.setClassMinValue(75);
+        classBreak4.setClassMaxValue(175);
+        classBreak4.setSymbol(new SimpleFillSymbol(Color.DKGRAY));
+
+        ClassBreak classBreak5 = new ClassBreak();
+        classBreak5.setClassMinValue(175);
+        classBreak5.setClassMaxValue(400);
+        classBreak5.setSymbol(new SimpleFillSymbol(Color.MAGENTA));
+
+        classBreaksRenderer.addClassBreak(classBreak1);
+        classBreaksRenderer.addClassBreak(classBreak2);
+        classBreaksRenderer.addClassBreak(classBreak3);
+        classBreaksRenderer.addClassBreak(classBreak4);
+        classBreaksRenderer.addClassBreak(classBreak5);
+
+        featureLayer.setRenderer(classBreaksRenderer);
+
+
+    }
+}
+
+          </textarea>
+        </p>
+    </article>
+</div>
+</body>
+</html>

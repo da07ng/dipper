@@ -1,0 +1,114 @@
+<div class="widgetContent" >
+  <div class="${baseClass}" data-dojo-type="dijit.Dialog" id="set-identity-provider-dialog" title="${i18n.setIdentityProviderTitle}" execute="">
+    <form data-dojo-attach-point="_form" enctype="multipart/form-data" method="post" onsubmit="return false;">
+      <input data-dojo-attach-point="_signUpMode" name="signUpMode" type="hidden" value=""/>
+      <input data-dojo-attach-point="_bindingType" name="bindingType" type="hidden" value=""/>
+      <input data-dojo-attach-point="_roleSelection" name="roleId" type="hidden" value=""/>
+      <input data-dojo-attach-point="_supportEncryption" name="encryptionSupported" type="hidden" value=""/>
+      <input data-dojo-attach-point="_supportSignedRequest" name="supportSignedRequest" type="hidden" value=""/>
+      <input data-dojo-attach-point="_clearEmptyFields" name="clearEmptyFields" type="hidden" value="false"/>
+
+      <div data-dojo-attach-point="_description"></div>
+      <br>
+      <span>${i18n.nameLabel}</span><br>
+      <div name="name" data-dojo-attach-point="_nameInput" type="text" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true"></div>
+      <br><br>
+
+      <span>${i18n.signUpLabel}</span><br>
+      <div data-dojo-attach-point="_signUpModeOptions">
+        <div id="automatic-option" name="signUpModeOption" type="radio"
+             data-dojo-attach-point="_automaticOption" data-dojo-type="dijit.form.RadioButton"
+             data-dojo-attach-event="onClick:onAutomaticClicked"></div> <label data-dojo-attach-point="_automaticOptionLabel" for="automatic-option">${i18n.automaticOption}</label>
+        <div id="invite-option" name="signUpModeOption" type="radio"
+             data-dojo-attach-point="_inviteOption" data-dojo-type="dijit.form.RadioButton"
+             data-dojo-attach-event="onClick:onInvitationClicked" data-dojo-props="checked:true"></div> <label data-dojo-attach-point="_inviteOptionLabel" for="invite-option">${i18n.onInviteOption}</label>
+      </div>
+      <br>
+      <div data-dojo-attach-point="_roleOptions">
+        <span>${i18n.roleAssigned}</span>&nbsp;
+        <select id="role-option" data-dojo-attach-point="_roleSelect" data-dojo-type="dijit.form.FilteringSelect" data-dojo-props="fetchProperties:{sort:[{attribute:'name',descending:false}]}"></select><br>
+        <br>
+      </div>
+
+      <span>${i18n.sourceLabel}</span><br>
+      <span data-dojo-attach-point="_sourceOptions">
+        <div id="metadata-url-option" name="providerOptions" type="radio" data-dojo-attach-point="_metadataUrlOption" data-dojo-type="dijit.form.RadioButton" checked="true"></div> <label for="metadata-url-option">${i18n.metadataUrlOption}</label>
+        <div id="metadata-file-option" name="providerOptions" type="radio" data-dojo-attach-point="_metadataFileOption" data-dojo-type="dijit.form.RadioButton"></div> <label for="metadata-file-option">${i18n.metadataFileOption}</label>
+        <div id="parameters-option" name="providerOptions" type="radio" data-dojo-attach-point="_parametersOption" data-dojo-type="dijit.form.RadioButton"></div> <label for="parameters-option">${i18n.parametersOption}</label>
+      </span>
+      <br>
+      <div data-dojo-attach-point="_sourceInputs">
+        <br>
+        <div data-dojo-attach-point="_metadataUrlInputs">
+          <span>${i18n.metadataUrlLabel}</span><br>
+          <div data-dojo-attach-point="_bindingUrlInput" name="idpMetadataUrl" type="text" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true"></div>
+        </div>
+        <div data-dojo-attach-point="_metadataFileInputs">
+          <span>${i18n.metadataFileLabel}</span><br>
+          <input data-dojo-attach-point="_metadataFileInput" name="idpMetadataFile" type="file" title="${i18n.metadataFilePlaceHolder}"/>
+        </div>
+        <div data-dojo-attach-point="_parametersInputs">
+          <span>${i18n.parametersUrlLabel}</span><br>
+          <div data-dojo-attach-point="_loginUrlInput" name="bindingUrl" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true"></div>
+          <br><br>
+          <span>${i18n.parametersPostUrlLabel}</span><br>
+          <div data-dojo-attach-point="_loginUrlPostInput" name="postBindingUrl" type="text" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true"></div>
+          <br><br>
+          <!--<span">${i18n.parametersBindingTypeLabel}</span>-->
+          <!--<div id="binding-type-redirect-option" name="bindingTypeOptions" data-dojo-attach-point="_bindingTypeRedirect" type="radio" data-dojo-type="dijit.form.RadioButton" data-dojo-attach-point="_bindingTypeRedirectOption" checked="true"></div> <label>${i18n.parametersBindingTypeRedirect}</label>-->
+          <!--<div id="binding-type-post-option" name="bindingTypeOptions" data-dojo-attach-point="_bindingTypePost" type="radio" data-dojo-type="dijit.form.RadioButton" data-dojo-attach-point="_bindingTypePostOption"></div> <label>${i18n.parametersBindingTypePost}</label>-->
+          <!--<br><br>-->
+          <span>${i18n.parametersCertificateLabel}</span><br>
+          <textarea data-dojo-attach-point="_certificateInput" name="certificate" data-dojo-type="dijit.form.SimpleTextarea" data-dojo-props="rows:3" title="${i18n.parametersCertificatePlaceHolder}"></textarea>
+          <div style="display:none;">
+            <br><span>${i18n.orLabel}</span><br><br>
+            <span>${i18n.parametersCertificateFileLabel}</span><br>
+            <input type="file" data-dojo-attach-point="_certificateFileInput" name="certificateFile" title="${i18n.parametersCertificateFilePlaceHolder}"/>
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <!--<div>-->
+        <!--<br>-->
+        <!--<span>-->
+          <!--<input type="checkbox" id="encryptionSupported" data-dojo-attach-point="_encryptionSupported" data-dojo-type="dijit.form.CheckBox">-->
+          <!--<label for="encryptionSupported">${i18n.encryptionSupported}</label>-->
+        <!--</span>-->
+        <!--<br>-->
+        <!--<span>-->
+          <!--<input type="checkbox" id="supportSignedRequest" data-dojo-attach-point="_signedRequestSupported" data-dojo-type="dijit.form.CheckBox">-->
+          <!--<label for="supportSignedRequest">${i18n.supportSignedRequest}</label>-->
+        <!--</span>-->
+        <!--<br>-->
+      <!--</div><br>-->
+
+      <span class="esriItemLinks"><a data-dojo-attach-point="_toggleAdvancedSettings" data-dojo-attach-event="onclick:onToggleAdvancedSettings">${i18n.showAdvancedSettings}</a></span><br>
+      <div id="advancedSettings" data-dojo-attach-point="_advancedSettings">
+        <br>
+        <span>
+          <input type="checkbox" id="encryptionSupported" data-dojo-attach-point="_encryptionSupported" data-dojo-type="dijit.form.CheckBox">
+          <label for="encryptionSupported">${i18n.encryptionSupported}</label>
+        </span>
+        <br><br>
+        <span>
+          <input type="checkbox" id="supportSignedRequest" data-dojo-attach-point="_signedRequestSupported" data-dojo-type="dijit.form.CheckBox">
+          <label for="supportSignedRequest">${i18n.supportSignedRequest}</label>
+        </span>
+        <br><br>
+        <span>${i18n.logoutUrlLabel}</span><br>
+        <div data-dojo-attach-point="_logoutUrlInput" name="logoutUrl" type="text" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true"></div> <label>${i18n.optionalLabel}</label>
+        <br><br>
+        <span>${i18n.entityIDLabel}</span><br>
+        <div data-dojo-attach-point="_entityIDInput" name="entityId" type="text" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true"></div>
+        <!--<span>${i18n.userIdAttrLabel}</span><br>-->
+        <!--<div data-dojo-attach-point="_userIdAttrInput" name="userIdAttribute" type="text" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true" title="${i18n.userIdAttrTooltip}"></div> <label>${i18n.optionalLabel}</label>-->
+      </div>
+      <br><br>
+      <div class="esriAlignTrailing" data-dojo-attach-point="_buttons">
+        <button data-dojo-attach-point="_setBtn" class="primary" data-dojo-type="dijit.form.Button">${i18n.setIdentityProviderLabel}</button>
+        <button data-dojo-attach-point="_cancelBtn" class="cancel" data-dojo-type="dijit.form.Button">${i18n.cancel}</button>
+      </div>
+    </form>
+  </div>
+</div>

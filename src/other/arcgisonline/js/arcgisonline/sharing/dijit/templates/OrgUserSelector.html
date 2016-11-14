@@ -1,0 +1,69 @@
+<div>
+  <div class="marginTop1" data-dojo-attach-point="_searchControls">
+    <label data-dojo-attach-point="_searchLabel">${i18n.searchByName}</label><br>
+    <div data-dojo-attach-point="_searchBySelect" data-dojo-type="arcgisonline/sharing/dijit/ComboBox"
+         class="searchBySelect searchSelect display_inline"></div>
+    <span data-dojo-attach-point="_searchContainer" class="searchControls">
+      <input type="text" class="userSearch"
+             data-dojo-attach-point="_searchBox"
+             data-dojo-type="dijit/form/TextBox">
+      <button class="clearSearchBtn" data-dojo-attach-point="_clearSearchBtn"
+              style="display:none;">&nbsp;&nbsp;&nbsp;&nbsp;</button>
+      <button class="searchBtn" data-dojo-attach-point="_searchBtn" title="${i18n.search}">&nbsp;&nbsp;&nbsp;&nbsp;</button>
+    </span>
+    <span data-dojo-attach-point="_filterContainer" style="display:none;">
+      <div data-dojo-attach-point="_filteringSelect" class="searchSelect searchFilter display_inline"
+           data-dojo-props="searchAttr:'name'" data-dojo-type="dijit/form/FilteringSelect"></div>
+    </span>
+  </div>
+  <div class="marginTop1">
+    <table class="marginTop1" cellpadding="0" cellspacing="0">
+      <tbody>
+        <tr>
+          <td class="column270"><label>${i18n.clickToAdd}</label></td>
+          <td class="column10"></td>
+          <td class="column270"><label>${i18n.clickToRemove}</label></td>
+        </tr>
+        <tr>
+          <td class="column270">
+            <div class="userListLabel">
+              <div data-dojo-attach-point="_userListLabel">${i18n.users}</div>
+              <div class="esriFloatTrailing actionLink" data-dojo-attach-point="_addAllContainer">
+                <span class="esriItemLinks"><a data-dojo-attach-point="_addAll" class="pointer">${i18n.addAll}</a></span>
+              </div>
+            </div>
+            <div class="userListContainer" data-dojo-type="dijit/layout/BorderContainer"
+                data-dojo-props="gutters:false,splitters:false,design:'headline'">
+              <div class="userListInnerContainer"
+                   data-dojo-type="dijit/layout/ContentPane"
+                   data-dojo-props="region:'middle',splitter:false">
+                <div data-dojo-attach-point="_usersPane">
+                  <!-- user list is populated here -->
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="column10"></td>
+          <td class="column270">
+            <div class="userListLabel selectedUserListLabel">
+              <div data-dojo-attach-point="_selectedUserListLabel">${i18n.selectedUsers}</div>
+              <div class="esriFloatTrailing actionLink" data-dojo-attach-point="_clearAllContainer">
+                <span class="esriItemLinks"><a data-dojo-attach-point="_clearAll" class="pointer">${i18n.clear}</a></span>
+              </div>
+            </div>
+            <div class="selectedUserListContainer" data-dojo-type="dijit/layout/BorderContainer"
+                 data-dojo-props="gutters:false,splitters:false,design:'headline'">
+              <div class="userListInnerContainer"
+                   data-dojo-type="dijit/layout/ContentPane"
+                   data-dojo-props="region:'middle',splitter:false">
+                <div data-dojo-attach-point="_selectedUsersPane">
+                  <!-- selected user list is populated here -->
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

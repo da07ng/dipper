@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>BigDataRender</title>
+    <link rel="stylesheet" type="text/css" href="../lib/default.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+    <link rel="stylesheet" href="../css/serviceStyle.css">
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/shCore-src.js"></script>
+    <script type="text/javascript" src="../lib/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="../lib/article_code.js"></script>
+</head>
+
+<body>
+<div class="container-fluid layoutContainer">
+    <article id="page_content" class="md-body">
+        <h1>大数据渲染服务</h1>
+
+        <h2>简介</h2>
+
+        <p>
+            专题地图是指突出而尽可能完善、详尽地表示制图区内的一种或几种自然或社会经济（人文）要素的地图。专题地图的制图领域宽广，凡具有空间属性的信息数据都可用其来表示。其内容、形式多种多样，能够广泛应用于国民经济建设、教学和科学研究、国防建设等行业部门。专题地图和普通地图相比，具有独特的特征。专题地图突出表达了普通地图中的一种或几种要素，有些专题地图的主题内容是普通地图中所没有的要素。
+        </p>
+
+        <p>
+            本实例通过分级渲染器（ClassBreaksRenderer）对大数据进行分级渲染。分级渲染器（ClassBreaksRenderer）允许为特定属性值范围内的一组图形指定符号，因此在使用的时候，必须为分级渲染器设置一个数值型字段，为属性值不同的范围，分别设置渲染符号渲染器会根据该字段所在的范围的值进行分级渲染。
+        </p>
+
+        <p>
+            在示例中，通过"WIND_DIRECT"设置箭头旋转方向，"WIND_SPEED"字段定义箭头大小，"TEMP"字段定义渲染颜色。
+        </p>
+
+        <h2>示例</h2>
+
+        <div id="map"></div>
+
+        <h2>API示例</h2>
+
+        <div class="biaoge">
+            <table>
+                <tr>
+                    <td>
+                        <div class="apilink1">
+                            <a href="../api.html?type=js&title=bigDataRender" target="view_window1"><img
+                                    src="images/imac-full.png" alt=""></a>
+                            <a href="../api.html?type=js&title=bigDataRender" target="view_window1"><h3
+                                    class="leader-1 trailer-half">JavaScript开发</h3>
+                            </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="apilink2">
+                            <a href="../iosApi.html?type=ios&title=iosbigDataRender" target="view_window2"><img
+                                    src="images/apple-full.png" alt=""></a>
+                            <a href="../iosApi.html?type=ios&title=iosbigDataRender" target="view_window2"><h3
+                                    class="leader-1 trailer-half">IOS开发</h3>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="apilink3">
+                            <a href="../androidApi.html?type=android&title=bigDataRender" target="view_window3"><img
+                                    src="images/android-full.png" alt=""></a>
+                            <a href="../androidApi.html?type=android&title=bigDataRender" target="view_window3"><h3
+                                    class="leader-1 trailer-half">Android开发</h3></a>
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </article>
+</div>
+
+
+<script src="http://js.arcgis.com/3.13/"></script>
+<script>
+    require([
+        "esri/map", "esri/layers/FeatureLayer", "esri/dijit/Legend",
+        "esri/renderers/SimpleRenderer", "esri/symbols/SimpleMarkerSymbol",
+        "esri/Color", "dojo/_base/array", "dojo/parser", "esri/InfoTemplate", "esri/renderers/ClassBreaksRenderer",
+        "esri/layers/LabelLayer", "esri/symbols/TextSymbol", "esri/symbols/Font", "esri/symbols/SimpleLineSymbol",
+        "dijit/layout/BorderContainer", "dijit/layout/ContentPane",
+        "dojo/domReady!"
+    ], function (Map, FeatureLayer, Legend, SimpleRenderer, SimpleMarkerSymbol,
+                 Color, arrayUtils, parser, InfoTemplate, ClassBreaksRenderer, LabelLayer, TextSymbol, Font, SimpleLineSymbol) {
+        parser.parse();
+
+        var map = new Map("map", {
+            basemap: "gray",
+            center: [-96.53, 38.374],
+            zoom: 4
+        });
+        map.on("load", function () {
+            map.disableScrollWheelZoom();
+        });
+
+        var layer = new FeatureLayer("http://tmservices1.esri.com/arcgis/rest/services/LiveFeeds/NOAA_METAR_current_wind_speed_direction/MapServer/0", {
+            mode: FeatureLayer.MODE_ONDEMAND,
+            outFields: ["*"],
+            infoTemplate: new InfoTemplate("${STATION_NAME}, ${COUNTRY}", "<table><tr><td>Temperature</td><td>${TEMP}F</td></tr><tr><td>Dew point</td><td>${DEW_POINT}</td></tr><tr><td>Relative humidity</td><td>${R_HUMIDITY}</td></tr><tr><td>Wind</td><td>from ${WIND_DIRECT} degrees at ${WIND_SPEED}mph</td></tr><tr><td>Visibility</td><td>${VISIBILITY}</td></tr><tr><td>Pressure</td><td>${PRESSURE}mb</td></tr><tr><td>Coulds</td><td>${SKY_CONDTN}</td></tr><tr><td>Weather</td><td>${WEATHER}</td></tr><tr><td>Heat index</td><td>${HEAT_INDEX}</td></tr></table><hr><i>${UTC_DATETIME}</i>")
+        });
+        map.addLayers([layer]);
+
+        var marker = new SimpleMarkerSymbol().setPath("M14.5,29 23.5,0 14.5,9 5.5,0z").setOutline(new SimpleLineSymbol().setWidth(0.5));
+        var renderer = new SimpleRenderer(marker);
+
+        renderer.setRotationInfo({
+            field: "WIND_DIRECT"
+        });
+        renderer.setSizeInfo({
+            field: "WIND_SPEED",
+            minSize: 6,
+            maxSize: 25,
+            minDataValue: 5,
+            maxDataValue: 50,
+            valueUnit: "unknown"
+        });
+        renderer.setColorInfo({
+            field: "TEMP",
+            minDataValue: -20,
+            maxDataValue: 130,
+            colors: [
+                new Color([0, 104, 214]), new Color([20, 120, 220]), new Color([39, 136, 226]),
+                new Color([59, 152, 232]), new Color([78, 169, 237]), new Color([98, 185, 243]),
+                new Color([131, 197, 181]), new Color([164, 210, 120]), new Color([197, 222, 58]),
+                new Color([205, 188, 80]), new Color([212, 155, 102]), new Color([220, 121, 124]),
+                new Color([216, 87, 115]), new Color([211, 53, 106]), new Color([206, 19, 97])
+            ]
+        });
+        layer.setRenderer(renderer);
+    });
+
+</script>
+</body>
+</html>

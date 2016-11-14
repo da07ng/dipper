@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../../../core/declare","../../../core/Accessor"],function(b,c){return b([c],{getDefaults:function(){return{view:null}},constructor:function(){this._viewReadyHandle=null;this._viewReadyHandler=this._viewReadyHandler.bind(this)},_viewGetter:function(){return this._view},_viewSetter:function(a){this._view&&this._disconnectView(this._view);this._viewReadyHandle&&(this._viewReadyHandle.remove(),this._viewReadyHandle=null);if(this._view=a)this._viewReadyHandle=this._view.watch("ready",this._viewReadyHandler),
+this._view.ready&&this._connectView(this._view)},_viewReadyHandler:function(a){a?this._connectView(this._view):this._disconnectView(this._view)},_connectView:function(a){},_disconnectView:function(a){}})});

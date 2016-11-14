@@ -1,0 +1,42 @@
+<div dojoType="dijit.layout.BorderContainer" region="top"> 
+    <div id="mosaicRuleContentHeader" dojoType="dijit.layout.ContentPane" region="top" class="panel panel_left">
+        <div class="esriFloatTrailing" style="padding:0;">
+            <a href="#" dojoAttachPoint="_closeBtn" title="${i18n.close}" class="panel panel_close panel_collapse">
+            <img src="images/close.gif" border="0"/></A>
+        </div>
+        <div id="mosaicRuleContentTitle" class="esriFloatLeading" style="font-weight:bold;">
+            ${i18n.mosaicRuleDefaultTitle}
+        </div>
+        <div style="clear:both; border-bottom: #333 thin solid; height:1px;"></div>
+    </div>
+
+    <div id="mosaicRuleContentPane" dojoType="dijit.layout.ContentPane" region="center" style="overflow-x:hidden;overflow-y:auto;position:relative;" class="scrollPane">
+        <p id="mosaicRulePanelTitle" style="margin:4px 0px 10px 0px;">
+            ${i18n.mosaicRulePanelTitle}
+        </p>
+        <p style="margin:4px 0px 10px 0px;">
+            ${i18n.mosaicRuleTitleMessage}
+        </p>             
+        <div id="mosaicRule-main">
+        </div>
+    </div>
+    
+    <div id="mosaicRuleContentButtons" style="padding:5px;">
+        <center>
+        <button dojoType="dijit.form.Button" dojoAttachPoint="_applyMosaicRule" class="calcite blue">
+            ${i18n.applyLabel}
+        </button>
+        <button dojoType="dijit.form.Button" dojoAttachPoint="_resetMosaicRule" class="calcite light">
+            ${i18n.resetLabel}
+        </button>        
+        <button dojoType="dijit.form.Button" type="submit" dojoAttachPoint="_closeMosaicRule" class="calcite transparent">
+            ${i18n.closeLabel}
+        </button>
+        </center>
+    </div>
+   
+    <div id="mosaicRuleContentFooter" dojoType="dijit.layout.ContentPane" region="bottom" style="height:40px; padding: 0 5px 0 5px; display:none;"> 
+      <div class="footer" id="mosaicRuleSiteFooter" dojotype="arcgisonline.sharing.dijit.SiteFooterMap" style="white-space:normal;"></div>
+    </div>
+
+</div>

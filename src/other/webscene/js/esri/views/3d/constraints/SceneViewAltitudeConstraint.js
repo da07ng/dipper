@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../../../core/declare","../../../core/Accessor","../support/earthUtils"],function(b,d,e){var c=4*e.earthRadius;b=b([d],{declaredClass:"esri.views.3d.constraints.SceneViewAltitudeConstraint",constructor:function(){this._min=-Infinity;this._max=c},mode:"auto",autoUpdate:function(a,b){"auto"===this.mode&&(this._min!==a&&(this._min=a,this.notifyChange("min")),this._max!==b&&(this._max=b,this.notifyChange("max")))},_minSetter:function(a){this.mode="manual";this._min=a;this.max<a&&(this.max=a)},
+_minGetter:function(){return this._min},_maxSetter:function(a){this.mode="manual";this._max=a;this.min>a&&(this.min=a)},_maxGetter:function(){return this._max},scale:function(a){this._max*=a;this.notifyChange("max");this._min*=a;this.notifyChange("min")}});b.MIN_DEFAULT=-Infinity;b.MAX_DEFAULT=c;return b});

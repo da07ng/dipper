@@ -1,0 +1,16 @@
+<div class="widgetContent" >
+  <div dojotype="dijit.Dialog" id="image-dialog" title="${i18n.imgDlgTitle}" execute="">
+    <div>
+      <div style="line-height:17px;padding-top:10px;padding-right:10px;"><span>${i18n.specifyImage}</span></div>
+      <br />
+      <label style="line-height:12px;">${i18n.urlLabel}</label>
+      <div dojoAttachPoint="urlInput" dojotype="dijit.form.TextBox" trim="true" value="http://" style="width:330px;" dir="ltr"></div>
+			<div style="line-height:17px;padding-top:10px;padding-right:10px;"><span>${i18n.imgDetailMessage}</span></div>
+    </div>
+	  <br />&nbsp;  
+	  <button dojoAttachEvent="onClick:onCancelClick" class="jevent cancel" style="float:right;" dojoType="dijit.form.Button">${i18n.cancel}</button>
+	  <button dojoAttachEvent="onClick:onDoneClick" class="jevent primary" style="float:right;" dojoType="dijit.form.Button">${i18n.done}</button>
+	  <br />&nbsp; 
+		<br/> 
+  </div>
+</div>

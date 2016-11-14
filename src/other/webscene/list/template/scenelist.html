@@ -1,0 +1,24 @@
+<div class="collapsed">
+    <div class="${baseClass}Inner">
+        <div class="${baseClass}Head" data-dojo-attach-point="contentHeadNode">
+            <div class="${baseClass}Title" data-dojo-attach-point="titleBarNode">
+                <span class="${baseClass}TitleTextNode" data-dojo-attach-point="titleNode">模型三维</span>
+            </div>
+        </div>
+        <div class="${baseClass}Content">
+            <div class="${baseClass}ContentInner" data-dojo-attach-point="contentInnerScrollableNode">
+                <div data-dojo-attach-point="contentNode">
+                    <div class="resultScrollContainer">
+                        <div class="resultSceneItems">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="NavigatorContainerClosedContent" data-dojo-attach-event="ondijitclick:_closeBtnNodeClickHandler">
+        <div class="closeBtnContainer">
+            <span class="NavigatorContainerCloseBtn" data-dojo-attach-point="closeBtnNode" title="关闭"></span>
+        </div>
+    </div>
+</div>

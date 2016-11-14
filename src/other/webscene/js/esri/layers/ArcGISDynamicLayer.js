@@ -1,0 +1,6 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define("../core/declare dojo/_base/lang dojo/io-query ../config ../request ../core/urlUtils ./DynamicLayer ./mixins/ArcGISDynamicService".split(" "),function(c,d,l,m,f,g,n,p){return c([n,p],{declaredClass:"esri.layers.ArcGISDynamicMapServiceLayer",normalizeCtorArgs:function(a,b){return"string"===typeof a?d.mixin({url:a},b):a},initialize:function(){this.addResolvingPromise(this._fetchService())},alwaysRefetch:!1,popupTemplates:null,getImageUrl:function(a,b){var h=this.parsedUrl.path+"/export",e=d.mixin({},
+this.parsedUrl.query,this.getExportImageParameters(a),{f:"image",token:this.token,_ts:this.alwaysRefetch?(new Date).getTime():null}),k=g.addProxy(h+"?"+l.objectToQuery(e));if(k.length>m.request.maxUrlLength){e.f="json";var c=this;f({url:h,content:e,handleAs:"json",callbackParamName:"callback"}).then(function(a){b(g.addProxy(a.href+"?token\x3d"+c.token))})}else b(k)},_fetchService:function(){return f({url:this.parsedUrl.path,content:d.mixin({f:"json"},this.parsedUrl.query),handleAs:"json",callbackParamName:"callback"}).then(function(a){a._ssl&&
+(delete a._ssl,this.url=this.url.replace(/^http:/i,"https:"));this.read(a)}.bind(this))}})});

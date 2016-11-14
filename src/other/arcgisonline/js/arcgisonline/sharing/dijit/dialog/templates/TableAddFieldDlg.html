@@ -1,0 +1,66 @@
+<div class="widgetContent">
+  <div data-dojo-type="dijit/Dialog" data-dojo-attach-point="_dialog" data-dojo-props="title:'${i18n.addFieldTitle}'" style="width:30em;">
+      <div data-dojo-type="dijit/form/Form" data-dojo-attach-point="_addForm">
+       <table class="esriAddFormTable"  data-dojo-attach-point="_addTable"  style="border-collapse:collapse;border-spacing:5px;" cellpadding="5px" cellspacing="5px"> 
+         <tbody>
+          <tr>
+            <tr>
+              <td style="width:40%;">
+                <label>${i18n.nameLabel}</label>
+              </td>
+              <td>
+              <input type="text" data-dojo-type="dijit/form/ValidationTextBox" class="esriLeadingMargin1" data-dojo-props="required:true" data-dojo-attach-point="_nameInput" value=""></input>              
+             </td>
+            </tr>
+            <tr>
+              <td  style="width:40%;">
+                <label>${i18n.aliasLabel}</label>
+              </td>
+              <td>
+              <input type="text" data-dojo-type="dijit/form/ValidationTextBox" class="esriLeadingMargin1" data-dojo-attach-point="_aliasInput" value=""></input>              
+             </td>
+            </tr>
+           <tr>
+            <td  style="width:40%;">
+              <label class="">${i18n.typeLabel}</label>
+            </td>
+            <td>
+              <select class="esriLeadingMargin1 longInput esriLongLabel"  style="margin-top:1.0em;" data-dojo-type="dijit/form/Select" data-dojo-attach-point="_typeSelect" data-dojo-attach-event="onChange:_handleTypeChange" data-dojo-props="value:'esriFieldTypeString'">
+                <option value="esriFieldTypeDate">${i18n.dateLabel}</option>
+                <option value="esriFieldTypeDouble">${i18n.doubleLabel}</option>
+                <option value="esriFieldTypeInteger">${i18n.integerLabel}</option>
+                <option value="esriFieldTypeString">${i18n.stringLabel}</option>
+              </select>
+            </td>
+          </tr>
+            <tr data-dojo-attach-point="_lengthRow">
+              <td  style="width:40%;">
+                <label data-dojo-attach-point="_lengthLabel">${i18n.lengthLabel}</label>
+              </td>
+              <td>
+              <input type="text" data-dojo-type="dijit/form/NumberTextBox" class="esriLeadingMargin1" data-dojo-attach-point="_lengthInput" data-dojo-props="value:256"></input>
+              </td>
+            </tr>  
+            <tr>
+              <td  style="width:40%;">
+                <div style="width:95%;"><label data-dojo-attach-point="_defaultLabel"">${i18n.defaultValueLabel}</label></div>
+                <div style="width:90%;"><label data-dojo-attach-point="_optionLabel" style="font:smaller;">${i18n.optional}</label></div>
+              </td>
+              <td>
+              <input type="text" data-dojo-type="dijit/form/TextBox" class="esriLeadingMargin1" data-dojo-attach-point="_defaultStrInput"></input>
+              <input data-dojo-type="dijit/form/NumberTextBox" class="esriLeadingMargin1" data-dojo-props="constraints:{places:0}" data-dojo-attach-point="_defaultNumInput"></input>
+              <input data-dojo-type="dijit/form/NumberTextBox" class="esriLeadingMargin1" data-dojo-attach-point="_defaultDblInput"</input>
+              <input data-dojo-type="dijit/form/DateTextBox" class="esriLeadingMargin1" data-dojo-attach-point="_defaultDateInput"></input>
+
+              </td>
+            </tr> 
+          </tbody>
+         </table>
+        <div  class="esriFloatTrailing" style="padding:2em 1em 2em 1em;clear:both;">
+            <div data-dojo-type="dijit/form/Button"  class="btn calcite primary tiny" data-dojo-attach-point="_addBtn" data-dojo-attach-event="onClick:_handleAddButtonClick">
+              ${i18n.addNewField}
+            </div>
+        </div>
+      </div>
+  </div>
+</div>

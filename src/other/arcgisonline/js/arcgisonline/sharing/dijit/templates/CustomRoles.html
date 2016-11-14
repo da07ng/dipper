@@ -1,0 +1,359 @@
+<div class="${baseClass} widgetContent">
+  <div data-dojo-attach-point="_description">
+    <p><span data-dojo-attach-point="_rolesDesc"></span></p>
+    <p>${i18n.rolesDescNote}</p>
+    <!--<p><span data-dojo-attach-point="_docDesc"></span></p>-->
+
+    <div data-dojo-attach-point="_defaultRoleUI">
+      <label for="defaultRoleNewMembers" class="buttonLineHeight">${i18n.defaultRole}</label>
+      <div id="defaultRoleNewMembers" class="gallerySelect" data-dojo-attach-point="_defaultRoleSelect"
+        data-dojo-type="dijit/form/FilteringSelect" data-dojo-props="fetchProperties:{sort:[{attribute:'name',descending:false}]},trim:true"
+        data-dojo-attach-event="onChange:onDefaultRoleChanged" style="display:inline-block;"></div>
+      <div class="calcite tertiary small" data-dojo-attach-point="_defaultRoleSaveBtn"
+           data-dojo-type="dijit/form/Button" data-dojo-attach-event="onClick:onSaveDefaultRole">${i18n.saveDefaultRole}</div>
+      <br><br>
+    </div>
+  </div>
+  <div>
+    <table style="width:100%;">
+      <tbody>
+        <tr>
+          <td class="titleColumn" data-dojo-attach-point="_titleColumn"><span data-dojo-attach-point="_thumbnail"></span></td>
+          <td class="valignTop">
+            <button data-dojo-attach-point="_createRole" data-dojo-type="dijit/form/Button"
+                data-dojo-attach-event="onClick:onCreateRole" class="calcite tertiary small">${i18n.createRole}</button>
+            <button data-dojo-attach-point="_assignRoles" data-dojo-type="dijit/form/Button"
+                    data-dojo-attach-event="onClick:onAssignRoles" class="calcite tertiary small">${i18n.assignRoles}</button>
+            <div id="role-display" data-dojo-attach-point="_roleDisplay" data-dojo-type="dijit/layout/ContentPane" style="margin-top:1em;"></div>
+            <div id="role-edit" data-dojo-attach-point="_roleEdit" data-dojo-type="dijit/layout/ContentPane">
+              <div data-dojo-attach-point="_editContainer" style="margin-top:1em;">
+                <label for="role-edit-select">${i18n.roleLabel}</label>
+                <div id="role-edit-select" data-dojo-attach-point="_roleEditSelect"
+                     data-dojo-type="arcgisonline/sharing/dijit/ComboBox"
+                     data-dojo-attach-event="onChange:onRoleEditSelectChange"
+                     class="gallerySelect" style="display:inline-block;"></div>
+              </div>
+
+              <div data-dojo-attach-point="_roleMetaDataContainer" style="margin-top:1em;">
+                <label for="role-name">${i18n.roleNameLabel}</label>
+                <div id="role-name" data-dojo-type="dijit/form/TextBox"
+                     data-dojo-attach-event="onChange:onRoleNameChange,onKeyDown:onRoleNameKeyDown"
+                     data-dojo-attach-point="_roleName"></div>
+                <br/><br/>
+                <label for="role-desc">${i18n.descriptionLabel}</label>
+                <div id="role-desc" data-dojo-type="dijit/form/TextBox"
+                     data-dojo-attach-event="onChange:onRoleDescChange,onKeyDown:onRoleDescKeyDown"
+                     data-dojo-attach-point="_roleDesc" style="width:30em;"></div>
+              </div>
+
+              <div data-dojo-attach-point="_createContainer" style="margin-top:1em;">
+                <label for="role-template-select">${i18n.templateSelectLabel}</label>
+                <div id="role-template-select" data-dojo-attach-point="_roleTemplateSelect"
+                     data-dojo-type="arcgisonline/sharing/dijit/ComboBox"
+                     data-dojo-attach-event="onChange:onRoleTemplateSelectChange"
+                     class="gallerySelect" style="display:inline-block;"></div>
+              </div>
+
+              <div data-dojo-attach-point="_privilegeContainer" style="margin-top:1em;">
+                <div class="esriFloatLeading" style="vertical-align:text-top;">
+                  <div data-dojo-attach-point="_togglePrivileges" data-dojo-type="dijit/form/Button"
+                       data-dojo-attach-event="onClick:onToggleAll" class="calcite tertiary small">${i18n.toggleAllOnLabel}</div>
+                  <div data-dojo-attach-point="_expandAll" data-dojo-type="dijit/form/Button"
+                       data-dojo-attach-event="onClick:onExpandAll" class="calcite tertiary small">${i18n.expandAllLabel}</div>
+                  <div data-dojo-attach-point="_contractAll" data-dojo-type="dijit/form/Button"
+                       data-dojo-attach-event="onClick:onContractAll" class="calcite tertiary small">${i18n.contractAllLabel}</div>
+                </div>
+                <div class="esriFloatTrailing esriTrailingMargin05" style="vertical-align: text-top;" data-dojo-attach-point="_saveContainerTop">
+                  <div data-dojo-attach-point="_saveRoleTop" data-dojo-type="dijit/form/Button"
+                       data-dojo-attach-event="onClick:onSaveRole" class="calcite blue small">${i18n.saveRoleLabel}</div>
+                  <div data-dojo-attach-point="_discardEditsTop" data-dojo-type="dijit/form/Button"
+                       data-dojo-attach-event="onClick:onDiscardEdits" class="calcite transparent small">${i18n.discardEditsLabel}</div>
+                </div>
+                <br style="clear:both;"/>
+                <div style="margin-top:2em;">
+                  <!--houses each of the groups, which will be float left to allow them to fit the responsive width-->
+                  <label><strong>${i18n.generalLabel}</strong></label><br/>
+                  <div class="privGroup esriFloatLeading">
+                    <div>
+                      <span id="groups-expcon" data-dojo-attach-event="onClick:expconGroup" class="expcon">${i18n.expand}</span>
+                      <div id="groups-toggle" data-dojo-attach-point="_groupsToggle"
+                           data-dojo-type="dojox/form/TriStateCheckBox"
+                           data-dojo-attach-event="onClick:onGroupsToggle" class="vertAlignTextTop"></div>
+                      <label for="groups-toggle" id="groups-title">${i18n.groups.title}</label>
+                    </div>
+                    <div id="groups-privs" class="privGroupPrivs">
+                      <div id="groups-cancreate" data-dojo-attach-point="_canCreateGroups" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="groups-cancreate" id="groups-cancreate-label">${i18n.groups.canCreate}</label><br/>
+                      <div id="groups-canjoinint" data-dojo-attach-point="_canJoinIntGroups" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="groups-canjoinint" id="groups-canjoinint-label">${i18n.groups.canJoinInt}</label><br/>
+                      <span id="groups-canjoinext-span" data-dojo-attach-point="_canJoinExtGroupsSpan">
+                        <div id="groups-canjoinext" data-dojo-attach-point="_canJoinExtGroups" data-dojo-type="dijit/form/CheckBox"
+                             data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                        <label for="groups-canjoinext" id="groups-canjoinext-label">${i18n.groups.canJoinExt}</label><br/>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="privGroup esriFloatLeading">
+                    <div>
+                      <span id="items-expcon" data-dojo-attach-event="onClick:expconGroup" class="expcon">${i18n.expand}</span>
+                      <div id="items-toggle" data-dojo-attach-point="_itemsToggle"
+                           data-dojo-type="dojox/form/TriStateCheckBox"
+                           data-dojo-attach-event="onClick:onItemsToggle" class="vertAlignTextTop"></div>
+                      <label for="items-toggle" id="items-title">${i18n.items.title}</label>
+                    </div>
+                    <div id="items-privs" class="privGroupPrivs">
+                      <div id="items-cancreate" data-dojo-attach-point="_canCreateItem" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="items-cancreate" id="items-cancreate-label">${i18n.items.canCreate}</label><br/>
+                      <div id="items-canpublishfeatures" data-dojo-attach-point="_canPublishFeatures" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="items-canpublishfeatures" id="items-canpublishfeatures-label">${i18n.items.canPublishFeatures}</label><br/>
+                      <div id="items-canpublishtiles" data-dojo-attach-point="_canPublishTiles" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="items-canpublishtiles" id="items-canpublishtiles-label">${i18n.items.canPublishTiles}</label><br/>
+                      <span id="items-canpublishscenes-span" class="display_none" data-dojo-attach-point="_canPublishScenesSpan">
+                        <div id="items-canpublishscenes" data-dojo-attach-point="_canPublishScenes" data-dojo-type="dijit/form/CheckBox"
+                             data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                        <label for="items-canpublishscenes" id="items-canpublishscenes-label">${i18n.items.canPublishScenes}</label><br/>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="privGroup esriFloatLeading">
+                    <div>
+                      <span id="itemshare-expcon" data-dojo-attach-event="onClick:expconGroup" class="expcon">${i18n.expand}</span>
+                      <div id="itemshare-toggle" data-dojo-attach-point="_itemShareToggle"
+                           data-dojo-type="dojox/form/TriStateCheckBox"
+                           data-dojo-attach-event="onClick:onItemShareToggle" class="vertAlignTextTop"></div>
+                      <label for="itemshare-toggle" id="itemshare-title">${i18n.itemSharing.title}</label>
+                    </div>
+                    <div id="itemshare-privs" class="privGroupPrivs">
+                      <div id="itemshare-cansharegroups" data-dojo-attach-point="_canShareItemToGroups" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="itemshare-cansharegroups" id="itemshare-cansharegroups-label">${i18n.itemSharing.canShareGroups}</label><br/>
+                      <div id="itemshare-canshareorg" data-dojo-attach-point="_canShareItemToOrg" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="itemshare-canshareorg" id="itemshare-canshareorg-label"><span data-dojo-attach-point="_canShareItemToOrgLabel"></span></label><br/>
+                      <div id="itemshare-cansharepublic" data-dojo-attach-point="_canShareItemToPublic" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="itemshare-cansharepublic" id="itemshare-cansharepublic-label">${i18n.itemSharing.canSharePublic}</label><br/>
+                      <div id="groupshare-canshareorg" data-dojo-attach-point="_canShareGroupToOrg" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="groupshare-canshareorg" id="groupshare-canshareorg-label"><span data-dojo-attach-point="_canShareGroupToOrgLabel"></span></label><br/>
+                      <div id="groupshare-cansharepublic" data-dojo-attach-point="_canShareGroupToPublic" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="groupshare-cansharepublic" id="groupshare-cansharepublic-label">${i18n.groupSharing.canSharePublic}</label><br/>
+                      <div id="opendata-candesignate" data-dojo-attach-point="_canDesignateGroupOpen" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="opendata-candesignate" id="opendata-candesignate-label" data-dojo-attach-point="_canDesignateGroupOpenLabel">${i18n.openData.canDesignate}</label><br/>
+                    </div>
+                  </div>
+                  <div data-dojo-attach-point="_geoservicesGroupContainer" class="privGroup esriFloatLeading">
+                    <div>
+                      <span id="geoservices-expcon" data-dojo-attach-event="onClick:expconGroup" class="expcon">[-]</span>
+                      <div id="geoservices-toggle" data-dojo-attach-point="_geoservicesToggle"
+                           data-dojo-type="dojox/form/TriStateCheckBox"
+                           data-dojo-attach-event="onClick:onGeoservicesToggle" class="vertAlignTextTop"></div>
+                      <label for="geoservices-toggle" id="geoservices-title" data-dojo-attach-point="_geoservicesTitle">${i18n.geoservices.title}</label>
+                    </div>
+                    <div id="geoservices-privs" class="privGroupPrivs">
+                      <div id="geoservices-geocoding" data-dojo-attach-point="_canUseGeocoding" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="geoservices-geocoding" id="geoservices-geocoding-label">${i18n.geoservices.canUseGeocoding}</label><br>
+                      <div id="geoservices-networkanalysis" data-dojo-attach-point="_canUseNA" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="geoservices-networkanalysis" id="geoservices-networkanalysis-label">${i18n.geoservices.canUseNA}</label><br>
+                      <div id="geoservices-spatialanalysis" data-dojo-attach-point="_canUseSA" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="geoservices-spatialanalysis" id="geoservices-spatialanalysis-label">${i18n.geoservices.canUseSA}</label><br>
+                      <div id="geoservices-geoenrichment" data-dojo-attach-point="_canUseGeoenrichment" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="geoservices-geoenrichment" id="geoservices-geoenrichment-label">${i18n.geoservices.canUseGeoenrichment}</label><br>
+                      <!--<div id="geoservices-geotriggers" data-dojo-attach-point="_canUseGeotriggers" data-dojo-type="dijit/form/CheckBox"-->
+                           <!--data-dojo-attach-event="onClick:onGeoservicesGroupClick"></div>-->
+                      <!--<label for="geoservices-geotriggers" id="geoservices-geotriggers-label">${i18n.geoservices.canUseGeotriggers}</label><br>-->
+                      <span data-dojo-attach-point="_canUseDemographicsSpan">
+                        <div id="geoservices-demographics" data-dojo-attach-point="_canUseDemographics" data-dojo-type="dijit/form/CheckBox"
+                             data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                        <label for="geoservices-demographics" id="geoservices-demographics-label">${i18n.geoservices.canUseDemographics}</label><br>
+                      </span>
+                      <div id="geoservices-elevation" data-dojo-attach-point="_canUseElevation" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="geoservices-elevation" id="geoservices-elevation-label">${i18n.geoservices.canUseElevation}</label><br>
+                    </div>
+                  </div>
+                  <div class="privGroup esriFloatLeading" data-dojo-attach-point="_featuresGroupContainer">
+                    <div>
+                      <span id="features-expcon" data-dojo-attach-event="onClick:expconGroup" class="expcon">${i18n.expand}</span>
+                      <div id="features-toggle" data-dojo-attach-point="_featuresToggle"
+                           data-dojo-type="dojox/form/TriStateCheckBox"
+                           data-dojo-attach-event="onClick:onFeaturesToggle" class="vertAlignTextTop"></div>
+                      <label for="features-toggle" id="features-title">${i18n.features.title}</label>
+                    </div>
+                    <div id="features-privs" class="privGroupPrivs smallPrivs">
+                      <div id="features-canedit" data-dojo-attach-point="_canEditFeatures" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="features-canedit" id="features-canedit-label">${i18n.features.canEdit}</label><br/>
+                      <div id="features-canmanage" data-dojo-attach-point="_canManageFeatures" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="features-canmanage" id="features-canmanage-label">${i18n.features.canManage}</label><br/>
+                      <!--<div id="features-canadmin" data-dojo-attach-point="_canAdminFeatures" data-dojo-type="dijit/form/CheckBox"-->
+                           <!--data-dojo-attach-event="onClick:onCheckBoxClick"></div>-->
+                      <!--<label for="features-canadmin" id="features-canadmin-label">${i18n.features.canAdmin}</label><br/>-->
+                      <!--<div id="features-cansync" data-dojo-attach-point="_canSyncFeatures" data-dojo-type="dijit/form/CheckBox"-->
+                           <!--data-dojo-attach-event="onClick:onFeaturesGroupClick"></div>-->
+                      <!--<label for="features-cansync" id="features-cansync-label">${i18n.features.canSync}</label><br/>-->
+                      <!--<div id="features-canexport" data-dojo-attach-point="_canExportFeatures" data-dojo-type="dijit/form/CheckBox"-->
+                           <!--data-dojo-attach-event="onClick:onFeaturesGroupClick"></div>-->
+                      <!--<label for="features-canexport" id="features-canexport-label">${i18n.features.canExport}</label><br/>-->
+                    </div>
+                  </div>
+                  <div data-dojo-attach-point="_openDataGroupContainer" class="privGroup esriFloatLeading">
+                    <div>
+                      <span id="opendata-expcon" data-dojo-attach-event="onClick:expconGroup" class="expcon">${i18n.expand}</span>
+                      <div id="opendata-toggle" data-dojo-attach-point="_openDataToggle"
+                           data-dojo-type="dojox/form/TriStateCheckBox"
+                           data-dojo-attach-event="onClick:onOpenDataToggle" class="vertAlignTextTop"></div>
+                      <label for="opendata-toggle" id="opendata-title">${i18n.openData.title}</label>
+                    </div>
+                    <div id="opendata-privs" class="privGroupPrivs smallPrivs">
+                      <div id="opendata-canadmin" data-dojo-attach-point="_canAdminOpenData" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="opendata-canadmin" id="opendata-canadmin-label">${i18n.openData.canAdmin}</label><br/>
+                    </div>
+                  </div>
+                  <br style="clear:both"/><br/>
+                  <label><strong>${i18n.adminLabel}</strong></label><br/>
+                  <div class="privGroup esriFloatLeading">
+                    <div>
+                      <span id="useradmin-expcon" data-dojo-attach-event="onClick:expconGroup" class="expcon">${i18n.expand}</span>
+                      <div id="useradmin-toggle" data-dojo-attach-point="_userAdminToggle"
+                           data-dojo-type="dojox/form/TriStateCheckBox"
+                           data-dojo-attach-event="onClick:onUserAdminToggle" class="vertAlignTextTop"></div>
+                      <label for="useradmin-toggle" id="useradmin-title">${i18n.userAdmin.title}</label>
+                    </div>
+                    <div id="useradmin-privs" class="privGroupPrivs">
+                      <div id="useradmin-canview" data-dojo-attach-point="_canViewUsers" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="useradmin-canview" id="useradmin-canview-label">${i18n.userAdmin.canView}</label><br/>
+                      <div id="useradmin-canupdate" data-dojo-attach-point="_canUpdateUsers" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="useradmin-canupdate" id="useradmin-canupdate-label">${i18n.userAdmin.canUpdate}</label><br/>
+                      <div id="useradmin-candelete" data-dojo-attach-point="_canDeleteUsers" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="useradmin-candelete" id="useradmin-candelete-label">${i18n.userAdmin.canDelete}</label><br/>
+                      <span id="useradmin-caninvite-span" data-dojo-attach-point="_canInviteUsersSpan">
+                        <div id="useradmin-caninvite" data-dojo-attach-point="_canInviteUsers" data-dojo-type="dijit/form/CheckBox"
+                             data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                        <label for="useradmin-caninvite" id="useradmin-caninvite-label">${i18n.userAdmin.canInvite}</label><br/>
+                      </span>
+                      <div id="useradmin-candisable" data-dojo-attach-point="_canDisableUsers" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="useradmin-candisable" id="useradmin-candisable-label">${i18n.userAdmin.canDisable}</label><br/>
+                      <div id="useradmin-canchangeroles" data-dojo-attach-point="_canChangeRoles" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="useradmin-canchangeroles" id="useradmin-canchangeroles-label">${i18n.userAdmin.canChangeRoles}</label><br/>
+                      <div id="useradmin-canmanagelicenses" data-dojo-attach-point="_canManageLicenses" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="useradmin-canmanagelicenses" id="useradmin-canmanagelicenses-label">${i18n.userAdmin.canManageLicenses}</label><br/>
+                      <!--<div id="useradmin-canresetpwd" data-dojo-attach-point="_canResetPwds" data-dojo-type="dijit/form/CheckBox"-->
+                      <!--data-dojo-attach-event="onClick:onUserAdminGroupClick"></div>-->
+                      <!--<label for="useradmin-canresetpwd" id="useradmin-canresetpwd-label">${i18n.userAdmin.canResetPwd}</label>-->
+                    </div>
+                  </div>
+                  <div class="privGroup esriFloatLeading">
+                    <div>
+                      <span id="groupadmin-expcon" data-dojo-attach-event="onClick:expconGroup" class="expcon">${i18n.expand}</span>
+                      <div id="groupadmin-toggle" data-dojo-attach-point="_groupAdminToggle"
+                           data-dojo-type="dojox/form/TriStateCheckBox"
+                           data-dojo-attach-event="onClick:onGroupAdminToggle" class="vertAlignTextTop"></div>
+                      <label for="groupadmin-toggle" id="groupadmin-title">${i18n.groupAdmin.title}</label>
+                    </div>
+                    <div id="groupadmin-privs" class="privGroupPrivs">
+                      <div id="groupadmin-canview" data-dojo-attach-point="_canViewGroups" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="groupadmin-canview" id="groupadmin-canview-label">${i18n.groupAdmin.canView}</label><br/>
+                      <div id="groupadmin-canupdate" data-dojo-attach-point="_canUpdateGroups" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="groupadmin-canupdate" id="groupadmin-canupdate-label">${i18n.groupAdmin.canUpdate}</label><br/>
+                      <div id="groupadmin-candelete" data-dojo-attach-point="_canDeleteGroups" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="groupadmin-candelete" id="groupadmin-candelete-label">${i18n.groupAdmin.canDelete}</label><br/>
+                      <div id="groupadmin-canreassign" data-dojo-attach-point="_canReassignGroups" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="groupadmin-canreassign" id="groupadmin-canreassign-label">${i18n.groupAdmin.canReassign}</label><br/>
+                      <div id="groupadmin-canassign" data-dojo-attach-point="_canAssignUsers" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="groupadmin-canassign" id="groupadmin-canassign-label">${i18n.groupAdmin.canAssign}</label><br/>
+                      <span id="groupadmin-canlink-span"  class="display_none" data-dojo-attach-point="_canLinkEnterpriseSpan">
+                        <div id="groupadmin-canlink" data-dojo-attach-point="_canLinkEnterprise" data-dojo-type="dijit/form/CheckBox"
+                             data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                        <label for="groupadmin-canlink" id="groupadmin-canlink-label">${i18n.groupAdmin.canLink}</label><br/>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="privGroup esriFloatLeading">
+                    <div>
+                      <span id="itemadmin-expcon" data-dojo-attach-event="onClick:expconGroup" class="expcon">${i18n.expand}</span>
+                      <div id="itemadmin-toggle" data-dojo-attach-point="_itemAdminToggle"
+                           data-dojo-type="dojox/form/TriStateCheckBox"
+                           data-dojo-attach-event="onClick:onItemAdminToggle" class="vertAlignTextTop"></div>
+                      <label for="itemadmin-toggle" id="itemadmin-title">${i18n.itemAdmin.title}</label>
+                    </div>
+                    <div id="itemadmin-privs" class="privGroupPrivs">
+                      <div id="itemadmin-canview" data-dojo-attach-point="_canViewItems" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="itemadmin-canview" id="itemadmin-canview-label">${i18n.itemAdmin.canView}</label><br/>
+                      <div id="itemadmin-canupdate" data-dojo-attach-point="_canUpdateItems" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="itemadmin-canupdate" id="itemadmin-canupdate-label">${i18n.itemAdmin.canUpdate}</label><br/>
+                      <div id="itemadmin-candelete" data-dojo-attach-point="_canDeleteItems" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="itemadmin-candelete" id="itemadmin-candelete-label">${i18n.itemAdmin.canDelete}</label><br/>
+                      <div id="itemadmin-canreassign" data-dojo-attach-point="_canReassignItems" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="itemadmin-canreassign" id="itemadmin-canreassign-label">${i18n.itemAdmin.canReassign}</label><br/>
+                      <!--<div id="itemadmin-canedit" data-dojo-attach-point="_canEditOrgData" data-dojo-type="dijit/form/CheckBox"-->
+                      <!--data-dojo-attach-event="onClick:onItemAdminGroupClick"></div>-->
+                      <!--<label for="itemadmin-canedit" id="itemadmin-canedit-label">${i18n.itemAdmin.canEdit}</label><br/>-->
+                    </div>
+                  </div>
+                  <div data-dojo-attach-point="_marketplaceGroupContainer" class="privGroup esriFloatLeading">
+                    <div>
+                      <span id="marketplace-expcon" data-dojo-attach-event="onClick:expconGroup" class="expcon">${i18n.expand}</span>
+                      <div id="marketplace-toggle" data-dojo-attach-point="_marketplaceToggle"
+                           data-dojo-type="dojox/form/TriStateCheckBox"
+                           data-dojo-attach-event="onClick:onMarketplaceToggle" class="vertAlignTextTop"></div>
+                      <label for="marketplace-toggle" id="marketplace-title">${i18n.marketplace.title}</label>
+                    </div>
+                    <div id="marketplace-privs" class="privGroupPrivs">
+                      <span style="display:none;">
+                      <div id="marketplace-canadmin" data-dojo-attach-point="_canAdminMarketplace" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="marketplace-canadmin" id="marketplace-canadmin-label">${i18n.marketplace.canAdmin}</label><br/>
+                      </span>
+                      <div id="marketplace-canpurchase" data-dojo-attach-point="_canPurchaseMarketplace" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="marketplace-canpurchase" id="marketplace-canpurchase-label">${i18n.marketplace.canPurchase}</label><br/>
+                      <div id="marketplace-cantrial" data-dojo-attach-point="_canTrialMarketplace" data-dojo-type="dijit/form/CheckBox"
+                           data-dojo-attach-event="onClick:onCheckBoxClick"></div>
+                      <label for="marketplace-cantrial" id="marketplace-cantrial-label">${i18n.marketplace.canTrial}</label><br/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br style="clear:both;"/><br/>
+              <div class="esriFloatTrailing esriTrailingMargin05" data-dojo-attach-point="_saveContainerBottom">
+                <div data-dojo-attach-point="_saveRoleBottom" data-dojo-type="dijit/form/Button"
+                     data-dojo-attach-event="onClick:onSaveRole" class="calcite blue small">${i18n.saveRoleLabel}</div>
+                <div data-dojo-attach-point="_discardEditsBottom" data-dojo-type="dijit/form/Button"
+                     data-dojo-attach-event="onClick:onDiscardEdits" class="calcite transparent small">${i18n.discardEditsLabel}</div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

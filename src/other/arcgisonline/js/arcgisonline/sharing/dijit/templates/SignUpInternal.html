@@ -1,0 +1,55 @@
+<div class="widgetContent">
+  <div id="sign-up-form" class="newStyles grid-50">
+    <!--<h1>${i18n.signUpInternalTitle}</h1>-->
+    <br/><div id="register-error"></div>
+    <form data-dojo-type="dijit.form.Form" id="signup-form" method="POST" action="">
+      <p>${i18n.enterAccountInfo}</p>
+      <!--<div class="formBlock">-->
+        <!--<label class="requiredLabel" for="register_fullname">${i18n.fullNameLabel}</label>-->
+        <!--<input id="register_fullname" name="register_fullname" data-dojo-attach-point="_fullname" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true"/>-->
+      <!--</div>-->
+      <div class="formBlock" id="first-name-block">
+        <label class="requiredLabel" for="register_firstname">${i18n.firstNameLabel}</label>
+        <input id="register_firstname" name="register_firstname" data-dojo-attach-point="_firstname" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true"/>
+      </div>
+      <div class="formBlock" id="last-name-block">
+        <label class="requiredLabel" for="register_lastname">${i18n.lastNameLabel}</label>
+        <input id="register_lastname" name="register_lastname" data-dojo-attach-point="_lastname" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true"/>
+      </div>
+      <div class="formBlock">
+        <label class="requiredLabel" for="register_email">${i18n.currentEmailAdr}</label>
+        <input id="register_email" name="register_email" data-dojo-attach-point="_email" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true"/>
+      </div>
+      <div class="formBlock">
+        <label class="requiredLabel" for="confirm_register_email">${i18n.confirmEmailAdr}</label>
+        <input id="confirm_register_email" name="confirm_register_email" data-dojo-attach-point="_confirmEmail" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true"/>
+      </div>
+      <div class="formBlock">
+        <label class="requiredLabel" for="register_username">${i18n.yourUserName}</label>
+        <input id="register_username" name="register_username" data-dojo-attach-point="_username" data-dojo-type="dijit.form.TextBox" data-dojo-attach-event="onChange:onUsernameChange" data-dojo-props="trim:true"/>
+      </div>
+      <div class="formBlock">
+        <label class="requiredLabel" for="register_password">${i18n.choosePwd}</label>
+        <input id="register_password" name="register_password" data-dojo-attach-point="_pwd" type="password" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true"/>
+      </div>
+      <div class="formBlock">
+        <label class="requiredLabel" for="register_password2">${i18n.renterPwd}</label>
+        <input id="register_password2" name="register_password2" data-dojo-attach-point="_verifyPwd" type="password" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true"/>
+      </div>
+      <div class="formBlock">
+        <label class="requiredLabel" for="identity_question">${i18n.identityQLabel}</label>
+        <div id="identity_question" data-dojo-attach-point="_identityQuestion" data-dojo-type="dijit.form.ComboBox"
+             data-dojo-attach-event="onChange:onIdentityQuestionChange" style="width:350px;margin-left:0;margin-right:0;"
+             data-dojo-props="trim:true"></div>
+      </div>
+      <div class="formBlock">
+        <label class="requiredLabel" for="identity_answer">${i18n.identityALabel}</label>
+        <input id="identity_answer" data-dojo-attach-point="_identityAnswer" data-dojo-type="dijit.form.TextBox" data-dojo-props="trim:true"/>
+      </div>
+      <div class="bottom-buttons">
+        <button id="button_create_account" class="calcite blue" type="submit" data-dojo-attach-point="_createAccountBtn" data-dojo-type="dijit.form.Button">${i18n.createAcc}</button>
+        <button id="button_cancel" class="calcite transparent" type="button" data-dojo-attach-event="onClick:onCancel" data-dojo-type="dijit.form.Button">${i18n.cancel}</button>
+      </div>
+    </form>
+  </div>
+</div>

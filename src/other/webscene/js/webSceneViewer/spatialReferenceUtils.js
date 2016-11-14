@@ -1,0 +1,6 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define("dojo/Deferred esri/config esri/geometry/SpatialReference esri/geometry/support/scaleUtils esri/tasks/support/ProjectParameters webSceneViewer/widgets/MessageListWidget/MessageListWidget dojo/i18n!webSceneViewer/nls/viewer".split(" "),function(n,d,p,q,g,h,k){var m={isGeographicCRS:function(b){return 1E5<q.getUnitValueForSR(b)},projectLayerExtentToSceneSR:function(b,a){d.geometryService&&require(["dojo/on"],function(a){a.once(b,"load",function(){var a=b.fullExtent;if(a){var l=window._webSceneViewerView.map.spatialReference;
+if(!a.spatialReference.equals(l)){var c=d.geometryService,f=new g;f.geometries=[a];f.outSR=l.clone();c.project(f).then(function(a){a&&0<a.length&&b.set("fullExtent",a[0])})}}})})},getLatitudeOfPoint:function(b){var a=new n,c=b.latitude;if(c)a.resolve(c);else{var c=d.geometryService,e=new g;e.geometries=[b];e.outSR=p.WGS84;c.project(e).then(function(b){b&&0<b.length?a.resolve(b[0].y):a.reject()},function(){a.reject()})}return a.promise},pingGeometryService:function(b){m.getLatitudeOfPoint(b).otherwise(function(a){h.show({message:k.messages.geometryServiceUnavailableTitle,
+type:h.MessageTypes.ERROR,details:k.messages.geometryServiceUnavailable})})}};return m});

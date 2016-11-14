@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["../../../core/declare","./StreamDataLoader"],function(d,e){var f=d(null,{_clientType:void 0,_loader:void 0,constructor:function(a,b,c){this._clientType=a;this._loader=b;this._addUrlTokenFunction=c},request:function(a,b,c){return this._loader.request(a,b,this._clientType,c,this._addUrlTokenFunction)},isRequested:function(a){return this._loader.isRequested(a)},cancelRequest:function(a){this._loader.cancel(a)},getRequestedURLs:function(){return this._loader.getRequestedURLs(this._clientType)},
+cancelRequestsBulk:function(a){this._loader.cancelBulk(a,this._clientType)}});return d(null,{constructor:function(a){this._loader=new e(a)},destroy:function(){this._loader.destroy();this._loader=null},hasPendingDownloads:function(){return this._loader.hasPendingDownloads()},makeSupplier:function(a,b){return new f(a,this._loader,b)}})});

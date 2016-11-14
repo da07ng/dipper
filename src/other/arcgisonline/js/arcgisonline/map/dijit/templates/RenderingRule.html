@@ -1,0 +1,38 @@
+<div dojoType="dijit.layout.BorderContainer" region="top"> 
+    <div id="renderingRuleContentHeader" dojoType="dijit.layout.ContentPane" region="top" class="panel panel_left">
+        <div class="esriFloatTrailing" style="padding:0;">
+            <a href="#" dojoAttachPoint="_closeBtn" title="${i18n.close}" class="panel panel_close panel_collapse">
+            <img src="images/close.gif" border="0"/></A>
+        </div>
+        <div id="renderingRuleContentTitle" class="esriFloatLeading" style="font-weight:bold;">
+            ${i18n.renderingRuleDefaultTitle}
+        </div>
+        <div style="clear:both; border-bottom: #333 thin solid; height:1px;"></div>
+    </div>
+    <div id="renderingRuleContentPane" dojoType="dijit.layout.ContentPane" region="center" style="overflow-x:hidden;overflow-y:auto;position:relative;" class="scrollPane">
+        <p id="renderingRulePanelTitle" style="margin:4px 0px 10px 0px;">
+            ${i18n.renderingRulePanelTitle}
+        </p>
+        <div style="width:100%;" id="renderingRule-main">
+        </div>
+    </div>
+    
+    <div id="renderingRuleContentButtons" style="padding:5px;">
+      <center> 
+        <button dojoType="dijit.form.Button" dojoAttachPoint="_applyRenderingRule" class="calcite blue">
+            ${i18n.applyLabel}
+        </button>
+        <button dojoType="dijit.form.Button" dojoAttachPoint="_resetRenderingRule" class="calcite light">
+            ${i18n.resetLabel}
+        </button>         
+        <button dojoType="dijit.form.Button" type="submit" dojoAttachPoint="_closeRenderingRule" class="calcite transparent">
+              ${i18n.closeLabel}
+        </button>
+      </center>
+    </div>
+   
+    <div id="renderingRuleContentFooter" dojoType="dijit.layout.ContentPane" region="bottom" style="height:40px; padding: 0 5px 0 5px; display:none;"> 
+      <div class="footer" id="renderingRuleSiteFooter" dojotype="arcgisonline.sharing.dijit.SiteFooterMap" style="white-space:normal;"></div>
+    </div>
+
+</div>

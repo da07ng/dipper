@@ -1,0 +1,6 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define(["./Util"],function(f){var g=0,a=function(d,c,a){this.glName=a.createBuffer();this.num=0;this.vertexBufferLayout=c;this.gl=a;void 0!==d&&this.setData(d,d.length);this.id=g++};a.prototype.setData=function(d,a,e){var b=this.gl;b.bindBuffer(b.ARRAY_BUFFER,this.glName);b.bufferData(b.ARRAY_BUFFER,d,e||b.STATIC_DRAW);b.bindBuffer(b.ARRAY_BUFFER,null);this.num=a/this.vertexBufferLayout.getStride()};a.prototype.updateSubData=function(d,a,e){var b=this.gl;b.bindBuffer(b.ARRAY_BUFFER,this.glName);b.bufferSubData(b.ARRAY_BUFFER,
+4*a,d.subarray(a,e));b.bindBuffer(b.ARRAY_BUFFER,null)};a.prototype.bind=function(){var a=this.gl;a.bindBuffer(a.ARRAY_BUFFER,this.glName)};a.prototype.setPointers=function(a,c){this.vertexBufferLayout.setVertexAttribPointers(this.gl,a,c)};a.prototype.getNum=function(){return this.num};a.prototype.getId=function(){return this.id};a.prototype.getLayout=function(){return this.vertexBufferLayout};a.prototype.dispose=function(){this.gl.deleteBuffer(this.glName)};a.GLVBORep=function(){var a={};this.add=
+function(c,e){f.assert(void 0===a[c]);a[c]=e};this.get=function(c){return a[c]}};return a});

@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/4.0beta2/esri/copyright.txt for details.
+//>>built
+define("../../core/declare ../../core/lang ./LayerSource ./TableDataSource ./QueryDataSource ./JoinDataSource ./RasterDataSource".split(" "),function(b,c,d,e,f,g,h){return b(d,{declaredClass:"esri.layers.support.LayerDataSource",type:"dataLayer",constructor:function(a){if(a&&a.dataSource){switch(a.dataSource.type){case "table":a=new e(a.dataSource);break;case "queryTable":a=new f(a.dataSource);break;case "joinTable":a=new g(a.dataSource);break;case "raster":a=new h(a.dataSource);break;default:a=a.dataSource}this.dataSource=
+a}},toJSON:function(){var a={type:"dataLayer",dataSource:this.dataSource&&this.dataSource.toJSON()};return c.fixJson(a)}})});

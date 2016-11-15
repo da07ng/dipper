@@ -27,8 +27,9 @@ getPortalSelf(token).then(response => {
 
 $('#signout').on('click', function(e) {
   e.preventDefault()
-  
+
   cookie('dipper_token', '')
+  cookie('esri_auth', '')
   window.location.href='index.html'
 })
 

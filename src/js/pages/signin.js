@@ -16,8 +16,13 @@ $('.signin-form').submit(function(e) {
       response.json().then(json => {
         let expires = json.expires
         let token = json.token
+        let esriAuth=`{"portalApp":true,"email":"${username}","token":"${token}","culture":"zh-cn","region":null,"expires":${expires},"allSSL":false}`
 
         cookie('dipper_token', token, {
+          // path: '/',
+          expires: new Date(expires)
+        })
+        cookie('esri_auth', esriAuth, {
           // path: '/',
           expires: new Date(expires)
         })

@@ -1,9 +1,9 @@
 let portalQueryConfig = {
   //*** search modes (all content, web content only)
   viewQueries: {
-    web: ' -type:"Layer" -type: "Map Document" -type:"Map Package" -type:"Basemap Package" -type:"Mobile Basemap Package" -type:"Mobile Map Package"  -type:"ArcPad Package" -type:"Project Package" -type:"Project Template" -type:"Desktop Style" -type:"Pro Map" -type:"Layout" -type:"Explorer Map" -type:"Globe Document" -type:"Scene Document" -type:"Published Map" -type:"Map Template" -type:"Windows Mobile Package" -type:"Layer Package" -type:"Explorer Layer" -type:"Geoprocessing Package" -type:"Application Template" -type:"Code Sample" -type:"Geoprocessing Package" -type:"Geoprocessing Sample" -type:"Locator Package" -type:"Workflow Manager Package" -type:"Windows Mobile Package" -type:"Explorer Add In" -type:"Desktop Add In" -type:"File Geodatabase" -type:"Feature Collection Template"',
-    gis: ' -type:"Code Attachment" -type:"Featured Items" -type:"Symbol Set" -type:"Color Set" -type:"Windows Viewer Add In" -type:"Windows Viewer Configuration" ',
-    none: ' -type:"Code Attachment" -type:"Featured Items" -type:"Symbol Set" -type:"Color Set" -type:"Windows Viewer Add In" -type:"Windows Viewer Configuration" '
+    web: '-type:"Layer" -type: "Map Document" -type:"Map Package" -type:"Basemap Package" -type:"Mobile Basemap Package" -type:"Mobile Map Package" -type:"ArcPad Package" -type:"Project Package" -type:"Project Template" -type:"Desktop Style" -type:"Pro Map" -type:"Layout" -type:"Explorer Map" -type:"Globe Document" -type:"Scene Document" -type:"Published Map" -type:"Map Template" -type:"Windows Mobile Package" -type:"Layer Package" -type:"Explorer Layer" -type:"Geoprocessing Package" -type:"Desktop Application Template" -type:"Code Sample" -type:"Geoprocessing Package" -type:"Geoprocessing Sample" -type:"Locator Package" -type:"Workflow Manager Package" -type:"Windows Mobile Package" -type:"Explorer Add In" -type:"Desktop Add In" -type:"File Geodatabase" -type:"Feature Collection Template"',
+    gis: '-type:"Code Attachment" -type:"Featured Items" -type:"Symbol Set" -type:"Color Set" -type:"Windows Viewer Add In" -type:"Windows Viewer Configuration"',
+    none: '-type:"Code Attachment" -type:"Featured Items" -type:"Symbol Set" -type:"Color Set" -type:"Windows Viewer Add In" -type:"Windows Viewer Configuration"'
   },
 
   //*** key-value pairs or pre-defined query filters on search results page
@@ -26,12 +26,12 @@ let portalQueryConfig = {
     'layers': {
       focus: 'layers',
       t: 'content',
-      f: '-type:"web mapping application" -type:"Geodata Service" (type:"Scene Service" OR type: "Feature Collection" OR type:"Layer" OR type: "Explorer Layer" OR type: "Tile Package" OR type: "Scene Package" OR type:"Layer Package" OR type:"Feature Service" OR type:"Stream Service" OR type:"Map Service" OR type:"Image Service" OR type:"WMS" OR type:"KML" OR typekeywords:"OGC" OR typekeywords:"Geodata Service" OR type:"Globe Service" OR type:"CSV" OR type: "Shapefile" OR type: "GeoJson" OR type: "Service Definition" OR type: "File Geodatabase" OR type: "CAD Drawing")'
+      f: '-type:"web mapping application" -type:"Geodata Service" (type:"Scene Service" OR type: "Feature Collection" OR type:"Layer" OR type: "Explorer Layer" OR type: "Tile Package" OR type:"Vector Tile Package" OR type: "Scene Package" OR type:"Layer Package" OR type:"Feature Service" OR type:"Stream Service" OR type:"Map Service" OR type:"Vector Tile Service" OR type:"Image Service" OR type:"WMS" OR type:"KML" OR typekeywords:"OGC" OR typekeywords:"Geodata Service" OR type:"Globe Service" OR type:"CSV" OR type: "Shapefile" OR type: "GeoJson" OR type: "Service Definition" OR type: "File Geodatabase" OR type: "CAD Drawing")'
     },
     'applications': {
       focus: 'applications',
       t: 'content',
-      f: '(type:"Code Sample" OR type:"Web Mapping Application" OR type:"Mobile Application" OR type:"Application" OR type:"Desktop Application Template" OR type:"Desktop Application" OR type:"Operation View")'
+      f: '(type:"Code Sample" OR type:"Web Mapping Application" OR type:"Mobile Application" OR type:"Application" OR type:"Desktop Application Template" OR type:"Desktop Application" OR type:"Operation View" OR type:"Operations Dashboard Extension")'
     },
     'tools': {
       focus: 'tools',
@@ -43,7 +43,6 @@ let portalQueryConfig = {
       t: 'content',
       f: '(typekeywords:"Document" OR type:"Image" OR type:"Layout" OR type:"Desktop Style" OR type:"Project Template") -type:"Map Document" -type:"Image Service" -type:"Explorer Document" -type:"Explorer Map" -type:"Globe Document" -type:"Scene Document"'
     },
-
     'maps-webmaps': {
       focus: 'maps',
       t: 'content',
@@ -79,11 +78,10 @@ let portalQueryConfig = {
       t: 'content',
       f: 'type:"Map Package"'
     },
-
     'layers-weblayers': {
       focus: 'layers',
       t: 'content',
-      f: '(type:"Feature Collection" OR type:"Feature Service" OR type:"Image Service" OR type:"Map Service" OR type:"Scene Service" OR type:"Stream Service" OR type: "WMS" OR type: "KML") -type:"Web Map" -type:"Web Mapping Application" -type:"Shapefile"'
+      f: '(type:"Feature Collection" OR type:"Feature Service" OR type:"Image Service" OR type:"Map Service" OR type:"Vector Tile Service" OR type:"Scene Service" OR type:"Stream Service" OR type: "WMS" OR type: "KML") -type:"Web Map" -type:"Web Mapping Application" -type:"Shapefile"'
     },
     'layers-weblayers-features': {
       focus: 'layers',
@@ -98,7 +96,7 @@ let portalQueryConfig = {
     'layers-weblayers-tiles': {
       focus: 'layers',
       t: 'content',
-      f: 'type:"Map Service" (typekeywords: "Hosted" OR typekeywords:"Tiled")'
+      f: '(type:"Map Service" OR type:"Vector Tile Service") (typekeywords: "Hosted" OR typekeywords:"Tiled")'
     },
     'layers-weblayers-mapimage': {
       focus: 'layers',
@@ -108,7 +106,7 @@ let portalQueryConfig = {
     'layers-layerfiles': {
       focus: 'layers',
       t: 'content',
-      f: '(type: "Layer" OR type: "Explorer Layer" OR type: "Tile Package" OR type: "Scene Package" OR type:"Layer Package" OR type:"CSV" OR type: "Shapefile" OR type: "GeoJson" OR type: "Service Definition" OR type: "File Geodatabase" OR type: "CAD Drawing") -type:"Explorer Maps" -type:"Map Documents"'
+      f: '(type: "Layer" OR type: "Explorer Layer" OR type: "Tile Package" OR type:"Vector Tile Package" OR type: "Scene Package" OR type:"Layer Package" OR type:"CSV" OR type: "Shapefile" OR type: "GeoJson" OR type: "Service Definition" OR type: "File Geodatabase" OR type: "CAD Drawing") -type:"Explorer Maps" -type:"Map Documents"'
     },
     'layers-weblayers-scenelayers': {
       focus: 'layers',
@@ -162,6 +160,7 @@ let portalQueryConfig = {
       t: 'content',
       f: '(type:"Web Mapping Application" AND typekeywords:"Flex" AND typekeywords:"Code Sample")'
     },
+
     'applications-web-javascript': {
       focus: 'applications',
       t: 'content',
@@ -182,6 +181,7 @@ let portalQueryConfig = {
       t: 'content',
       f: '(type:"Web Mapping Application" AND typekeywords:"Javascript" AND typekeywords:"Code Sample")'
     },
+
     'applications-web-silverlight': {
       focus: 'applications',
       t: 'content',
@@ -202,11 +202,13 @@ let portalQueryConfig = {
       t: 'content',
       f: '(type:"Web Mapping Application" AND typekeywords:"Silverlight" AND typekeywords:"Code Sample")'
     },
+
     'applications-mobile': {
       focus: 'applications',
       t: 'content',
       f: 'type:"Mobile Application"'
     },
+
     'applications-mobile-android': {
       focus: 'applications',
       t: 'content',
@@ -227,6 +229,7 @@ let portalQueryConfig = {
       t: 'content',
       f: '(type:"Mobile Application" AND typekeywords:"ArcGIS for Android" AND typekeywords:"Code Sample")'
     },
+
     'applications-mobile-iphone': {
       focus: 'applications',
       t: 'content',
@@ -247,6 +250,7 @@ let portalQueryConfig = {
       t: 'content',
       f: '(type:"Mobile Application" AND typekeywords:"ArcGIS for iPhone" AND typekeywords:"Code Sample")'
     },
+
     'applications-mobile-windowsmobile': {
       focus: 'applications',
       t: 'content',
@@ -267,6 +271,7 @@ let portalQueryConfig = {
       t: 'content',
       f: '(type:"Mobile Application" AND typekeywords:"Windows Mobile" AND typekeywords:"Code Sample")'
     },
+
     'applications-mobile-windowsphone': {
       focus: 'applications',
       t: 'content',
@@ -287,6 +292,7 @@ let portalQueryConfig = {
       t: 'content',
       f: '(type:"Mobile Application" AND typekeywords:"Windows Phone" AND typekeywords:"Code Sample")'
     },
+
     'applications-mobile-android': {
       focus: 'applications',
       t: 'content',
@@ -307,6 +313,7 @@ let portalQueryConfig = {
       t: 'content',
       f: '(type:"Mobile Application" AND typekeywords:"Android" AND typekeywords:"Code Sample")'
     },
+
     'applications-mobile-javascript': {
       focus: 'applications',
       t: 'content',
@@ -327,6 +334,7 @@ let portalQueryConfig = {
       t: 'content',
       f: '(type:"Mobile Application" AND typekeywords:"JavaScript" AND typekeywords:"Code Sample")'
     },
+
     'applications-mobile-flex': {
       focus: 'applications',
       t: 'content',
@@ -347,31 +355,37 @@ let portalQueryConfig = {
       t: 'content',
       f: '(type:"Mobile Application" AND typekeywords:"Flex" AND typekeywords:"Code Sample")'
     },
+
     'applications-desktop': {
       focus: 'applications',
       t: 'content',
       f: '(type:"Desktop Application" -type:"Desktop Application Template")'
     },
+
     'applications-desktop-java': {
       focus: 'applications',
       t: 'content',
       f: '(type:"Desktop Application" AND typekeywords:"Java")'
     },
+
     'applications-desktop-dotnet': {
       focus: 'applications',
       t: 'content',
       f: '(type:"Desktop Application" AND typekeywords:".NET-Windows Desktop")'
     },
+
     'applications-desktop-osx': {
       focus: 'applications',
       t: 'content',
       f: '(type:"Desktop Application" AND typekeywords:"OS X")'
     },
+
     'applications-desktop-qt': {
       focus: 'applications',
       t: 'content',
       f: '(type:"Desktop Application" AND typekeywords:"Qt")'
     },
+
     'applications-desktop-wpf': {
       focus: 'applications',
       t: 'content',
@@ -403,7 +417,6 @@ let portalQueryConfig = {
       t: 'content',
       f: 'type:"Network Analysis Service"'
     },
-
     'files-document': {
       focus: 'files',
       t: 'content',

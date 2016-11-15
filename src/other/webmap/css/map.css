@@ -47,7 +47,7 @@ nav.navbar-blue {
     line-height: 1.42857143;
     float: left !important;
     overflow:hidden;
-    height: 35px;
+    /*height: 35px;*/
 }
 
 .container-fluid {
@@ -95,7 +95,7 @@ nav.navbar-blue {
 
 .navbar-blue a {
     display: inline-block;
-    padding: 5px 8px;
+    padding: 7px 8px;
     border-bottom: solid #2765B0 1px;
     height: 33px;
     color: #fff;
@@ -133,7 +133,7 @@ nav.navbar-blue {
 .navbar-brand-text {
     box-sizing: border-box;
     color: #2864B1;
-    font-size: 1.4em;
+    font-size: 28px;
     line-height: 1.42857143;
 }
 

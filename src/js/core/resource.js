@@ -7,41 +7,74 @@ import { search } from '../portal/search'
 import cookie from '../utils/cookie'
 import { formatTime, subString } from '../utils/auxiliary'
 
-// $(function() {
+const PAGESIZE = 9
+
 let $pagination = $('.pagination')
-var defaultOpts = {
+let defaultOpts = {
   first: '首页',
   prev: '上一页',
   next: '下一页',
   last: '尾页'
 }
 $pagination.twbsPagination(defaultOpts)
-// })
 
-function getResourceList(type, page) {
-  getPortalSelf(cookie('dipper_token')).then(response => {
-    if (response.ok) {
-      response.json().then(json => {
-        let portalId = json.id
-        let query = `orgid:${portalId} ${portalQueryConfig.viewQueries.web} ${portalQueryConfig.viewQueries.none} ${portalQueryConfig.filterQueries[type].f}`
-        let start = page * 9 - 8
+/**
+ * Get resource from Portal.
+ * @param  {string} type    [description]
+ * @return {string} tag     [description]
+ * @return {string} keyword [description]
+ * @return {int}    page    [description]
+ */
+function getResourceList(type, tag, keyword, page) {
+  let orgid = window.dipper.orgid
+  let query =`${portalQueryConfig.viewQueries.web} ${portalQueryConfig.viewQueries.none}`
 
-        searchResource(type, query, start)
+  if (type !== 'all') {
+    query = `${query} ${portalQueryConfig.filterQueries[type].f}`
+  }
+
+  if (tag !== '' || keyword !== '') {
+    if (tag !== '') {
+      query = `tags:${tag} ${query}`
+    } else {
+      query = `${keyword} ${query}`
+    }
+
+    let start = page * PAGESIZE - (PAGESIZE - 1)
+
+    searchResource(type, tag, keyword, query, start)
+  } else {
+    let start = page * PAGESIZE - (PAGESIZE - 1)
+
+    if (orgid !== undefined) {
+      query = `orgid:${orgid} ${query}`
+
+      searchResource(type, tag, keyword, query, start)
+    } else {
+      getPortalSelf(cookie('dipper_token')).then(response => {
+        if (response.ok) {
+          response.json().then(json => {
+            query = `orgid:${json.id} ${query}`
+
+            searchResource(type, tag, keyword, query, start)
+          })
+        }
+      }).catch(err => {
+        console.log(err)
       })
     }
-  }).catch(err => {
-    console.log(err)
-  })
+  }
 }
 
-function searchResource(type, query, start) {
-  search(query, start, 9, 'modified', 'desc', cookie('dipper_token')).then(response => {
+function searchResource(type, tag, keyword, query, start) {
+  search(query, start, PAGESIZE, 'modified', 'desc', cookie('dipper_token')).then(response => {
     if (response.ok) {
       response.json().then(json => {
         let res = json.results
         if (res.length === 0) {
           $('.resource-list').html('')
           $('.pagination').hide()
+
           return
         }
 
@@ -56,7 +89,7 @@ function searchResource(type, query, start) {
           totalPages: totalPages,
           initiateStartPageClick: false,
           onPageClick: function (event, page) {
-            getResourceList(type, page)
+            getResourceList(type, tag, keyword, page)
           }
         }))
       })

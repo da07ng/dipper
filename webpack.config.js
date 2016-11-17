@@ -23,6 +23,9 @@ module.exports = {
     signin: [
       './src/js/pages/signin.js'
     ],
+    profile: [
+      './src/js/pages/profile.js'
+    ],
     content: [
       './src/js/pages/content.js'
     ]

@@ -445,30 +445,30 @@ nav.navbar-blue {
 }
 
 #toolbar-print {
-    background: url("../../themes/blue-light/images/icons/print.png") no-repeat center;
+    background: url("../images/icons/print.png") no-repeat center;
 }
 
 #toolbar-save {
-    background: url("../../themes/blue-light/images/icons/save.png") no-repeat center;
+    background: url("../images/icons/save.png") no-repeat center;
 }
 
 #toolbar-share {
-    background: url("../../themes/blue-light/images/icons/share.png") no-repeat center;
+    background: url("../images/icons/share.png") no-repeat center;
 }
 
 #toolbar-measure {
-    background: url("../../themes/blue-light/images/icons/measure.png") no-repeat center;
+    background: url("../images/icons/measure.png") no-repeat center;
 }
 
 #toolbar-switch3D {
-    background: url("../../themes/blue-light/images/icons/flag_3d.png") no-repeat center;
+    background: url("../images/icons/flag_3d.png") no-repeat center;
     background-size: contain;
     -webkit-background-size: contain;
     -moz-background-size: contain;
 }
 
 #toolbar-switch2D {
-    background: url("../../themes/blue-light/images/icons/flag_2d.png") no-repeat center;
+    background: url("../images/icons/flag_2d.png") no-repeat center;
     background-size: contain;
     -webkit-background-size: contain;
     -moz-background-size: contain;
@@ -627,19 +627,19 @@ nav.navbar-blue {
 }
 
 .treenode-tool.add {
-    background: url('../../themes/blue-light/images/icons/add.png') no-repeat scroll 0 0 / contain;
+    background: url('../images/icons/add.png') no-repeat scroll 0 0 / contain;
 }
 
 .treenode-tool.view {
-    background: url('../../themes/blue-light/images/icons/view.png') no-repeat scroll 0 0 / contain;
+    background: url('../images/icons/view.png') no-repeat scroll 0 0 / contain;
 }
 
 .treenode-tool.info {
-    background: url('../../themes/blue-light/images/icons/info.png') no-repeat scroll 0 0 / contain;
+    background: url('../images/icons/info.png') no-repeat scroll 0 0 / contain;
 }
 
 .treenode-tool.detail {
-    background: url('../../themes/blue-light/images/icons/detail.png') no-repeat scroll 0 0 / contain;
+    background: url('../images/icons/detail.png') no-repeat scroll 0 0 / contain;
 }
 
 #data-res-filter-more:hover {
@@ -650,21 +650,21 @@ nav.navbar-blue {
     display: inline-block;
     height: 20px;
     width: 48px;
-    background: url('../../themes/blue-light/images/icons/add2.png') no-repeat scroll 0 0 / contain;
+    background: url('../images/icons/add2.png') no-repeat scroll 0 0 / contain;
 }
 
 .filter-item-view {
     display: inline-block;
     height: 20px;
     width: 48px;
-    background: url('../../themes/blue-light/images/icons/add21.png') no-repeat scroll 0 0 / contain;
+    background: url('../images/icons/add21.png') no-repeat scroll 0 0 / contain;
 }
 
 .filter-item-remove {
     display: inline-block;
     height: 20px;
     width: 48px;
-    background: url('../../themes/blue-light/images/icons/delete2.png') no-repeat scroll 0 0 / contain;
+    background: url('../images/icons/delete2.png') no-repeat scroll 0 0 / contain;
 }
 
 .saveToolDlg-hytree .dijitTreeExpandoOpened {

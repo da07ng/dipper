@@ -78,6 +78,11 @@ gulp.task('image', function() {
     .pipe(gulp.dest('dist/assets/images'));
 });
 
+gulp.task('other', function() {
+  gulp.src('src/other/**/*')
+    .pipe(gulp.dest('dist/'));
+});
+
 gulp.task('watch', function() {
   gulp.watch('src/views/**/*.html', ['html', 'webmap', 'webscene']);
   gulp.watch('src/js/**/*.js', ['script']);

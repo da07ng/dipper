@@ -1,16 +1,20 @@
 import 'isomorphic-fetch'
 
-import { config } from '../config/config'
-import { searchParams } from './util'
+import { config } from '../../config/config'
+import { searchParams } from '../util'
 
-function getAllGroup(token) {
+function groupSearch(q, start, num, sortField, sortOrder, token) {
   if (token === undefined) {
     token = ''
   }
 
   let url = config.portal.url + '/sharing/rest/community/groups'
   let params = {
-    culture: 'zh-cn',
+    q: q,
+    start: start,
+    num: num,
+    sortField: sortField,
+    sortOrder: sortOrder,
     f: 'json',
     token: token
   }
@@ -24,14 +28,13 @@ function getAllGroup(token) {
   })
 }
 
-function getGroup(groupId) {
+function getGroup(groupId, token) {
   if (token === undefined) {
     token = ''
   }
 
   let url = config.portal.url + '/sharing/rest/community/groups/' + groupId
   let params = {
-    culture: 'zh-cn',
     f: 'json',
     token: token
   }
@@ -45,14 +48,17 @@ function getGroup(groupId) {
   })
 }
 
-function updateGroup(groupId) {
+function updateGroup(groupId, title, snippet, tags, access, token) {
   if (token === undefined) {
     token = ''
   }
 
   let url = config.portal.url + '/sharing/rest/community/groups/' + groupId + '/update'
   let params = {
-    culture: 'zh-cn',
+    title: title,
+    snippet: snippet,
+    tags: tags,
+    access: access,
     f: 'json',
     token: token
   }
@@ -137,6 +143,27 @@ function inviteGroup(groupId) {
   let url = config.portal.url + '/sharing/rest/community/groups/' + groupId + '/invite'
   let params = {
     culture: 'zh-cn',
+    f: 'json',
+    token: token
+  }
+
+  return fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: searchParams(params)
+  })
+}
+
+function addUserToGroup(groupId, users, token) {
+  if (token === undefined) {
+    token = ''
+  }
+
+  let url = config.portal.url + '/sharing/rest/community/groups/' + groupId + '/addUsers'
+  let params = {
+    users: users,
     f: 'json',
     token: token
   }
@@ -298,13 +325,14 @@ function declineGroupApplication(groupId, userName) {
 }
 
 export {
-  getAllGroup,
+  groupSearch,
   getGroup,
   updateGroup,
   reassignGroup,
   deleteGroup,
   joinGroup,
   inviteGroup,
+  addUserToGroup,
   leaveGroup,
   removeGroupMember,
   getGroupUser,

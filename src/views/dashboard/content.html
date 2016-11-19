@@ -16,24 +16,65 @@
         <li><a href="#">数据服务</a></li>
         <li class="active">智能地图</li>
       </ol>
-      <div class="row">
+      <div class="row personal-content">
         <div class="col-md-3">
           <div class="type-tree folder-type">
             <p class="tree-title">我的文件夹<span class="tree-close">×</span></p>
             <ul class="tree-list">
-              <li class="active"><a href="#" data-type="根目录">根目录</a></li>
             </ul>
           </div>
         </div>
         <div class="col-md-9">
-          <div class="row">
-            <div class="resource-list clearfix">
+          <div>
+            <div class="panel-heading">
+              <span>资源目录</span>
+            </div>
+            <div class="sort-order">
+              <span class="icon-bar">选择方式：</span>
+              <input id="select-all" type="checkbox" name="checkbox-all" value="checkbox" style="margin-left:5px;">&nbsp;全选
+              <!--<a id="list" class="cursors">
+                <span class="glyphicon glyphicon-th-list pull-right" aria-hidden="true"></span>
+                </a>
+              <a id="card" class="cursors change">
+                <span class="glyphicon glyphicon-th-large pull-right" aria-hidden="true" style="margin-right:10px;"></span>
+              </a>
+              <span class="pipe pull-right">|</span>
+              <span class="pull-right moveItemButton">移动</span>
+              <span class="esriMoveIcon pull-right"></span>-->
+              <span class="pull-right delete-item">删除</span>
+              <span class="esriDeleteIcon pull-right"></span>
+              <span class="pull-right share-item" data-toggle="modal" data-target="#shareModal">共享</span>
+              <span class="esriShareIcon pull-right"></span>
+            </div>
+            <div class="resource-list row">
             </div>
             <div class="resource-page">
               <ul class="pagination" style="display: none;">
               </ul>
             </div>
           </div>
+          <div class="loading"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">共享资源</h4>
+        </div>
+        <div class="modal-body" style=" font-size: 17px;">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary-d" data-dismiss="modal">
+            共享
+          </button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+          </button>
         </div>
       </div>
     </div>

@@ -3,6 +3,8 @@ import { getResourceList } from '../core/resource'
 $(function() {
   $('.tree-list li a').on('click', function(e) {
     e.preventDefault()
+    $('.pagination').hide()
+    $('.loading').show()
 
     $('.tree-list li').removeClass('active')
     $(e.target).parent().addClass('active')

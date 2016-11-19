@@ -3,6 +3,8 @@ import { getResourceList } from '../core/resource'
 $(function() {
   $('.data-type li a').on('click', function(e) {
     e.preventDefault()
+    $('.pagination').hide()
+    $('.loading').show()
 
     $('.data-type li').removeClass('active')
     $(e.target).parent().addClass('active')
@@ -14,6 +16,8 @@ $(function() {
 
   $('.industry-type li a').on('click', function(e) {
     e.preventDefault()
+    $('.pagination').hide()
+    $('.loading').show()
 
     $('.industry-type li').removeClass('active')
     $(e.target).parent().addClass('active')
@@ -23,6 +27,5 @@ $(function() {
     getResourceList(dataType, industryType, '', 1)
   })
 })
-
 
 getResourceList('maps-webmaps', '', '', 1)

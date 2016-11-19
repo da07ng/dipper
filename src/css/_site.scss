@@ -6,15 +6,17 @@ body {
 
 a {
   color: #5acfd6;
-}
 
-a:hover,
-a:focus {
-  text-decoration: none;
+  &:hover,
+  &:focus {
+    color: #5acfd6;
+    text-decoration: underline;
+  }
 }
 
 .btn-primary-d {
   color: #5acfd6;
+  background-color: transparent;
   border-color: #5acfd6;
 
   &:hover {

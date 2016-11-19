@@ -25,58 +25,52 @@
     </head>
 
     <body>
-
-        <div class="templatemo-top-menu" id="templatemo-top-menu">
-            <div class="container">
-                <!-- Static navbar -->
-                <div class="navbar navbar-default" role="navigation">
-                    <div class="container">
-                        <div class="navbar-header">
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                </button>
-                                <a href="#" class="navbar-brand"><img src="../../images/water_logo.png" alt="Urbanic Template" title="Urbanic Template" />江西水利地理信息共享服务平台</a>
-                        </div>
-                        <div style="float: right; padding-right: 20px;padding-top: 25px;">
-                            登录
-                        </div>
-                        <div class="navbar-collapse collapse" id="templatemo-nav-bar">
-                            <ul class="nav navbar-nav navbar-right" style="height: 55px;">
-                                <li><a href="index.html" class="external-link">主页</a></li>
-                                <li><a href="dataCenter.html" class="external-link">数据服务</a></li>
-                                <li><a href="function.html" class="external-link">功能服务</a></li>
-                                <li><a href="webmap/viewer.html" class="external-link">智能地图</a></li>
-                                <li><a href="webscene/viewer.html" class="external-link">三维地图</a></li>
-                                <li class="active"><a href="application.html" class="external-link">平台应用</a></li>
-
-
-                                <li role="presentation" class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                      个人中心 <span class="caret"></span>
-                                    </a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li role="presentation"><a href="personal/personalProfile.html" class="external-link">个人资料</a></li>
-                                        <li role="presentation"><a href="personal/personalData.html" class="external-link">我的资源</a></li>
-                                        <li role="presentation"><a href="personal/collection.html" class="external-link">我的收藏</a></li>
-                                        <li role="presentation"><a href="personal/group.html" class="external-link">工作组</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div><!--/.container-fluid -->
-                </div><!--/.navbar -->
-            </div> <!-- /container -->
+      <div class="header">
+        <div class="container">
+          <div class="navbar navbar-default navbar-static-top">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="../../index.html">地理空间信息服务管理系统</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav pull-right">
+                <li class=""><a href="../../index.html">首页</a></li>
+                <li class="page-data"><a href="../../data.html">数据服务</a></li>
+                <li class="page-tool "><a href="../../tool.html">功能服务</a></li>
+                <li class=""><a href="../../webmap/viewer.html">智能地图</a></li>
+                <li class=""><a href="../../webscene/viewer.html">三维地图</a></li>
+                <li class="active"><a href="../../application.html">平台应用</a></li>
+                <li class="account" style="display: none;">
+                  <div class="btn-group" role="group">
+                    <a class="btn btn-default" href="../../signin.html" role="button">登录</a>
+                    <a class="btn btn-default" href="../../signup.html" role="button">注册</a>
+                  </div>
+                </li>
+                <li class="dashboard dropdown " style="">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心 <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="../../profile.html">个人资料</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="../../content.html">我的资源</a></li>
+                    <!--<li><a href="favourite.html">我的收藏</a></li>-->
+                    <li><a href="../../group.html">我的群组</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a id="signout" href="#">退出</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
+      </div>
 
 
-        <div class="templatemo-line">
-        </div>
-
-
-        <div class="container" style="height: 40px; padding: 30px;padding-top: 10px;">
+        <div class="container" style="padding-top: 30px;">
             <ol class="breadcrumb Extnedbreadcrumb">
               <li><a href="../../developer.html">开发中心</a></li>
               <li class="active">IOS开发</li>
@@ -150,149 +144,63 @@
           <iframe id="apiframe" src="" marginHeight="0" frameBorder="0" width="100%" height="1000px" scrolling="no" marginWidth="0" allowtransparency="true"></iframe>
       </div>
   </div>
-<!-- Footer
-================================================== -->
-  <footer class="footer ">
-
-
-        <div class="templatemo-footer" >
-            <div class="container">
-                <div class="row" style="padding-top: 10px; padding-left: 15px; font-size: 22px; color: #777777;font-family: Hiragino Sans GB, Microsoft Yahei, 微软雅黑, Pinghei, sans-serif;">
-                    友情链接
-                </div>
-                <div class="row" style="margin-top: -40px;">
-                    <div class="footer_container">
-                        <div style="margin-top:60px;">
-                            <ul class="list-inline">
-                                <li class="col-sm-1 col-md-1 col-md-offset-1 templatemo-partner-item">
-                                    <a href="#">水利部</a>
-                                </li>
-                                <li class="col-sm-1 col-md-1 templatemo-partner-item">
-                                    <a href="#">中国水利</a>
-                                </li>
-                                <li class="col-sm-1 col-md-1 templatemo-partner-item">
-                                    <a href="#">    水 利 报</a>
-                                </li>
-                                <li class="col-sm-1 col-md-1 templatemo-partner-item">
-                                    <a href="#">水利杂志 </a>
-                                </li>
-                                <li class="col-sm-1 col-md-1 templatemo-partner-item">
-                                    <a href="#">水规总院</a>
-                                </li>
-                                <li class="col-sm-1 col-md-1 templatemo-partner-item">
-                                    <a href="#">水政在线</a>
-                                </li>
-                                <li class="col-sm-1 col-md-1 templatemo-partner-item">
-                                    <a href="#">中国水势</a>
-                                </li>
-                                <li class="col-sm-1 col-md-1 templatemo-partner-item">
-                                    <a href="#">中国水文 </a>
-                                </li>
-                                <li class="col-sm-1 col-md-1 templatemo-partner-item">
-                                    <a href="#">水利信息 </a>
-                                </li>
-                                <li class="col-sm-1 col-md-1 templatemo-partner-item">
-                                    <a href="#">水利学会 </a>
-                                </li>
-                            </ul>
-                            <ul class="list-inline">
-                                <li class="col-sm-1 col-md-1 col-md-offset-1 templatemo-partner-item">
-                                    <a href="#">水利部</a>
-                                </li>
-                                <li class="col-sm-1 col-md-1 templatemo-partner-item">
-                                    <a href="#">中国水利</a>
-                                </li>
-                                <li class="col-sm-1 col-md-1 templatemo-partner-item">
-                                    <a href="#">    水 利 报</a>
-                                </li>
-                                <li class="col-sm-1 col-md-1 templatemo-partner-item">
-                                    <a href="#">水利杂志 </a>
-                                </li>
-                                <li class="col-sm-1 col-md-1 templatemo-partner-item">
-                                    <a href="#">水规总院</a>
-                                </li>
-                                <li class="col-sm-1 col-md-1 templatemo-partner-item">
-                                    <a href="#">水政在线</a>
-                                </li>
-                                <li class="col-sm-1 col-md-1 templatemo-partner-item">
-                                    <a href="#">中国水势</a>
-                                </li>
-                                <li class="col-sm-1 col-md-1 templatemo-partner-item">
-                                    <a href="#">中国水文 </a>
-                                </li>
-                                <li class="col-sm-1 col-md-1 templatemo-partner-item">
-                                    <a href="#">水利信息 </a>
-                                </li>
-                                <li class="col-sm-1 col-md-1 templatemo-partner-item">
-                                    <a href="#">水利学会 </a>
-                                </li>
-                            </ul>
-                           <!--  <ul class="list-inline">
-                                <li class="col-sm-1 col-md-1 templatemo-partner-item">
-                                    <a href="#">国家防总</a>
-                                </li>
-                                <li class="col-sm-2 col-md-2 templatemo-partner-item">
-                                    <a href="#">    长江水利委员会</a>
-                                </li>
-                                <li class="col-sm-2 col-md-2 templatemo-partner-item">
-                                    <a href="#">    黄河水利委员会</a>
-                                </li>
-                                <li class="col-sm-2 col-md-2 templatemo-partner-item">
-                                    <a href="#">淮河水利委员会 </a>
-                                </li>
-                                <li class="col-sm-2 col-md-2 templatemo-partner-item">
-                                    <a href="#">海河水利委员会</a>
-                                </li>
-                                <li class="col-sm-2 col-md-2 templatemo-partner-item">
-                                    <a href="#">珠江水利委员会</a>
-                                </li>
-                                <li class="col-sm-1 col-md-1 templatemo-partner-item">
-                                    <a href="#">松辽水利委员会</a>
-                                </li>
-                                <li class="col-sm-1 col-md-1 templatemo-partner-item">
-                                    <a href="#">中国水文 </a>
-                                </li>
-                                <li class="col-sm-1 col-md-1 templatemo-partner-item">
-                                    <a href="#">太湖流域管理局 </a>
-                                </li>
-                            </ul> -->
-
-                        </div>
-
-
-
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="text-center">
-
-                        <div class="footer_container">
-                            <div class="height30"></div>
-<!--                             <a class="btn btn-lg btn-orange" href="#templatemo-top-menu" role="button" id="btn-back-to-top">返回顶部</a>
-                            <div class="height30"></div> -->
-                        </div>
-                        <div class="footer_bottom_content">
-<!--                          <span id="footer-line">Copyright © 2084 <a href="#">Your Company Name</a></span>
- -->                            <span id="footer-line">    主办单位： 江西省水利厅 承办单位：江西省防汛信息中心  江西省水利厅版权所有 未经允许 严禁复制或建立镜像       </span></p>
-                                <span id="footer-line">    地址：南昌市中山西路68号 邮编：330009  E-mail：jxsltxf@jxsl.gov.cn  电话:0791-88825678  传真：0791-88825677     </span></p>
-                                <span id="footer-line">    ICP备案号：赣ICP备12001609号     </span>
-
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+<div class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-xs-12">
+        <div class="column col-xs-4">
+          <h4>平台应用</h4>
+          <ul class="footer-block">
+            <li>
+              <a href="template.html" target="_blank">模板应用</a>
+            </li>
+            <li>
+              <a href="appbuilder.html" target="_blank">构建应用中心</a>
+            </li>
+            <li>
+              <a href="plugins.html" target="_blank">第三方集成</a>
+            </li>
+          </ul>
         </div>
-
-  </footer>
-<!-- Footer
-================================================== -->
-
-
-  <!-- Footer
-================================================== -->
+        <div class="column col-xs-4">
+          <h4>开发中心</h4>
+          <ul class="footer-block">
+            <li>
+              <a href="developer/api/service.html?type=services&amp;title=summarize" target="_blank">应用服务接口</a>
+            </li>
+            <li>
+              <a href="developer/api/api.html?type=js&amp;title=summarize" target="_blank">JavaScript开发</a>
+            </li>
+            <li>
+              <a href="developer/api/iosApi.html?type=ios&amp;title=summarize" target="_blank">iOS开发</a>
+            </li>
+            <li>
+              <a href="developer/api/androidApi.html?type=android&amp;title=summarize" target="_blank">Android开发</a>
+            </li>
+          </ul>
+        </div>
+        <div class="column col-xs-4">
+          <h4>关于我们</h4>
+          <ul class="footer-block">
+            <li>
+              <a href="#" target="_blank">联系我们</a>
+            </li>
+            <li>
+              <a href="#" target="_blank">服务条款</a>
+            </li>
+            <li>
+              <a href="#" target="_blank">隐私策略</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright pull-right hidden-xs">
+        <p>地理空间信息服务管理系统</p>
+        <p>support@geoplat.com</p>
+      </div>
+    </div>
+  </div>
+</div>
   <script type="text/javascript" src="lib/sidebar.js"></script>
   <script type="text/javascript" src="lib/respond.min.js"></script>
   <script type="text/javascript">

@@ -448,6 +448,18 @@
 .featured-map {
   background-color: #f6f6f6;
 
+  a {
+    color: #333;
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    h4 {
+      /*color: #5acfd6;*/
+    }
+  }
+
   .title {
     margin-top: 0;
     margin-bottom: 30px;
@@ -538,9 +550,9 @@
   
   .thumbnail-description {
     color: #666;
-    font-size: 12px;
-    line-height: 1.5em;
-    height: 54px;
+    /*font-size: 12px;
+    line-height: 1.5em;*/
+    height: 66px;
     overflow: hidden;
     word-break: break-all;
   }
@@ -559,14 +571,11 @@
     color: #333;
 
     h4 {
-      color: #5acfd6;
+      /*color: #5acfd6;*/
     }
   }
 
   .app-item {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    text-decoration: none;
     transform: translate3d(0,0,0);
     -webkit-transform: translate3d(0,0,0);
     -webkit-transition: 0.3s;
@@ -587,6 +596,15 @@
       transform: translateY(-4px);
       -moz-transform: none;
     }
+  }
+
+  .tool-description {
+    color: #666;
+    /*font-size: 12px;
+    line-height: 1.5em;*/
+    height: 75px;
+    overflow: hidden;
+    word-break: break-all;
   }
 }
 

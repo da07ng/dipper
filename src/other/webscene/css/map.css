@@ -27,7 +27,7 @@ nav.navbar {
 }
 
 nav.navbar-blue {
-    background-color: #2765B0;
+    background-color: #5acfd6;
 }
 
 .navbar:before {
@@ -96,7 +96,7 @@ nav.navbar-blue {
 .navbar-blue a {
     display: inline-block;
     padding: 7px 8px;
-    border-bottom: solid #2765B0 1px;
+    border-bottom: solid #5acfd6 1px;
     height: 33px;
     color: #fff;
     text-decoration: none;

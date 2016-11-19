@@ -11,99 +11,27 @@
 <div class="main">
   <div class='container'>
     <div class="content">
+      <ol class="breadcrumb">
+        <li><a href="#">首页</a></li>
+        <li><a href="#">个人中心</a></li>
+        <li class="active">我的资料</li>
+      </ol>
       <div class="row">
-        <div class="col-md-12 col-sm-12" style="padding: 0;">
+        <div class="col-md-12 col-sm-12">
           <div class="panel panel-default personalProfile">
             <div class="panel-heading">
               <span>基本信息</span>
             </div>
-            <div class="panel-body">
-              <div class="media">
-                <a class="pull-left" href="#">
-                  <img class="thumb media-object" src="../images/icons/no-user-thumb.jpg" alt="">
-                </a>
-                <div class="media-body">
-                  <div class="container-fluid">
-                    <div class="row">
-                      <p class="text-overflow col-md-6">用户名：portaladmin</p>
-                    </div>
-                    <div class="row">
-                      <p class="text-overflow col-md-6">姓名：portaladmin</p>
-                    </div>
-                    <div class="row">
-                      <p class="text-overflow col-md-6">E-mail：117660228@qq.com</p>
-                    </div>
-                    <div class="row">
-                      <p class="text-overflow col-md-6"><strong>用户角色：管理员</strong></p>
-                    </div>
-                    <div class="row">
-                      <p class="text-overflow col-md-6">创建时间：2016年08月04日</p>
-                    </div>
-                    <div class="row">
-                    </div>
-                    <div class="row">
-                      <p class="text-overflow col-md-6">最近登录时间：2016年10月19日 16:04</p>
-                    </div>
-                    <div class="row"></div>
-                    <div class="row"></div>
-                  </div>
-                </div>
-              </div>
+            <div class="panel-body profile-body">
             </div>
           </div>
         </div>
-        <div class="col-md-12 col-sm-12" style="padding: 0;">
+        <div class="col-md-12 col-sm-12">
           <div class="panel panel-default personalProfile">
             <div class="panel-heading">
               <span>我的群组</span>
             </div>
-            <div class="panel-body">
-              <div class="media">
-                <div class="pull-left">
-                  <a href="group.html?groupid=fd0152d6e4744d24b6521ad728b99a70" target="_blank">
-                    <img id="null" class="media-object center-block small-object img-rounded" style="width:65px;height:65px" src="../images/icons/group-no-image.png"
-                      alt="Generic placeholder image" />
-                  </a>
-                </div>
-                <div class="media-body">
-                  <div class="container-fluid">
-                    <div class="row">
-                      <p class="text-overflow col-md-6">群组名称：<a href="group.html?groupid=fd0152d6e4744d24b6521ad728b99a70" target="_blank">Featured Maps and Apps</a></p>
-                      <p class="text-overflow col-md-6">创建者：portaladmin</p>
-                    </div>
-                    <div class="row">
-                      <p class="text-overflow col-md-6">创建时间：2016年08月04日</p>
-                      <p class="text-overflow col-md-6">更新时间：2016年08月04日</p>
-                    </div>
-                    <div class="row">
-                      <p class="text-overflow col-md-12">描述：This group contains featured maps and apps.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="media">
-                <div class="pull-left">
-                  <a href="group.html?groupid=fd0152d6e4744d24b6521ad728b99a70" target="_blank">
-                    <img id="null" class="media-object center-block small-object img-rounded" style="width:65px;height:65px" src="../images/icons/group-no-image.jpg"
-                      alt="Generic placeholder image" />
-                  </a>
-                </div>
-                <div class="media-body">
-                  <div class="container-fluid">
-                    <div class="row">
-                      <p class="text-overflow col-md-6">群组名称：<a href="group.html?groupid=fd0152d6e4744d24b6521ad728b99a70" target="_blank">防汛抗旱</a></p>
-                      <p class="text-overflow col-md-6">创建者：portaladmin</p>
-                    </div>
-                    <div class="row">
-                      <p class="text-overflow col-md-6">创建时间：2016年08月04日</p>
-                      <p class="text-overflow col-md-6">更新时间：2016年08月04日</p>
-                    </div>
-                    <div class="row">
-                      <p class="text-overflow col-md-12">描述：This group contains featured maps and apps.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div class="panel-body group-body">
             </div>
           </div>
         </div>
@@ -114,5 +42,5 @@
 {% endblock %}
 
 {% block script %}
-<!--<script src="assets/js/data.js"></script>-->
+<script src="assets/js/profile.js"></script>
 {% endblock %}

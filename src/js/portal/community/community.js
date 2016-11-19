@@ -1,7 +1,7 @@
 import 'isomorphic-fetch'
 
-import { config } from '../config/config'
-import { searchParams } from './util'
+import { config } from '../../config/config'
+import { searchParams } from '../util'
 
 function getCommunity(token) {
   if (token === undefined) {
@@ -10,7 +10,6 @@ function getCommunity(token) {
 
   let url = config.portal.url + '/sharing/rest/community/self'
   let params = {
-    culture: 'zh-cn',
     f: 'json',
     token: token
   }
@@ -24,14 +23,17 @@ function getCommunity(token) {
   })
 }
 
-function createGroup(token) {
+function createGroup(title, snippet, tags, access, token) {
   if (token === undefined) {
     token = ''
   }
 
   let url = config.portal.url + '/sharing/rest/community/createGroup'
   let params = {
-    culture: 'zh-cn',
+    title: title,
+    snippet: snippet,
+    tags: tags,
+    access: access,
     f: 'json',
     token: token
   }

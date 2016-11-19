@@ -1,0 +1,254 @@
+.personal-content {
+  .panel-heading {
+    padding: 8px 15px;
+    border-bottom: solid 1px #eee;
+    span {
+      font-size: 16px;
+      font-weight: 600;
+      border-bottom: 2px solid #7dace4;
+      padding-bottom: 10px;
+    }
+  }
+
+  .sort-order {
+    margin: 8px 15px;
+
+    .sort-content {
+      text-decoration: none;
+
+      &:hover,
+      &:focus {
+        color: red;
+      }
+    }
+
+    .active {
+      color: red;
+    }
+
+    .esriShareIcon {
+      background-image: url("../images/personal/userGroup.png");
+      margin-top: -1px;
+      margin-right: 3px;
+      background-repeat: no-repeat;
+      display: inline-block;
+      height: 20px;
+      width: 20px;
+    }
+
+    .esriDeleteIcon {
+      background-image: url("../images/personal/delete.png");
+      margin-top: -1px;
+      margin-right: 3px;
+      background-repeat: no-repeat;
+      display: inline-block;
+      height: 20px;
+      width: 20px;
+    }
+
+    .esriMoveIcon {
+      background-image: url("../images/personal/move.png");
+      margin-top: -1px;
+      margin-right: 3px;
+      background-repeat: no-repeat;
+      display: inline-block;
+      height: 20px;
+      width: 20px;
+    }
+
+    .delete-item {
+      margin-top: -5px;
+      margin-right: 15px;
+      cursor: pointer;
+    }
+
+    .share-item {
+      margin-top: -5px;
+      margin-right: 15px;
+      cursor: pointer;
+    }
+
+    .moveItemButton {
+      margin-top: -2px;
+      margin-right: 15px;
+      cursor: pointer;
+    }
+
+    .pipe {
+      margin-top: -2px;
+      margin-right: 10px;
+    }
+    .cursors {
+      cursor: pointer;
+    }
+
+    .cursors:hover {
+      color: red;
+    }
+
+    .clouddisk {
+      padding: 4px 10px;
+      margin: -5px 15px 0 20px;
+      color: #337ab7;
+      border-color: #337ab7;
+      background: #FFFFFF;
+    }
+
+    .clouddisk:hover {
+      color: #FF5A69;
+      border-color: #FF5A69;
+      background: transparent;
+    }
+  }
+
+  .resource-list {
+    .select-item {
+      position: absolute;
+      z-index: 100;
+      top: 13px;
+      right: 13px;
+      height: 15px;
+      width: 15px;
+    }
+  }
+}
+
+.group-list {
+  position: relative;
+
+  .nav li .add-group {
+    border: 0;
+
+    &:hover {
+      color: #5acfd6;
+      background-color: transparent;
+      outline: 0;
+    }
+
+    &:focus,
+    &:active {
+      background-color: transparent;
+      outline: 0;
+    }
+  }
+
+  .group-operation {
+    a {
+      margin: 0 2px;
+      font-size: 14px;
+      /*color: #7dace4;*/
+
+      &:hover {
+        /*color: #5acfd6;*/
+      }
+    }
+  }
+
+  .channel-item .createinfo {
+    font-size: 10px;
+    color: #999;
+    text-align: right;
+  }
+
+  .channel-item .handle {
+    padding: 2px 5px 2px 5px;
+    text-align: right;
+  }
+
+  .channel-item .block {
+    height: 80px;
+    padding: 10px;
+    color: #999;
+    background: #f6f7f5;
+    overflow: hidden;
+    zoom: 1;
+  }
+
+  .channel-item .block {
+    font-size: 12px;
+  }
+
+  .channel-item .pic {
+    position: relative;
+    float: left;
+    margin-right: 15px;
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .channel-item .pic .pic-wrap {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    top: -30px;
+    left: -30px;
+    text-align: center;
+  }
+
+  .channel-item .pic img {
+    min-width: 60px;
+    min-height: 60px;
+    vertical-align: middle;
+  }
+
+  .channel-item .pic .pic-wrap:after {
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 120px;
+    vertical-align: middle;
+  }
+
+  .tags {
+    color: #7dace4;
+
+    .label {
+      margin-left: 10px;
+    }
+  }
+
+  .group-item {
+    padding: 24px;
+    border: 0;
+    border-radius: 0;
+    cursor: pointer;
+    transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0,0,0);
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    .group-operation {
+      text-align: right;
+    }
+  }
+  
+  .group-item:hover, .group-item:focus {
+    /*background-color: #F1F1F1;*/
+    box-shadow: 0 22px 43px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 0 22px 43px rgba(0, 0, 0, 0.25);
+    /*color: #1A4C87;*/
+    -webkit-transform: translateY(-4px);
+    transform: translateY(-4px);
+    -moz-transform: none;
+  }
+}
+
+#inviteUserModal {
+  select {
+    height: 180px;
+  }
+}
+
+#newGroupModal {
+  textarea {
+    resize: none;
+  }
+}

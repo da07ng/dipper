@@ -70,6 +70,11 @@ function searchResource(type, tag, keyword, query, start) {
   search(query, start, PAGESIZE, 'modified', 'desc', cookie('dipper_token')).then(response => {
     if (response.ok) {
       response.json().then(json => {
+        $('.loading').hide()
+        if (json.error) {
+          return
+        }
+
         let res = json.results
         if (res.length === 0) {
           $('.resource-list').html('')
@@ -78,10 +83,10 @@ function searchResource(type, tag, keyword, query, start) {
           return
         }
 
-        showResourceList(res)
+        showResourceList(type, res)
         $('.pagination').show()
 
-        let totalPages = Math.ceil(json.total / json.num)
+        let totalPages = Math.ceil(json.total / PAGESIZE)
         let currentPage = $pagination.twbsPagination('getCurrentPage')
         $pagination.twbsPagination('destroy')
         $pagination.twbsPagination($.extend({}, defaultOpts, {
@@ -89,6 +94,7 @@ function searchResource(type, tag, keyword, query, start) {
           totalPages: totalPages,
           initiateStartPageClick: false,
           onPageClick: function (event, page) {
+            $('.loading').show()
             getResourceList(type, tag, keyword, page)
           }
         }))
@@ -99,7 +105,7 @@ function searchResource(type, tag, keyword, query, start) {
   })
 }
 
-function showResourceList(resourceList) {
+function showResourceList(type, resourceList) {
   let token = cookie('dipper_token')
 
   let resourceListHtml = ''
@@ -115,20 +121,63 @@ function showResourceList(resourceList) {
       thumbnail = 'assets/images/portal/desktopapp.png'
     }
 
+    let openUrl = ''
+    let detailUrl = `item.html?id=${resource.id}`
+    switch (type) {
+      case 'tools-geoprocessing':
+      case 'tools-geometric':
+        openUrl = resource.url;
+        detailUrl = `${detailUrl}&type=tool`
+        break;
+      case 'maps-webmaps':
+        openUrl = `webmap/viewer.html?webmap=${resource.id}`;
+        detailUrl = `${detailUrl}&type=webmap`
+        break;
+      default:
+        openUrl = `webmap/viewer.html?layers=${resource.id}`;
+        detailUrl = `${detailUrl}&type=layer`
+        break;
+    }
+
     resourceListHtml += `<div class="col-md-4 resource">
       <div class="thumbnail">
-        <a href="item.html?id=${resource.id}" title="${resource.title}">
+        <a href="${detailUrl}" title="${resource.title}" target="_blank">
           <img class="resource-thumb" src="${thumbnail}" alt="${resource.title}" />
-          <div class="caption">
-            <h3 class="resource-title">${resource.title}</h3>
-            <p class="resource-snippet">${resource.snippet === null ? '无描述' : subString(resource.snippet, 80)}</p>
-            <p class="resource-author">
-              <img title="${resource.owner}" src="assets/images/no-user-thumb.jpg" />
-              <span class="author-name  text-overflow">${resource.owner}</span>
-              <span class="pull-right">${formatTime(resource.created)}</span>
-            </p>
-          </div>
         </a>
+        <div class="caption">
+          <p class="author-info">
+            <span class="author-name text-overflow"></span>
+            <span class="comment-count pull-right"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> ${resource.numComments}</span>
+            <span class="view-count pull-right"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> ${resource.numViews}</span>
+          </p>
+          <a href="${detailUrl}" title="${resource.title}" target="_blank">
+            <h3 class="resource-title">${resource.title}</h3>
+          </a>
+          <p class="resource-rating">
+            <span class="glyphicon glyphicon-star glyphicon-gray"></span>
+            <span class="glyphicon glyphicon-star glyphicon-gray"></span>
+            <span class="glyphicon glyphicon-star glyphicon-gray"></span>
+            <span class="glyphicon glyphicon-star glyphicon-gray"></span>
+            <span class="glyphicon glyphicon-star glyphicon-gray"></span>
+            <span class="resource-rating-info"> ( ${resource.numRatings} 次评级 )</span>
+          </p>
+          <p class="resource-snippet">${resource.snippet === null ? '无描述' : subString(resource.snippet, 80)}</p>
+          <div class="resource-author">
+            <img title="${resource.owner}" src="assets/images/no-user-thumb.jpg" />
+            <span class="author-name  text-overflow">${resource.owner}</span>
+            <span class="pull-right">${formatTime(resource.created)}</span>
+          </div>
+          <div class="resource-operation">
+            <div class="container-fluid">
+              <div class="col-md-6" style="border-right: solid 1px #ddd;">
+                <a href="${openUrl}" title="在地图查看器中打开" target="_blank">打开</a>
+              </div>
+              <div class="col-md-6" >
+                <a href="${detailUrl}" title="查看详情" target="_blank">详情</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>`
   }

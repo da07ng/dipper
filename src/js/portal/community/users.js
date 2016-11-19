@@ -1,16 +1,20 @@
 import 'isomorphic-fetch'
 
-import { config } from '../config/config'
-import { searchParams } from './util'
+import { config } from '../../config/config'
+import { searchParams } from '../util'
 
-function getAllUser(token) {
+function userSearch(q, start, num, sortField, sortOrder, token) {
   if (token === undefined) {
     token = ''
   }
 
   let url = config.portal.url + '/sharing/rest/community/users'
   let params = {
-    culture: 'zh-cn',
+    q: q,
+    start: start,
+    num: num,
+    sortField: sortField,
+    sortOrder: sortOrder,
     f: 'json',
     token: token
   }
@@ -24,14 +28,13 @@ function getAllUser(token) {
   })
 }
 
-function getUser(userName) {
+function getUser(userName, token) {
   if (token === undefined) {
     token = ''
   }
 
   let url = config.portal.url + '/sharing/rest/community/users/' + userName
   let params = {
-    culture: 'zh-cn',
     f: 'json',
     token: token
   }
@@ -256,7 +259,7 @@ function declineInvitation(userName, invitationId) {
 }
 
 export {
-  getAllUser,
+  userSearch,
   getUser,
   updateUser,
   deleteUser,

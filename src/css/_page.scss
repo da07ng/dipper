@@ -113,14 +113,15 @@ body {
 // main
 .main {
   .page-start {
-    padding: 40px 0;
+    padding: 30px 0;
     color: #fff;
     text-align: center;
-    background: url(../images/home/bg2.jpg) no-repeat center;
+    background: url(../images/home/banner.jpg) no-repeat center;
     background-size: cover;
 
     .page-heading {
-      font-size: 28px;
+      font-size: 26px;
+      /*font-weight: 400;*/
     }
 
     p {
@@ -129,12 +130,19 @@ body {
   }
 
   .content {
+    position: relative;
     padding: 30px 0;
     min-height: 400px;
   }
 
-  .breadcrumb .active {
-    color: #333;
+  .breadcrumb {
+    a {
+      color: #7dace4;
+    }
+
+    .active {
+      color: #333;
+    }
   }
 
   .type-tree {
@@ -192,7 +200,16 @@ body {
 
   .pagination > li > a,
   .pagination > li > span {
-    color: #5acfd6;
+    color: #333;
+  }
+
+  .pagination>li>a:hover,
+  .pagination>li>a:focus,
+  .pagination>li>span:hover,
+  .pagination>li>span:focus {
+    color: #fff;
+    background-color: #5acfd6;
+    border-color: #5acfd6;
   }
 
   .pagination > .active > a,
@@ -216,6 +233,30 @@ body {
     background-color: #fff;
     border-color: #ddd;
     cursor: not-allowed;
+  }
+
+  .loading {
+    background: url(../images/loading.gif) no-repeat center;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    z-index: 999;
+    width: 79px;
+    height: 30px;
+    margin-left: -40px;
+  }
+
+  .modal-header {
+    color: #fff;
+    background-color: #7dace4;
+
+    .close span {
+      color: #fff;
+    }
+  }
+
+  .modal-content {
+    border-radius: 0;
   }
 }
 

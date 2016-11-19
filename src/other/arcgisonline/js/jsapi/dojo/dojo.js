@@ -42,10 +42,10 @@ z[a])&&g.node&&"interactive"===g.node.readyState){f=g;break}f?(ra(f),ma(Ja(f,h[1
 Za=ea.callback||b.callback||l.callback;r.boot=Ya||Za?[Ya||[],Za]:0}})(this.dojoConfig||this.djConfig||this.require||{},{async:0,baseUrl:(location.protocol === 'file:' ? 'http:' : location.protocol) +
                     '//' + location.host +
                     ((window.location.href.substring(window.location.href.indexOf(window.location.host) +
-                    window.location.host.length + 1, window.location.href.indexOf("/dipper")) != "/")
+                    window.location.host.length + 1, window.location.href.indexOf("/portal")) != "/")
                     ? "/" +
                     window.location.href.substring(window.location.href.indexOf(window.location.host)
-                    + window.location.host.length + 1, window.location.href.indexOf("/dipper")) : "")
+                    + window.location.host.length + 1, window.location.href.indexOf("/portal")) : "")
                     + "/portal/arcgisonline/js/jsapi/dojo",hasCache:{"config-selectorEngine":"acme","config-tlmSiblingOfDojo":1,"dojo-built":1,"dojo-loader":1,dom:1,"extend-esri":1,"host-browser":1},packages:[{location:"../../jsapi/dojox",name:"dojox"},{location:"../../jsapi/dgrid",main:"OnDemandGrid",name:"dgrid"},{location:"../../jsapi/dijit",name:"dijit"},{location:"../../arcgisonline",
 name:"arcgisonline"},{location:"../../jsapi/xstyle",name:"xstyle"},{location:"../../jsapi/esri",name:"esri"},{location:".",name:"dojo"},{location:"../../jsapi/put-selector",main:"put",name:"put-selector"}]});
 require({cache:{"dojo/request/default":function(){define(["exports","require","../has"],function(b,l,e){var p=e("config-requestProvider");p||(p="./xhr");b.getPlatformDefaultId=function(){return"./xhr"};b.load=function(b,q,e,k){l(["platform"==b?"./xhr":p],function(b){e(b)})}})},"dojo/_base/fx":function(){define("./kernel ./config ./lang ../Evented ./Color ../aspect ../sniff ../dom ../dom-style".split(" "),function(b,l,e,p,n,q,m,k,h){var a=e.mixin,f={},d=f._Line=function(a,c){this.start=a;this.end=

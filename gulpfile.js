@@ -3,6 +3,7 @@ var nunjucksRender = require('gulp-nunjucks-render');
 var rename = require("gulp-rename");
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');
+var minifyCss = require('gulp-minify-css');
 var gutil = require('gulp-util');
 var webpack = require('webpack');
 var webpackConfig = require('./webpack.config.js');
@@ -70,6 +71,7 @@ gulp.task('script', function(callback) {
 gulp.task('style', function() {
   gulp.src('src/css/main.scss')
     .pipe(sass())
+    .pipe(minifyCss())
     .pipe(gulp.dest('dist/assets/css'));
 });
 

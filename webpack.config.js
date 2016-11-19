@@ -28,6 +28,9 @@ module.exports = {
     ],
     content: [
       './src/js/pages/content.js'
+    ],
+    group: [
+      './src/js/pages/group.js'
     ]
   },
   output: {

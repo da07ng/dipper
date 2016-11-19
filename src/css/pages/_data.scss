@@ -4,31 +4,71 @@
     border: 0;
     border-radius: 0;
     overflow: hidden;
-    border: solid 1px rgba(0, 0, 0, 0.1);
+    /*border: solid 1px rgba(0, 0, 0, 0.1);*/
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     transform: translate3d(0, 0, 0);
     transition: 0.3s;
+    cursor: pointer;
 
     &:hover {
       color: #1A4C87;
-      box-shadow: 0 22px 43px rgba(0, 0, 0, 0.15);
+      border-color: #e9e9e9;
+      -webkit-box-shadow: 0 0 6px 4px rgba(0, 0, 0, 0.15);;
+      -moz-box-shadow: 0 0 6px 4px rgba(0, 0, 0, 0.15);;
+      box-shadow: 0 0 6px 4px rgba(0, 0, 0, 0.15);;
       transform: translateY(-4px);
-    }
 
-    a {
-      text-decoration: none;
+      .resource-operation {
+        bottom: -2px;
+        width: 100%;
+        -webkit-transform: translateY(-4px);
+        transform: translateY(-4px);
+      }
     }
 
     img {
+      padding: 1px;
       width: 100%;
-      height: 160px;
+      height: 150px;
+      border-top: solid 1px #f6f6f6;
+      border-bottom: solid 1px #f6f6f6;
     }
+
+    p {
+      font-size: 14px;
+      color: #666;
+    }
+  }
+
+  .comment-count,
+  .view-count {
+    color: #999;
+    font-size: 12px;
+    margin: 0 0 0 8px;
   }
 
   .resource-title {
     font-size: 16px;
     font-weight: 400;
-    color: #5acfd6;
+    color: #333;
+
+    &:hover {
+      color: #5acfd6;
+    }
+  }
+
+  .resource-rating {
+    .glyphicon-star {
+      color: #ff6161;
+    }
+
+    .glyphicon-gray {
+      color: #ececec;
+    }
+
+    .resource-rating-info {
+      color: #ff6161;
+    }
   }
 
   .resource-snippet {
@@ -38,18 +78,46 @@
   .resource-author {
     margin: 0 -9px ;
     padding: 10px 9px;
-    border-top: 1px solid #ddd;
-    color: #999;
+    border-top: solid 1px #ddd;
 
     img {
       width: 18px;
       height: 18px;
-      border-radius: 50%;
+      border-radius: 2px;
+    }
+
+    span {
+      font-size: 14px;
+      color: #999;
     }
   }
 
-  p {
-    font-size: 14px;
+  .resource-operation {
+    position: absolute;
+    left: 0;
+    bottom: -65px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    width: 100%;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    background: #ffffff;
+
+    .container-fluid {
+      padding: 0;
+    }
+
+    a {
+      color: #333;
+
+      &:hover {
+        color: #5acfd6;
+      }
+    }
   }
 }
 

@@ -28,19 +28,19 @@
     line-height: 2em
 }
 .odd{
-    background-color: #F1F1F1;
+    background-color: #f6f6f6;
 }
 .dec.last{
-    color: #ffffff;
-    background: #1F354A;
+    /*color: #ffffff;*/
+    background-color: #f6f6f6;
 }
-.last.last h3{
-    background: #1F354A;
+.dec .leader h3{
+    background-color: #fff;
 }
-.dec h3{
-    background-color: #ffffff;
+.odd .leader h3{
+    background-color: #F6f6f6;
 }
-.odd h3{
-    background-color: #F1F1F1;
+.last .leader h3{
+    background-color: #f6f6f6;
 }
 

@@ -1,5 +1,3 @@
-{% set pageview = 'data' %}
-
 {% extends "layout/base.html" %}
 {% block title %}数据服务 - 地理空间信息服务管理系统{% endblock %}
 {% block keywords %}{% endblock %}
@@ -9,88 +7,16 @@
 
 {% block content %}
 <div class="main">
-  <div class='container'>
-    <div class="content">
-      <ol class="breadcrumb">
-        <li><a href="#">数据服务</a></li>
-        <li class="active"></li>
-      </ol>
+  <div class="item-start">
+    <div class="container">
+      <h2 class="item-title"></h2>
+    </div>
+  </div>
+  <div class="content">
+    <div class="container">
       <div class="item-content">
-        <div class="item-overview item-block">
-          <div class="item-outline clearfix">
-            <div class="item-image col-xs-5 col-sm-4 col-md-2">
-              <img class="item-thumbnail" src="assets/images/thumbs/i7.png">
-            </div>
-            <div class="item-info col-xs-7 col-sm-8 col-md-10">
-              <h3 class="item-title"></h3>
-              <p class="item-abstract"></p>
-              <p class="item-credit">
-                <span class="item-type"></span>
-                <span class="item-author">作者：<a id="itemAuthor"></a></span>
-                <span class="item-modify">修改时间：<span id="itemModify"></span></span>
-              </p>
-              <p class="item-rating">
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star glyphicon-star-gray"></span>
-                <span class="item-rating-text">（5次评级 | 12次浏览）</span>
-                <a href="javascript:void(0);" class="login-btn">登录</a>评价该项目
-              </p>
-            </div>
-          </div>
-          <div class="item-operation btn-group">
-            <button type="button" class="btn btn-primary btn-op dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">打开 <span class="caret"></span></button>
-            <ul class="dropdown-menu dropdown-menu-2">
-              <li><a href="#">打开</a></li>
-              <li><a href="#" class='open-in-webmap'>在地图查看器中打开</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">下载</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="item-description item-block item-ele">
-          <h4>描述</h4>
-          <p class="item-description-text"></p>
-        </div>
-        <div class="item-authority item-block item-ele">
-          <h4>访问和限制</h4>
-          <!--<p class="item-authority-text">
-            使用该图层及其所创建的地图即表示您同意““Microsoft Bing 地图服务使用条款””的条款和条件。
-          </p>-->
-        </div>
-        <div class="item-layers item-block item-ele">
-          <h4>地图内容</h4>
-          <p class="item-layers-content">
-          </p>
-          <p class="item-layer">
-          </p>
-        </div>
-        <div class="item-attrbutes item-block item-ele">
-          <h4>属性信息</h4>
-          <p class="item-attr-info item-atrr-content">
-          </p>
-          <p class="item-attr-tags">
-          </p>
-          <p class="item-attr-info">
-            <span>制作单位：</span>
-            <!--<a class="item-org" href="javascript:void(0);">Esri</a>-->
-          </p>
-          <p class="item-attr-info">
-            <span>大小：</span>
-            <!--<span class="">4.3M</span>-->
-          </p>
-          <p class="item-attr-info">
-            <span>范围：</span>
-            <span class="item-attr-list">-180</span>
-            <span class="item-attr-list">-90</span>
-            <span class="item-attr-list">180</span>
-            <span class="item-attr-list">90</span>
-          </p>
-          <p></p>
-        </div>
       </div>
+      <div class="loading"></div>
     </div>
   </div>
 </div>

@@ -27,11 +27,7 @@ $pagination.twbsPagination(defaultOpts)
  */
 function getResourceList(type, tag, keyword, page) {
   let orgid = window.dipper.orgid
-  let query =`${portalQueryConfig.viewQueries.web} ${portalQueryConfig.viewQueries.none}`
-
-  if (type !== 'all') {
-    query = `${query} ${portalQueryConfig.filterQueries[type].f}`
-  }
+  let query =`${portalQueryConfig.viewQueries.web} ${portalQueryConfig.viewQueries.none} ${portalQueryConfig.filterQueries[type].f}`
 
   if (tag !== '' || keyword !== '') {
     if (tag !== '') {
@@ -87,7 +83,7 @@ function searchResource(type, tag, keyword, query, start) {
         $('.pagination').show()
 
         let totalPages = Math.ceil(json.total / PAGESIZE)
-        let currentPage = $pagination.twbsPagination('getCurrentPage')
+        let currentPage = start === 1 ? 1 : $pagination.twbsPagination('getCurrentPage')
         $pagination.twbsPagination('destroy')
         $pagination.twbsPagination($.extend({}, defaultOpts, {
           startPage: currentPage,
@@ -123,18 +119,31 @@ function showResourceList(type, resourceList) {
 
     let openUrl = ''
     let detailUrl = `item.html?id=${resource.id}`
-    switch (type) {
-      case 'tools-geoprocessing':
-      case 'tools-geometric':
-        openUrl = resource.url;
-        detailUrl = `${detailUrl}&type=tool`
-        break;
-      case 'maps-webmaps':
+    switch(resource.type) {
+      case 'Web Map':
         openUrl = `webmap/viewer.html?webmap=${resource.id}`;
         detailUrl = `${detailUrl}&type=webmap`
         break;
-      default:
+      case 'Geoprocessing Service':
+      case 'Geometry Service':
+      case 'Network Analysis Service':
+        openUrl = resource.url;
+        detailUrl = `${detailUrl}&type=tool`
+        break;
+      case 'Feature Service':
+      case 'Image Service':
+      case 'Map Service':
+      case 'Stream Service':
+      case 'WMS':
         openUrl = `webmap/viewer.html?layers=${resource.id}`;
+        detailUrl = `${detailUrl}&type=layer`
+        break;
+      case 'Service Definition':
+        openUrl = `${config.portal.url}/sharing/rest/content/items/${resource.id}/data?token=${token}`;
+        detailUrl = `${detailUrl}&type=layer`
+        break;
+      default:
+        openUrl = resource.url || '#';
         detailUrl = `${detailUrl}&type=layer`
         break;
     }
@@ -170,7 +179,7 @@ function showResourceList(type, resourceList) {
           <div class="resource-operation">
             <div class="container-fluid">
               <div class="col-md-6" style="border-right: solid 1px #ddd;">
-                <a href="${openUrl}" title="在地图查看器中打开" target="_blank">打开</a>
+                <a href="${openUrl}" title="打开" target="_blank">打开</a>
               </div>
               <div class="col-md-6" >
                 <a href="${detailUrl}" title="查看详情" target="_blank">详情</a>

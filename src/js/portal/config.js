@@ -11,7 +11,7 @@ let portalQueryConfig = {
     'all': {
       focus: null,
       t: 'content',
-      f: ''
+      f: '(type:"Web Map" OR type:"Feature Collection" OR type:"Feature Service" OR type:"Image Service" OR type:"Map Service" OR type:"Vector Tile Service" OR type:"Scene Service" OR type:"Stream Service" OR type: "WMS" OR type: "KML" OR type:"Web Scene") -type:"Web Mapping Application" -type:"CityEngine Web Scene" -type:"Shapefile"'
     },
     'maps': {
       focus: 'maps',

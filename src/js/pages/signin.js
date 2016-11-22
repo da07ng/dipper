@@ -11,7 +11,12 @@ $('.signin-form').submit(function(e) {
   let username = $('#username').val()
   let password = $('#password').val()
 
-  generateToken(username, password, 'referer', '', 'http://localhost/dipper/', 21600).then(response => {
+  let host = window.location.host
+  let pathRegex = new RegExp(/\/[^\/]+$/);
+  let locationPath = window.location.pathname.replace(pathRegex, '');
+  let rootPath = host + locationPath;
+
+  generateToken(username, password, 'referer', '', rootPath, 21600).then(response => {
     if (response.ok) {
       response.json().then(json => {
         let expires = json.expires

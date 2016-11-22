@@ -415,25 +415,25 @@ require([
             }
         }, 1E2);
 
-        request.post(window.configOptions.baseOprUrl + '/platform/query/domain', {
-            data: dojo.toJson({
-                domain: window.location.host
-            }),
-            timeout: 10000,
-            handleAs: 'json',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json;charset=utf-8'
-            }
-        }).then(function(resp) {
-            if (resp.result && resp.code === '200') {
-                if (resp.data && resp.data.title) {
-                    document.title = resp.data.title;
-                    esriGeowConfig.portalName = resp.data.title;
-                    dom.byId('sys-brand-text').innerHTML = resp.data.title;
-                }
-            }
-        });
+        // request.post(window.configOptions.baseOprUrl + '/platform/query/domain', {
+        //     data: dojo.toJson({
+        //         domain: window.location.host
+        //     }),
+        //     timeout: 10000,
+        //     handleAs: 'json',
+        //     headers: {
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json;charset=utf-8'
+        //     }
+        // }).then(function(resp) {
+        //     if (resp.result && resp.code === '200') {
+        //         if (resp.data && resp.data.title) {
+        //             document.title = resp.data.title;
+        //             esriGeowConfig.portalName = resp.data.title;
+        //             dom.byId('sys-brand-text').innerHTML = resp.data.title;
+        //         }
+        //     }
+        // });
     }
 
     function loadConnections() {
@@ -454,94 +454,94 @@ require([
             objUrl.query = objUrl.query || {};
             var openamCookie;
 
-            if (!token) {
-                if (objUrl.query.webmap || objUrl.query.layer) {
-                    // 用户未登录，重定向到统一认证登录页面
-                    openamCookie = getCookie(window.configOptions.openamKey);
-                    if (!openamCookie || openamCookie === 'null') {
-                        window.location = 'openam_auth.html?returnUrl=' + encodeURIComponent(window.location.href);
-                    } else {
-                        request.get(window.configOptions.validateToken + "?tokenId=" + openamCookie, {
-                            timeout: 10000,
-                            handleAs: 'json',
-                            sync: true,
-                            headers: {
-                                'Content-Type': 'application/x-www-form-urlencoded'
-                            }
-                        }).then(function(resp) {
-                            var usertype = resp.type;
-                            var portalid = resp.portalId;
-                            if (!portalid) {
-                                window.location = 'openam_auth.html?returnUrl=' + encodeURIComponent(window.location.href);
-                            }
-                            var tmpIndex = portalid.lastIndexOf(".");
-                            portalid = portalid.substr(0, tmpIndex);
-                            var currentDomain = window.location.host;
-                            if (currentDomain == portalid) {
-                                window.location = 'openam_auth.html?returnUrl=' + encodeURIComponent(window.location.href);
-                            } else {
-                                if (usertype == 3) {
-                                    alert('"权限不足，请在其他系统先退出！"');
-                                    window.close();
-                                }
-                                if (usertype == 2) {
-                                    if (portalid == window.configOptions.cityPlatformDomain) {
-                                        window.history.back();
-                                    } else {
-                                        if (currentDomain == window.configOptions.cityPlatformDomain) {
-                                            window.location = 'openam_auth.html?returnUrl=' + encodeURIComponent(window.location.href);
-                                        } else {
-                                            alert('"权限不足，请在其他系统先退出！"');
-                                            window.close();
-                                        }
-                                    }
-                                }
-                            }
-                        });
-                    }
-                } else {
-                    openamCookie = getCookie(window.configOptions.openamKey);
-                    if (openamCookie && openamCookie !== 'null') {
-                        request.get(window.configOptions.validateToken + "?tokenId=" + openamCookie, {
-                            timeout: 10000,
-                            handleAs: 'json',
-                            sync: true,
-                            headers: {
-                                'Content-Type': 'application/x-www-form-urlencoded'
-                            }
-                        }).then(function(resp) {
-                            var usertype = resp.type;
-                            var portalid = resp.portalId;
-                            if (!portalid) {
-                                window.location = 'openam_auth.html?returnUrl=' + encodeURIComponent(window.location.href);
-                            }
-                            var tmpIndex = portalid.lastIndexOf(".");
-                            portalid = portalid.substr(0, tmpIndex);
-                            var currentDomain = window.location.host;
-                            if (currentDomain == portalid) {
-                                window.location = 'openam_auth.html?returnUrl=' + encodeURIComponent(window.location.href);
-                            } else {
-                                if (usertype == 3) {
-                                    alert('权限不足，系统将返回首页！');
-                                    window.location.href = 'index.html';
-                                }
-                                if (usertype == 2) {
-                                    if (portalid == window.configOptions.cityPlatformDomain) {
-                                        window.history.back();
-                                    } else {
-                                        if (currentDomain == window.configOptions.cityPlatformDomain) {
-                                            window.location = 'openam_auth.html?returnUrl=' + encodeURIComponent(window.location.href);
-                                        } else {
-                                            alert('"权限不足，系统将返回首页！"');
-                                            window.location.href = 'index.html';
-                                        }
-                                    }
-                                }
-                            }
-                        });
-                    }
-                }
-            }
+            // if (!token) {
+            //     if (objUrl.query.webmap || objUrl.query.layer) {
+            //         // 用户未登录，重定向到统一认证登录页面
+            //         openamCookie = getCookie(window.configOptions.openamKey);
+            //         if (!openamCookie || openamCookie === 'null') {
+            //             window.location = 'openam_auth.html?returnUrl=' + encodeURIComponent(window.location.href);
+            //         } else {
+            //             request.get(window.configOptions.validateToken + "?tokenId=" + openamCookie, {
+            //                 timeout: 10000,
+            //                 handleAs: 'json',
+            //                 sync: true,
+            //                 headers: {
+            //                     'Content-Type': 'application/x-www-form-urlencoded'
+            //                 }
+            //             }).then(function(resp) {
+            //                 var usertype = resp.type;
+            //                 var portalid = resp.portalId;
+            //                 if (!portalid) {
+            //                     window.location = 'openam_auth.html?returnUrl=' + encodeURIComponent(window.location.href);
+            //                 }
+            //                 var tmpIndex = portalid.lastIndexOf(".");
+            //                 portalid = portalid.substr(0, tmpIndex);
+            //                 var currentDomain = window.location.host;
+            //                 if (currentDomain == portalid) {
+            //                     window.location = 'openam_auth.html?returnUrl=' + encodeURIComponent(window.location.href);
+            //                 } else {
+            //                     if (usertype == 3) {
+            //                         alert('"权限不足，请在其他系统先退出！"');
+            //                         window.close();
+            //                     }
+            //                     if (usertype == 2) {
+            //                         if (portalid == window.configOptions.cityPlatformDomain) {
+            //                             window.history.back();
+            //                         } else {
+            //                             if (currentDomain == window.configOptions.cityPlatformDomain) {
+            //                                 window.location = 'openam_auth.html?returnUrl=' + encodeURIComponent(window.location.href);
+            //                             } else {
+            //                                 alert('"权限不足，请在其他系统先退出！"');
+            //                                 window.close();
+            //                             }
+            //                         }
+            //                     }
+            //                 }
+            //             });
+            //         }
+            //     } else {
+            //         openamCookie = getCookie(window.configOptions.openamKey);
+            //         if (openamCookie && openamCookie !== 'null') {
+            //             request.get(window.configOptions.validateToken + "?tokenId=" + openamCookie, {
+            //                 timeout: 10000,
+            //                 handleAs: 'json',
+            //                 sync: true,
+            //                 headers: {
+            //                     'Content-Type': 'application/x-www-form-urlencoded'
+            //                 }
+            //             }).then(function(resp) {
+            //                 var usertype = resp.type;
+            //                 var portalid = resp.portalId;
+            //                 if (!portalid) {
+            //                     window.location = 'openam_auth.html?returnUrl=' + encodeURIComponent(window.location.href);
+            //                 }
+            //                 var tmpIndex = portalid.lastIndexOf(".");
+            //                 portalid = portalid.substr(0, tmpIndex);
+            //                 var currentDomain = window.location.host;
+            //                 if (currentDomain == portalid) {
+            //                     window.location = 'openam_auth.html?returnUrl=' + encodeURIComponent(window.location.href);
+            //                 } else {
+            //                     if (usertype == 3) {
+            //                         alert('权限不足，系统将返回首页！');
+            //                         window.location.href = 'index.html';
+            //                     }
+            //                     if (usertype == 2) {
+            //                         if (portalid == window.configOptions.cityPlatformDomain) {
+            //                             window.history.back();
+            //                         } else {
+            //                             if (currentDomain == window.configOptions.cityPlatformDomain) {
+            //                                 window.location = 'openam_auth.html?returnUrl=' + encodeURIComponent(window.location.href);
+            //                             } else {
+            //                                 alert('"权限不足，系统将返回首页！"');
+            //                                 window.location.href = 'index.html';
+            //                             }
+            //                         }
+            //                     }
+            //                 }
+            //             });
+            //         }
+            //     }
+            // }
         });
 
         on(dom.byId('esrichina-toolbar-arrow'), 'click', _showHideExtraTools);

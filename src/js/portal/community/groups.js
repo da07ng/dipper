@@ -219,14 +219,13 @@ function removeGroupMember(groupId) {
   })
 }
 
-function getGroupUser(groupId) {
+function getGroupUser(groupId, token) {
   if (token === undefined) {
     token = ''
   }
 
   let url = config.portal.url + '/sharing/rest/community/groups/' + groupId + '/users'
   let params = {
-    culture: 'zh-cn',
     f: 'json',
     token: token
   }

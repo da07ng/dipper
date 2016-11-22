@@ -31,7 +31,7 @@
             </div>
             <div class="sort-order">
               <span class="icon-bar">选择方式：</span>
-              <input id="select-all" type="checkbox" name="checkbox-all" value="checkbox" style="margin-left:5px;">&nbsp;全选
+              <input class="select-all-item" type="checkbox" name="checkbox-all" value="checkbox" style="margin-left:5px;">&nbsp;全选
               <!--<a id="list" class="cursors">
                 <span class="glyphicon glyphicon-th-list pull-right" aria-hidden="true"></span>
                 </a>
@@ -43,7 +43,7 @@
               <span class="esriMoveIcon pull-right"></span>-->
               <span class="pull-right delete-item">删除</span>
               <span class="esriDeleteIcon pull-right"></span>
-              <span class="pull-right share-item" data-toggle="modal" data-target="#shareModal">共享</span>
+              <span class="pull-right share-item" data-toggle="modal" data-target="#share-modal">共享</span>
               <span class="esriShareIcon pull-right"></span>
             </div>
             <div class="resource-list row">
@@ -58,7 +58,7 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal fade" id="share-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -70,7 +70,7 @@
         <div class="modal-body" style=" font-size: 17px;">
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary-d" data-dismiss="modal">
+          <button type="button" class="btn btn-primary-d save-share" data-dismiss="modal">
             共享
           </button>
           <button type="button" class="btn btn-default" data-dismiss="modal">关闭

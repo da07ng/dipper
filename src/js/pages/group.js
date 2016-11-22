@@ -3,7 +3,7 @@ import { config } from '../config/config'
 import { portalQueryConfig } from '../portal/config'
 import { getPortalSelf } from '../portal/portals'
 import { getCommunity, createGroup } from '../portal/community/community'
-import { groupSearch, getGroup, updateGroup, addUserToGroup } from '../portal/community/groups'
+import { groupSearch, getGroup, updateGroup, getGroupUser, addUserToGroup } from '../portal/community/groups'
 import { userSearch } from '../portal/community/users'
 
 import cookie from '../utils/cookie'
@@ -49,7 +49,7 @@ $('#multiselect_rightSelected').on('click', function() {
   $('#user_select').html(unselectedHtml)
 })
 
-$('#multiselect_leftSelected').on('click', function() {    
+$('#multiselect_leftSelected').on('click', function() {
   var selected = $('#multiselect_to').find("option:selected")
   var unselected = $('#multiselect_to option').not(':selected')
 
@@ -76,7 +76,7 @@ $('#multiselect_leftAll').on('click', function() {
 $('.save-invite').on('click', function() {
   let token = cookie('dipper_token')
   if (token === undefined) {
-    return 
+    return
   }
 
   let groupid = $('#current-groupid').val()
@@ -96,6 +96,11 @@ $('.save-invite').on('click', function() {
         }
 
         $('#inviteUserModal').modal('hide')
+
+        $('#my-group-list').html('')
+        $('#public-group-list').html('')
+        getMyGroupList(1)
+        getPublicGroupList(1)
       })
     }
   }).catch(err => {
@@ -114,7 +119,7 @@ $('.add-group').on('click', function() {
 $('.save-group').on('click', function() {
   let token = cookie('dipper_token')
   if (token === undefined) {
-    return 
+    return
   }
 
   let groupName = $('#group-name').val()
@@ -173,7 +178,7 @@ $('.save-group').on('click', function() {
 function getMyGroupList(page) {
   let token = cookie('dipper_token')
   if (token === undefined) {
-    return 
+    return
   }
 
   getCommunity(token).then(response => {
@@ -188,7 +193,13 @@ function getMyGroupList(page) {
         }
 
         let myGroups = json.groups
-        showGroupList(myGroups, 'my-group-list')
+        for (let i = 0; i < myGroups.length; i++) {
+          let group = myGroups[i];
+
+          (function(group, insertNode) {
+            showGroupList(group, insertNode)
+          })(group, 'my-group-list')
+        }
       })
     }
   }).catch(err => {
@@ -200,7 +211,7 @@ function getPublicGroupList(page) {
   let orgid = window.dipper.orgid
   let token = cookie('dipper_token')
   if (token === undefined) {
-    return 
+    return
   }
 
   let query = 'ispublic:true'
@@ -237,7 +248,13 @@ function queryGroup(query, start) {
         }
 
         let publicGroups = json.results
-        showGroupList(publicGroups, 'public-group-list')
+        for (let i = 0; i < publicGroups.length; i++) {
+          let group = publicGroups[i];
+
+          (function(group, insertNode) {
+            showGroupList(group, insertNode)
+          })(group, 'public-group-list')
+        }
       })
     }
   }).catch(err => {
@@ -245,107 +262,136 @@ function queryGroup(query, start) {
   })
 }
 
-function showGroupList(groups, insertNode) {
-  let groupHtml = ''
-  for (let i = 0; i < groups.length; i++) {
-    let group = groups[i]
-    let tags = group.tags;
+function showGroupList(group, insertNode) {
+  getGroupUser(group.id, cookie('dipper_token')).then(response => {
+    if (response.ok) {
+      response.json().then(json => {
+        if (json.error) {
+          if (json.error.code === 498) {
+            window.location.href='signin.html'
+          }
+          return
+        }
 
-    let tagHtml = '';
-    for (let i = 0; i < tags.length; i++) {
-      tagHtml += '<a href="#" class="label label-default">' + tags[i] + '</a>';
-    }
+        let admins = json.admins
+        let memberHtml = '组内成员：'
+        for (let i = 0; i < admins.length; i++) {
+          if (memberHtml === '') {
+            memberHtml += admins[i];
+          } else {
+            memberHtml += '、' + admins[i];
+          }
+        }
 
-    groupHtml += `<div class="col-md-6 group-item">
-      <div class="channel-item">
-        <div class="bd">
-          <div class="row" style="padding-bottom: 10px">
-            <div class="col-md-7"><a href="groupItem.html?groupid=${group.id}">${group.title}</a></div>
-            <div class="col-md-5 group-operation">
-              <a class="invite-user" data-groupid="${group.id}" data-toggle="modal" data-target="#inviteUserModal">
-                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>邀请 
-              </a>
-              <a class="edit-group" data-groupid="${group.id}" data-toggle="modal" data-target="#groupModal">
-                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 编辑
-              </a>
-              <a class="delete-group" data-groupid="${group.id}" href="#">
-                <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> 删除
-              </a>
-            </div>
-          </div>
-          <div class="block">
-            <a href="groupItem.html?groupid=${group.id}"></a>
-            <div class="pic">
-              <a href="groupItem.html?groupid=${group.id}"></a>
-              <div class="pic-wrap">
+        let users = json.users;
+        for (let j = 0; j < users.length; j++) {
+          if (memberHtml === '') {
+            memberHtml += users[j]
+          } else {
+            memberHtml += '、' + users[j]
+          }
+        }
+
+        let tags = group.tags
+        let tagHtml = ''
+        for (let k = 0; k < tags.length; k++) {
+          tagHtml += '<a href="#" class="label label-default">' + tags[k] + '</a>'
+        }
+
+        let groupHtml = `<div class="col-md-6 group-item group-${group.id}">
+          <div class="channel-item">
+            <div class="bd">
+              <div class="row" style="padding-bottom: 10px">
+                <div class="col-md-7"><a href="groupItem.html?groupid=${group.id}">${group.title}</a></div>
+                <div class="col-md-5 group-operation">
+                  <a class="invite-user" data-groupid="${group.id}" data-toggle="modal" data-target="#inviteUserModal">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>邀请
+                  </a>
+                  <a class="edit-group" data-groupid="${group.id}" data-toggle="modal" data-target="#groupModal">
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 编辑
+                  </a>
+                  <a class="delete-group" data-groupid="${group.id}" href="#">
+                    <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> 删除
+                  </a>
+                </div>
+              </div>
+              <div class="block">
                 <a href="groupItem.html?groupid=${group.id}"></a>
-                <a href="groupItem.html?groupid=${group.id}">
-                  <img src="assets/images/icons/group-no-image.jpg">
-                </a>
+                <div class="pic">
+                  <a href="groupItem.html?groupid=${group.id}"></a>
+                  <div class="pic-wrap">
+                    <a href="groupItem.html?groupid=${group.id}"></a>
+                    <a href="groupItem.html?groupid=${group.id}">
+                      <img src="assets/images/icons/group-no-image.jpg">
+                    </a>
+                  </div>
+                </div>
+                <p class="group">${memberHtml}</p>
+              </div>
+              <div class="row" style="padding: 10px 0 0 0">
+                <div class="col-md-6 tags"></div>
+                <div class="col-md-6 createinfo">${group.owner} 创建于 ${formatTime(group.created)}</div>
               </div>
             </div>
-            <p class="group0">${group.snippet || ''}</p>
           </div>
-          <div class="row" style="padding: 10px 0 0 0">
-            <div class="col-md-6 tags"></div>
-            <div class="col-md-6 createinfo">${group.owner} 创建于 ${formatTime(group.created)}</div>
-          </div>
-        </div>
-      </div>
-    </div>`
-  }
+        </div>`
 
-  $(`#${insertNode}`).html(groupHtml)
+        $(`#${insertNode}`).append(groupHtml)
 
-  $(`#${insertNode} .invite-user`).on('click', function(e) {
-    let orgid = window.dipper.orgid
-    let token = cookie('dipper_token')
-    if (token === undefined) {
-      return 
-    }
-
-    let groupid = $(e.target).data('groupid')
-    $('#current-groupid').val(groupid)
-
-    getPortalSelf(cookie('dipper_token')).then(response => {
-      if (response.ok) {
-        response.json().then(json => {
-          let query = `orgid:${json.id} -username:"${json.user.username}" -username:esri_nav -username:system_publisher`
-
-          queryUser(query, 1)
-        })
-      }
-    }).catch(err => {
-      console.log(err)
-    })
-  })
-
-  $(`#${insertNode} .edit-group`).on('click', function(e) {
-    let token = cookie('dipper_token')
-    if (token === undefined) {
-      return 
-    }
-
-    let groupid = $(e.target).data('groupid')
-    $('#current-edittype').val('edit')
-    $('#current-groupid').val(groupid)
-
-    getGroup(groupid, token).then(response => {
-      if (response.ok) {
-        response.json().then(json => {
-          if (json.error) {
+        $(`#${insertNode} .invite-user`).unbind('click').on('click', function(e) {
+          let orgid = window.dipper.orgid
+          let token = cookie('dipper_token')
+          if (token === undefined) {
             return
           }
 
-          $('#groupModal .modal-title').text('修改群组')
-          $('#group-name').val(json.title)
-          $('#group-summary').val(json.snippet)
+          let groupid = $(e.target).data('groupid')
+          $('#current-groupid').val(groupid)
 
+          getPortalSelf(cookie('dipper_token')).then(response => {
+            if (response.ok) {
+              response.json().then(json => {
+                let query = `orgid:${json.id} -username:"${json.user.username}" -username:esri_nav -username:system_publisher`
+
+                queryUser(query, 1)
+              })
+            }
+          }).catch(err => {
+            console.log(err)
+          })
         })
-      }
-    }).catch(err => {
-      console.log(err)
-    })
+
+        $(`#${insertNode} .edit-group`).unbind('click').on('click', function(e) {
+          let token = cookie('dipper_token')
+          if (token === undefined) {
+            return
+          }
+
+          let groupid = $(e.target).data('groupid')
+          $('#current-edittype').val('edit')
+          $('#current-groupid').val(groupid)
+
+          getGroup(groupid, token).then(response => {
+            if (response.ok) {
+              response.json().then(json => {
+                if (json.error) {
+                  return
+                }
+
+                $('#groupModal .modal-title').text('修改群组')
+                $('#group-name').val(json.title)
+                $('#group-summary').val(json.snippet)
+
+              })
+            }
+          }).catch(err => {
+            console.log(err)
+          })
+        })
+      })
+    }
+  }).catch(err => {
+    console.log(err)
   })
 }
 

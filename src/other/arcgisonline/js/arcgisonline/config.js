@@ -7,7 +7,7 @@
   if (context != "/") {
     context = "/" + context + "/";
   }
-  var DEPLOY_ROOT = location.protocol + '//' + location.host + context + 'portal/';
+  var DEPLOY_ROOT = location.protocol + '//' + location.host + context + 'dipper/';
 
   // var PORTAL_URL = location.protocol + '//' + location.host + context;
   var PORTAL_URL = 'http://geoplat.lonlat.org/arcgis/';

@@ -4,12 +4,14 @@ import { portalQueryConfig } from '../portal/config'
 import { getPortalSelf } from '../portal/portals'
 import { getContent } from '../portal/content/users'
 import { groupSearch } from '../portal/community/groups'
+import { unshareItems, shareItems } from '../portal/content/users'
 
 import cookie from '../utils/cookie'
 import { formatTime, subString } from '../utils/auxiliary'
 
-const PAGESIZE = 9
+let allGroup = []
 
+const PAGESIZE = 9
 // $(function() {
 let $pagination = $('.pagination')
 var defaultOpts = {
@@ -19,15 +21,15 @@ var defaultOpts = {
   last: '尾页'
 }
 $pagination.twbsPagination(defaultOpts)
-// })
+  // })
 
 getResourceList('/', 1)
 
 function getResourceList(folder, page) {
   let token = cookie('dipper_token')
   if (token === undefined) {
-    window.location.href='signin.html'
-    return 
+    window.location.href = 'signin.html'
+    return
   }
 
   getPortalSelf(token).then(response => {
@@ -35,7 +37,7 @@ function getResourceList(folder, page) {
       response.json().then(json => {
         if (json.error) {
           if (json.error.code === 498) {
-            window.location.href='signin.html'
+            window.location.href = 'signin.html'
           }
           return
         }
@@ -53,13 +55,13 @@ function getResourceList(folder, page) {
 
               if (folder === '/') {
                 let folders = json.folders
-                let folderHtml ='<li class="active"><a href="#" data-folderid="/">根目录</a></li>'
+                let folderHtml = '<li class="active"><a href="#" data-folderid="/">根目录</a></li>'
                 for (let i = 0; i < folders.length; i++) {
                   let folder = folders[i]
                   folderHtml += `<li><a href="#" data-folderid="${folder.id}">${folder.title}</a></li>`
                 }
                 $('.folder-type .tree-list').html(folderHtml)
-                $('.folder-type .tree-list a').on('click', function(e) {
+                $('.folder-type .tree-list a').on('click', function (e) {
                   e.preventDefault()
                   $('.pagination').hide()
                   $('.loading').show()
@@ -108,7 +110,7 @@ function showResourceList(type, resourceList) {
   let token = cookie('dipper_token')
 
   let resourceListHtml = ''
-  for(let i = 0; i < resourceList.length; i++) {
+  for (let i = 0; i < resourceList.length; i++) {
     let resource = resourceList[i]
 
     let thumbnail = `${config.portal.url}/sharing/rest/content/items/${resource.id}/info/${resource.thumbnail}`
@@ -122,20 +124,33 @@ function showResourceList(type, resourceList) {
 
     let openUrl = ''
     let detailUrl = `item.html?id=${resource.id}`
-    switch (type) {
-      case 'tools-geoprocessing':
-      case 'tools-geometric':
-        openUrl = resource.url;
-        detailUrl = `${detailUrl}&type=tool`
-        break;
-      case 'maps-webmaps':
-        openUrl = `webmap/viewer.html?webmap=${resource.id}`;
+    switch (resource.type) {
+      case 'Web Map':
+        openUrl = `webmap/viewer.html?webmap=${resource.id}`
         detailUrl = `${detailUrl}&type=webmap`
-        break;
-      default:
-        openUrl = `webmap/viewer.html?layers=${resource.id}`;
+        break
+      case 'Geoprocessing Service':
+      case 'Geometry Service':
+      case 'Network Analysis Service':
+        openUrl = resource.url
+        detailUrl = `${detailUrl}&type=tool`
+        break
+      case 'Feature Service':
+      case 'Image Service':
+      case 'Map Service':
+      case 'Stream Service':
+      case 'WMS':
+        openUrl = `webmap/viewer.html?layers=${resource.id}`
         detailUrl = `${detailUrl}&type=layer`
-        break;
+        break
+      case 'Service Definition':
+        openUrl = `${config.portal.url}/sharing/rest/content/items/${resource.id}/data?token=${token}`
+        detailUrl = `${detailUrl}&type=layer`
+        break
+      default:
+        openUrl = resource.url || '#'
+        detailUrl = `${detailUrl}&type=layer`
+        break
     }
 
     resourceListHtml += `<div class="col-md-4 resource">
@@ -184,7 +199,7 @@ function showResourceList(type, resourceList) {
 
   $('.resource-list').html(resourceListHtml)
 
-  $('#select-all').on('click', function() {
+  $('.select-all-item').on('click', function () {
     if ($(this).is(':checked')) {
       $('.select-item').prop('checked', true)
     } else {
@@ -192,11 +207,11 @@ function showResourceList(type, resourceList) {
     }
   })
 
-  $('.share-item').on('click', function(e) {
-    let selectItems = $("input[name='select-item']:checked")
+  $('.share-item').on('click', function (e) {
+    let selectItems = $('.resource-list input[type="checkbox"]:checked')
 
     if (selectItems.length === 0) {
-      $('#shareModal .modal-body').html('温馨提示, 请先选择要分享的内容信息')
+      $('#share-modal .modal-body').html('请先选择要分享的内容信息')
     } else {
       getPublicGroupList(1)
     }
@@ -207,7 +222,7 @@ function getPublicGroupList(page) {
   let orgid = window.dipper.orgid
   let token = cookie('dipper_token')
   if (token === undefined) {
-    return 
+    return
   }
 
   let query = 'ispublic:true'
@@ -238,34 +253,151 @@ function queryGroup(query, start) {
       response.json().then(json => {
         if (json.error) {
           if (json.error.code === 498) {
-            window.location.href='signin.html'
+            window.location.href = 'signin.html'
           }
           return
         }
 
         let publicGroups = json.results
         let publicGroupHtml = `<div class="checkbox">
-            <label><input type="checkbox" value="">公共</label>
+            <label><input class="select-everyone" type="checkbox" value="everyone">公共</label>
           </div>
           <div class="checkbox">
-            <label><input type="checkbox" value="">江西水利公共服务平台</label>
+            <label><input class="select-org" type="checkbox" value="org">江西水利公共服务平台</label>
           </div>
           <div class="checkbox">
-            <label><input type="checkbox" value="">以下群组</label>
+            <label><input class="select-groups" type="checkbox" value="">以下群组</label>
           </div>
-          <div style="padding-left: 30px;">`
+          <div style="padding-left: 20px;">`
 
         for (let i = 0; i < publicGroups.length; i++) {
           publicGroupHtml += `<div class="checkbox">
-              <label><input type="checkbox" value="${publicGroups[i].id}">${publicGroups[i].title}</label>
-            </div>`
+            <label><input class="select-group" type="checkbox" value="${publicGroups[i].id}">${publicGroups[i].title}</label>
+          </div>`
+
+          allGroup.push(publicGroups[i].id)
         }
         publicGroupHtml += `</div>`
 
-        $('#shareModal .modal-body').html(publicGroupHtml)
+        $('#share-modal .modal-body').html(publicGroupHtml)
+
+        $('.select-everyone').on('click', function () {
+          if ($(this).is(':checked')) {
+            $('.select-org').prop('checked', true)
+            $('.select-org').attr("disabled", true)
+          } else {
+            $('.select-org').removeAttr("disabled")
+          }
+        })
+
+        $('.select-org').on('click', function () {
+          if ($(this).is(':checked')) {
+            $('.select-groups').prop('checked', false)
+            $('.select-group').prop('checked', false)
+          }
+        })
+
+        $('.select-groups').on('click', function () {
+          if ($(this).is(':checked')) {
+            $('.select-group').prop('checked', true)
+          } else {
+            $('.select-group').prop('checked', false)
+          }
+        })
       })
     }
   }).catch(err => {
     console.log(err)
   })
+}
+
+$('.save-share').on('click', function (e) {
+  e.preventDefault()
+
+  let everyoneSelected = $('.select-everyone:checked')
+  let orgSelected = $('.select-org:checked')
+  let groupSelected = $('.select-group:checked')
+  let itemSelected = $('.select-item:checked')
+
+  let groups = []
+  let items = []
+  for (let i = 0; i < groupSelected.length; i++) {
+    let group = groupSelected[i].value
+    groups.push(group)
+  }
+
+  for (let i = 0; i < itemSelected.length; i++) {
+    let item = itemSelected[i].value
+    items.push(item)
+  }
+
+  if (everyoneSelected.length !== 0) {
+    groups = []
+    shareItemToGroup(true, false, items.join(','), groups.join(','))
+  }
+
+  if (orgSelected.length !== 0) {
+    groups = []
+    shareItemToGroup(false, true, items.join(','), groups.join(','))
+  }
+})
+
+function shareItemToGroup(everyone, org, items, groups) {
+  let token = cookie('dipper_token')
+  if (token === undefined) {
+    return
+  }
+
+  let username = window.dipper.username
+  if (username === undefined) {
+    getPortalSelf(token).then(response => {
+      if (response.ok) {
+        response.json().then(json => {
+          username = json.user.username
+
+          unshareItems(username, items, allGroup.join(','), token).then(response => {
+            if (response.ok) {
+              response.json().then(json => {
+                shareItems(username, everyone, org, items, groups, token).then(response => {
+                  if (response.ok) {
+                    response.json().then(json => {
+                      username = json.user.username
+                    })
+                  }
+                }).catch(err => {
+                  console.log(err)
+                })
+              })
+            }
+          }).catch(err => {
+            console.log(err)
+          })
+        })
+      }
+    }).catch(err => {
+      console.log(err)
+    })
+  } else {
+    unshareItems(username, items, allGroup.join(','), token).then(response => {
+      if (response.ok) {
+        response.json().then(json => {
+          username = json.user.username
+
+          shareItems(username, everyone, org, items, groups, token).then(response => {
+            if (response.ok) {
+              response.json().then(json => {
+                username = json.user.username
+              })
+            }
+          }).catch(err => {
+            console.log(err)
+          })
+        })
+      }
+    }).catch(err => {
+      console.log(err)
+    })
+  }
+  // shareItems(userName, everyone, org, items, groups, token)
+  // unshareItems(userName, items, groups, token)
 }

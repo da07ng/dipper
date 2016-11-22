@@ -18,11 +18,8 @@ getItemInfo(itemid)
 
 function getItemInfo(itemid) {
   let token = cookie('dipper_token')
-  if (token === undefined) {
-    return
-  }
 
-  getItem(itemid, token).then(response => {
+  getItem(itemid, cookie('dipper_token')).then(response => {
     if (response.ok) {
       response.json().then(json => {
         $('.loading').hide()
@@ -68,7 +65,7 @@ function getItemInfo(itemid) {
 
         let overviewHtml = `<div class="media">
           <div class="media-left media-top">
-            <img src="${thumbnail}" class="media-object" alt="" />
+            <img src="${thumbnail}" class="media-object" alt="" width="202px" height="135px" />
           </div>
           <div class="media-body">
             <h3 class="item-title">${json.title}</h3>
@@ -91,7 +88,7 @@ function getItemInfo(itemid) {
         <div class="item-operation btn-group">
           <button id="options" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">打开 <span class="caret"></span></button>
           <ul class="dropdown-menu">
-            <li><a href="${openUrl}">在地图查看器中打开</a></li>
+            <li><a href="${openUrl}">打开</a></li>
             <li><a href="#">下载</a></li>
           </ul>
         </div>`
@@ -195,7 +192,7 @@ function getItemInfo(itemid) {
             console.log(err)
           })
         } else {
-          let apiUrlHtml = `<h4>ArcGIS Web API REST 连接</h4><p class="layer-title"><a href="${json.url}" target="_blank">${json.url}</a></p>`
+          let apiUrlHtml = `<h4>ArcGIS Web API REST 连接</h4><p class="layer-title"><a href="${json.url || '#'}" target="_blank">${json.url || ''}</a></p>`
           $('.item-layers').html(apiUrlHtml)
         }
       })
@@ -203,6 +200,4 @@ function getItemInfo(itemid) {
   }).catch(err => {
     console.log(err)
   })
-
-
 }

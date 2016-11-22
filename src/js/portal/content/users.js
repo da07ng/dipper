@@ -283,14 +283,17 @@ function exportItem(userName) {
   })
 }
 
-function shareItems(userName) {
+function shareItems(userName, everyone, org, items, groups, token) {
   if (token === undefined) {
     token = ''
   }
 
   let url = config.portal.url + '/sharing/rest/content/users/' + userName + '/shareItems'
   let params = {
-    culture: 'zh-cn',
+    everyone: everyone,
+    org: org,
+    items: items,
+    groups: groups,
     f: 'json',
     token: token
   }
@@ -304,14 +307,15 @@ function shareItems(userName) {
   })
 }
 
-function unshareItems(userName) {
+function unshareItems(userName, items, groups, token) {
   if (token === undefined) {
     token = ''
   }
 
   let url = config.portal.url + '/sharing/rest/content/users/' + userName + '/unshareItems'
   let params = {
-    culture: 'zh-cn',
+    items: items,
+    groups: groups,
     f: 'json',
     token: token
   }

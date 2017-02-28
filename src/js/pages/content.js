@@ -2,9 +2,8 @@ import { config } from '../config/config'
 
 import { portalQueryConfig } from '../portal/config'
 import { getPortalSelf } from '../portal/portals'
-import { getContent } from '../portal/content/users'
+import { getContent, unshareItems, shareItems  } from '../portal/content/users'
 import { groupSearch } from '../portal/community/groups'
-import { unshareItems, shareItems } from '../portal/content/users'
 
 import cookie from '../utils/cookie'
 import { formatTime, subString } from '../utils/auxiliary'
@@ -21,7 +20,7 @@ var defaultOpts = {
   last: '尾页'
 }
 $pagination.twbsPagination(defaultOpts)
-  // })
+// })
 
 getResourceList('/', 1)
 
@@ -198,24 +197,6 @@ function showResourceList(type, resourceList) {
   }
 
   $('.resource-list').html(resourceListHtml)
-
-  $('.select-all-item').on('click', function () {
-    if ($(this).is(':checked')) {
-      $('.select-item').prop('checked', true)
-    } else {
-      $('.select-item').prop('checked', false)
-    }
-  })
-
-  $('.share-item').on('click', function (e) {
-    let selectItems = $('.resource-list input[type="checkbox"]:checked')
-
-    if (selectItems.length === 0) {
-      $('#share-modal .modal-body').html('请先选择要分享的内容信息')
-    } else {
-      getPublicGroupList(1)
-    }
-  })
 }
 
 function getPublicGroupList(page) {
@@ -311,6 +292,24 @@ function queryGroup(query, start) {
   })
 }
 
+$('.select-all-item').on('click', function () {
+  if ($(this).is(':checked')) {
+    $('.select-item').prop('checked', true)
+  } else {
+    $('.select-item').prop('checked', false)
+  }
+})
+
+$('.share-item').on('click', function (e) {
+  let selectItems = $('.resource-list input[type="checkbox"]:checked')
+
+  if (selectItems.length === 0) {
+    $('#share-modal .modal-body').html('请先选择要分享的内容信息')
+  } else {
+    getPublicGroupList(1)
+  }
+})
+
 $('.save-share').on('click', function (e) {
   e.preventDefault()
 
@@ -381,12 +380,12 @@ function shareItemToGroup(everyone, org, items, groups) {
     unshareItems(username, items, allGroup.join(','), token).then(response => {
       if (response.ok) {
         response.json().then(json => {
-          username = json.user.username
+          let unshareResults = json.results
 
           shareItems(username, everyone, org, items, groups, token).then(response => {
             if (response.ok) {
               response.json().then(json => {
-                username = json.user.username
+                let shareResults = json.results
               })
             }
           }).catch(err => {
